@@ -64,7 +64,7 @@ public class OracleTypeDATE extends OracleType
 
     if (paramObject != null)
     {
-      Object localObject;
+      char[][] localObject;
       if ((paramObject instanceof char[][]))
       {
         localObject = (char[][])paramObject;
@@ -81,9 +81,9 @@ public class OracleTypeDATE extends OracleType
           return super.toDatumArray(paramObject, paramOracleConnection, paramLong, paramInt);
         }
 
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 59, paramObject);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 59, paramObject);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
     }
     return arrayOfDatum;

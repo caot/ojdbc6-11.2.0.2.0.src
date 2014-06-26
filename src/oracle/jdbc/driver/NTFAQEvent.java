@@ -74,8 +74,8 @@ class NTFAQEvent extends AQNotificationEvent
       int i2 = 0;
       if (this.databaseVersion >= 10200)
       {
-        i3 = this.dataBuffer.get();
-        i4 = this.dataBuffer.getInt();
+        int i3 = this.dataBuffer.get();
+        int i4 = this.dataBuffer.getInt();
         i2 = this.dataBuffer.getInt();
       }
 
@@ -322,7 +322,7 @@ class NTFAQEvent extends AQNotificationEvent
         localStringBuffer.append(' ');
       else
         j = 0;
-      str = Integer.toHexString(paramArrayOfByte[i] & 0xFF);
+      String str = Integer.toHexString(paramArrayOfByte[i] & 0xFF);
       if (str.length() == 1)
         str = "0" + str;
       localStringBuffer.append(str);

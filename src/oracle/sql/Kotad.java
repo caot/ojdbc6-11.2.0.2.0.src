@@ -94,13 +94,13 @@ class Kotad
     Kotad localKotad = unpickleKotad(paramPickleContext);
     if (localKotad.kotadkvn != -1365311487)
     {
-      localObject = DatabaseError.createSqlException(null, 179);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(null, 179);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject = constructPredefinedTypeDescriptor(localKotad);
-    return localObject;
+    TypeDescriptor typedescriptor = constructPredefinedTypeDescriptor(localKotad);
+    return typedescriptor;
   }
 
   static final AttributeDescriptor unpickleAttributeImage(boolean paramBoolean, PickleContext paramPickleContext)
@@ -109,9 +109,9 @@ class Kotad
     Kotad localKotad = unpickleKotad(paramPickleContext);
     if (localKotad.kotadkvn != -1365573631)
     {
-      localObject = DatabaseError.createSqlException(null, 179);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(null, 179);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -138,17 +138,17 @@ class Kotad
     {
       if (paramKotad.kotadtrf[s] != 0)
       {
-        localObject = DatabaseError.createSqlException(null, 180);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(null, 180);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
     }
 
-    s = TypeDescriptor.OID_TO_TYPECODE[paramKotad.kotadtrf[19]];
-    Object localObject = new TypeDescriptor(s);
-    ((TypeDescriptor)localObject).setPrecision(paramKotad.kotadpre);
-    ((TypeDescriptor)localObject).setScale(paramKotad.kotadscl);
-    return localObject;
+    short s = TypeDescriptor.OID_TO_TYPECODE[paramKotad.kotadtrf[19]];
+    TypeDescriptor typedescriptor = new TypeDescriptor(s);
+    typedescriptor.setPrecision(paramKotad.kotadpre);
+    typedescriptor.setScale(paramKotad.kotadscl);
+    return typedescriptor;
   }
 
   protected OracleConnection getConnectionDuringExceptionHandling()

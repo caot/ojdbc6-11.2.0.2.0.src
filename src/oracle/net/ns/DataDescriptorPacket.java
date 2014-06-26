@@ -80,7 +80,7 @@ public class DataDescriptorPacket extends Packet
       writeB4ToBuffer(this.buffer, 16, i);
       for (int k = 0; k < i; k++)
         writeB2ToBuffer(this.buffer, 20 + k * 2, this.sdd[k]);
-      for (k = i; k < 26; k++) {
+      for (int k = i; k < 26; k++) {
         writeB2ToBuffer(this.buffer, 20 + k * 2, 0);
       }
 
@@ -93,10 +93,10 @@ public class DataDescriptorPacket extends Packet
 
   void writeB4ToBuffer(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
   {
-    int i = (byte)((paramInt2 & 0xFF000000) >>> 24 & 0xFF);
-    int j = (byte)((paramInt2 & 0xFF0000) >>> 16 & 0xFF);
-    int k = (byte)((paramInt2 & 0xFF00) >>> 8 & 0xFF);
-    int m = (byte)(paramInt2 & 0xFF);
+    byte i = (byte)((paramInt2 & 0xFF000000) >>> 24 & 0xFF);
+    byte j = (byte)((paramInt2 & 0xFF0000) >>> 16 & 0xFF);
+    byte k = (byte)((paramInt2 & 0xFF00) >>> 8 & 0xFF);
+    byte m = (byte)(paramInt2 & 0xFF);
     paramArrayOfByte[paramInt1] = i;
     paramArrayOfByte[(paramInt1 + 1)] = j;
     paramArrayOfByte[(paramInt1 + 2)] = k;
@@ -104,8 +104,8 @@ public class DataDescriptorPacket extends Packet
   }
 
   void writeB2ToBuffer(byte[] paramArrayOfByte, int paramInt1, int paramInt2) {
-    int i = (byte)((paramInt2 & 0xFF00) >>> 8 & 0xFF);
-    int j = (byte)(paramInt2 & 0xFF);
+    byte i = (byte)((paramInt2 & 0xFF00) >>> 8 & 0xFF);
+    byte j = (byte)(paramInt2 & 0xFF);
     paramArrayOfByte[paramInt1] = i;
     paramArrayOfByte[(paramInt1 + 1)] = j;
   }

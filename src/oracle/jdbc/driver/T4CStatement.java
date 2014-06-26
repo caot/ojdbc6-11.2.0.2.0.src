@@ -171,7 +171,7 @@ class T4CStatement extends OracleStatement
   void allocateRowidAccessor()
     throws SQLException
   {
-    this.accessors[0] = new T4CRowidAccessor(this, 128, 1, -8, false, this.t4Connection.mare);
+    this.accessors[0] = new T4CRowidAccessor(this, 128, (short)1, -8, false, this.t4Connection.mare);
   }
 
   void reparseOnRedefineIfNeeded()
@@ -305,7 +305,7 @@ class T4CStatement extends OracleStatement
     if (paramBoolean)
     {
       paramArrayOfShort = new short[this.defineIndicators.length];
-      j = this.accessors[0].lengthIndexLastRow;
+      int j = this.accessors[0].lengthIndexLastRow;
       int k = this.accessors[0].indicatorIndexLastRow;
 
       int i1 = i != 0 ? this.accessors.length : 1;
@@ -335,7 +335,7 @@ class T4CStatement extends OracleStatement
   Accessor allocateAccessor(int paramInt1, int paramInt2, int paramInt3, int paramInt4, short paramShort, String paramString, boolean paramBoolean)
     throws SQLException
   {
-    Object localObject = null;
+    Accessor localObject = null;
     SQLException localSQLException;
     switch (paramInt1)
     {

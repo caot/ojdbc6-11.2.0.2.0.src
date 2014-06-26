@@ -96,7 +96,8 @@ public class INTERVALDS extends Datum
         {
           char[] arrayOfChar = new char[MAXLEADPREC];
 
-          for (int i4 = 0; i4 < str5.length(); i4++)
+          int i4;
+          for (i4 = 0; i4 < str5.length(); i4++)
           {
             arrayOfChar[i4] = str5.charAt(i4);
           }

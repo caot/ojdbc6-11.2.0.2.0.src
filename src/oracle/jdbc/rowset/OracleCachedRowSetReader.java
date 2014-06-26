@@ -57,7 +57,7 @@ public class OracleCachedRowSetReader
   Connection getConnection(RowSetInternal paramRowSetInternal)
     throws SQLException
   {
-    Object localObject1 = null;
+    Connection localObject1 = null;
 
     Connection localConnection = paramRowSetInternal.getConnection();
     if ((localConnection != null) && (!localConnection.isClosed()))
@@ -99,9 +99,9 @@ public class OracleCachedRowSetReader
         }
         catch (NamingException localNamingException)
         {
-          localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 300, localNamingException.getMessage());
-          ((SQLException)localObject2).fillInStackTrace();
-          throw ((Throwable)localObject2);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 300, localNamingException.getMessage());
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
       }
@@ -118,9 +118,9 @@ public class OracleCachedRowSetReader
 
         if ((str1.equals("")) || (((String)localObject2).equals("")) || (str2.equals("")))
         {
-          localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 301);
-          ((SQLException)localObject3).fillInStackTrace();
-          throw ((Throwable)localObject3);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 301);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
         localObject1 = DriverManager.getConnection(str1, (String)localObject2, str2);

@@ -27,7 +27,7 @@ class T4CMAREngine
   byte proSvrVer;
   T4CSocketInputStreamWrapper inStream;
   T4CSocketOutputStreamWrapper outStream;
-  final byte[] ignored = new byte['ÿ'];
+  final byte[] ignored = new byte[255];
   final byte[] tmpBuffer1 = new byte[1];
   final byte[] tmpBuffer2 = new byte[2];
   final byte[] tmpBuffer3 = new byte[3];
@@ -612,7 +612,7 @@ class T4CMAREngine
 
     for (int k = 0; k < j; k++)
     {
-      int i = paramArrayOfByte[k];
+      byte i = paramArrayOfByte[k];
       paramArrayOfByte[k] = paramArrayOfByte[(paramByte - 1 - k)];
       paramArrayOfByte[(paramByte - 1 - k)] = i;
     }
@@ -886,7 +886,7 @@ class T4CMAREngine
   byte[] unmarshalCHR(int paramInt)
     throws SQLException, IOException
   {
-    Object localObject = null;
+    byte[] localObject = null;
 
     if (this.types.isConvNeeded())
     {
@@ -1188,7 +1188,7 @@ class T4CMAREngine
             (!this.types.isServerConversion()))
           {
             j = (short)(j + i);
-            arrayOfByte2 = new byte[i];
+            byte[] arrayOfByte2 = new byte[i];
 
             unmarshalBuffer(arrayOfByte2, 0, i);
             this.refVector.add(arrayOfByte2);

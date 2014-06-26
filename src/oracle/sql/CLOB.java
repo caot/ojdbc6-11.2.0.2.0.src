@@ -102,9 +102,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     long l = -1L;
@@ -123,15 +123,15 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     if ((paramInt < 0) || (paramLong < 1L))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (canReadBasicLobDataInLocator())
@@ -139,7 +139,7 @@ public class CLOB extends DatumWithConnection
       return dilGetSubString(paramLong, paramInt);
     }
 
-    Object localObject = null;
+    String localObject = null;
 
     if ((paramInt == 0) || ((this.activePrefetch) && ((this.cachedLengthOfClobInChars == 0L) || ((this.cachedLengthOfClobInChars > 0L) && (paramLong - 1L >= this.cachedLengthOfClobInChars)))))
     {
@@ -174,9 +174,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     if (canReadBasicLobDataInLocator())
     {
@@ -190,9 +190,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     if (canReadBasicLobDataInLocator())
     {
@@ -206,9 +206,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return getDBAccess().position(this, paramString, paramLong);
   }
@@ -217,9 +217,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return getDBAccess().position(this, (CLOB)paramClob, paramLong);
   }
@@ -228,9 +228,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return getDBAccess().getChars(this, paramLong, paramInt, paramArrayOfChar);
   }
@@ -240,9 +240,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return setCharacterStream(1L);
   }
@@ -252,9 +252,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return setAsciiStream(1L);
   }
@@ -273,9 +273,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return getDBAccess().putChars(this, paramLong, paramArrayOfChar, 0, paramArrayOfChar != null ? paramArrayOfChar.length : 0);
   }
@@ -284,9 +284,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return getDBAccess().putChars(this, paramLong, paramArrayOfChar, 0, paramInt);
   }
@@ -295,9 +295,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return getDBAccess().putChars(this, paramLong, paramArrayOfChar, paramInt1, paramInt2);
   }
@@ -307,9 +307,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return setString(paramLong, paramString);
   }
@@ -318,9 +318,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     if (this.dbChunkSize <= 0)
     {
@@ -334,9 +334,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     int i = getChunkSize();
     int j = 0;
@@ -378,9 +378,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return (shareBytes()[5] & 0x10) != 0;
   }
@@ -389,9 +389,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     boolean bool = (shareBytes()[7] & 0xFFFFFF80) != 0;
     return bool;
@@ -402,9 +402,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return getDBAccess().newOutputStream(this, getBufferSize(), paramLong, false);
   }
@@ -414,9 +414,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return getDBAccess().newWriter(this, getBufferSize(), paramLong, false);
   }
@@ -425,9 +425,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     if (canReadBasicLobDataInLocator())
     {
@@ -441,9 +441,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     if (canReadBasicLobDataInLocator())
     {
@@ -458,9 +458,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     truncate(paramLong);
   }
@@ -484,10 +484,10 @@ public class CLOB extends DatumWithConnection
     }
     if ((paramConnection == null) || ((i != 10) && (i != 12)))
     {
-      localObject = DatabaseError.createSqlException(null, 68, "'conn' should not be null and 'duration' should either be equal to DURATION_SESSION or DURATION_CALL");
+      SQLException sqlexception = DatabaseError.createSqlException(null, 68, "'conn' should not be null and 'duration' should either be equal to DURATION_SESSION or DURATION_CALL");
 
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = ((oracle.jdbc.OracleConnection)paramConnection).physicalConnectionWithin();
@@ -520,9 +520,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     getDBAccess().freeTemporary(this, this.fromObject);
@@ -532,9 +532,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return getDBAccess().isTemporary(this);
   }
@@ -543,9 +543,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     getDBAccess().open(this, paramInt);
   }
@@ -554,9 +554,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     getDBAccess().close(this);
   }
@@ -565,9 +565,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return getDBAccess().isOpen(this);
   }
@@ -575,17 +575,17 @@ public class CLOB extends DatumWithConnection
   public int setString(long paramLong, String paramString)
     throws SQLException
   {
-    SQLException localSQLException;
+    SQLException sqlexception;
     if (this.isFree) {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     if (paramLong < 1L)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "'pos' should not be < 1");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "'pos' should not be < 1");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     int i = 0;
@@ -598,31 +598,31 @@ public class CLOB extends DatumWithConnection
   public int setString(long paramLong, String paramString, int paramInt1, int paramInt2)
     throws SQLException
   {
-    SQLException localSQLException;
+    SQLException sqlexception;
     if (this.isFree) {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     if (paramLong < 1L)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "'pos' should not be < 1");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "'pos' should not be < 1");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramInt1 < 0)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "'offset' should not be < 0");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "'offset' should not be < 0");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramInt1 + paramInt2 > paramString.length())
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, " 'offset + len' should not be exceed string length. ");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, " 'offset + len' should not be exceed string length. ");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     int i = 0;
@@ -636,9 +636,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return getDBAccess().newOutputStream(this, getBufferSize(), paramLong, true);
   }
@@ -647,9 +647,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return getDBAccess().newWriter(this, getBufferSize(), paramLong, true);
   }
@@ -657,17 +657,17 @@ public class CLOB extends DatumWithConnection
   public void truncate(long paramLong)
     throws SQLException
   {
-    SQLException localSQLException;
+    SQLException sqlexception;
     if (this.isFree) {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     if (paramLong < 0L)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, " 'len' should not be < 0");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, " 'len' should not be < 0");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     getDBAccess().trim(this, paramLong);
@@ -677,9 +677,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return this;
   }
@@ -727,15 +727,15 @@ public class CLOB extends DatumWithConnection
     }
     catch (IOException localIOException)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     catch (IndexOutOfBoundsException localIndexOutOfBoundsException)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 151);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 151);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return localStringWriter.getBuffer().substring(0);
@@ -749,14 +749,14 @@ public class CLOB extends DatumWithConnection
   public ClobDBAccess getDBAccess()
     throws SQLException
   {
-    SQLException localSQLException;
+    SQLException sqlexception;
     if (this.dbaccess == null)
     {
       if (isEmptyLob())
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 98);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 98);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       this.dbaccess = getInternalConnection().createClobDBAccess();
@@ -764,9 +764,9 @@ public class CLOB extends DatumWithConnection
 
     if (getPhysicalConnection().isClosed())
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return this.dbaccess;
@@ -782,9 +782,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return super.getJavaSqlConnection();
   }
@@ -860,7 +860,7 @@ public class CLOB extends DatumWithConnection
     int n = 0;
     if ((k != 0) && (m == 0))
     {
-      i1 = arrayOfByte[88] & 0xFF;
+      int i1 = arrayOfByte[88] & 0xFF;
       n = (i1 & 0x8) == 8 ? 1 : 0;
     }
     int i1 = (k != 0) && (m == 0) && (n != 0) ? 1 : 0;
@@ -936,12 +936,12 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     char[] arrayOfChar = dilGetChars();
-    Object localObject;
+    byte[] localObject;
     if (paramLong - 1L > arrayOfChar.length)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (dilGetCharSetId() == 1)
@@ -965,9 +965,9 @@ public class CLOB extends DatumWithConnection
     int i = arrayOfChar.length;
     if (paramLong - 1L > i)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return new CharArrayReader(arrayOfChar, (int)(paramLong - 1L), 2147483647);
@@ -1003,9 +1003,9 @@ public class CLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
     if (canReadBasicLobDataInLocator())
     {
@@ -1015,9 +1015,9 @@ public class CLOB extends DatumWithConnection
     long l = length();
     if ((paramLong1 < 1L) || (paramLong2 < 0L) || (paramLong1 > l) || (paramLong1 - 1L + paramLong2 > l))
     {
-      SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException2.fillInStackTrace();
-      throw localSQLException2;
+      SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception2.fillInStackTrace();
+      throw sqlexception2;
     }
     return getDBAccess().newReader(this, getChunkSize(), paramLong1, paramLong2);
   }
@@ -1027,17 +1027,17 @@ public class CLOB extends DatumWithConnection
   {
     if ((paramLong1 < 1L) || (paramLong2 < 0L))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
-    Object localObject = dilGetChars();
+    char[] localObject = dilGetChars();
     long l = localObject.length;
     if ((paramLong1 < 1L) || (paramLong2 < 0L) || (paramLong1 > l) || (paramLong1 - 1L + paramLong2 > l))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return new CharArrayReader((char[])localObject, (int)(paramLong1 - 1L), (int)paramLong2);
   }

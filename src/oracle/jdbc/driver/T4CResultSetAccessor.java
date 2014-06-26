@@ -113,7 +113,7 @@ class T4CResultSetAccessor extends ResultSetAccessor
 
     if (this.newstmt.length <= this.lastRowProcessed)
     {
-      localObject = new OracleStatement[this.newstmt.length * 4];
+      OracleStatement[] localObject = new OracleStatement[this.newstmt.length * 4];
 
       System.arraycopy(this.newstmt, 0, localObject, 0, this.newstmt.length);
 

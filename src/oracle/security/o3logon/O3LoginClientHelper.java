@@ -20,11 +20,11 @@ public final class O3LoginClientHelper
   public final byte[] getSessionKey(String paramString1, String paramString2, byte[] paramArrayOfByte)
   {
     byte[] arrayOfByte;
-    return b.a(arrayOfByte = this.a.a(paramString1, paramString2, this.b), paramArrayOfByte);
+    return oracle.security.o3logon.b.a(arrayOfByte = this.a.a(paramString1, paramString2, this.b), paramArrayOfByte);
   }
 
   public final byte[] getEPasswd(byte[] paramArrayOfByte1, byte[] paramArrayOfByte2)
   {
-    return b.b(paramArrayOfByte1, paramArrayOfByte2);
+    return oracle.security.o3logon.b.b(paramArrayOfByte1, paramArrayOfByte2);
   }
 }

@@ -155,15 +155,15 @@ class BfileAccessor extends Accessor
     }
     catch (IOException localIOException)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     catch (IndexOutOfBoundsException localIndexOutOfBoundsException)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 151);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 151);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return localByteArrayOutputStream.toByteArray();

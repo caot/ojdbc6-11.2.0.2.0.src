@@ -596,6 +596,7 @@ public class ARRAY extends DatumWithConnection
     for (int j = 0; j < paramInt; j++) paramPrintWriter.print(' ');
     paramPrintWriter.println("name = " + localArrayDescriptor.getName());
 
+    int j;
     for (j = 0; j < paramInt; j++) paramPrintWriter.print(' ');
     paramPrintWriter.println("max length = " + localArrayDescriptor.getMaxLength());
     Object[] arrayOfObject = (Object[])paramARRAY.getArray();

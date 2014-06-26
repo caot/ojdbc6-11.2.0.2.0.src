@@ -239,17 +239,19 @@ public class AuthenticationService extends Service
     try
     {
       GSSManager localGSSManager = GSSManager.getInstance();
-      localObject1 = new Oid("1.2.840.113554.1.2.2");
+      Oid localObject1 = new Oid("1.2.840.113554.1.2.2");
       Oid localOid = new Oid("1.2.840.113554.1.2.2.1");
       byte[] arrayOfByte1 = ((Oid)localObject1).getDER();
       KerberosPrincipal localKerberosPrincipal = null;
       Set localSet;
+      Iterator localObject2;
+      Principal localObject3;
       if (((localObject2 = (localSet = this.n.getPrincipals()).iterator()).hasNext()) && (((localObject3 = (Principal)((Iterator)localObject2).next()) instanceof KerberosPrincipal)))
         localKerberosPrincipal = (KerberosPrincipal)localObject3;
-      Object localObject2 = this.o + "@" + localKerberosPrincipal.getRealm();
-      Object localObject3 = localKerberosPrincipal.getName();
-      GSSName localGSSName1 = localGSSManager.createName((String)localObject2, localOid);
-      GSSName localGSSName2 = localGSSManager.createName((String)localObject3, localOid);
+      String nameStr = this.o + "@" + localKerberosPrincipal.getRealm();
+      String fullName = localKerberosPrincipal.getName();
+      GSSName localGSSName1 = localGSSManager.createName(nameStr, localOid);
+      GSSName localGSSName2 = localGSSManager.createName(fullName, localOid);
       GSSCredential localGSSCredential = localGSSManager.createCredential(localGSSName2, 0, (Oid)localObject1, 1);
       GSSContext localGSSContext = localGSSManager.createContext(localGSSName1, (Oid)localObject1, localGSSCredential, 0);
       boolean bool = true;
@@ -314,9 +316,9 @@ public class AuthenticationService extends Service
     }
     catch (GSSException localGSSException1)
     {
-      Object localObject1;
+      NetException localObject1;
       (localObject1 = new NetException(323, localGSSException1.getMessage())).initCause(localGSSException1);
-      throw ((Throwable)localObject1);
+      throw localObject1;
     }
     return null;
   }
@@ -329,11 +331,15 @@ public class AuthenticationService extends Service
     {
       Set localSet;
       Object[] arrayOfObject = (localSet = this.n.getPrivateCredentials()).toArray();
-      Object localObject1 = null;
+      byte[] localObject1 = null;
       int i = -1;
-      Object localObject5;
+      byte[] localObject5;
       for (int i1 = 0; i1 < arrayOfObject.length; i1++)
       {
+        KerberosTicket localObject2;
+        KerberosPrincipal localObject3;
+        String localObject4;
+        
         localObject4 = (localObject3 = (localObject2 = (KerberosTicket)arrayOfObject[i1]).getServer()).getName();
         localObject5 = ((KerberosTicket)localObject2).getSessionKey().getEncoded();
         int i2 = ((KerberosTicket)localObject2).getSessionKeyType();
@@ -344,12 +350,14 @@ public class AuthenticationService extends Service
         }
       }
       APReq localAPReq = new APReq(paramArrayOfByte);
-      Object localObject2 = new EncryptionKey(i, localObject1);
-      Object localObject3 = localAPReq.authenticator.decrypt((EncryptionKey)localObject2, 11);
-      Object localObject4 = localAPReq.authenticator.reset((byte[])localObject3, true);
+      EncryptionKey localObject2 = new EncryptionKey(i, localObject1);
+      byte[] localObject3 = localAPReq.authenticator.decrypt((EncryptionKey)localObject2, 11);
+      byte[] localObject4 = localAPReq.authenticator.reset((byte[])localObject3, true);
       Checksum localChecksum;
       byte[] arrayOfByte2;
-      if ((arrayOfByte2 = (localChecksum = (localObject5 = new Authenticator((byte[])localObject4)).getChecksum()).getBytes()).length >= 26)
+      
+      Authenticator authenticator;
+      if ((arrayOfByte2 = (localChecksum = (authenticator = new Authenticator((byte[])localObject4)).getChecksum()).getBytes()).length >= 26)
       {
         int i3;
         byte[] arrayOfByte3 = new byte[i3 = ((arrayOfByte2[27] & 0xFF) << 8) + (arrayOfByte2[26] & 0xFF)];
@@ -372,6 +380,6 @@ public class AuthenticationService extends Service
 
   public static final byte[] obfuscatePasswordForRadius(byte[] paramArrayOfByte)
   {
-    return a.a(paramArrayOfByte);
+    return oracle.net.aso.a.a(paramArrayOfByte);
   }
 }

@@ -695,7 +695,7 @@ abstract class Accessor
   {
     if (this.rowSpaceIndicator == null)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
       localSQLException.fillInStackTrace();
       throw localSQLException;
     }

@@ -148,16 +148,16 @@ public class REF extends DatumWithConnection
 
       if (localSTRUCT.getInternalConnection() != getInternalConnection())
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 77, "Incompatible connection object");
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 77, "Incompatible connection object");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if (!getBaseTypeName().equals(localSTRUCT.getSQLTypeName()))
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 77, "Incompatible type");
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 77, "Incompatible type");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       Object localObject1 = localSTRUCT.toBytes();

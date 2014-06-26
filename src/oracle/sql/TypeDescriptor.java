@@ -430,24 +430,24 @@ public class TypeDescriptor
   {
     if (!this.isTransient)
     {
-      Object localObject;
+      SQLException sqlexception;
       if (this.connection == null)
       {
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if (this.pickler != null) {
         this.sqlName = new SQLName(this.pickler.getFullName(), this.connection);
       } else if (this.toid != null)
       {
-        localObject = OracleTypeADT.toid2typename(this.connection, this.toid);
+        String str = OracleTypeADT.toid2typename(this.connection, this.toid);
 
-        this.sqlName = new SQLName((String)localObject, this.connection);
+        this.sqlName = new SQLName(str, this.connection);
 
         TypeDescriptor localTypeDescriptor = null;
-        String str = this.sqlName.getName();
+        str = this.sqlName.getName();
         localTypeDescriptor = (TypeDescriptor)this.connection.getDescriptor(str);
 
         if (localTypeDescriptor != null)
@@ -455,9 +455,9 @@ public class TypeDescriptor
       }
       else if ((this.internalTypeCode == 108) || (this.internalTypeCode == 122))
       {
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
     }
   }
@@ -561,17 +561,17 @@ public class TypeDescriptor
   public static TypeDescriptor getTypeDescriptor(String paramString, oracle.jdbc.OracleConnection paramOracleConnection)
     throws SQLException
   {
-    Object localObject1 = null;
+    TypeDescriptor typedescriptor = null;
     try
     {
       SQLName localSQLName = new SQLName(paramString, paramOracleConnection);
-      localObject2 = localSQLName.getName();
+      String str = localSQLName.getName();
 
-      localObject1 = (TypeDescriptor)paramOracleConnection.getDescriptor((String)localObject2);
+      typedescriptor = (TypeDescriptor)paramOracleConnection.getDescriptor(str);
 
-      if (localObject1 == null)
+      if (typedescriptor == null)
       {
-        OracleTypeADT localOracleTypeADT = new OracleTypeADT((String)localObject2, paramOracleConnection);
+        OracleTypeADT localOracleTypeADT = new OracleTypeADT(str, paramOracleConnection);
         oracle.jdbc.internal.OracleConnection localOracleConnection = (oracle.jdbc.internal.OracleConnection)paramOracleConnection;
 
         localOracleTypeADT.init(localOracleConnection);
@@ -582,15 +582,15 @@ public class TypeDescriptor
         {
         case 2002:
         case 2008:
-          localObject1 = new StructDescriptor(localSQLName, (OracleTypeADT)localOracleNamedType, paramOracleConnection);
+          typedescriptor = new StructDescriptor(localSQLName, (OracleTypeADT)localOracleNamedType, paramOracleConnection);
 
           break;
         case 2003:
-          localObject1 = new ArrayDescriptor(localSQLName, (OracleTypeCOLLECTION)localOracleNamedType, paramOracleConnection);
+          typedescriptor = new ArrayDescriptor(localSQLName, (OracleTypeCOLLECTION)localOracleNamedType, paramOracleConnection);
 
           break;
         case 2007:
-          localObject1 = new OpaqueDescriptor(localSQLName, (OracleTypeOPAQUE)localOracleNamedType, paramOracleConnection);
+          typedescriptor = new OpaqueDescriptor(localSQLName, (OracleTypeOPAQUE)localOracleNamedType, paramOracleConnection);
 
           break;
         case 2004:
@@ -602,9 +602,9 @@ public class TypeDescriptor
           throw localSQLException;
         }
 
-        paramOracleConnection.putDescriptor((String)localObject2, localObject1);
+        paramOracleConnection.putDescriptor(str, typedescriptor);
 
-        localOracleNamedType.setDescriptor((TypeDescriptor)localObject1);
+        localOracleNamedType.setDescriptor((TypeDescriptor)typedescriptor);
       }
 
     }
@@ -612,25 +612,25 @@ public class TypeDescriptor
     {
       if ((localException instanceof SQLException))
       {
-        localObject2 = DatabaseError.createSqlException(null, (SQLException)localException, 60, "Unable to resolve type \"" + paramString + "\"");
+        SQLException sqlexception  = DatabaseError.createSqlException(null, (SQLException)localException, 60, "Unable to resolve type \"" + paramString + "\"");
 
-        ((SQLException)localObject2).fillInStackTrace();
-        throw ((Throwable)localObject2);
+        sqlexception .fillInStackTrace();
+        throw sqlexception;
       }
 
-      Object localObject2 = DatabaseError.createSqlException(null, 60, "Unable to resolve type \"" + paramString + "\"");
+      SQLException sqlexception = DatabaseError.createSqlException(null, 60, "Unable to resolve type \"" + paramString + "\"");
 
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    return localObject1;
+    return typedescriptor;
   }
 
   public static TypeDescriptor getTypeDescriptor(String paramString, oracle.jdbc.OracleConnection paramOracleConnection, byte[] paramArrayOfByte, long paramLong)
     throws SQLException
   {
-    Object localObject = null;
+    TypeDescriptor localObject = null;
 
     String str = getSubtypeName(paramOracleConnection, paramArrayOfByte, paramLong);
 
@@ -698,7 +698,7 @@ public class TypeDescriptor
   {
     byte[] arrayOfByte1 = null;
 
-    Object localObject1 = null;
+    TypeDescriptor typedescriptor = null;
 
     int k = paramPickleContext.offset();
     byte[] arrayOfByte2 = paramPickleContext.image();
@@ -706,16 +706,16 @@ public class TypeDescriptor
     paramPickleContext.skipBytes(1);
     int i = (short)paramPickleContext.readUB2();
     paramArrayOfShort[0] = ((short)paramPickleContext.readUB2());
-    Object localObject2;
+    SQLException sqlexception;
     if ((i & 0x20) != 0)
     {
-      localObject2 = DatabaseError.createSqlException(null, 178);
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      sqlexception = DatabaseError.createSqlException(null, 178);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
-    Object localObject3;
+    SQLException localObject3;
     int m;
-    Object localObject4;
+    byte[] localObject4;
     if ((i & 0x1) == 0)
     {
       if (((i & 0x2) == 0) || (paramArrayOfShort[0] == 110))
@@ -723,21 +723,21 @@ public class TypeDescriptor
         arrayOfByte1 = paramPickleContext.readDataValue(16);
         int j = paramPickleContext.readUB2();
 
-        localObject2 = (String)((oracle.jdbc.internal.OracleConnection)paramConnection).getDescriptor(arrayOfByte1);
-        localObject1 = (TypeDescriptor)((oracle.jdbc.internal.OracleConnection)paramConnection).getDescriptor((String)localObject2);
-        if (localObject1 == null)
+        String str = (String)((oracle.jdbc.internal.OracleConnection)paramConnection).getDescriptor(arrayOfByte1);
+        typedescriptor = (TypeDescriptor)((oracle.jdbc.internal.OracleConnection)paramConnection).getDescriptor(str);
+        if (typedescriptor == null)
         {
           if (paramArrayOfShort[0] == 122) {
-            localObject1 = new ArrayDescriptor(arrayOfByte1, j, paramConnection);
+            typedescriptor = new ArrayDescriptor(arrayOfByte1, j, paramConnection);
           } else if ((paramArrayOfShort[0] == 108) || (paramArrayOfShort[0] == 110)) {
-            localObject1 = new StructDescriptor(arrayOfByte1, j, paramConnection);
+            typedescriptor = new StructDescriptor(arrayOfByte1, j, paramConnection);
           } else if (paramArrayOfShort[0] == 58) {
-            localObject1 = new OpaqueDescriptor(arrayOfByte1, j, paramConnection);
+            typedescriptor = new OpaqueDescriptor(arrayOfByte1, j, paramConnection);
           }
           else {
-            localObject3 = DatabaseError.createSqlException(null, 178);
-            ((SQLException)localObject3).fillInStackTrace();
-            throw ((Throwable)localObject3);
+            sqlexception = DatabaseError.createSqlException(null, 178);
+            sqlexception.fillInStackTrace();
+            throw sqlexception;
           }
 
         }
@@ -745,57 +745,57 @@ public class TypeDescriptor
       }
       else
       {
-        localObject1 = new TypeDescriptor(paramArrayOfShort[0]);
+        typedescriptor = new TypeDescriptor(paramArrayOfShort[0]);
       }
-      ((TypeDescriptor)localObject1).setTransient(false);
+      ((TypeDescriptor)typedescriptor).setTransient(false);
     }
     else
     {
       m = (int)paramPickleContext.readUB4();
       if (paramArrayOfShort[0] == 108)
       {
-        localObject3 = null;
+        AttributeDescriptor[] attributedescriptor = null;
         if (m > 0)
         {
-          localObject3 = new AttributeDescriptor[m];
+          attributedescriptor = new AttributeDescriptor[m];
           for (int i1 = 0; i1 < m; i1++)
           {
             int i2 = paramPickleContext.readByte();
-            localObject3[i1] = Kotad.unpickleAttributeImage(i2 == 2 ? 1 : false, paramPickleContext);
+            attributedescriptor[i1] = Kotad.unpickleAttributeImage(i2 == 2, paramPickleContext);
             if (i2 != 2)
             {
               short[] arrayOfShort = new short[1];
-              localObject3[i1].setTypeDescriptor(unpickleOpaqueTypeImage(paramPickleContext, paramConnection, arrayOfShort));
+              attributedescriptor[i1].setTypeDescriptor(unpickleOpaqueTypeImage(paramPickleContext, paramConnection, arrayOfShort));
             }
           }
         }
 
-        localObject1 = new StructDescriptor((AttributeDescriptor[])localObject3, paramConnection);
+        typedescriptor = new StructDescriptor(attributedescriptor, paramConnection);
       }
       else if (m == 1)
       {
         int n = paramPickleContext.readByte();
-        localObject1 = Kotad.unpickleTypeDescriptorImage(paramPickleContext);
+        typedescriptor = Kotad.unpickleTypeDescriptorImage(paramPickleContext);
       }
       else
       {
-        localObject4 = DatabaseError.createSqlException(null, 178);
-        ((SQLException)localObject4).fillInStackTrace();
-        throw ((Throwable)localObject4);
+        sqlexception = DatabaseError.createSqlException(null, 178);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
-      ((TypeDescriptor)localObject1).setTransient(true);
+      ((TypeDescriptor)typedescriptor).setTransient(true);
     }
 
-    if (((TypeDescriptor)localObject1).isTransient())
+    if (((TypeDescriptor)typedescriptor).isTransient())
     {
       m = paramPickleContext.offset();
       localObject4 = new byte[m - k];
       System.arraycopy(arrayOfByte2, k, localObject4, 0, localObject4.length);
-      ((TypeDescriptor)localObject1).setTransientImage((byte[])localObject4);
+      typedescriptor.setTransientImage(localObject4);
     }
 
-    return localObject1;
+    return typedescriptor;
   }
 
   void setTransientImage(byte[] paramArrayOfByte)
@@ -927,14 +927,14 @@ public class TypeDescriptor
   {
     if ((paramArrayOfByte == null) || (paramArrayOfByte.length == 0) || (paramOracleConnection == null))
     {
-      localObject = DatabaseError.createSqlException(null, 68, " 'image' should not be empty and 'conn' should not be null. ");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(null, 68, " 'image' should not be empty and 'conn' should not be null. ");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject = OracleTypeADT.getSubtypeName(paramOracleConnection, paramArrayOfByte, paramLong);
+    String str = OracleTypeADT.getSubtypeName(paramOracleConnection, paramArrayOfByte, paramLong);
 
-    return localObject;
+    return str;
   }
 
   public void initMetadataRecursively()

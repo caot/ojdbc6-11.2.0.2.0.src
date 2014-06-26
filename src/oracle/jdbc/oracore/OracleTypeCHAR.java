@@ -234,12 +234,11 @@ public class OracleTypeCHAR extends OracleType
 
     if (paramObject != null)
     {
-      Object localObject;
       int i;
       int j;
       if ((paramObject instanceof char[][]))
       {
-        localObject = (char[][])paramObject;
+        char[][] localObject = (char[][])paramObject;
         i = (int)(paramInt == -1 ? localObject.length : Math.min(localObject.length - paramLong + 1L, paramInt));
 
         arrayOfDatum = new Datum[i];
@@ -250,7 +249,7 @@ public class OracleTypeCHAR extends OracleType
       }
       else if ((paramObject instanceof boolean[]))
       {
-        localObject = (boolean[])paramObject;
+        boolean[] localObject = (boolean[])paramObject;
         i = (int)(paramInt == -1 ? localObject.length : Math.min(localObject.length - paramLong + 1L, paramInt));
 
         arrayOfDatum = new Datum[i];
@@ -261,7 +260,7 @@ public class OracleTypeCHAR extends OracleType
       }
       else if ((paramObject instanceof short[]))
       {
-        localObject = (short[])paramObject;
+        short[] localObject = (short[])paramObject;
         i = (int)(paramInt == -1 ? localObject.length : Math.min(localObject.length - paramLong + 1L, paramInt));
 
         arrayOfDatum = new Datum[i];
@@ -273,7 +272,7 @@ public class OracleTypeCHAR extends OracleType
       }
       else if ((paramObject instanceof int[]))
       {
-        localObject = (int[])paramObject;
+        int[] localObject = (int[])paramObject;
         i = (int)(paramInt == -1 ? localObject.length : Math.min(localObject.length - paramLong + 1L, paramInt));
 
         arrayOfDatum = new Datum[i];
@@ -284,7 +283,7 @@ public class OracleTypeCHAR extends OracleType
       }
       else if ((paramObject instanceof long[]))
       {
-        localObject = (long[])paramObject;
+        long[] localObject = (long[])paramObject;
         i = (int)(paramInt == -1 ? localObject.length : Math.min(localObject.length - paramLong + 1L, paramInt));
 
         arrayOfDatum = new Datum[i];
@@ -295,7 +294,7 @@ public class OracleTypeCHAR extends OracleType
       }
       else if ((paramObject instanceof float[]))
       {
-        localObject = (float[])paramObject;
+        float[] localObject = (float[])paramObject;
         i = (int)(paramInt == -1 ? localObject.length : Math.min(localObject.length - paramLong + 1L, paramInt));
 
         arrayOfDatum = new Datum[i];
@@ -306,7 +305,7 @@ public class OracleTypeCHAR extends OracleType
       }
       else if ((paramObject instanceof double[]))
       {
-        localObject = (double[])paramObject;
+        double[] localObject = (double[])paramObject;
         i = (int)(paramInt == -1 ? localObject.length : Math.min(localObject.length - paramLong + 1L, paramInt));
 
         arrayOfDatum = new Datum[i];
@@ -318,9 +317,9 @@ public class OracleTypeCHAR extends OracleType
       }
       else
       {
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 59, paramObject);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 59, paramObject);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
     }

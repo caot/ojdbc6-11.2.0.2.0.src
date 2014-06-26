@@ -133,10 +133,12 @@ public abstract class Service
         paramArrayOfString1 = paramArrayOfString2;
       }
     Vector localVector = new Vector(10);
-    for (int k = 0; k < paramArrayOfString1.length; k++)
+    int k;
+    for (k = 0; k < paramArrayOfString1.length; k++)
     {
       if (paramArrayOfString1[k].equals(""))
         throw new NetException(303);
+      int m;
       for (m = 0; m < paramArrayOfString2.length; m++)
         if (paramArrayOfString2[m].equals(paramArrayOfString1[k]))
         {
@@ -155,7 +157,7 @@ public abstract class Service
   static byte a(String[] paramArrayOfString, String paramString)
     throws NetException
   {
-    byte b1;
+    byte b1 = 0;
     if (paramString.equals(paramArrayOfString[b1]))
       return b1;
     throw new NetException(309);

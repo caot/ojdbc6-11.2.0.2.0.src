@@ -248,7 +248,7 @@ public class Description
     if (this.receiveBufSize != null)
       str1 = str1 + "(RECV_BUF_SIZE=" + this.receiveBufSize + ")";
     if (this.protocolStacks.size() != 0)
-      for (i = 0; i < this.protocolStacks.size(); i++)
+      for (int i = 0; i < this.protocolStacks.size(); i++)
         str1 = str1 + (String)this.protocolStacks.elementAt(i);
     if ((this.SID != null) || (this.server != null) || (this.serviceName != null) || (this.instanceName != null) || (this.handlerName != null) || (this.extraConnInfo.size() != 0) || (this.oracleHome != null))
     {
@@ -269,7 +269,7 @@ public class Description
         str1 = str1 + "(INSTANCE_ROLE=" + this.instanceRole + ")";
       if (this.failoverMode != null)
         str1 = str1 + this.failoverMode;
-      for (i = 0; i < this.extraConnInfo.size(); i++)
+      for (int i = 0; i < this.extraConnInfo.size(); i++)
         str1 = str1 + "(" + (String)this.extraConnInfo.elementAt(i) + ")";
       str1 = str1 + ")";
     }
@@ -278,11 +278,11 @@ public class Description
       str1 = str1 + "(SECURITY=";
       if (this.authTypes != null)
         str1 = str1 + "(AUTHENTICATION=" + this.authTypes + ")";
-      for (i = 0; i < this.authParams.size(); i++)
+      for (int i = 0; i < this.authParams.size(); i++)
         str1 = str1 + (String)this.authParams.elementAt(i);
       str1 = str1 + ")";
     }
-    for (i = 0; i < this.extraInfo.size(); i++)
+    for (int i = 0; i < this.extraInfo.size(); i++)
       str1 = str1 + "(" + (String)this.extraInfo.elementAt(i) + ")";
     if (!str1.equals(""))
       str1 = "(DESCRIPTION=" + str1 + ")";

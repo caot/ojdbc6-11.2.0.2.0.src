@@ -91,9 +91,9 @@ public class TDSPatch
     }
     else
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 

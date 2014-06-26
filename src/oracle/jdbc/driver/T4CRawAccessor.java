@@ -128,7 +128,7 @@ class T4CRawAccessor extends RawAccessor
         {
           if ((arrayOfByte2 == this.rowSpaceByte) && (n + 255 > this.byteLength - 2))
           {
-            arrayOfByte2 = new byte['ÿ'];
+            arrayOfByte2 = new byte[255];
           }
           if (arrayOfByte2 != this.rowSpaceByte) {
             i1 = 0;
@@ -291,7 +291,7 @@ class T4CRawAccessor extends RawAccessor
   byte[] getBytes(int paramInt)
     throws SQLException
   {
-    Object localObject = super.getBytes(paramInt);
+    byte[] localObject = super.getBytes(paramInt);
 
     if ((localObject != null) && (this.definedColumnSize > 0) && (this.definedColumnSize < localObject.length))
     {

@@ -35,19 +35,20 @@ class NTFManager
         ServerSocketChannel localServerSocketChannel = ServerSocketChannel.open();
         localServerSocketChannel.configureBlocking(false);
 
-        localObject = localServerSocketChannel.socket();
+        ServerSocket localObject = localServerSocketChannel.socket();
         while (true)
         {
           try
           {
             InetSocketAddress localInetSocketAddress = new InetSocketAddress(i);
-            ((ServerSocket)localObject).bind(localInetSocketAddress);
+            localObject.bind(localInetSocketAddress);
+            break;
           }
           catch (BindException localBindException)
           {
             if (!paramBoolean)
             {
-              localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 250);
+              SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 250);
               localSQLException.fillInStackTrace();
               throw localSQLException;
             }
@@ -74,9 +75,9 @@ class NTFManager
       }
       catch (IOException localIOException1)
       {
-        Object localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException1);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException1);
+        localObject.fillInStackTrace();
+        throw localObject;
       }
     }
 
@@ -86,7 +87,8 @@ class NTFManager
 
   synchronized int getNextJdbcRegId()
   {
-    for (int i = 1; 
+    int i;
+    for (i = 1; 
       i < this.listOfJdbcRegId.length; i++)
     {
       if (this.listOfJdbcRegId[i] == 0)

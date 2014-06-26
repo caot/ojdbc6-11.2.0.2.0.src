@@ -233,13 +233,13 @@ public class OracleDataSourceFactory
     {
       if ((paramString.charAt(i + 16) != '=') || ((i > 0) && (paramString.charAt(i - 1) != ' ')))
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 139);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 139);
 
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
-      localObject1 = new Properties();
+      Properties properties = new Properties();
       int j = paramString.indexOf("}", i);
       str1 = paramString.substring(i, j);
 
@@ -258,11 +258,11 @@ public class OracleDataSourceFactory
           String str4 = str3.substring(0, i1);
           String str5 = str3.substring(i1 + 1, n);
 
-          ((Properties)localObject1).setProperty(str4, str5);
+          properties.setProperty(str4, str5);
         }
       }
 
-      localProperties.put("AttributeWeights", localObject1);
+      localProperties.put("AttributeWeights", properties);
 
       if ((i > 0) && (j + 1 == paramString.length()))
       {
@@ -270,10 +270,10 @@ public class OracleDataSourceFactory
       }
       else if ((i > 0) && (j + 1 < paramString.length()))
       {
-        ??? = paramString.substring(0, i - 2);
+        String str = paramString.substring(0, i - 2);
         str3 = paramString.substring(j + 1, paramString.length());
 
-        paramString = ((String)???).concat(str3);
+        paramString = str.concat(str3);
       }
       else
       {
@@ -292,10 +292,10 @@ public class OracleDataSourceFactory
         int k = str1.length();
         int m = str1.indexOf("=");
 
-        ??? = str1.substring(0, m);
+        String str = str1.substring(0, m);
         str3 = str1.substring(m + 1, k);
 
-        localProperties.setProperty((String)???, str3);
+        localProperties.setProperty(str, str3);
       }
     }
     return localProperties;

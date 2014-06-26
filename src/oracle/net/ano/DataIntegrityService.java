@@ -27,7 +27,8 @@ public class DataIntegrityService extends Service
     this.e = paramSessionAtts.profile.getDataIntegrityLevelNum();
     String[] arrayOfString = a(arrayOfString = paramSessionAtts.profile.getDataIntegrityServices(), j);
     this.f = new int[arrayOfString.length];
-    for (int i = 0; i < this.f.length; i++)
+    int i;
+    for (i = 0; i < this.f.length; i++)
       this.f[i] = a(j, arrayOfString[i]);
     this.f = a(this.f, this.e);
     this.g = new byte[this.f.length];
@@ -52,7 +53,7 @@ public class DataIntegrityService extends Service
         this.i = ((short)n);
     if ((paramInt != 2) && (paramInt == 8))
     {
-      n = (short)this.c.f();
+      short n = (short)this.c.f();
       short s = (short)this.c.f();
       byte[] arrayOfByte1 = this.c.l();
       byte[] arrayOfByte2 = this.c.l();

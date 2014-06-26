@@ -113,7 +113,7 @@ class T4C8TTIpro extends T4CTTIMsg
     if (k > 0)
     {
       this.runtimeCapabilities = new byte[k];
-      for (m = 0; m < k; m++) {
+      for (int m = 0; m < k; m++) {
         this.runtimeCapabilities[m] = ((byte)this.meg.unmarshalUB1());
       }
     }

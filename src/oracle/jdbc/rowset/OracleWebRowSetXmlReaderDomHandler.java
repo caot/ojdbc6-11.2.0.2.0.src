@@ -69,10 +69,10 @@ class OracleWebRowSetXmlReaderDomHandler extends OracleWebRowSetXmlReaderContHan
     Object localObject3;
     for (int m = 3; m < k; m++)
     {
-      localObject1 = localNodeList2.item(m);
+      Node localObject1 = localNodeList2.item(m);
 
       NodeList localNodeList3 = ((Node)localObject1).getChildNodes();
-      i1 = localNodeList3.getLength();
+      int i1 = localNodeList3.getLength();
 
       for (int i2 = 0; i2 < i1; i2++)
       {

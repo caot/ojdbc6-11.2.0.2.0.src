@@ -63,10 +63,11 @@ public final class b
   private int a(String paramString, byte[] paramArrayOfByte, int paramInt, boolean paramBoolean)
   {
     int k = paramString.length();
-    for (int j = 0; j < k; j++)
+    int j;
+    for (j = 0; j < k; j++)
     {
       char c1;
-      int i = (c1 = paramString.charAt(j) < ' ' ? Character.toUpperCase(paramString.charAt(j)) : paramBoolean ? Character.toUpperCase((char)(i = a(b, paramString.charAt(j)))) : (paramBoolean) && (paramString.charAt(j) < '') ? Character.toUpperCase(paramString.charAt(j)) : 63) < 128 ? c1 : a(a, c1);
+      int i = (c1 = paramString.charAt(j) < '\200' ? Character.toUpperCase(paramString.charAt(j)) : paramBoolean ? Character.toUpperCase((char)(i = a(b, paramString.charAt(j)))) : (paramBoolean) && (paramString.charAt(j) < '\200') ? Character.toUpperCase(paramString.charAt(j)) : 63) < 128 ? c1 : a(a, c1);
       paramArrayOfByte[(paramInt + j * 2)] = ((byte)(i >> 8));
       paramArrayOfByte[(paramInt + j * 2 + 1)] = ((byte)i);
     }
@@ -106,7 +107,7 @@ public final class b
 
   private static byte a(byte paramByte)
   {
-    int i;
+    byte i;
     return i = (paramByte >= 48) && (paramByte <= 57) ? (byte)(paramByte - 48) : (paramByte >= 65) && (paramByte <= 70) ? (byte)(paramByte - 65 + 10) : (paramByte >= 97) && (paramByte <= 102) ? (byte)(paramByte - 97 + 10) : paramByte;
   }
 }

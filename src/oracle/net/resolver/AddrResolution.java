@@ -95,8 +95,7 @@ public class AddrResolution
     char[] arrayOfChar = paramString.toCharArray();
     int k = arrayOfChar.length;
     String str1;
-    for (; i < k; 
-      goto 104)
+    for(; i < k;)
     {
       int j = i + 1;
       while ((j < k) && (arrayOfChar[j] != ' ')) j++;
@@ -155,8 +154,8 @@ public class AddrResolution
       if ((i1 = str1.lastIndexOf(47)) == -1) {
         throw new NetException(124);
       }
-      str4 = str1.substring(0, i1);
-      localObject1 = str1.substring(i1 + 1, str1.length());
+      String str4 = str1.substring(0, i1);
+      String localObject1 = str1.substring(i1 + 1, str1.length());
 
       localStringBuffer.append(str4);
       if (n < m - 1) localStringBuffer.append(' ');
@@ -301,8 +300,8 @@ public class AddrResolution
     throws NetException
   {
     if (paramString.startsWith("alias=")) {
-      localObject = paramString;
-      paramString = ((String)localObject).substring(((String)localObject).indexOf("alias=") + 6, ((String)localObject).length());
+      String localObject = paramString;
+      paramString = localObject.substring(localObject.indexOf("alias=") + 6, localObject.length());
     }
 
     Object localObject = new ConnOption();

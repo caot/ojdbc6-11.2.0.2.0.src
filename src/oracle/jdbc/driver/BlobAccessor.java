@@ -176,7 +176,7 @@ class BlobAccessor extends Accessor
     }
     catch (IOException localIOException)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
       localSQLException.fillInStackTrace();
       throw localSQLException;
     }

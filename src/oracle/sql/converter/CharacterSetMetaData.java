@@ -30,13 +30,15 @@ public class CharacterSetMetaData
 
       for (int i = 0; i < arrayOfString.length; i++)
       {
-        String str3 = arrayOfString[i];
+        final String str3 = arrayOfString[i];
         String str4 = (String)AccessController.doPrivileged(new PrivilegedAction()
         {
           public String run()
           {
-            return System.getProperty(this.val$fstr, null);
+            return System.getProperty(val$fstr, null);
           }
+          
+          String val$fstr = str3;
         });
         if (str4 != null)
         {

@@ -74,7 +74,7 @@ public class OracleManagedConnectionFactory
   public ManagedConnection createManagedConnection(Subject paramSubject, ConnectionRequestInfo paramConnectionRequestInfo)
     throws ResourceException
   {
-    Object localObject;
+    PasswordCredential localObject;
     try
     {
       if (this.xaDataSource == null)
@@ -104,11 +104,12 @@ public class OracleManagedConnectionFactory
     }
     catch (SQLException localSQLException)
     {
-      localObject = new EISSystemException("SQLException: " + localSQLException.getMessage());
+      EISSystemException eissystemexception = new EISSystemException("SQLException: " + localSQLException.getMessage());
 
-      ((ResourceException)localObject).setLinkedException(localSQLException);
+      eissystemexception.setLinkedException(localSQLException);
+      throw eissystemexception;
     }
-    throw ((Throwable)localObject);
+    
   }
 
   public ManagedConnection matchManagedConnections(Set paramSet, Subject paramSubject, ConnectionRequestInfo paramConnectionRequestInfo)
@@ -200,7 +201,7 @@ public class OracleManagedConnectionFactory
         localInitialContext = new InitialContext();
       }
 
-      localObject = (XADataSource)localInitialContext.lookup(this.xaDataSourceName);
+      XADataSource localObject = (XADataSource)localInitialContext.lookup(this.xaDataSourceName);
 
       if (localObject == null)
       {
@@ -211,11 +212,11 @@ public class OracleManagedConnectionFactory
     }
     catch (NamingException localNamingException)
     {
-      Object localObject = new ResourceException("NamingException: " + localNamingException.getMessage());
+      ResourceException localObject = new ResourceException("NamingException: " + localNamingException.getMessage());
 
-      ((ResourceException)localObject).setLinkedException(localNamingException);
+      localObject.setLinkedException(localNamingException);
 
-      throw ((Throwable)localObject);
+      throw localObject;
     }
   }
 
@@ -224,12 +225,12 @@ public class OracleManagedConnectionFactory
   {
     if (paramSubject != null)
     {
-      localObject1 = paramSubject.getPrivateCredentials(PasswordCredential.class);
-      localObject2 = ((Set)localObject1).iterator();
+      Set<PasswordCredential> localObject1 = paramSubject.getPrivateCredentials(PasswordCredential.class);
+      Iterator<PasswordCredential> localObject2 = localObject1.iterator();
 
-      while (((Iterator)localObject2).hasNext())
+      while (localObject2.hasNext())
       {
-        PasswordCredential localPasswordCredential = (PasswordCredential)((Iterator)localObject2).next();
+        PasswordCredential localPasswordCredential = localObject2.next();
 
         if (localPasswordCredential.getManagedConnectionFactory().equals(this))
         {
@@ -245,11 +246,11 @@ public class OracleManagedConnectionFactory
       return null;
     }
 
-    Object localObject1 = (OracleConnectionRequestInfo)paramConnectionRequestInfo;
+    OracleConnectionRequestInfo localObject1 = (OracleConnectionRequestInfo)paramConnectionRequestInfo;
 
-    Object localObject2 = new PasswordCredential(((OracleConnectionRequestInfo)localObject1).getUser(), ((OracleConnectionRequestInfo)localObject1).getPassword().toCharArray());
+    PasswordCredential localObject2 = new PasswordCredential(localObject1.getUser(), ((OracleConnectionRequestInfo)localObject1).getPassword().toCharArray());
 
-    ((PasswordCredential)localObject2).setManagedConnectionFactory(this);
+    localObject2.setManagedConnectionFactory(this);
 
     return localObject2;
   }

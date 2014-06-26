@@ -23,7 +23,7 @@ class T4CTTIidc extends T4CTTIMsg
     if (i > 0)
     {
       this.kpdqidccinv = new T4CTTIqcinv[i];
-      for (k = 0; k < i; k++)
+      for (int k = 0; k < i; k++)
       {
         this.kpdqidccinv[k] = new T4CTTIqcinv(this.connection);
         this.kpdqidccinv[k].unmarshal();

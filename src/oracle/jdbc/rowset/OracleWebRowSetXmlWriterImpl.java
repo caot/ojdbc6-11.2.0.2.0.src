@@ -226,7 +226,7 @@ class OracleWebRowSetXmlWriterImpl
       Map localMap = paramOracleWebRowSet.getTypeMap();
       if (localMap != null)
       {
-        Set localSet = localMap.entrySet();
+        Set<Map.Entry> localSet = localMap.entrySet();
         for (Map.Entry localEntry : localSet)
         {
           writeElementString("type", (String)localEntry.getKey());

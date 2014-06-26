@@ -64,9 +64,9 @@ class AutoKeyInfo extends OracleResultSetMetaData
   {
     if (this.originalSql == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = (OracleSql)SQL_PARSER.get();
@@ -171,7 +171,7 @@ class AutoKeyInfo extends OracleResultSetMetaData
 
     localStringBuffer.append(" INTO ");
 
-    for (j = 0; j < this.columnNames.length - 1; j++)
+    for (int j = 0; j < this.columnNames.length - 1; j++)
     {
       localStringBuffer.append(new StringBuilder().append(this.useNamedParameter ? generateUniqueNamedParameter() : Character.valueOf('?')).append(", ").toString());
     }
@@ -210,7 +210,7 @@ class AutoKeyInfo extends OracleResultSetMetaData
 
     localStringBuffer.append(" INTO ");
 
-    for (j = 0; j < this.columnIndexes.length - 1; j++)
+    for (int j = 0; j < this.columnIndexes.length - 1; j++)
     {
       localStringBuffer.append(new StringBuilder().append(this.useNamedParameter ? generateUniqueNamedParameter() : Character.valueOf('?')).append(", ").toString());
     }

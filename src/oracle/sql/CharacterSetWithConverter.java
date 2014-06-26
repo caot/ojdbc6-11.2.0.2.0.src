@@ -29,7 +29,7 @@ public abstract class CharacterSetWithConverter extends CharacterSet
       return null;
     }
 
-    Object localObject = null;
+    CharacterSet localObject = null;
 
     if ((localObject = CharacterSet1Byte.getInstance(paramInt, localJdbcCharacterConverters)) != null)
     {

@@ -57,9 +57,9 @@ class TimestampltzAccessor extends DateTimeCommonAccessor
   {
     if (this.rowSpaceIndicator == null)
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] == -1) {
@@ -72,9 +72,9 @@ class TimestampltzAccessor extends DateTimeCommonAccessor
 
     if (str1 == null)
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 198);
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 198);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject2 = TimeZone.getTimeZone(str1);
@@ -128,9 +128,9 @@ class TimestampltzAccessor extends DateTimeCommonAccessor
   {
     if (this.rowSpaceIndicator == null)
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] == -1) {
@@ -143,9 +143,9 @@ class TimestampltzAccessor extends DateTimeCommonAccessor
 
     if (str == null)
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 198);
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 198);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject2 = TimeZone.getTimeZone(str);
@@ -179,9 +179,9 @@ class TimestampltzAccessor extends DateTimeCommonAccessor
   {
     if (this.rowSpaceIndicator == null)
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] == -1) {
@@ -194,9 +194,9 @@ class TimestampltzAccessor extends DateTimeCommonAccessor
 
     if (str == null)
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 198);
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 198);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject2 = TimeZone.getTimeZone(str);
@@ -230,9 +230,9 @@ class TimestampltzAccessor extends DateTimeCommonAccessor
   {
     if (this.rowSpaceIndicator == null)
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] == -1) {
@@ -245,9 +245,9 @@ class TimestampltzAccessor extends DateTimeCommonAccessor
 
     if (str == null)
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 198);
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 198);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject2 = TimeZone.getTimeZone(str);
@@ -342,7 +342,7 @@ class TimestampltzAccessor extends DateTimeCommonAccessor
 
       System.arraycopy(this.rowSpaceByte, j, arrayOfByte, 0, i);
 
-      localTIMESTAMPTZ = TIMESTAMPLTZ.toTIMESTAMPTZ(this.statement.connection, arrayOfByte);
+      localTIMESTAMPTZ = oracle.sql.TIMESTAMPLTZ.toTIMESTAMPTZ(this.statement.connection, arrayOfByte);
     }
 
     return localTIMESTAMPTZ;
@@ -352,13 +352,13 @@ class TimestampltzAccessor extends DateTimeCommonAccessor
     throws SQLException
   {
     TIMESTAMPTZ localTIMESTAMPTZ = getTIMESTAMPTZ(paramInt);
-    return TIMESTAMPTZ.toTIMESTAMP(this.statement.connection, localTIMESTAMPTZ.getBytes());
+    return oracle.sql.TIMESTAMPTZ.toTIMESTAMP(this.statement.connection, localTIMESTAMPTZ.getBytes());
   }
 
   DATE getDATE(int paramInt) throws SQLException
   {
     TIMESTAMPTZ localTIMESTAMPTZ = getTIMESTAMPTZ(paramInt);
-    return TIMESTAMPTZ.toDATE(this.statement.connection, localTIMESTAMPTZ.getBytes());
+    return oracle.sql.TIMESTAMPTZ.toDATE(this.statement.connection, localTIMESTAMPTZ.getBytes());
   }
 
   void TimeZoneAdjust(Calendar paramCalendar1, Calendar paramCalendar2)
@@ -371,9 +371,9 @@ class TimestampltzAccessor extends DateTimeCommonAccessor
     {
       OffsetDST localOffsetDST = new OffsetDST();
 
-      k = getZoneOffset(paramCalendar1, localOffsetDST);
+      int k = getZoneOffset(paramCalendar1, localOffsetDST);
 
-      m = localOffsetDST.getOFFSET();
+      int m = localOffsetDST.getOFFSET();
 
       paramCalendar1.add(11, -(m / 3600000));
       paramCalendar1.add(12, -(m % 3600000) / 60000);
@@ -384,13 +384,13 @@ class TimestampltzAccessor extends DateTimeCommonAccessor
       }
       else
       {
-        n = ZONEIDMAP.getID(str2);
+        int n = ZONEIDMAP.getID(str2);
 
         if (!ZONEIDMAP.isValidID(n))
         {
-          localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 199);
-          ((SQLException)localObject).fillInStackTrace();
-          throw ((Throwable)localObject);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 199);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
         Object localObject = this.statement.connection.getTIMEZONETAB();
@@ -418,9 +418,9 @@ class TimestampltzAccessor extends DateTimeCommonAccessor
 
     if (((str2.equals("Custom")) && (str1.equals("Custom"))) || ((str2.startsWith("GMT")) && (str2.length() > 3) && (str1.startsWith("GMT")) && (str1.length() > 3)))
     {
-      j = paramCalendar1.getTimeZone().getRawOffset();
-      k = paramCalendar2.getTimeZone().getRawOffset();
-      m = 0;
+      int j = paramCalendar1.getTimeZone().getRawOffset();
+      int k = paramCalendar2.getTimeZone().getRawOffset();
+      int m = 0;
 
       if (j != k)
       {
@@ -462,9 +462,9 @@ class TimestampltzAccessor extends DateTimeCommonAccessor
     {
       OffsetDST localOffsetDST = new OffsetDST();
 
-      j = getZoneOffset(paramCalendar1, localOffsetDST);
+      int j = getZoneOffset(paramCalendar1, localOffsetDST);
 
-      k = localOffsetDST.getOFFSET();
+      int k = localOffsetDST.getOFFSET();
 
       paramCalendar1.add(11, -(k / 3600000));
       paramCalendar1.add(12, -(k % 3600000) / 60000);
@@ -472,8 +472,8 @@ class TimestampltzAccessor extends DateTimeCommonAccessor
 
     if (((str2.equals("Custom")) && (str1.equals("Custom"))) || ((str2.startsWith("GMT")) && (str2.length() > 3) && (str1.startsWith("GMT")) && (str1.length() > 3)))
     {
-      i = paramCalendar1.getTimeZone().getRawOffset();
-      j = paramCalendar2.getTimeZone().getRawOffset();
+      int i = paramCalendar1.getTimeZone().getRawOffset();
+      int j = paramCalendar2.getTimeZone().getRawOffset();
 
       if (i != j)
       {
@@ -523,9 +523,9 @@ class TimestampltzAccessor extends DateTimeCommonAccessor
 
       if (!ZONEIDMAP.isValidID(i))
       {
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 199);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 199);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       Object localObject = this.statement.connection.getTIMEZONETAB();

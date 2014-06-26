@@ -37,7 +37,7 @@ class CharacterSetZHTEUC extends CharacterSetWithConverter
   {
     if (paramCharacterWalker.next + 1 < paramCharacterWalker.bytes.length)
     {
-      i = paramCharacterWalker.bytes[paramCharacterWalker.next] << 8 | paramCharacterWalker.bytes[(paramCharacterWalker.next + 1)];
+      int i = paramCharacterWalker.bytes[paramCharacterWalker.next] << 8 | paramCharacterWalker.bytes[(paramCharacterWalker.next + 1)];
 
       for (int j = 0; j < this.m_leadingCodes.length; j++)
       {

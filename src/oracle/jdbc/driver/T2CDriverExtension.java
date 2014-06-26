@@ -15,7 +15,7 @@ class T2CDriverExtension extends OracleDriverExtension
   Connection getConnection(String paramString, Properties paramProperties)
     throws SQLException
   {
-    Object localObject = null;
+    Connection localObject = null;
     if (paramProperties.getProperty("is_connection_pooling") == "true")
     {
       localObject = new OracleOCIConnection(paramString, paramProperties, this);

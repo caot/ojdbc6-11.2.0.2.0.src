@@ -18,6 +18,7 @@ import oracle.xdb.XMLType;
 
 class NamedTypeAccessor extends TypeAccessor
 {
+  static Class localClass;
   private static final Class xmlType = localClass;
 
   private static final String _Copyright_2007_Oracle_All_Rights_Reserved_ = null;
@@ -88,40 +89,41 @@ class NamedTypeAccessor extends TypeAccessor
   Object getObject(int paramInt, Map paramMap)
     throws SQLException
   {
-    Object localObject1;
+    Datum datum;
+    SQLException sqlexception;
     if (this.rowSpaceIndicator == null)
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1)
     {
       if (this.externalType == 0)
       {
-        localObject1 = getOracleObject(paramInt);
+        datum = getOracleObject(paramInt);
 
-        if (localObject1 == null) {
+        if (datum == null) {
           return null;
         }
-        if ((localObject1 instanceof STRUCT)) {
-          return ((STRUCT)localObject1).toJdbc(paramMap);
+        if ((datum instanceof STRUCT)) {
+          return ((STRUCT)datum).toJdbc(paramMap);
         }
-        if ((localObject1 instanceof OPAQUE)) {
-          localObject2 = ((OPAQUE)localObject1).toJdbc(paramMap);
+        if ((datum instanceof OPAQUE)) {
+          Object object = ((OPAQUE)datum).toJdbc(paramMap);
 
-          if ((xmlType != null) && (xmlType.isInstance(localObject2)))
+          if ((xmlType != null) && (xmlType.isInstance(object)))
           {
-            if (this.statement.connection.getObjectReturnsXmlType) return localObject2;
+            if (this.statement.connection.getObjectReturnsXmlType) return object;
 
-            return new OracleSQLXML(this.statement.connection, (XMLType)localObject2);
+            return new OracleSQLXML(this.statement.connection, (XMLType)object);
           }
 
-          return localObject2;
+          return object;
         }
 
-        return ((Datum)localObject1).toJdbc();
+        return datum.toJdbc();
       }
 
       switch (this.externalType)
@@ -132,34 +134,34 @@ class NamedTypeAccessor extends TypeAccessor
       case 2002:
       case 2003:
       case 2007:
-        localObject1 = getOracleObject(paramInt);
+        datum = getOracleObject(paramInt);
 
-        if (localObject1 == null) {
+        if (datum == null) {
           return null;
         }
-        if ((localObject1 instanceof STRUCT)) {
-          return ((STRUCT)localObject1).toJdbc(paramMap);
+        if ((datum instanceof STRUCT)) {
+          return ((STRUCT)datum).toJdbc(paramMap);
         }
-        return ((Datum)localObject1).toJdbc();
+        return datum.toJdbc();
       case 2009:
-        localObject1 = getOracleObject(paramInt);
-        if (localObject1 == null)
+        datum = getOracleObject(paramInt);
+        if (datum == null)
           return null;
-        if ((localObject1 instanceof OPAQUE)) {
-          return new OracleSQLXML(this.statement.connection, (OPAQUE)localObject1);
+        if (datum instanceof OPAQUE) {
+          return new OracleSQLXML(this.statement.connection, (OPAQUE)datum);
         }
-        localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
-        ((SQLException)localObject2).fillInStackTrace();
-        throw ((Throwable)localObject2);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       case 2001:
       case 2004:
       case 2005:
       case 2006:
       }
 
-      Object localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return null;
@@ -168,18 +170,19 @@ class NamedTypeAccessor extends TypeAccessor
   Datum getOracleObject(int paramInt)
     throws SQLException
   {
-    Object localObject1 = null;
+    Datum datum = null;
+    SQLException sqlexception;
 
     if (this.rowSpaceIndicator == null)
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject2 = pickledBytes(paramInt);
+    byte[] localObject2 = pickledBytes(paramInt);
 
-    if ((localObject2 == null) || (localObject2.length == 0))
+    if (localObject2 == null || localObject2.length == 0)
     {
       return null;
     }
@@ -191,20 +194,20 @@ class NamedTypeAccessor extends TypeAccessor
     switch (localTypeDescriptor.getTypeCode())
     {
     case 2003:
-      localObject1 = new ARRAY((ArrayDescriptor)localTypeDescriptor, (byte[])localObject2, localPhysicalConnection);
+      datum = new ARRAY((ArrayDescriptor)localTypeDescriptor, localObject2, localPhysicalConnection);
 
       break;
     case 2002:
-      localObject1 = new STRUCT((StructDescriptor)localTypeDescriptor, (byte[])localObject2, localPhysicalConnection);
+      datum = new STRUCT((StructDescriptor)localTypeDescriptor, (byte[])localObject2, localPhysicalConnection);
 
       break;
     case 2007:
     case 2009:
-      localObject1 = new OPAQUE((OpaqueDescriptor)localTypeDescriptor, (byte[])localObject2, localPhysicalConnection);
+      datum = new OPAQUE((OpaqueDescriptor)localTypeDescriptor, (byte[])localObject2, localPhysicalConnection);
 
       break;
     case 2008:
-      localObject1 = new JAVA_STRUCT((StructDescriptor)localTypeDescriptor, (byte[])localObject2, localPhysicalConnection);
+      datum = new JAVA_STRUCT((StructDescriptor)localTypeDescriptor, (byte[])localObject2, localPhysicalConnection);
 
       break;
     case 2004:
@@ -216,7 +219,7 @@ class NamedTypeAccessor extends TypeAccessor
       throw localSQLException;
     }
 
-    return localObject1;
+    return datum;
   }
 
   ARRAY getARRAY(int paramInt)
@@ -242,12 +245,12 @@ class NamedTypeAccessor extends TypeAccessor
   {
     if (this.rowSpaceIndicator == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject = pickledBytes(paramInt);
+    byte[] localObject = pickledBytes(paramInt);
     return (localObject == null) || (localObject.length == 0);
   }
 
@@ -270,7 +273,7 @@ class NamedTypeAccessor extends TypeAccessor
 
   static
   {
-    Class localClass = null;
+    
     try {
       localClass = Class.forName("oracle.xdb.XMLType");
     }

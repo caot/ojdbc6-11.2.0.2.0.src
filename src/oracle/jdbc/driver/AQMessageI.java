@@ -237,20 +237,20 @@ class AQMessageI
     }
     else
     {
-      Object localObject;
+      OpaqueDescriptor localObject;
       if (isANYDATAPayload())
       {
         localObject = OpaqueDescriptor.createDescriptor("SYS.ANYDATA", this.conn);
 
-        OPAQUE localOPAQUE = new OPAQUE((OpaqueDescriptor)localObject, this.payload, this.conn);
+        OPAQUE localOPAQUE = new OPAQUE(localObject, this.payload, this.conn);
         this.payLoadANYDATA = new ANYDATA(localOPAQUE);
         localANYDATA = this.payLoadANYDATA;
       }
       else
       {
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 193);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 193);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
     }
     return localANYDATA;
@@ -293,9 +293,9 @@ class AQMessageI
       }
       else
       {
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 193);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 193);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
     }
     return localXMLType;

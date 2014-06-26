@@ -194,7 +194,7 @@ class T4CLongRawAccessor extends LongRawAccessor
     int i = -1;
     try
     {
-      if (paramArrayOfBoolean2[0] == 0)
+      if (paramArrayOfBoolean2[0])
       {
         SQLException localSQLException;
         if ((paramInt2 > 255) || (paramInt2 < 0))
@@ -204,7 +204,7 @@ class T4CLongRawAccessor extends LongRawAccessor
           throw localSQLException;
         }
 
-        if (paramArrayOfBoolean1[0] != 0)
+        if (paramArrayOfBoolean1[0])
         {
           if (paramArrayOfInt[0] == 254)
           {

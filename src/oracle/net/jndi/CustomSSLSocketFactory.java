@@ -30,7 +30,7 @@ public class CustomSSLSocketFactory extends SSLSocketFactory
 
   public static SocketFactory getDefault()
   {
-    Object localObject = null;
+    SocketFactory localObject = null;
     try
     {
       localObject = new TrustManagerSSLSocketFactory();

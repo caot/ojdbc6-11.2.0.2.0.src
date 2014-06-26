@@ -138,9 +138,9 @@ class OracleClobOutputStream extends OutputStream
       }
       catch (SQLException localSQLException2)
       {
-        ??? = DatabaseError.createIOException(localSQLException2);
-        ((IOException)???).fillInStackTrace();
-        throw ((Throwable)???);
+        IOException ioexception = DatabaseError.createIOException(localSQLException2);
+        ioexception.fillInStackTrace();
+        throw ioexception;
       }
     }
   }

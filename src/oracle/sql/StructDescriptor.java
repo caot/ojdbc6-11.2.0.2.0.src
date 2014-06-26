@@ -46,9 +46,9 @@ public class StructDescriptor extends TypeDescriptor
   {
     if ((paramString == null) || (paramString.length() == 0) || (paramConnection == null))
     {
-      localObject = DatabaseError.createSqlException(null, 60, "Invalid arguments");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(null, 60, "Invalid arguments");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = new SQLName(paramString, (oracle.jdbc.OracleConnection)paramConnection);
@@ -217,8 +217,7 @@ public class StructDescriptor extends TypeDescriptor
   byte[] toBytes(STRUCT paramSTRUCT, boolean paramBoolean)
     throws SQLException
   {
-    Object localObject1 = paramSTRUCT.shareBytes();
-    Object localObject2;
+    byte[] localObject1 = paramSTRUCT.shareBytes();
     if (localObject1 == null)
     {
       if (paramSTRUCT.datumArray != null)
@@ -244,9 +243,9 @@ public class StructDescriptor extends TypeDescriptor
       }
       else
       {
-        localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1);
-        ((SQLException)localObject2).fillInStackTrace();
-        throw ((Throwable)localObject2);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
     }
@@ -254,7 +253,7 @@ public class StructDescriptor extends TypeDescriptor
     {
       if ((paramSTRUCT.imageOffset != 0L) || (paramSTRUCT.imageLength != localObject1.length))
       {
-        localObject2 = new byte[(int)paramSTRUCT.imageLength];
+        byte[] localObject2 = new byte[(int)paramSTRUCT.imageLength];
 
         System.arraycopy(localObject1, (int)paramSTRUCT.imageOffset, localObject2, 0, (int)paramSTRUCT.imageLength);
 
@@ -410,9 +409,9 @@ public class StructDescriptor extends TypeDescriptor
 
       if (paramArrayOfObject.length != i)
       {
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 49, null);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 49, null);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       arrayOfDatum = new Datum[i];
@@ -705,7 +704,7 @@ public class StructDescriptor extends TypeDescriptor
       }
 
     }
-    catch (SQLException localSQLException2)
+    catch (SQLException sqlexception)
     {
     }
     finally
@@ -854,6 +853,7 @@ public class StructDescriptor extends TypeDescriptor
         int j = -1;
         try
         {
+          label411:
           while (true)
           {
             switch (i)
@@ -916,9 +916,9 @@ public class StructDescriptor extends TypeDescriptor
 
               if (i == 2)
               {
-                SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "Inconsistent catalog view");
-                localSQLException2.fillInStackTrace();
-                throw localSQLException2;
+                SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "Inconsistent catalog view");
+                sqlexception.fillInStackTrace();
+                throw sqlexception;
               }
 
               localResultSet.close();

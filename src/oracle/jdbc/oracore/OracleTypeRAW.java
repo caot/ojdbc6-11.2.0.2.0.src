@@ -63,10 +63,9 @@ public class OracleTypeRAW extends OracleType
 
     if (paramObject != null)
     {
-      Object localObject;
       if ((paramObject instanceof char[][]))
       {
-        localObject = (char[][])paramObject;
+        char[][] localObject = (char[][])paramObject;
         int i = (int)(paramInt == -1 ? localObject.length : Math.min(localObject.length - paramLong + 1L, paramInt));
 
         arrayOfDatum = new Datum[i];
@@ -80,9 +79,9 @@ public class OracleTypeRAW extends OracleType
           return super.toDatumArray(paramObject, paramOracleConnection, paramLong, paramInt);
         }
 
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 59, paramObject);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 59, paramObject);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
     }
 

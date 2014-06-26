@@ -198,30 +198,28 @@ public class OracleDriver
     }
     if (i == -3)
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 67);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 67);
+      localObject1.fillInStackTrace();
+      throw localObject1;
     }
 
-    Object localObject1 = null;
+    OracleDriverExtension oracledriverextension = this.driverExtensions[i];
 
-    localObject1 = this.driverExtensions[i];
-
-    if (localObject1 == null)
+    if (oracledriverextension == null)
     {
       try
       {
         synchronized (this)
         {
-          if (localObject1 == null)
+          if (oracledriverextension == null)
           {
-            localObject1 = (OracleDriverExtension)Class.forName(driverExtensionClassNames[i]).newInstance();
+            oracledriverextension = (OracleDriverExtension)Class.forName(driverExtensionClassNames[i]).newInstance();
 
-            this.driverExtensions[i] = localObject1;
+            this.driverExtensions[i] = oracledriverextension;
           }
           else
           {
-            localObject1 = this.driverExtensions[i];
+            oracledriverextension = this.driverExtensions[i];
           }
 
         }
@@ -229,9 +227,9 @@ public class OracleDriver
       }
       catch (Exception localException)
       {
-        localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localException);
-        ((SQLException)localObject3).fillInStackTrace();
-        throw ((Throwable)localObject3);
+        SQLException localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localException);
+        localObject3.fillInStackTrace();
+        throw localObject3;
       }
 
     }
@@ -244,7 +242,7 @@ public class OracleDriver
 
     while (localEnumeration.hasMoreElements())
     {
-      localObject3 = (Driver)localEnumeration.nextElement();
+      Driver localObject3 = (Driver)localEnumeration.nextElement();
 
       if ((localObject3 instanceof OracleDriver))
       {
@@ -253,7 +251,7 @@ public class OracleDriver
     }
     while (localEnumeration.hasMoreElements())
     {
-      localObject3 = (Driver)localEnumeration.nextElement();
+      Driver localObject3 = (Driver)localEnumeration.nextElement();
 
       if ((localObject3 instanceof OracleDriver)) {
         DriverManager.deregisterDriver((Driver)localObject3);
@@ -261,11 +259,11 @@ public class OracleDriver
 
     }
 
-    Object localObject3 = (PhysicalConnection)((OracleDriverExtension)localObject1).getConnection(paramString, paramProperties);
+    PhysicalConnection connection = (PhysicalConnection)oracledriverextension.getConnection(paramString, paramProperties);
 
-    ((PhysicalConnection)localObject3).protocolId = i;
+    connection.protocolId = i;
 
-    return localObject3;
+    return connection;
   }
 
   public Connection defaultConnection()
@@ -349,8 +347,8 @@ public class OracleDriver
     {
     }
     int i = 0;
-    Object localObject1 = new String[''];
-    Object localObject2 = new String[''];
+    String[] localObject1 = new String[150];
+    String[] localObject2 = new String[150];
 
     Field[] arrayOfField = localClass.getFields();
     for (int j = 0; j < arrayOfField.length; j++)
@@ -429,6 +427,7 @@ public class OracleDriver
 
   static
   {
+    Timestamp localTimestamp = Timestamp.valueOf("2000-01-01 00:00:00.0");
     try
     {
       if (defaultDriver == null)
@@ -445,7 +444,7 @@ public class OracleDriver
           return null;
         }
       });
-      Timestamp localTimestamp = Timestamp.valueOf("2000-01-01 00:00:00.0");
+
     }
     catch (SQLException localSQLException)
     {
@@ -470,7 +469,7 @@ public class OracleDriver
     {
       systemTypeMap.put("SYS.XMLTYPE", ClassRef.newInstance("oracle.xdb.XMLTypeFactory"));
     }
-    catch (ClassNotFoundException localClassNotFoundException1)
+    catch (ClassNotFoundException classnotfoundexception)
     {
     }
 
@@ -479,7 +478,7 @@ public class OracleDriver
       systemTypeMap.put("SYS.ANYDATA", ClassRef.newInstance("oracle.sql.AnyDataFactory"));
       systemTypeMap.put("SYS.ANYTYPE", ClassRef.newInstance("oracle.sql.TypeDescriptorFactory"));
     }
-    catch (ClassNotFoundException localClassNotFoundException2)
+    catch (ClassNotFoundException classnotfoundexception)
     {
     }
 
@@ -489,7 +488,7 @@ public class OracleDriver
       InputStream localInputStream = PhysicalConnection.class.getResourceAsStream("/oracle/jdbc/defaultConnectionProperties.properties");
       if (localInputStream != null) DEFAULT_CONNECTION_PROPERTIES.load(localInputStream);
     }
-    catch (IOException localIOException)
+    catch (IOException ioexception)
     {
     }
   }

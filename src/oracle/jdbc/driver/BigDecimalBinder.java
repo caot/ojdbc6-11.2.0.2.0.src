@@ -24,6 +24,13 @@ class BigDecimalBinder extends VarnumBinder
     int i8;
     int i9;
     int i12;
+    int m = str1.length();
+    int n = str1.indexOf('.');
+    int i1 = str1.charAt(0) == '-' ? 1 : 0;
+    int i2 = i1;
+
+    int i6 = 2;
+    int i7 = m;
     if ((k = str1.indexOf("E")) != -1)
     {
       StringBuffer localStringBuffer = new StringBuffer(str1.length() + 5);
@@ -91,14 +98,6 @@ class BigDecimalBinder extends VarnumBinder
 
       str1 = localStringBuffer.toString();
     }
-
-    int m = str1.length();
-    int n = str1.indexOf('.');
-    int i1 = str1.charAt(0) == '-' ? 1 : 0;
-    int i2 = i1;
-
-    int i6 = 2;
-    int i7 = m;
 
     if (n == -1)
       n = m;

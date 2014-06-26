@@ -82,12 +82,12 @@ class LongRawAccessor extends RawCommonAccessor
     throws SQLException
   {
     byte[] arrayOfByte1 = null;
-    Object localObject;
+    SQLException localObject;
     if (this.rowSpaceIndicator == null)
     {
       localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if (this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1)
@@ -97,18 +97,18 @@ class LongRawAccessor extends RawCommonAccessor
         if (this.stream.closed)
         {
           localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 27);
-          ((SQLException)localObject).fillInStackTrace();
-          throw ((Throwable)localObject);
+          localObject.fillInStackTrace();
+          throw localObject;
         }
 
-        localObject = new ByteArrayOutputStream(1024);
+        ByteArrayOutputStream bytearrayoutputstream = new ByteArrayOutputStream(1024);
         byte[] arrayOfByte2 = new byte[1024];
         try
         {
           int i;
           while ((i = this.stream.read(arrayOfByte2)) != -1)
           {
-            ((ByteArrayOutputStream)localObject).write(arrayOfByte2, 0, i);
+            bytearrayoutputstream.write(arrayOfByte2, 0, i);
           }
 
         }
@@ -119,7 +119,7 @@ class LongRawAccessor extends RawCommonAccessor
           throw localSQLException;
         }
 
-        arrayOfByte1 = ((ByteArrayOutputStream)localObject).toByteArray();
+        arrayOfByte1 = bytearrayoutputstream.toByteArray();
       }
 
     }
@@ -131,12 +131,12 @@ class LongRawAccessor extends RawCommonAccessor
     throws SQLException
   {
     InputStream localInputStream = null;
-    Object localObject;
+    SQLException localObject;
     if (this.rowSpaceIndicator == null)
     {
       localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if ((this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1) && (this.stream != null))
@@ -144,13 +144,13 @@ class LongRawAccessor extends RawCommonAccessor
       if (this.stream.closed)
       {
         localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 27);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        localObject.fillInStackTrace();
+        throw localObject;
       }
 
-      localObject = this.statement.connection;
+      PhysicalConnection physicalconnection = this.statement.connection;
 
-      localInputStream = ((PhysicalConnection)localObject).conversion.ConvertStream(this.stream, 2);
+      localInputStream = physicalconnection.conversion.ConvertStream(this.stream, 2);
     }
 
     return localInputStream;
@@ -160,12 +160,12 @@ class LongRawAccessor extends RawCommonAccessor
     throws SQLException
   {
     InputStream localInputStream = null;
-    Object localObject;
+    SQLException localObject;
     if (this.rowSpaceIndicator == null)
     {
       localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if ((this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1) && (this.stream != null))
@@ -173,13 +173,13 @@ class LongRawAccessor extends RawCommonAccessor
       if (this.stream.closed)
       {
         localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 27);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        localObject.fillInStackTrace();
+        throw localObject;
       }
 
-      localObject = this.statement.connection;
+      PhysicalConnection physicalconnection = this.statement.connection;
 
-      localInputStream = ((PhysicalConnection)localObject).conversion.ConvertStream(this.stream, 3);
+      localInputStream = physicalconnection.conversion.ConvertStream(this.stream, 3);
     }
 
     return localInputStream;
@@ -189,12 +189,12 @@ class LongRawAccessor extends RawCommonAccessor
     throws SQLException
   {
     Reader localReader = null;
-    Object localObject;
+    SQLException localObject;
     if (this.rowSpaceIndicator == null)
     {
       localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if ((this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1) && (this.stream != null))
@@ -202,13 +202,13 @@ class LongRawAccessor extends RawCommonAccessor
       if (this.stream.closed)
       {
         localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 27);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        localObject.fillInStackTrace();
+        throw localObject;
       }
 
-      localObject = this.statement.connection;
+      PhysicalConnection physicalconnection = this.statement.connection;
 
-      localReader = ((PhysicalConnection)localObject).conversion.ConvertCharacterStream(this.stream, 8);
+      localReader = physicalconnection.conversion.ConvertCharacterStream(this.stream, 8);
     }
 
     return localReader;
@@ -218,12 +218,12 @@ class LongRawAccessor extends RawCommonAccessor
     throws SQLException
   {
     InputStream localInputStream = null;
-    Object localObject;
+    SQLException localObject;
     if (this.rowSpaceIndicator == null)
     {
       localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if ((this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1) && (this.stream != null))
@@ -231,13 +231,13 @@ class LongRawAccessor extends RawCommonAccessor
       if (this.stream.closed)
       {
         localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 27);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        localObject.fillInStackTrace();
+        throw localObject;
       }
 
-      localObject = this.statement.connection;
+      PhysicalConnection physicalconnection = this.statement.connection;
 
-      localInputStream = ((PhysicalConnection)localObject).conversion.ConvertStream(this.stream, 6);
+      localInputStream = physicalconnection.conversion.ConvertStream(this.stream, 6);
     }
 
     return localInputStream;

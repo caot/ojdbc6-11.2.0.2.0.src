@@ -47,8 +47,8 @@ public class NameResolver
 
     if (this.tnsAdmin == null)
     {
-      localObject = new HostnameNamingAdapter(this.osuser, this.programName);
-      str2 = ((HostnameNamingAdapter)localObject).resolve(str1);
+      HostnameNamingAdapter localObject = new HostnameNamingAdapter(this.osuser, this.programName);
+      str2 = localObject.resolve(str1);
       return str2;
     }
 
@@ -155,7 +155,7 @@ public class NameResolver
   private String[] getUserReadPath()
     throws NetException
   {
-    Object localObject = null;
+    String[] localObject = null;
 
     String str1 = System.getProperty("oracle.net.names.directory_path");
 

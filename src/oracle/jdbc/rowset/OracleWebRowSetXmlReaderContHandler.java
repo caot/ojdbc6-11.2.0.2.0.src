@@ -407,12 +407,12 @@ class OracleWebRowSetXmlReaderContHandler extends DefaultHandler
     }
     this.metadataNameTagMap = new Hashtable(30);
     i = this.metadataNames.length;
-    for (j = 0; j < i; j++) {
+    for (int j = 0; j < i; j++) {
       this.metadataNameTagMap.put(this.metadataNames[j], Integer.valueOf(j));
     }
     this.dataNameTagMap = new Hashtable(10);
     i = this.dataNames.length;
-    for (j = 0; j < i; j++) {
+    for (int j = 0; j < i; j++) {
       this.dataNameTagMap.put(this.dataNames[j], Integer.valueOf(j));
     }
     this.updatesToRowSet = new Vector();

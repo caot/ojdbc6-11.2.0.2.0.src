@@ -199,10 +199,10 @@ public class OracleOCIConnectionPool extends OracleDataSource
     }
     else
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 107, "null properties");
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 107, "null properties");
 
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     paramProperties.put("is_connection_pooling", "true");
@@ -220,21 +220,21 @@ public class OracleOCIConnectionPool extends OracleDataSource
     paramProperties.put("connection_pool", "connpool_proxy_connection");
     paramProperties.put("connpool_object", this.m_connection_pool);
 
-    Object localObject = (OracleOCIConnection)this.m_oracleDriver.connect(this.url, paramProperties);
+    OracleOCIConnection ociconnection = (OracleOCIConnection)this.m_oracleDriver.connect(this.url, paramProperties);
 
-    if (localObject == null)
+    if (ociconnection == null)
     {
       SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 67);
       localSQLException.fillInStackTrace();
       throw localSQLException;
     }
 
-    ((OracleOCIConnection)localObject).setStmtCacheSize(this.m_stmtCacheSize, this.m_stmtClearMetaData);
+    ociconnection.setStmtCacheSize(this.m_stmtCacheSize, this.m_stmtClearMetaData);
 
-    this.m_lconnections.put(localObject, localObject);
-    ((OracleOCIConnection)localObject).setConnectionPool(this);
+    this.m_lconnections.put(ociconnection, ociconnection);
+    ociconnection.setConnectionPool(this);
 
-    return localObject;
+    return ociconnection;
   }
 
   public synchronized OracleConnection getAliasedConnection(byte[] paramArrayOfByte)
@@ -297,9 +297,9 @@ public class OracleOCIConnectionPool extends OracleDataSource
     Object localObject;
     if (paramProperties == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 106, "null properties");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 106, "null properties");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (!isPoolCreated())
@@ -377,9 +377,9 @@ public class OracleOCIConnectionPool extends OracleDataSource
 
     if (((str1 != null) && (!str1.equalsIgnoreCase("true"))) || ((str2 != null) && (!str2.equalsIgnoreCase("true"))) || (paramProperties1.get("connpool_min_limit") == null) || (paramProperties1.get("connpool_max_limit") == null) || (paramProperties1.get("connpool_increment") == null) || (Integer.decode((String)paramProperties1.get("connpool_min_limit")).intValue() < 0) || (Integer.decode((String)paramProperties1.get("connpool_max_limit")).intValue() < 0) || (Integer.decode((String)paramProperties1.get("connpool_increment")).intValue() < 0))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 106, "");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 106, "");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramProperties1.propertyNames();
@@ -532,9 +532,9 @@ public class OracleOCIConnectionPool extends OracleDataSource
     }
     if ((this.user == null) || (this.password == null))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 106, " ");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 106, " ");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = new Properties();

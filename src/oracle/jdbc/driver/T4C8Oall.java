@@ -138,16 +138,16 @@ final class T4C8Oall extends T4CTTIfun
     Object localObject;
     if (paramArrayOfByte1 == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 431);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 431);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (((this.typeOfStatement & 0x1E) == 0) && (i > 1))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 433);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 433);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.rowsProcessed = 0;
@@ -232,17 +232,18 @@ final class T4C8Oall extends T4CTTIfun
 
     if (this.nonFatalIOExceptions != null)
     {
-      localObject = (IOException)this.nonFatalIOExceptions.get(0);
+      IOException ioexception = (IOException)this.nonFatalIOExceptions.get(0);
       try
       {
-        SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 266);
-        localSQLException1.fillInStackTrace();
-        throw localSQLException1;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 266);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
-      catch (SQLException localSQLException2)
+      catch (SQLException sqlexception)
       {
-        localSQLException2.initCause((Throwable)localObject);
-        throw localSQLException2;
+        sqlexception.initCause(ioexception);
+        throw sqlexception;
+
       }
     }
   }
@@ -363,7 +364,7 @@ final class T4C8Oall extends T4CTTIfun
 
     this.cursor = arrayOfInt[2];
 
-    j = this.meg.unmarshalUB2();
+    int j = this.meg.unmarshalUB2();
 
     byte[] arrayOfByte1 = null;
     if (j > 0) {
@@ -373,7 +374,7 @@ final class T4C8Oall extends T4CTTIfun
     int k = this.meg.unmarshalUB2();
 
     KeywordValue[] arrayOfKeywordValue = new KeywordValue[k];
-    for (String str1 = 0; str1 < k; str1++) {
+    for (int str1 = 0; str1 < k; str1++) {
       arrayOfKeywordValue[str1] = KeywordValueI.unmarshal(this.meg);
     }
     this.connection.updateSessionProperties(arrayOfKeywordValue);
@@ -382,7 +383,7 @@ final class T4C8Oall extends T4CTTIfun
     this.oracleStatement.dcnTableName = null;
     if (this.connection.getTTCVersion() >= 4)
     {
-      str1 = (int)this.meg.unmarshalUB4();
+      int str1 = (int)this.meg.unmarshalUB4();
       byte[] arrayOfByte2 = this.meg.unmarshalNBytes(str1);
       if ((str1 > 0) && (this.registration != null))
       {
@@ -390,12 +391,12 @@ final class T4C8Oall extends T4CTTIfun
         Properties localProperties = this.registration.getRegistrationOptions();
         if (localProperties != null)
         {
-          str2 = localProperties.getProperty("DCN_QUERY_CHANGE_NOTIFICATION");
+          String str2 = localProperties.getProperty("DCN_QUERY_CHANGE_NOTIFICATION");
           if ((str2 != null) && (str2.compareToIgnoreCase("true") == 0))
             m = 1;
         }
-        String str2 = str1;
-        int n;
+//        String str2 = str1;
+        int n = 0;
         if (m != 0) {
           n = str1 - 8;
         }
@@ -538,7 +539,7 @@ final class T4C8Oall extends T4CTTIfun
 
       if ((this.connection.getTTCVersion() >= 2) && ((this.options & 0x10) != 0L))
       {
-        for (i = 0; i < this.defCols; i++) {
+        for (int i = 0; i < this.defCols; i++) {
           this.oacdefDefines[i].marshal();
         }
 
@@ -689,7 +690,6 @@ final class T4C8Oall extends T4CTTIfun
       short s = arrayOfShort[(i + 9)];
 
       int k = arrayOfShort[(i + 0)] & 0xFFFF;
-      Object localObject;
       switch (k)
       {
       case 8:
@@ -727,9 +727,9 @@ final class T4C8Oall extends T4CTTIfun
         }
         else
         {
-          localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), "INTERNAL ERROR: Binding PLSQL index-by table but no type defined", -1);
-          ((SQLException)localObject).fillInStackTrace();
-          throw ((Throwable)localObject);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), "INTERNAL ERROR: Binding PLSQL index-by table but no type defined", -1);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
         break;
@@ -752,14 +752,14 @@ final class T4C8Oall extends T4CTTIfun
         }
         else
         {
-          localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), "INTERNAL ERROR: Binding NAMED_TYPE but no type defined", -1);
-          ((SQLException)localObject).fillInStackTrace();
-          throw ((Throwable)localObject);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), "INTERNAL ERROR: Binding NAMED_TYPE but no type defined", -1);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
         break;
       case 994:
-        localObject = this.oracleStatement.returnParamMeta;
+        int[] localObject = this.oracleStatement.returnParamMeta;
         k = localObject[(3 + n * 3 + 0)];
 
         j = localObject[(3 + n * 3 + 2)];
@@ -883,7 +883,7 @@ final class T4C8Oall extends T4CTTIfun
       this.defCols += 1;
     }
     this.oacdefDefines = new T4CTTIoac[this.defCols];
-    i = 0;
+    int i = 0;
     int j = 0;
     int k = 0;
     short s1 = 0;
@@ -1027,21 +1027,21 @@ final class T4C8Oall extends T4CTTIfun
 
         break;
       default:
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 432);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
-
-        if ((!paramBoolean1) && (!paramBoolean2) && (paramBoolean3)) {
-          l = 32832L;
-        }
-        else
-        {
-          localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 432);
-          localSQLException.fillInStackTrace();
-          throw localSQLException;
-        }
-        break;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 432);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
+
+      if ((!paramBoolean1) && (!paramBoolean2) && (paramBoolean3)) {
+        l = 32832L;
+      }
+      else
+      {
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 432);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
+      }
+      
     }
     if ((this.typeOfStatement & 0x60) == 0)
     {

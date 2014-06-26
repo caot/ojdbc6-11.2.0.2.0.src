@@ -171,9 +171,9 @@ class ArrayDataResultSet extends BaseResultSet
   {
     if (this.currentIndex <= 0)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 14, null);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 14, null);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramInt == 1)
@@ -192,7 +192,7 @@ class ArrayDataResultSet extends BaseResultSet
       }
       if (this.array != null)
       {
-        localObject = this.array.getOracleArray(this.currentIndex, 1);
+        Datum[] localObject = this.array.getOracleArray(this.currentIndex, 1);
 
         if ((localObject != null) && (localObject.length >= 1))
         {
@@ -203,14 +203,14 @@ class ArrayDataResultSet extends BaseResultSet
 
       }
 
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "Out of sync");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "Out of sync");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3, null);
-    ((SQLException)localObject).fillInStackTrace();
-    throw ((Throwable)localObject);
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3, null);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public ROWID getROWID(int paramInt)
@@ -899,9 +899,9 @@ class ArrayDataResultSet extends BaseResultSet
     {
       if (this.closed)
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10, "getMetaData");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10, "getMetaData");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23, "getMetaData");

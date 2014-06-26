@@ -42,7 +42,9 @@ import java.util.Vector;
 import java.util.concurrent.Executor;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javax.transaction.xa.XAResource;
+
 import oracle.jdbc.OracleConnection.CommitOption;
 import oracle.jdbc.OracleConnection.DatabaseShutdownMode;
 import oracle.jdbc.OracleConnection.DatabaseStartupMode;
@@ -437,17 +439,17 @@ abstract class PhysicalConnection extends OracleConnection
       }
 
     }
-    catch (SQLException localSQLException1)
+    catch (SQLException sqlexception1)
     {
       this.lifecycle = 2;
       try
       {
         logoff();
-      } catch (SQLException localSQLException2) {
+      } catch (SQLException sqlexception2) {
       }
       this.lifecycle = 4;
 
-      throw localSQLException1;
+      throw sqlexception1;
     }
 
     this.txnMode = 0;
@@ -569,9 +571,9 @@ abstract class PhysicalConnection extends OracleConnection
     }
     catch (NumberFormatException localNumberFormatException1)
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 190, "Property is 'streamChunkSize'");
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 190, "Property is 'streamChunkSize'");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     str1 = null;
@@ -1294,9 +1296,9 @@ abstract class PhysicalConnection extends OracleConnection
     }
     catch (NumberFormatException localNumberFormatException2)
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 190, "Property is 'ociSvcCtxHandle'");
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 190, "Property is 'ociSvcCtxHandle'");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     str1 = null;
@@ -1316,9 +1318,9 @@ abstract class PhysicalConnection extends OracleConnection
     }
     catch (NumberFormatException localNumberFormatException3)
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 190, "Property is 'ociEnvHandle'");
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 190, "Property is 'ociEnvHandle'");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     str1 = null;
@@ -1338,9 +1340,9 @@ abstract class PhysicalConnection extends OracleConnection
     }
     catch (NumberFormatException localNumberFormatException4)
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 190, "Property is 'ociErrHandle'");
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 190, "Property is 'ociErrHandle'");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     str1 = null;
@@ -1416,9 +1418,9 @@ abstract class PhysicalConnection extends OracleConnection
     }
     catch (NumberFormatException localNumberFormatException5)
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 190, "Property is 'defaultExecuteBatch'");
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 190, "Property is 'defaultExecuteBatch'");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     str1 = null;
@@ -1438,9 +1440,9 @@ abstract class PhysicalConnection extends OracleConnection
     }
     catch (NumberFormatException localNumberFormatException6)
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 190, "Property is 'defaultRowPrefetch'");
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 190, "Property is 'defaultRowPrefetch'");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     str1 = null;
@@ -1458,9 +1460,9 @@ abstract class PhysicalConnection extends OracleConnection
     }
     catch (NumberFormatException localNumberFormatException7)
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 190, "Property is 'defaultLobPrefetchSize'");
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 190, "Property is 'defaultLobPrefetchSize'");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     str1 = null;
@@ -1745,9 +1747,9 @@ abstract class PhysicalConnection extends OracleConnection
     }
     catch (NumberFormatException localNumberFormatException8)
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 190, "Property is 'maxCachedBufferSize'");
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 190, "Property is 'maxCachedBufferSize'");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     str1 = null;
@@ -1765,9 +1767,9 @@ abstract class PhysicalConnection extends OracleConnection
     }
     catch (NumberFormatException localNumberFormatException9)
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 190, "Property is 'implicitStatementCacheSize'");
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 190, "Property is 'implicitStatementCacheSize'");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     str1 = null;
@@ -1827,15 +1829,14 @@ abstract class PhysicalConnection extends OracleConnection
       str1 = paramProperties.getProperty("oracle.jdbc.commitOption");
     if (str1 == null)
       str1 = getSystemProperty("oracle.jdbc.commitOption", null);
-    Object localObject1;
-    Object localObject3;
+    String[] localObject1;
     if (str1 != null)
     {
       this.commitOption = 0;
       localObject1 = str1.split(",");
       if ((localObject1 != null) && (localObject1.length > 0))
       {
-        for (localObject3 : localObject1) {
+        for (String localObject3 : localObject1) {
           if (((String)localObject3).trim() != "") {
             this.commitOption |= OracleConnection.CommitOption.valueOf(((String)localObject3).trim()).getCode();
           }
@@ -1866,9 +1867,9 @@ abstract class PhysicalConnection extends OracleConnection
     }
     if (this.defaultLobPrefetchSize < -1)
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 267);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 267);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.streamChunkSize > 0)
@@ -1900,7 +1901,7 @@ abstract class PhysicalConnection extends OracleConnection
 
     if (this.userName == CONNECTION_PROPERTY_USER_NAME_DEFAULT)
       this.userName = ((String)localHashtable.get("user"));
-    Object localObject2 = new String[1];
+    String[] localObject2 = new String[1];
     String[] arrayOfString = new String[1];
     this.userName = parseLoginOption(this.userName, paramProperties, (String[])localObject2, arrayOfString);
     if (localObject2[0] != null)
@@ -1924,9 +1925,9 @@ abstract class PhysicalConnection extends OracleConnection
 
     if (this.protocol == null)
     {
-      localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 40, "Protocol is not specified in URL");
-      ((SQLException)localObject3).fillInStackTrace();
-      throw ((Throwable)localObject3);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 40, "Protocol is not specified in URL");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if ((this.protocol.equals("oci8")) || (this.protocol.equals("oci"))) {
@@ -1941,7 +1942,7 @@ abstract class PhysicalConnection extends OracleConnection
     }
     if ((this.userName != null) && (!this.userName.startsWith("\"")))
     {
-      localObject3 = this.userName.toCharArray();
+      char[] localObject3 = this.userName.toCharArray();
       for (int m = 0; m < localObject3.length; m++)
         localObject3[m] = Character.toUpperCase(localObject3[m]);
       this.userName = String.copyValueOf((char[])localObject3);
@@ -1997,9 +1998,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if ((this.driverNameAttribute != null) && (!driverNameAttributePattern.matcher(this.driverNameAttribute).matches()))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 257);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 257);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -2052,9 +2053,9 @@ abstract class PhysicalConnection extends OracleConnection
       }
       catch (NumberFormatException localNumberFormatException)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(null, 190, "Property is '" + paramString + "' and value is '" + str + "'");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(null, 190, "Property is '" + paramString + "' and value is '" + str + "'");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
     }
@@ -2076,9 +2077,9 @@ abstract class PhysicalConnection extends OracleConnection
       }
       catch (NumberFormatException localNumberFormatException)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(null, 190, "Property is '" + paramString + "' and value is '" + str + "'");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(null, 190, "Property is '" + paramString + "' and value is '" + str + "'");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
     }
@@ -2182,9 +2183,9 @@ abstract class PhysicalConnection extends OracleConnection
     Object localObject;
     if ((i1 > m) && (m > i) && (n == -1))
     {
-      localObject = DatabaseError.createSqlException(null, 67);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(null, 67);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (i1 == -1) {
@@ -2237,6 +2238,7 @@ abstract class PhysicalConnection extends OracleConnection
         OracleWallet localOracleWallet = new OracleWallet();
         if (localOracleWallet.exists(paramString2))
         {
+          char[] localObject;
           localObject = null;
           if (paramString3 != null) {
             localObject = paramString3.toCharArray();
@@ -2274,17 +2276,17 @@ abstract class PhysicalConnection extends OracleConnection
       }
       catch (NoClassDefFoundError localNoClassDefFoundError)
       {
-        localObject = DatabaseError.createSqlException(null, 167, localNoClassDefFoundError);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(null, 167, localNoClassDefFoundError);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       catch (Exception localException)
       {
         if ((localException instanceof RuntimeException)) throw ((RuntimeException)localException);
 
-        Object localObject = DatabaseError.createSqlException(null, 168, localException);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(null, 168, localException);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
     }
@@ -2311,9 +2313,9 @@ abstract class PhysicalConnection extends OracleConnection
       i = paramString.indexOf(93);
       if (i == -1)
       {
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 67, paramString);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 67, paramString);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       k = 1;
     }
@@ -2328,9 +2330,9 @@ abstract class PhysicalConnection extends OracleConnection
 
     if (paramString.indexOf(58, j + 1) != -1)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 67, paramString);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 67, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -2368,12 +2370,15 @@ abstract class PhysicalConnection extends OracleConnection
     {
       final String str1 = paramString1;
       final String str2 = paramString2;
-      String[] arrayOfString = { paramString2 };
+      final String[] arrayOfString = { paramString2 };
+      
       AccessController.doPrivileged(new PrivilegedAction()
       {
+        final String rets[] = arrayOfString;
+        
         public Object run()
         {
-          this.val$rets[0] = System.getProperty(str1, str2);
+          this.rets[0] = System.getProperty(str1, str2);
           return null;
         }
       });
@@ -2527,9 +2532,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.lifecycle != 1)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -2551,9 +2556,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.lifecycle != 1)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramString == null) {
@@ -2561,12 +2566,12 @@ abstract class PhysicalConnection extends OracleConnection
     }
     if (!isStatementCacheInitialized())
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 95);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 95);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject = null;
+    PreparedStatement localObject = null;
 
     localObject = (OraclePreparedStatement)this.statementCache.searchExplicitCache(paramString);
 
@@ -2581,16 +2586,16 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if ((paramString == null) || (paramString.length() == 0))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 104);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 104);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.lifecycle != 1)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -2617,16 +2622,16 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if ((paramString == null) || (paramString.length() == 0))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 104);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 104);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.lifecycle != 1)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -2647,9 +2652,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.lifecycle != 1)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramString == null) {
@@ -2657,12 +2662,12 @@ abstract class PhysicalConnection extends OracleConnection
     }
     if (!isStatementCacheInitialized())
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 95);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 95);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject = null;
+    CallableStatement localObject = null;
 
     localObject = (OracleCallableStatement)this.statementCache.searchExplicitCache(paramString);
 
@@ -2695,9 +2700,9 @@ abstract class PhysicalConnection extends OracleConnection
     }
     if (this.lifecycle != 1)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     needLine();
@@ -2719,9 +2724,9 @@ abstract class PhysicalConnection extends OracleConnection
 
     if ((this.lifecycle != 1) && (this.lifecycle != 16))
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     int i = 0;
@@ -2734,7 +2739,7 @@ abstract class PhysicalConnection extends OracleConnection
           i = 1;
         }
       }
-      catch (SQLException localSQLException2)
+      catch (SQLException sqlexception2)
       {
       }
       localOracleStatement = localOracleStatement.next;
@@ -2753,9 +2758,9 @@ abstract class PhysicalConnection extends OracleConnection
     {
       if (((paramEnumSet.contains(OracleConnection.CommitOption.WRITEBATCH)) && (paramEnumSet.contains(OracleConnection.CommitOption.WRITEIMMED))) || ((paramEnumSet.contains(OracleConnection.CommitOption.WAIT)) && (paramEnumSet.contains(OracleConnection.CommitOption.NOWAIT))))
       {
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 191);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 191);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       for (localObject = paramEnumSet.iterator(); ((Iterator)localObject).hasNext(); ) { OracleConnection.CommitOption localCommitOption = (OracleConnection.CommitOption)((Iterator)localObject).next();
@@ -2771,9 +2776,9 @@ abstract class PhysicalConnection extends OracleConnection
 
     if (this.lifecycle != 1)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = this.statements;
@@ -2787,9 +2792,9 @@ abstract class PhysicalConnection extends OracleConnection
     }
     if ((((paramInt & OracleConnection.CommitOption.WRITEBATCH.getCode()) != 0) && ((paramInt & OracleConnection.CommitOption.WRITEIMMED.getCode()) != 0)) || (((paramInt & OracleConnection.CommitOption.WAIT.getCode()) != 0) && ((paramInt & OracleConnection.CommitOption.NOWAIT.getCode()) != 0)))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 191);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 191);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     registerHeartbeat();
@@ -2811,9 +2816,9 @@ abstract class PhysicalConnection extends OracleConnection
 
     if (this.lifecycle != 1)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = this.statements;
@@ -2877,41 +2882,41 @@ abstract class PhysicalConnection extends OracleConnection
   public String getDataIntegrityAlgorithmName()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public String getEncryptionAlgorithmName()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public String getAuthenticationAdaptorName()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void closeInternal(boolean paramBoolean)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void cleanupAndClose(boolean paramBoolean)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   void cleanupAndClose()
@@ -2945,9 +2950,9 @@ abstract class PhysicalConnection extends OracleConnection
   public synchronized void close(Properties paramProperties)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public synchronized void close(int paramInt)
@@ -2995,97 +3000,97 @@ abstract class PhysicalConnection extends OracleConnection
   void closeProxySession()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public Properties getServerSessionInfo()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public synchronized void applyConnectionAttributes(Properties paramProperties)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public synchronized Properties getConnectionAttributes()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public synchronized Properties getUnMatchedConnectionAttributes()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public synchronized void setAbandonedTimeoutEnabled(boolean paramBoolean)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public synchronized void registerConnectionCacheCallback(OracleConnectionCacheCallback paramOracleConnectionCacheCallback, Object paramObject, int paramInt)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public OracleConnectionCacheCallback getConnectionCacheCallbackObj()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public Object getConnectionCacheCallbackPrivObj()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public int getConnectionCacheCallbackFlag()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public synchronized void setConnectionReleasePriority(int paramInt)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public int getConnectionReleasePriority()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public synchronized boolean isClosed()
@@ -3104,9 +3109,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.isProxy)
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 149);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 149);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     purgeStatementCache();
@@ -3122,27 +3127,27 @@ abstract class PhysicalConnection extends OracleConnection
     {
       if ((localObject1 == null) && (str1 == null))
       {
-        localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 150);
-        ((SQLException)localObject3).fillInStackTrace();
-        throw ((Throwable)localObject3);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 150);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
     }
     else if (paramInt == 2)
     {
       if (str2 == null)
       {
-        localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 150);
-        ((SQLException)localObject3).fillInStackTrace();
-        throw ((Throwable)localObject3);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 150);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
     }
     else if (paramInt == 3)
     {
       if (localObject2 == null)
       {
-        localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 150);
-        ((SQLException)localObject3).fillInStackTrace();
-        throw ((Throwable)localObject3);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 150);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       try
@@ -3151,17 +3156,17 @@ abstract class PhysicalConnection extends OracleConnection
       }
       catch (ClassCastException localClassCastException)
       {
-        SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 150);
-        localSQLException2.fillInStackTrace();
-        throw localSQLException2;
+        SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 150);
+        sqlexception2.fillInStackTrace();
+        throw sqlexception2;
       }
 
     }
     else
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 150);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 150);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     doProxySession(paramInt, paramProperties);
@@ -3171,9 +3176,9 @@ abstract class PhysicalConnection extends OracleConnection
   void doProxySession(int paramInt, Properties paramProperties)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   void cleanup()
@@ -3194,9 +3199,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.lifecycle != 1)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.databaseMetaData == null) {
@@ -3252,9 +3257,9 @@ abstract class PhysicalConnection extends OracleConnection
 
         break;
       default:
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 30);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 30);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
     }
@@ -3275,9 +3280,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (!paramBoolean)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 31);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 31);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -3309,9 +3314,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (paramInt <= 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 20);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 20);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.defaultRowPrefetch = paramInt;
@@ -3332,9 +3337,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (paramInt <= 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 42);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 42);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.defaultExecuteBatch = paramInt;
@@ -3399,9 +3404,9 @@ abstract class PhysicalConnection extends OracleConnection
     {
       if (paramArrayOfString.length != 4)
       {
-        SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 156);
-        localSQLException1.fillInStackTrace();
-        throw localSQLException1;
+        SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 156);
+        sqlexception1.fillInStackTrace();
+        throw sqlexception1;
       }
       String str;
       for (int i = 0; i < 4; i++)
@@ -3410,16 +3415,16 @@ abstract class PhysicalConnection extends OracleConnection
 
         if ((str != null) && (str.length() > this.endToEndMaxLength[i]))
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 159, str);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 159, str);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
 
       }
 
       if (this.endToEndValues != null)
       {
-        for (i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
           str = paramArrayOfString[i];
 
@@ -3435,7 +3440,7 @@ abstract class PhysicalConnection extends OracleConnection
       }
       else
       {
-        for (i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
           this.endToEndHasChanged[i] = true;
         }
@@ -3599,9 +3604,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.lifecycle != 1)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     needLineUnchecked();
@@ -3641,31 +3646,31 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.lifecycle != 1)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public synchronized void startup(OracleConnection.DatabaseStartupMode paramDatabaseStartupMode)
     throws SQLException
   {
-    SQLException localSQLException;
+    SQLException sqlexception;
     if (this.lifecycle != 1)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     if (paramDatabaseStartupMode == null)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     needLine();
@@ -3675,26 +3680,26 @@ abstract class PhysicalConnection extends OracleConnection
   void doStartup(int paramInt)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public synchronized void shutdown(OracleConnection.DatabaseShutdownMode paramDatabaseShutdownMode)
     throws SQLException
   {
-    SQLException localSQLException;
+    SQLException sqlexception;
     if (this.lifecycle != 1)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     if (paramDatabaseShutdownMode == null)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     needLine();
@@ -3704,9 +3709,9 @@ abstract class PhysicalConnection extends OracleConnection
   void doShutdown(int paramInt)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public synchronized void archive(int paramInt1, int paramInt2, String paramString)
@@ -3714,14 +3719,14 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.lifecycle != 1)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public synchronized void registerSQLType(String paramString1, String paramString2)
@@ -3729,9 +3734,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if ((paramString1 == null) || (paramString2 == null))
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     try
@@ -3740,9 +3745,9 @@ abstract class PhysicalConnection extends OracleConnection
     }
     catch (ClassNotFoundException localClassNotFoundException)
     {
-      SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "Class not found: " + paramString2);
-      localSQLException2.fillInStackTrace();
-      throw localSQLException2;
+      SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "Class not found: " + paramString2);
+      sqlexception2.fillInStackTrace();
+      throw sqlexception2;
     }
   }
 
@@ -3751,9 +3756,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if ((paramString == null) || (paramClass == null))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.map == null) this.map = new Hashtable(10);
@@ -3813,9 +3818,9 @@ abstract class PhysicalConnection extends OracleConnection
     }
     else
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -3896,9 +3901,9 @@ abstract class PhysicalConnection extends OracleConnection
     }
     else
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -3933,9 +3938,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.conversion == null)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 65);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 65);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return this.conversion.getClientCharSet();
@@ -3946,9 +3951,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.conversion == null)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 65);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 65);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return this.conversion.getServerCharSetId();
@@ -3959,9 +3964,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.conversion == null)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 65);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 65);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return this.conversion.getNCharSetId();
@@ -4065,17 +4070,17 @@ abstract class PhysicalConnection extends OracleConnection
   public synchronized void setStartTime(long paramLong)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public synchronized long getStartTime()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   void registerHeartbeat()
@@ -4088,9 +4093,9 @@ abstract class PhysicalConnection extends OracleConnection
   public int getHeartbeatNoChangeCount()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 152);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public synchronized byte[] getFDO(boolean paramBoolean)
@@ -4180,9 +4185,9 @@ abstract class PhysicalConnection extends OracleConnection
 
     if (this.autocommit)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 121);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 121);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.savepointStatement == null)
@@ -4195,7 +4200,7 @@ abstract class PhysicalConnection extends OracleConnection
     {
       localObject = paramSavepoint.getSavepointName();
     }
-    catch (SQLException localSQLException)
+    catch (SQLException sqlexception)
     {
       localObject = "ORACLE_SVPT_" + paramSavepoint.getSavepointId();
     }
@@ -4206,9 +4211,9 @@ abstract class PhysicalConnection extends OracleConnection
   public synchronized void releaseSavepoint(Savepoint paramSavepoint)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public Statement createStatement(int paramInt1, int paramInt2, int paramInt3)
@@ -4239,9 +4244,9 @@ abstract class PhysicalConnection extends OracleConnection
     }
     if (paramInt != 1)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = localAutoKeyInfo.getNewSql();
@@ -4263,9 +4268,9 @@ abstract class PhysicalConnection extends OracleConnection
 
     if ((paramArrayOfInt == null) || (paramArrayOfInt.length == 0))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     doDescribeTable(localAutoKeyInfo);
@@ -4288,9 +4293,9 @@ abstract class PhysicalConnection extends OracleConnection
 
     if ((paramArrayOfString == null) || (paramArrayOfString.length == 0))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     doDescribeTable(localAutoKeyInfo);
@@ -4312,9 +4317,9 @@ abstract class PhysicalConnection extends OracleConnection
 
     if (this.autocommit)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 120);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 120);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.savepointStatement == null)
@@ -4322,7 +4327,7 @@ abstract class PhysicalConnection extends OracleConnection
       this.savepointStatement = createStatement();
     }
 
-    Object localObject = new OracleSavepoint();
+    OracleSavepoint localObject = new OracleSavepoint();
 
     String str = "SAVEPOINT ORACLE_SVPT_" + ((OracleSavepoint)localObject).getSavepointId();
 
@@ -4338,9 +4343,9 @@ abstract class PhysicalConnection extends OracleConnection
 
     if (this.autocommit)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 120);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 120);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.savepointStatement == null)
@@ -4348,7 +4353,7 @@ abstract class PhysicalConnection extends OracleConnection
       this.savepointStatement = createStatement();
     }
 
-    Object localObject = new OracleSavepoint(paramString);
+    OracleSavepoint localObject = new OracleSavepoint(paramString);
 
     String str = "SAVEPOINT " + ((OracleSavepoint)localObject).getSavepointName();
 
@@ -4364,9 +4369,9 @@ abstract class PhysicalConnection extends OracleConnection
 
     if (this.autocommit)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 121);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 121);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.savepointStatement == null)
@@ -4379,7 +4384,7 @@ abstract class PhysicalConnection extends OracleConnection
     {
       localObject = paramOracleSavepoint.getSavepointName();
     }
-    catch (SQLException localSQLException)
+    catch (SQLException sqlexception)
     {
       localObject = "ORACLE_SVPT_" + paramOracleSavepoint.getSavepointId();
     }
@@ -4390,9 +4395,9 @@ abstract class PhysicalConnection extends OracleConnection
   public synchronized void oracleReleaseSavepoint(oracle.jdbc.OracleSavepoint paramOracleSavepoint)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   void disallowGlobalTxnMode(int paramInt)
@@ -4400,9 +4405,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.txnMode == 1)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), paramInt);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), paramInt);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -4449,25 +4454,25 @@ abstract class PhysicalConnection extends OracleConnection
   public BlobDBAccess createBlobDBAccess()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public ClobDBAccess createClobDBAccess()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public BfileDBAccess createBfileDBAccess()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void printState()
@@ -4480,9 +4485,9 @@ abstract class PhysicalConnection extends OracleConnection
 
       int k = getStructAttrCsId();
     }
-    catch (SQLException localSQLException)
+    catch (SQLException sqlexception)
     {
-      localSQLException.printStackTrace();
+      sqlexception.printStackTrace();
     }
   }
 
@@ -4525,7 +4530,7 @@ abstract class PhysicalConnection extends OracleConnection
     {
       i = getStatementCacheSize();
     }
-    catch (SQLException localSQLException)
+    catch (SQLException sqlexception)
     {
     }
 
@@ -4624,9 +4629,9 @@ abstract class PhysicalConnection extends OracleConnection
         return (PreparedStatement)localOracleStatement;
       }
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 125);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 125);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return null;
@@ -4643,9 +4648,9 @@ abstract class PhysicalConnection extends OracleConnection
         return (CallableStatement)localOracleStatement;
       }
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 125);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 125);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return null;
@@ -4656,9 +4661,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.statementCache == null)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 95);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 95);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.statementCache.addToImplicitCache(paramOraclePreparedStatement, paramString, paramInt1, paramInt2);
@@ -4669,9 +4674,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.statementCache == null)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 95);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 95);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.statementCache.addToExplicitCache(paramOraclePreparedStatement, paramString);
@@ -4768,9 +4773,9 @@ abstract class PhysicalConnection extends OracleConnection
   public synchronized void registerTAFCallback(OracleOCIFailover paramOracleOCIFailover, Object paramObject)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public String getDatabaseProductVersion()
@@ -4874,7 +4879,7 @@ abstract class PhysicalConnection extends OracleConnection
       ((oracle.jdbc.OracleStatement)localStatement).defineColumnType(1, 12, 1);
       localStatement.executeQuery("SELECT 'x' FROM DUAL");
     }
-    catch (SQLException localSQLException)
+    catch (SQLException sqlexception)
     {
       return -1;
     }
@@ -4945,9 +4950,9 @@ abstract class PhysicalConnection extends OracleConnection
         setDbTzCalendar(getDatabaseTimeZone());
       }
     }
-    catch (SQLException localSQLException)
+    catch (SQLException sqlexception)
     {
-      throw localSQLException;
+      throw sqlexception;
     }
     finally
     {
@@ -5096,14 +5101,14 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.lifecycle != 1)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public int getOCIEnvHeapAllocSize()
@@ -5111,14 +5116,14 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.lifecycle != 1)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public static OracleConnection unwrapCompletely(oracle.jdbc.OracleConnection paramOracleConnection)
@@ -5246,9 +5251,9 @@ abstract class PhysicalConnection extends OracleConnection
   public int getMaxCharSize()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 58);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 58);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public int getMaxCharbyteSize()
@@ -5326,17 +5331,17 @@ abstract class PhysicalConnection extends OracleConnection
   public Properties getDBAccessProperties()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public Properties getOCIHandles()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   abstract void logon()
@@ -5379,9 +5384,9 @@ abstract class PhysicalConnection extends OracleConnection
   public oracle.jdbc.internal.OracleStatement refCursorCursorToStatement(int paramInt)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public Connection getLogicalConnection(OraclePooledConnection paramOraclePooledConnection, boolean paramBoolean)
@@ -5389,14 +5394,14 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if ((this.logicalConnectionAttached != null) || (paramOraclePooledConnection.getPhysicalHandle() != this))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 143);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 143);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject = new LogicalConnection(paramOraclePooledConnection, this, paramBoolean);
+    LogicalConnection localObject = new LogicalConnection(paramOraclePooledConnection, this, paramBoolean);
 
-    this.logicalConnectionAttached = ((LogicalConnection)localObject);
+    this.logicalConnectionAttached = localObject;
 
     return localObject;
   }
@@ -5582,9 +5587,9 @@ abstract class PhysicalConnection extends OracleConnection
   public Array createArrayOf(String paramString, Object[] paramArrayOfObject)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public Struct createStruct(String paramString, Object[] paramArrayOfObject)
@@ -5719,9 +5724,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.lifecycle != 1)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return createTemporaryBlob(this, true, 10);
@@ -5732,9 +5737,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.lifecycle != 1)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return createTemporaryClob(this, true, 10, (short)1);
@@ -5745,9 +5750,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.lifecycle != 1)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return (NClob)createTemporaryClob(this, true, 10, (short)2);
@@ -5758,9 +5763,9 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (this.lifecycle != 1)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return new OracleSQLXML(this);
@@ -5786,16 +5791,16 @@ abstract class PhysicalConnection extends OracleConnection
   {
     if (paramString == null)
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if ((paramString != null) && ((paramString = paramString.trim()).length() > 0) && (!OracleSql.isValidPlsqlWarning(paramString)))
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject1 = "ALTER SESSION SET PLSQL_WARNINGS=" + paramString;
@@ -5861,17 +5866,17 @@ abstract class PhysicalConnection extends OracleConnection
   public XAResource getXAResource()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 164);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 164);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   protected void doDescribeTable(AutoKeyInfo paramAutoKeyInfo)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void setApplicationContext(String paramString1, String paramString2, String paramString3)
@@ -5881,37 +5886,37 @@ abstract class PhysicalConnection extends OracleConnection
     {
       throw new NullPointerException();
     }
-    SQLException localSQLException;
+    SQLException sqlexception;
     if (paramString1.equals(""))
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 170);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 170);
 
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramString1.compareToIgnoreCase("CLIENTCONTEXT") != 0)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 174);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 174);
 
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramString2.length() > 30)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 171);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 171);
 
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramString3.length() > 4000)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 172);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 172);
 
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     doSetApplicationContext(paramString1, paramString2, paramString3);
@@ -5920,9 +5925,9 @@ abstract class PhysicalConnection extends OracleConnection
   void doSetApplicationContext(String paramString1, String paramString2, String paramString3)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void clearAllApplicationContext(String paramString)
@@ -5932,10 +5937,10 @@ abstract class PhysicalConnection extends OracleConnection
       throw new NullPointerException();
     if (paramString.equals(""))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 170);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 170);
 
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     doClearAllApplicationContext(paramString);
@@ -5944,49 +5949,49 @@ abstract class PhysicalConnection extends OracleConnection
   void doClearAllApplicationContext(String paramString)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public byte[] createLightweightSession(String paramString, KeywordValueLong[] paramArrayOfKeywordValueLong, int paramInt, KeywordValueLong[][] paramArrayOfKeywordValueLong1, int[] paramArrayOfInt)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void executeLightweightSessionRoundtrip(int paramInt1, byte[] paramArrayOfByte, KeywordValueLong[] paramArrayOfKeywordValueLong, int paramInt2, KeywordValueLong[][] paramArrayOfKeywordValueLong1, int[] paramArrayOfInt)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void executeLightweightSessionPiggyback(int paramInt1, byte[] paramArrayOfByte, KeywordValueLong[] paramArrayOfKeywordValueLong, int paramInt2)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void doXSNamespaceOp(OracleConnection.XSOperationCode paramXSOperationCode, byte[] paramArrayOfByte, XSNamespace[] paramArrayOfXSNamespace, XSNamespace[][] paramArrayOfXSNamespace1)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void doXSNamespaceOp(OracleConnection.XSOperationCode paramXSOperationCode, byte[] paramArrayOfByte, XSNamespace[] paramArrayOfXSNamespace)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void enqueue(String paramString, AQEnqueueOptions paramAQEnqueueOptions, AQMessage paramAQMessage)
@@ -6051,17 +6056,17 @@ abstract class PhysicalConnection extends OracleConnection
   synchronized void doEnqueue(String paramString, AQEnqueueOptions paramAQEnqueueOptions, AQMessagePropertiesI paramAQMessagePropertiesI, byte[] paramArrayOfByte1, byte[] paramArrayOfByte2, byte[][] paramArrayOfByte, boolean paramBoolean)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   synchronized boolean doDequeue(String paramString, AQDequeueOptions paramAQDequeueOptions, AQMessagePropertiesI paramAQMessagePropertiesI, byte[] paramArrayOfByte, byte[][] paramArrayOfByte1, byte[][] paramArrayOfByte2, boolean paramBoolean)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public boolean isGetObjectReturnsXMLType()
@@ -6084,9 +6089,9 @@ abstract class PhysicalConnection extends OracleConnection
   public byte getInstanceProperty(OracleConnection.InstanceProperty paramInstanceProperty)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public AQNotificationRegistration[] registerAQNotification(String[] paramArrayOfString, Properties[] paramArrayOfProperties, Properties paramProperties)
@@ -6103,9 +6108,9 @@ abstract class PhysicalConnection extends OracleConnection
   NTFAQRegistration[] doRegisterAQNotification(String[] paramArrayOfString, String paramString, int paramInt, Properties[] paramArrayOfProperties)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void unregisterAQNotification(AQNotificationRegistration paramAQNotificationRegistration)
@@ -6118,9 +6123,9 @@ abstract class PhysicalConnection extends OracleConnection
   void doUnregisterAQNotification(NTFAQRegistration paramNTFAQRegistration)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   private String readNTFlocalhost(Properties paramProperties)
@@ -6133,17 +6138,17 @@ abstract class PhysicalConnection extends OracleConnection
     }
     catch (UnknownHostException localUnknownHostException)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 240);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 240);
 
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     catch (SecurityException localSecurityException)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 241);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 241);
 
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return str;
@@ -6159,19 +6164,19 @@ abstract class PhysicalConnection extends OracleConnection
 
       if (i < 0)
       {
-        SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 242);
+        SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 242);
 
-        localSQLException1.fillInStackTrace();
-        throw localSQLException1;
+        sqlexception1.fillInStackTrace();
+        throw sqlexception1;
       }
 
     }
     catch (NumberFormatException localNumberFormatException)
     {
-      SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 242);
+      SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 242);
 
-      localSQLException2.fillInStackTrace();
-      throw localSQLException2;
+      sqlexception2.fillInStackTrace();
+      throw sqlexception2;
     }
 
     return i;
@@ -6187,10 +6192,10 @@ abstract class PhysicalConnection extends OracleConnection
     }
     catch (NumberFormatException localNumberFormatException)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 243);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 243);
 
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return i;
@@ -6209,10 +6214,10 @@ abstract class PhysicalConnection extends OracleConnection
     }
     catch (NumberFormatException localNumberFormatException)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 244);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 244);
 
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     NTFDCNRegistration localNTFDCNRegistration = doRegisterDatabaseChangeNotification(str, i, paramProperties, j, k);
@@ -6224,9 +6229,9 @@ abstract class PhysicalConnection extends OracleConnection
   NTFDCNRegistration doRegisterDatabaseChangeNotification(String paramString, int paramInt1, Properties paramProperties, int paramInt2, int paramInt3)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public DatabaseChangeRegistration getDatabaseChangeRegistration(int paramInt)
@@ -6242,10 +6247,10 @@ abstract class PhysicalConnection extends OracleConnection
     NTFDCNRegistration localNTFDCNRegistration = (NTFDCNRegistration)paramDatabaseChangeRegistration;
     if (localNTFDCNRegistration.getDatabaseName().compareToIgnoreCase(this.instanceName) != 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 245);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 245);
 
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     doUnregisterDatabaseChangeNotification(localNTFDCNRegistration);
@@ -6254,9 +6259,9 @@ abstract class PhysicalConnection extends OracleConnection
   void doUnregisterDatabaseChangeNotification(NTFDCNRegistration paramNTFDCNRegistration)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void unregisterDatabaseChangeNotification(int paramInt)
@@ -6291,33 +6296,33 @@ abstract class PhysicalConnection extends OracleConnection
   void doUnregisterDatabaseChangeNotification(long paramLong, String paramString)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void addXSEventListener(XSEventListener paramXSEventListener)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void addXSEventListener(XSEventListener paramXSEventListener, Executor paramExecutor)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void removeXSEventListener(XSEventListener paramXSEventListener)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public TypeDescriptor[] getAllTypeDescriptorsInCurrentSchema()
@@ -6333,16 +6338,16 @@ abstract class PhysicalConnection extends OracleConnection
       arrayOfTypeDescriptor = getTypeDescriptorsFromResultSet(localResultSet);
       localResultSet.close();
     }
-    catch (SQLException localSQLException1)
+    catch (SQLException sqlexception1)
     {
-      if (localSQLException1.getErrorCode() == 904)
+      if (sqlexception1.getErrorCode() == 904)
       {
-        SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 165);
-        localSQLException2.fillInStackTrace();
-        throw localSQLException2;
+        SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 165);
+        sqlexception2.fillInStackTrace();
+        throw sqlexception2;
       }
 
-      throw localSQLException1;
+      throw sqlexception1;
     }
     finally
     {
@@ -6361,7 +6366,7 @@ abstract class PhysicalConnection extends OracleConnection
     {
       localPreparedStatement = prepareStatement(str);
       int i = paramArrayOfString.length;
-      localObject1 = new StringBuffer(i * 8);
+      StringBuffer localObject1 = new StringBuffer(i * 8);
       for (int j = 0; j < i; j++)
       {
         ((StringBuffer)localObject1).append(paramArrayOfString[j]);
@@ -6372,17 +6377,17 @@ abstract class PhysicalConnection extends OracleConnection
       arrayOfTypeDescriptor = getTypeDescriptorsFromResultSet(localResultSet);
       localResultSet.close();
     }
-    catch (SQLException localSQLException)
+    catch (SQLException sqlexception)
     {
       Object localObject1;
-      if (localSQLException.getErrorCode() == 904)
+      if (sqlexception.getErrorCode() == 904)
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 165);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 165);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
-      throw localSQLException;
+      throw sqlexception;
     }
     finally
     {
@@ -6418,21 +6423,21 @@ abstract class PhysicalConnection extends OracleConnection
       localPreparedStatement.setString(1, localStringBuffer1.toString());
       localPreparedStatement.setString(2, localStringBuffer2.toString());
 
-      localObject1 = localPreparedStatement.executeQuery();
+      ResultSet localObject1 = localPreparedStatement.executeQuery();
       arrayOfTypeDescriptor = getTypeDescriptorsFromResultSet((ResultSet)localObject1);
       ((ResultSet)localObject1).close();
     }
-    catch (SQLException localSQLException)
+    catch (SQLException sqlexception)
     {
       Object localObject1;
-      if (localSQLException.getErrorCode() == 904)
+      if (sqlexception.getErrorCode() == 904)
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 165);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 165);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
-      throw localSQLException;
+      throw sqlexception;
     }
     finally
     {
@@ -6448,7 +6453,7 @@ abstract class PhysicalConnection extends OracleConnection
     Object localObject2;
     while (paramResultSet.next())
     {
-      localObject1 = paramResultSet.getString(1);
+      String localObject1 = paramResultSet.getString(1);
       String str1 = paramResultSet.getString(2);
       localObject2 = paramResultSet.getBytes(3);
       String str2 = paramResultSet.getString(4);
@@ -6473,11 +6478,11 @@ abstract class PhysicalConnection extends OracleConnection
         localArrayList.add(localObject3);
       }
     }
-    Object localObject1 = new TypeDescriptor[localArrayList.size()];
+    TypeDescriptor[] localObject1 = new TypeDescriptor[localArrayList.size()];
     for (int i = 0; i < localArrayList.size(); i++)
     {
-      localObject2 = (TypeDescriptor)localArrayList.get(i);
-      localObject1[i] = localObject2;
+      TypeDescriptor typedescriptor = (TypeDescriptor)localArrayList.get(i);
+      localObject1[i] = typedescriptor;
     }
     return localObject1;
   }
@@ -6562,7 +6567,7 @@ abstract class PhysicalConnection extends OracleConnection
   public boolean isDataInLocatorEnabled()
     throws SQLException
   {
-    return (getVersionNumber() >= 10200 ? 1 : 0) & (getVersionNumber() < 11000 ? 1 : 0) & this.enableReadDataInLocator | this.overrideEnableReadDataInLocator;
+    return getVersionNumber() >= 10200 && getVersionNumber() < 11000 && this.enableReadDataInLocator || this.overrideEnableReadDataInLocator;
   }
 
   private static final class BufferCacheStore

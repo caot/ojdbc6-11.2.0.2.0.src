@@ -207,7 +207,6 @@ public class OracleXAResource extends oracle.jdbc.xa.OracleXAResource
         try
         {
           boolean bool = false;
-          int n;
           if ((j != 0) || (k != 0))
           {
             bool = isXidSuspended(paramXid);
@@ -222,10 +221,10 @@ public class OracleXAResource extends oracle.jdbc.xa.OracleXAResource
             boolean[] arrayOfBoolean = { false };
             super.createOrUpdateXid(paramXid, true, arrayOfBoolean);
 
-            n = arrayOfBoolean[0];
+            bool = arrayOfBoolean[0];
           }
 
-          i = doEnd(paramXid, paramInt, n);
+          i = doEnd(paramXid, paramInt, bool);
         }
         catch (SQLException localSQLException)
         {

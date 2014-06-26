@@ -841,7 +841,7 @@ public class OracleDatabaseMetaData
 
     String str7 = "ORDER BY procedure_schem, procedure_name\n";
 
-    PreparedStatement localPreparedStatement = null;
+    PreparedStatement preparedstatement = null;
     String str8 = null;
 
     String str9 = paramString2;
@@ -857,57 +857,57 @@ public class OracleDatabaseMetaData
       str10 = "%";
     } else if (paramString3.equals(""))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramString1 == null)
     {
       str8 = new StringBuilder().append(str1).append("UNION ALL ").append(str2).append(str6).append("UNION ALL ").append(str3).append(str6).append("UNION ALL ").append(str4).append(str6).append(str7).toString();
 
-      localPreparedStatement = this.connection.prepareStatement(str8);
+      preparedstatement = this.connection.prepareStatement(str8);
 
-      localPreparedStatement.setString(1, str9);
-      localPreparedStatement.setString(2, str10);
-      localPreparedStatement.setString(3, str9);
-      localPreparedStatement.setString(4, str10);
-      localPreparedStatement.setString(5, str9);
-      localPreparedStatement.setString(6, str10);
-      localPreparedStatement.setString(7, str9);
-      localPreparedStatement.setString(8, str10);
+      preparedstatement.setString(1, str9);
+      preparedstatement.setString(2, str10);
+      preparedstatement.setString(3, str9);
+      preparedstatement.setString(4, str10);
+      preparedstatement.setString(5, str9);
+      preparedstatement.setString(6, str10);
+      preparedstatement.setString(7, str9);
+      preparedstatement.setString(8, str10);
     }
     else if (paramString1.equals(""))
     {
       str8 = str1;
 
-      localPreparedStatement = this.connection.prepareStatement(str8);
+      preparedstatement = this.connection.prepareStatement(str8);
 
-      localPreparedStatement.setString(1, str9);
-      localPreparedStatement.setString(2, str10);
+      preparedstatement.setString(1, str9);
+      preparedstatement.setString(2, str10);
     }
     else
     {
       str8 = new StringBuilder().append(str2).append(str5).append("UNION ALL ").append(str3).append(str5).append("UNION ALL ").append(str4).append(str5).append(str7).toString();
 
-      localPreparedStatement = this.connection.prepareStatement(str8);
+      preparedstatement = this.connection.prepareStatement(str8);
 
-      localPreparedStatement.setString(1, paramString1);
-      localPreparedStatement.setString(2, str9);
-      localPreparedStatement.setString(3, str10);
-      localPreparedStatement.setString(4, paramString1);
-      localPreparedStatement.setString(5, str9);
-      localPreparedStatement.setString(6, str10);
-      localPreparedStatement.setString(7, paramString1);
-      localPreparedStatement.setString(8, str9);
-      localPreparedStatement.setString(9, str10);
+      preparedstatement.setString(1, paramString1);
+      preparedstatement.setString(2, str9);
+      preparedstatement.setString(3, str10);
+      preparedstatement.setString(4, paramString1);
+      preparedstatement.setString(5, str9);
+      preparedstatement.setString(6, str10);
+      preparedstatement.setString(7, paramString1);
+      preparedstatement.setString(8, str9);
+      preparedstatement.setString(9, str10);
     }
 
-    Object localObject = (OracleResultSet)localPreparedStatement.executeQuery();
+    Object localObject = (OracleResultSet)preparedstatement.executeQuery();
 
     ((OracleResultSet)localObject).closeStatementOnClose();
 
-    return localObject;
+    return (OracleResultSet)localObject;
   }
 
   public synchronized ResultSet getProcedureColumns(String paramString1, String paramString2, String paramString3, String paramString4)
@@ -933,9 +933,9 @@ public class OracleDatabaseMetaData
   {
     if ("".equals(paramString3))
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     Object localObject1 = getUnpackagedProcedureColumnsNoWildcardsPlsql();
     CallableStatement localCallableStatement = null;
@@ -974,9 +974,9 @@ public class OracleDatabaseMetaData
   {
     if ("".equals(paramString4))
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     Object localObject1 = getPackagedProcedureColumnsNoWildcardsPlsql();
     CallableStatement localCallableStatement = null;
@@ -1025,7 +1025,7 @@ public class OracleDatabaseMetaData
     String str6 = "ORDER BY procedure_schem, procedure_name, overload, sequence\n";
 
     String str7 = null;
-    PreparedStatement localPreparedStatement = null;
+    PreparedStatement preparedstatement = null;
     String str8 = null;
 
     String str9 = paramString2;
@@ -1041,9 +1041,9 @@ public class OracleDatabaseMetaData
       str10 = "%";
     } else if (paramString3.equals(""))
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject1 = paramString4;
@@ -1055,9 +1055,9 @@ public class OracleDatabaseMetaData
     } else {
       if (paramString4.equals(""))
       {
-        localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74);
-        ((SQLException)localObject2).fillInStackTrace();
-        throw ((Throwable)localObject2);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       str8 = str4;
@@ -1066,39 +1066,39 @@ public class OracleDatabaseMetaData
     {
       str7 = new StringBuilder().append(str1).append(str8).append(str6).toString();
 
-      localPreparedStatement = this.connection.prepareStatement(str7);
+      preparedstatement = this.connection.prepareStatement(str7);
 
-      localPreparedStatement.setString(1, str9);
-      localPreparedStatement.setString(2, str10);
-      localPreparedStatement.setString(3, (String)localObject1);
+      preparedstatement.setString(1, str9);
+      preparedstatement.setString(2, str10);
+      preparedstatement.setString(3, (String)localObject1);
     }
     else if (paramString1.equals(""))
     {
       str7 = new StringBuilder().append(str1).append(str3).append(str8).append(str6).toString();
 
-      localPreparedStatement = this.connection.prepareStatement(str7);
+      preparedstatement = this.connection.prepareStatement(str7);
 
-      localPreparedStatement.setString(1, str9);
-      localPreparedStatement.setString(2, str10);
-      localPreparedStatement.setString(3, (String)localObject1);
+      preparedstatement.setString(1, str9);
+      preparedstatement.setString(2, str10);
+      preparedstatement.setString(3, (String)localObject1);
     }
     else
     {
       str7 = new StringBuilder().append(str1).append(str2).append(str8).append(str6).toString();
 
-      localPreparedStatement = this.connection.prepareStatement(str7);
+      preparedstatement = this.connection.prepareStatement(str7);
 
-      localPreparedStatement.setString(1, str9);
-      localPreparedStatement.setString(2, str10);
-      localPreparedStatement.setString(3, paramString1);
-      localPreparedStatement.setString(4, (String)localObject1);
+      preparedstatement.setString(1, str9);
+      preparedstatement.setString(2, str10);
+      preparedstatement.setString(3, paramString1);
+      preparedstatement.setString(4, (String)localObject1);
     }
 
-    Object localObject2 = (OracleResultSet)localPreparedStatement.executeQuery();
+    Object localObject2 = (OracleResultSet)preparedstatement.executeQuery();
 
     ((OracleResultSet)localObject2).closeStatementOnClose();
 
-    return localObject2;
+    return (OracleResultSet)localObject2;
   }
 
   public ResultSet getFunctionColumns(String paramString1, String paramString2, String paramString3, String paramString4)
@@ -1121,7 +1121,7 @@ public class OracleDatabaseMetaData
     String str7 = "ORDER BY function_schem, function_name, overload, sequence\n";
 
     String str8 = null;
-    PreparedStatement localPreparedStatement = null;
+    PreparedStatement preparedstatement = null;
     String str9 = null;
 
     String str10 = paramString2;
@@ -1137,9 +1137,9 @@ public class OracleDatabaseMetaData
       str11 = "%";
     } else if (paramString3.equals(""))
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject1 = paramString4;
@@ -1151,9 +1151,9 @@ public class OracleDatabaseMetaData
     } else {
       if (paramString4.equals(""))
       {
-        localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74);
-        ((SQLException)localObject2).fillInStackTrace();
-        throw ((Throwable)localObject2);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       str9 = str5;
@@ -1162,39 +1162,39 @@ public class OracleDatabaseMetaData
     {
       str8 = new StringBuilder().append(str1).append(str2).append(str9).append(str7).toString();
 
-      localPreparedStatement = this.connection.prepareStatement(str8);
+      preparedstatement = this.connection.prepareStatement(str8);
 
-      localPreparedStatement.setString(1, str10);
-      localPreparedStatement.setString(2, str11);
-      localPreparedStatement.setString(3, (String)localObject1);
+      preparedstatement.setString(1, str10);
+      preparedstatement.setString(2, str11);
+      preparedstatement.setString(3, (String)localObject1);
     }
     else if (paramString1.equals(""))
     {
       str8 = new StringBuilder().append(str1).append(str2).append(str4).append(str9).append(str7).toString();
 
-      localPreparedStatement = this.connection.prepareStatement(str8);
+      preparedstatement = this.connection.prepareStatement(str8);
 
-      localPreparedStatement.setString(1, str10);
-      localPreparedStatement.setString(2, str11);
-      localPreparedStatement.setString(3, (String)localObject1);
+      preparedstatement.setString(1, str10);
+      preparedstatement.setString(2, str11);
+      preparedstatement.setString(3, (String)localObject1);
     }
     else
     {
       str8 = new StringBuilder().append(str1).append(str2).append(str3).append(str9).append(str7).toString();
 
-      localPreparedStatement = this.connection.prepareStatement(str8);
+      preparedstatement = this.connection.prepareStatement(str8);
 
-      localPreparedStatement.setString(1, str10);
-      localPreparedStatement.setString(2, str11);
-      localPreparedStatement.setString(3, paramString1);
-      localPreparedStatement.setString(4, (String)localObject1);
+      preparedstatement.setString(1, str10);
+      preparedstatement.setString(2, str11);
+      preparedstatement.setString(3, paramString1);
+      preparedstatement.setString(4, (String)localObject1);
     }
 
-    Object localObject2 = (OracleResultSet)localPreparedStatement.executeQuery();
+    Object localObject2 = (OracleResultSet)preparedstatement.executeQuery();
 
     ((OracleResultSet)localObject2).closeStatementOnClose();
 
-    return localObject2;
+    return (OracleResultSet)localObject2;
   }
 
   public synchronized ResultSet getTables(String paramString1, String paramString2, String paramString3, String[] paramArrayOfString)
@@ -1295,18 +1295,18 @@ public class OracleDatabaseMetaData
     }
     str17 = new StringBuilder().append(str17).append(str10).toString();
 
-    PreparedStatement localPreparedStatement = this.connection.prepareStatement(str17);
+    PreparedStatement preparedstatement = this.connection.prepareStatement(str17);
 
-    localPreparedStatement.setString(1, paramString2 == null ? "%" : paramString2);
-    localPreparedStatement.setString(2, paramString3 == null ? "%" : paramString3);
+    preparedstatement.setString(1, paramString2 == null ? "%" : paramString2);
+    preparedstatement.setString(2, paramString3 == null ? "%" : paramString3);
 
     if ((i != 0) && (this.connection.getRestrictGetTables()))
     {
-      localPreparedStatement.setString(3, paramString2 == null ? "%" : paramString2);
-      localPreparedStatement.setString(4, paramString3 == null ? "%" : paramString3);
+      preparedstatement.setString(3, paramString2 == null ? "%" : paramString2);
+      preparedstatement.setString(4, paramString3 == null ? "%" : paramString3);
     }
 
-    OracleResultSet localOracleResultSet = (OracleResultSet)localPreparedStatement.executeQuery();
+    OracleResultSet localOracleResultSet = (OracleResultSet)preparedstatement.executeQuery();
 
     localOracleResultSet.closeStatementOnClose();
 
@@ -1362,13 +1362,13 @@ public class OracleDatabaseMetaData
   public synchronized ResultSet getColumnPrivileges(String paramString1, String paramString2, String paramString3, String paramString4)
     throws SQLException
   {
-    PreparedStatement localPreparedStatement = this.connection.prepareStatement("SELECT NULL AS table_cat,\n       table_schema AS table_schem,\n       table_name,\n       column_name,\n       grantor,\n       grantee,\n       privilege,\n       grantable AS is_grantable\nFROM all_col_privs\nWHERE table_schema LIKE :1 ESCAPE '/'\n  AND table_name LIKE :2 ESCAPE '/'\n  AND column_name LIKE :3 ESCAPE '/'\nORDER BY column_name, privilege\n");
+    PreparedStatement preparedstatement = this.connection.prepareStatement("SELECT NULL AS table_cat,\n       table_schema AS table_schem,\n       table_name,\n       column_name,\n       grantor,\n       grantee,\n       privilege,\n       grantable AS is_grantable\nFROM all_col_privs\nWHERE table_schema LIKE :1 ESCAPE '/'\n  AND table_name LIKE :2 ESCAPE '/'\n  AND column_name LIKE :3 ESCAPE '/'\nORDER BY column_name, privilege\n");
 
-    localPreparedStatement.setString(1, paramString2 == null ? "%" : paramString2);
-    localPreparedStatement.setString(2, paramString3 == null ? "%" : paramString3);
-    localPreparedStatement.setString(3, paramString4 == null ? "%" : paramString4);
+    preparedstatement.setString(1, paramString2 == null ? "%" : paramString2);
+    preparedstatement.setString(2, paramString3 == null ? "%" : paramString3);
+    preparedstatement.setString(3, paramString4 == null ? "%" : paramString4);
 
-    OracleResultSet localOracleResultSet = (OracleResultSet)localPreparedStatement.executeQuery();
+    OracleResultSet localOracleResultSet = (OracleResultSet)preparedstatement.executeQuery();
 
     localOracleResultSet.closeStatementOnClose();
 
@@ -1378,12 +1378,12 @@ public class OracleDatabaseMetaData
   public synchronized ResultSet getTablePrivileges(String paramString1, String paramString2, String paramString3)
     throws SQLException
   {
-    PreparedStatement localPreparedStatement = this.connection.prepareStatement("SELECT NULL AS table_cat,\n       table_schema AS table_schem,\n       table_name,\n       grantor,\n       grantee,\n       privilege,\n       grantable AS is_grantable\nFROM all_tab_privs\nWHERE table_schema LIKE :1 ESCAPE '/'\n  AND table_name LIKE :2 ESCAPE '/'\nORDER BY table_schem, table_name, privilege\n");
+    PreparedStatement preparedstatement = this.connection.prepareStatement("SELECT NULL AS table_cat,\n       table_schema AS table_schem,\n       table_name,\n       grantor,\n       grantee,\n       privilege,\n       grantable AS is_grantable\nFROM all_tab_privs\nWHERE table_schema LIKE :1 ESCAPE '/'\n  AND table_name LIKE :2 ESCAPE '/'\nORDER BY table_schem, table_name, privilege\n");
 
-    localPreparedStatement.setString(1, paramString2 == null ? "%" : paramString2);
-    localPreparedStatement.setString(2, paramString3 == null ? "%" : paramString3);
+    preparedstatement.setString(1, paramString2 == null ? "%" : paramString2);
+    preparedstatement.setString(2, paramString3 == null ? "%" : paramString3);
 
-    OracleResultSet localOracleResultSet = (OracleResultSet)localPreparedStatement.executeQuery();
+    OracleResultSet localOracleResultSet = (OracleResultSet)preparedstatement.executeQuery();
 
     localOracleResultSet.closeStatementOnClose();
 
@@ -1393,30 +1393,30 @@ public class OracleDatabaseMetaData
   public synchronized ResultSet getBestRowIdentifier(String paramString1, String paramString2, String paramString3, int paramInt, boolean paramBoolean)
     throws SQLException
   {
-    PreparedStatement localPreparedStatement = this.connection.prepareStatement(new StringBuilder().append("SELECT 1 AS scope, 'ROWID' AS column_name, -8 AS data_type,\n 'ROWID' AS type_name, 0 AS column_size, 0 AS buffer_length,\n       0 AS decimal_digits, 2 AS pseudo_column\nFROM DUAL\nWHERE :1 = 1\nUNION\nSELECT 2 AS scope,\n  t.column_name,\n DECODE (t.data_type, 'CHAR', 1, 'VARCHAR2', 12, 'NUMBER', 3,\n 'LONG', -1, 'DATE', ").append(this.connection.getMapDateToTimestamp() ? "93,\n" : "91,\n").append(" 'RAW', -3, 'LONG RAW', -4, \n").append(" 'TIMESTAMP(6)', 93, ").append(" 'TIMESTAMP(6) WITH TIME ZONE', -101, \n").append(" 'TIMESTAMP(6) WITH LOCAL TIME ZONE', -102, \n").append(" 'INTERVAL YEAR(2) TO MONTH', -103, \n").append(" 'INTERVAL DAY(2) TO SECOND(6)', -104, \n").append(" 'BINARY_FLOAT', 100, ").append(" 'BINARY_DOUBLE', 101,").append(" 1111)\n").append(" AS data_type,\n").append(" t.data_type AS type_name,\n").append(" DECODE (t.data_precision, null, t.data_length, t.data_precision)\n").append("  AS column_size,\n").append("  0 AS buffer_length,\n").append("  t.data_scale AS decimal_digits,\n").append("       1 AS pseudo_column\n").append("FROM all_tab_columns t, all_ind_columns i\n").append("WHERE :2 = 1\n").append("  AND t.table_name = :3\n").append("  AND t.owner like :4 escape '/'\n").append("  AND t.nullable != :5\n").append("  AND t.owner = i.table_owner\n").append("  AND t.table_name = i.table_name\n").append("  AND t.column_name = i.column_name\n").toString());
+    PreparedStatement preparedstatement = this.connection.prepareStatement(new StringBuilder().append("SELECT 1 AS scope, 'ROWID' AS column_name, -8 AS data_type,\n 'ROWID' AS type_name, 0 AS column_size, 0 AS buffer_length,\n       0 AS decimal_digits, 2 AS pseudo_column\nFROM DUAL\nWHERE :1 = 1\nUNION\nSELECT 2 AS scope,\n  t.column_name,\n DECODE (t.data_type, 'CHAR', 1, 'VARCHAR2', 12, 'NUMBER', 3,\n 'LONG', -1, 'DATE', ").append(this.connection.getMapDateToTimestamp() ? "93,\n" : "91,\n").append(" 'RAW', -3, 'LONG RAW', -4, \n").append(" 'TIMESTAMP(6)', 93, ").append(" 'TIMESTAMP(6) WITH TIME ZONE', -101, \n").append(" 'TIMESTAMP(6) WITH LOCAL TIME ZONE', -102, \n").append(" 'INTERVAL YEAR(2) TO MONTH', -103, \n").append(" 'INTERVAL DAY(2) TO SECOND(6)', -104, \n").append(" 'BINARY_FLOAT', 100, ").append(" 'BINARY_DOUBLE', 101,").append(" 1111)\n").append(" AS data_type,\n").append(" t.data_type AS type_name,\n").append(" DECODE (t.data_precision, null, t.data_length, t.data_precision)\n").append("  AS column_size,\n").append("  0 AS buffer_length,\n").append("  t.data_scale AS decimal_digits,\n").append("       1 AS pseudo_column\n").append("FROM all_tab_columns t, all_ind_columns i\n").append("WHERE :2 = 1\n").append("  AND t.table_name = :3\n").append("  AND t.owner like :4 escape '/'\n").append("  AND t.nullable != :5\n").append("  AND t.owner = i.table_owner\n").append("  AND t.table_name = i.table_name\n").append("  AND t.column_name = i.column_name\n").toString());
 
     switch (paramInt)
     {
     case 0:
-      localPreparedStatement.setInt(1, 0);
-      localPreparedStatement.setInt(2, 0);
+      preparedstatement.setInt(1, 0);
+      preparedstatement.setInt(2, 0);
 
       break;
     case 1:
-      localPreparedStatement.setInt(1, 1);
-      localPreparedStatement.setInt(2, 1);
+      preparedstatement.setInt(1, 1);
+      preparedstatement.setInt(2, 1);
 
       break;
     case 2:
-      localPreparedStatement.setInt(1, 0);
-      localPreparedStatement.setInt(2, 1);
+      preparedstatement.setInt(1, 0);
+      preparedstatement.setInt(2, 1);
     }
 
-    localPreparedStatement.setString(3, paramString3);
-    localPreparedStatement.setString(4, paramString2 == null ? "%" : paramString2);
-    localPreparedStatement.setString(5, paramBoolean ? "X" : "Y");
+    preparedstatement.setString(3, paramString3);
+    preparedstatement.setString(4, paramString2 == null ? "%" : paramString2);
+    preparedstatement.setString(5, paramBoolean ? "X" : "Y");
 
-    OracleResultSet localOracleResultSet = (OracleResultSet)localPreparedStatement.executeQuery();
+    OracleResultSet localOracleResultSet = (OracleResultSet)preparedstatement.executeQuery();
 
     localOracleResultSet.closeStatementOnClose();
 
@@ -1426,12 +1426,12 @@ public class OracleDatabaseMetaData
   public synchronized ResultSet getVersionColumns(String paramString1, String paramString2, String paramString3)
     throws SQLException
   {
-    PreparedStatement localPreparedStatement = this.connection.prepareStatement(new StringBuilder().append("SELECT 0 AS scope,\n t.column_name,\n DECODE (c.data_type, 'CHAR', 1, 'VARCHAR2', 12, 'NUMBER', 3,\n  'LONG', -1, 'DATE',  ").append(this.connection.getMapDateToTimestamp() ? "93,\n" : "91,\n").append("  'RAW', -3, 'LONG RAW', -4, ").append("  'TIMESTAMP(6)', 93, 'TIMESTAMP(6) WITH TIME ZONE', -101, \n").append("  'TIMESTAMP(6) WITH LOCAL TIME ZONE', -102, \n").append("  'INTERVAL YEAR(2) TO MONTH', -103, \n").append("  'INTERVAL DAY(2) TO SECOND(6)', -104, \n").append("  'BINARY_FLOAT', 100, 'BINARY_DOUBLE', 101,").append("   1111)\n ").append(" AS data_type,\n").append("       c.data_type AS type_name,\n").append(" DECODE (c.data_precision, null, c.data_length, c.data_precision)\n").append("   AS column_size,\n").append("       0 as buffer_length,\n").append("   c.data_scale as decimal_digits,\n").append("   0 as pseudo_column\n").append("FROM all_trigger_cols t, all_tab_columns c\n").append("WHERE t.table_name = :1\n").append("  AND c.owner like :2 escape '/'\n").append(" AND t.table_owner = c.owner\n").append("  AND t.table_name = c.table_name\n").append(" AND t.column_name = c.column_name\n").toString());
+    PreparedStatement preparedstatement = this.connection.prepareStatement(new StringBuilder().append("SELECT 0 AS scope,\n t.column_name,\n DECODE (c.data_type, 'CHAR', 1, 'VARCHAR2', 12, 'NUMBER', 3,\n  'LONG', -1, 'DATE',  ").append(this.connection.getMapDateToTimestamp() ? "93,\n" : "91,\n").append("  'RAW', -3, 'LONG RAW', -4, ").append("  'TIMESTAMP(6)', 93, 'TIMESTAMP(6) WITH TIME ZONE', -101, \n").append("  'TIMESTAMP(6) WITH LOCAL TIME ZONE', -102, \n").append("  'INTERVAL YEAR(2) TO MONTH', -103, \n").append("  'INTERVAL DAY(2) TO SECOND(6)', -104, \n").append("  'BINARY_FLOAT', 100, 'BINARY_DOUBLE', 101,").append("   1111)\n ").append(" AS data_type,\n").append("       c.data_type AS type_name,\n").append(" DECODE (c.data_precision, null, c.data_length, c.data_precision)\n").append("   AS column_size,\n").append("       0 as buffer_length,\n").append("   c.data_scale as decimal_digits,\n").append("   0 as pseudo_column\n").append("FROM all_trigger_cols t, all_tab_columns c\n").append("WHERE t.table_name = :1\n").append("  AND c.owner like :2 escape '/'\n").append(" AND t.table_owner = c.owner\n").append("  AND t.table_name = c.table_name\n").append(" AND t.column_name = c.column_name\n").toString());
 
-    localPreparedStatement.setString(1, paramString3);
-    localPreparedStatement.setString(2, paramString2 == null ? "%" : paramString2);
+    preparedstatement.setString(1, paramString3);
+    preparedstatement.setString(2, paramString2 == null ? "%" : paramString2);
 
-    OracleResultSet localOracleResultSet = (OracleResultSet)localPreparedStatement.executeQuery();
+    OracleResultSet localOracleResultSet = (OracleResultSet)preparedstatement.executeQuery();
 
     localOracleResultSet.closeStatementOnClose();
 
@@ -1441,12 +1441,12 @@ public class OracleDatabaseMetaData
   public ResultSet getPrimaryKeys(String paramString1, String paramString2, String paramString3)
     throws SQLException
   {
-    PreparedStatement localPreparedStatement = this.connection.prepareStatement("SELECT NULL AS table_cat,\n       c.owner AS table_schem,\n       c.table_name,\n       c.column_name,\n       c.position AS key_seq,\n       c.constraint_name AS pk_name\nFROM all_cons_columns c, all_constraints k\nWHERE k.constraint_type = 'P'\n  AND k.table_name = :1\n  AND k.owner like :2 escape '/'\n  AND k.constraint_name = c.constraint_name \n  AND k.table_name = c.table_name \n  AND k.owner = c.owner \nORDER BY column_name\n");
+    PreparedStatement preparedstatement = this.connection.prepareStatement("SELECT NULL AS table_cat,\n       c.owner AS table_schem,\n       c.table_name,\n       c.column_name,\n       c.position AS key_seq,\n       c.constraint_name AS pk_name\nFROM all_cons_columns c, all_constraints k\nWHERE k.constraint_type = 'P'\n  AND k.table_name = :1\n  AND k.owner like :2 escape '/'\n  AND k.constraint_name = c.constraint_name \n  AND k.table_name = c.table_name \n  AND k.owner = c.owner \nORDER BY column_name\n");
 
-    localPreparedStatement.setString(1, paramString3);
-    localPreparedStatement.setString(2, paramString2 == null ? "%" : paramString2);
+    preparedstatement.setString(1, paramString3);
+    preparedstatement.setString(2, paramString2 == null ? "%" : paramString2);
 
-    OracleResultSet localOracleResultSet = (OracleResultSet)localPreparedStatement.executeQuery();
+    OracleResultSet localOracleResultSet = (OracleResultSet)preparedstatement.executeQuery();
 
     localOracleResultSet.closeStatementOnClose();
 
@@ -1462,29 +1462,29 @@ public class OracleDatabaseMetaData
     int m = (paramString1 != null) && (paramString1.length() > 0) ? i++ : 0;
     int n = (paramString3 != null) && (paramString3.length() > 0) ? i++ : 0;
 
-    PreparedStatement localPreparedStatement = this.connection.prepareStatement(new StringBuilder().append("SELECT NULL AS pktable_cat,\n       p.owner as pktable_schem,\n       p.table_name as pktable_name,\n       pc.column_name as pkcolumn_name,\n       NULL as fktable_cat,\n       f.owner as fktable_schem,\n       f.table_name as fktable_name,\n       fc.column_name as fkcolumn_name,\n       fc.position as key_seq,\n       NULL as update_rule,\n       decode (f.delete_rule, 'CASCADE', 0, 'SET NULL', 2, 1) as delete_rule,\n       f.constraint_name as fk_name,\n       p.constraint_name as pk_name,\n       decode(f.deferrable,       'DEFERRABLE',5      ,'NOT DEFERRABLE',7      , 'DEFERRED', 6      ) deferrability \n      FROM all_cons_columns pc, all_constraints p,\n      all_cons_columns fc, all_constraints f\nWHERE 1 = 1\n").append(j != 0 ? "  AND p.table_name = :1\n" : "").append(k != 0 ? "  AND f.table_name = :2\n" : "").append(m != 0 ? "  AND p.owner = :3\n" : "").append(n != 0 ? "  AND f.owner = :4\n" : "").append("  AND f.constraint_type = 'R'\n").append("  AND p.owner = f.r_owner\n").append("  AND p.constraint_name = f.r_constraint_name\n").append("  AND p.constraint_type = 'P'\n").append("  AND pc.owner = p.owner\n").append("  AND pc.constraint_name = p.constraint_name\n").append("  AND pc.table_name = p.table_name\n").append("  AND fc.owner = f.owner\n").append("  AND fc.constraint_name = f.constraint_name\n").append("  AND fc.table_name = f.table_name\n").append("  AND fc.position = pc.position\n").append(paramString5).toString());
+    PreparedStatement preparedstatement = this.connection.prepareStatement(new StringBuilder().append("SELECT NULL AS pktable_cat,\n       p.owner as pktable_schem,\n       p.table_name as pktable_name,\n       pc.column_name as pkcolumn_name,\n       NULL as fktable_cat,\n       f.owner as fktable_schem,\n       f.table_name as fktable_name,\n       fc.column_name as fkcolumn_name,\n       fc.position as key_seq,\n       NULL as update_rule,\n       decode (f.delete_rule, 'CASCADE', 0, 'SET NULL', 2, 1) as delete_rule,\n       f.constraint_name as fk_name,\n       p.constraint_name as pk_name,\n       decode(f.deferrable,       'DEFERRABLE',5      ,'NOT DEFERRABLE',7      , 'DEFERRED', 6      ) deferrability \n      FROM all_cons_columns pc, all_constraints p,\n      all_cons_columns fc, all_constraints f\nWHERE 1 = 1\n").append(j != 0 ? "  AND p.table_name = :1\n" : "").append(k != 0 ? "  AND f.table_name = :2\n" : "").append(m != 0 ? "  AND p.owner = :3\n" : "").append(n != 0 ? "  AND f.owner = :4\n" : "").append("  AND f.constraint_type = 'R'\n").append("  AND p.owner = f.r_owner\n").append("  AND p.constraint_name = f.r_constraint_name\n").append("  AND p.constraint_type = 'P'\n").append("  AND pc.owner = p.owner\n").append("  AND pc.constraint_name = p.constraint_name\n").append("  AND pc.table_name = p.table_name\n").append("  AND fc.owner = f.owner\n").append("  AND fc.constraint_name = f.constraint_name\n").append("  AND fc.table_name = f.table_name\n").append("  AND fc.position = pc.position\n").append(paramString5).toString());
 
     if (j != 0)
     {
-      localPreparedStatement.setString(j, paramString2);
+      preparedstatement.setString(j, paramString2);
     }
 
     if (k != 0)
     {
-      localPreparedStatement.setString(k, paramString4);
+      preparedstatement.setString(k, paramString4);
     }
 
     if (m != 0)
     {
-      localPreparedStatement.setString(m, paramString1);
+      preparedstatement.setString(m, paramString1);
     }
 
     if (n != 0)
     {
-      localPreparedStatement.setString(n, paramString3);
+      preparedstatement.setString(n, paramString3);
     }
 
-    OracleResultSet localOracleResultSet = (OracleResultSet)localPreparedStatement.executeQuery();
+    OracleResultSet localOracleResultSet = (OracleResultSet)preparedstatement.executeQuery();
 
     localOracleResultSet.closeStatementOnClose();
 
@@ -1524,16 +1524,16 @@ public class OracleDatabaseMetaData
 
     if (((paramString2 != null) && (paramString2.length() != 0) && (!OracleSql.isValidObjectName(paramString2))) || ((paramString3 != null) && (paramString3.length() != 0) && (!OracleSql.isValidObjectName(paramString3))))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (!paramBoolean2)
     {
-      localObject = new StringBuilder().append("analyze table ").append(paramString2 == null ? "" : new StringBuilder().append(paramString2).append(".").toString()).append(paramString3).append(" compute statistics").toString();
+      String str = new StringBuilder().append("analyze table ").append(paramString2 == null ? "" : new StringBuilder().append(paramString2).append(".").toString()).append(paramString3).append(" compute statistics").toString();
 
-      localStatement.executeUpdate((String)localObject);
+      localStatement.executeUpdate((String)str);
     }
 
     if ((paramString3.startsWith("\"")) && (paramString3.endsWith("\"")) && (paramString3.length() > 2))
@@ -1703,35 +1703,35 @@ public class OracleDatabaseMetaData
       localStringBuffer.append("WHERE 1 = 2");
     }
 
-    PreparedStatement localPreparedStatement = this.connection.prepareStatement(localStringBuffer.substring(0, localStringBuffer.length()));
+    PreparedStatement preparedstatement = this.connection.prepareStatement(localStringBuffer.substring(0, localStringBuffer.length()));
 
     if (i != 0)
     {
-      localObject = new String[1];
+      String[] strs = new String[1];
       String[] arrayOfString = new String[1];
 
-      if (SQLName.parse(paramString3, (String[])localObject, arrayOfString))
+      if (SQLName.parse(paramString3, (String[])strs, arrayOfString))
       {
-        localPreparedStatement.setString(1, localObject[0]);
-        localPreparedStatement.setString(2, arrayOfString[0]);
+        preparedstatement.setString(1, strs[0]);
+        preparedstatement.setString(2, arrayOfString[0]);
       }
       else
       {
         if (paramString2 != null)
-          localPreparedStatement.setString(1, paramString2);
+          preparedstatement.setString(1, paramString2);
         else {
-          localPreparedStatement.setNull(1, 12);
+          preparedstatement.setNull(1, 12);
         }
-        localPreparedStatement.setString(2, paramString3);
+        preparedstatement.setString(2, paramString3);
       }
 
     }
 
-    Object localObject = (OracleResultSet)localPreparedStatement.executeQuery();
+    Object localObject = (OracleResultSet)preparedstatement.executeQuery();
 
     ((OracleResultSet)localObject).closeStatementOnClose();
 
-    return localObject;
+    return (OracleResultSet)localObject;
   }
 
   public Connection getConnection()
@@ -1898,9 +1898,9 @@ public class OracleDatabaseMetaData
 
     String str = "SELECT username AS table_schem FROM all_users WHERE username LIKE ? ORDER BY table_schem";
 
-    PreparedStatement localPreparedStatement = this.connection.prepareStatement(str);
-    localPreparedStatement.setString(1, paramString2);
-    OracleResultSet localOracleResultSet = (OracleResultSet)localPreparedStatement.executeQuery();
+    PreparedStatement preparedstatement = this.connection.prepareStatement(str);
+    preparedstatement.setString(1, paramString2);
+    OracleResultSet localOracleResultSet = (OracleResultSet)preparedstatement.executeQuery();
 
     localOracleResultSet.closeStatementOnClose();
     return localOracleResultSet;
@@ -1938,7 +1938,7 @@ public class OracleDatabaseMetaData
 
     String str5 = "ORDER BY function_schem, function_name\n";
 
-    PreparedStatement localPreparedStatement = null;
+    PreparedStatement preparedstatement = null;
     String str6 = null;
 
     String str7 = paramString2;
@@ -1954,47 +1954,47 @@ public class OracleDatabaseMetaData
       str8 = "%";
     } else if (paramString3.equals(""))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramString1 == null)
     {
       str6 = new StringBuilder().append(str1).append("UNION ALL ").append(str2).append(str4).append(str5).toString();
 
-      localPreparedStatement = this.connection.prepareStatement(str6);
+      preparedstatement = this.connection.prepareStatement(str6);
 
-      localPreparedStatement.setString(1, str7);
-      localPreparedStatement.setString(2, str8);
-      localPreparedStatement.setString(3, str7);
-      localPreparedStatement.setString(4, str8);
+      preparedstatement.setString(1, str7);
+      preparedstatement.setString(2, str8);
+      preparedstatement.setString(3, str7);
+      preparedstatement.setString(4, str8);
     }
     else if (paramString1.equals(""))
     {
       str6 = str1;
 
-      localPreparedStatement = this.connection.prepareStatement(str6);
+      preparedstatement = this.connection.prepareStatement(str6);
 
-      localPreparedStatement.setString(1, str7);
-      localPreparedStatement.setString(2, str8);
+      preparedstatement.setString(1, str7);
+      preparedstatement.setString(2, str8);
     }
     else
     {
       str6 = new StringBuilder().append(str2).append(str3).append(str5).toString();
 
-      localPreparedStatement = this.connection.prepareStatement(str6);
+      preparedstatement = this.connection.prepareStatement(str6);
 
-      localPreparedStatement.setString(1, str7);
-      localPreparedStatement.setString(2, str7);
-      localPreparedStatement.setString(3, str8);
+      preparedstatement.setString(1, str7);
+      preparedstatement.setString(2, str7);
+      preparedstatement.setString(3, str8);
     }
 
-    Object localObject = (OracleResultSet)localPreparedStatement.executeQuery();
+    OracleResultSet oracleresultset = (OracleResultSet)preparedstatement.executeQuery();
 
-    ((OracleResultSet)localObject).closeStatementOnClose();
+    oracleresultset.closeStatementOnClose();
 
-    return localObject;
+    return oracleresultset;
   }
 
   public boolean isWrapperFor(Class<?> paramClass)
@@ -2010,11 +2010,11 @@ public class OracleDatabaseMetaData
   public <T> T unwrap(Class<T> paramClass)
     throws SQLException
   {
-    if ((paramClass.isInterface()) && (paramClass.isInstance(this))) return this;
+    if ((paramClass.isInterface()) && (paramClass.isInstance(this))) return (T)this;
 
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 177);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 177);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   protected oracle.jdbc.internal.OracleConnection getConnectionDuringExceptionHandling()

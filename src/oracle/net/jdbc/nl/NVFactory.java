@@ -17,8 +17,8 @@ public class NVFactory
     paramNVTokens.eatToken();
     if (i != 1)
     {
-      localObject = new Object[] { "(", getContext(paramNVTokens) };
-      throw new InvalidSyntaxException("SyntaxError-04602", (Object[])localObject);
+      Object[] localObject = new Object[] { "(", getContext(paramNVTokens) };
+      throw new InvalidSyntaxException("SyntaxError-04602", localObject);
     }
     Object localObject = _readNVLiteral(paramNVTokens);
     NVPair localNVPair = new NVPair((String)localObject);
@@ -42,8 +42,8 @@ public class NVFactory
     paramNVTokens.eatToken();
     if ((i != 1) && (i != 3))
     {
-      localObject = new Object[] { "( or ,", getContext(paramNVTokens) };
-      throw new InvalidSyntaxException("SyntaxError-04602", (Object[])localObject);
+      Object[] localObject = new Object[] { "( or ,", getContext(paramNVTokens) };
+      throw new InvalidSyntaxException("SyntaxError-04602", localObject);
     }
     Object localObject = _readNVLiteral(paramNVTokens);
     NVPair localNVPair = new NVPair((String)localObject);
@@ -54,6 +54,7 @@ public class NVFactory
     throws InvalidSyntaxException, NLException
   {
     Object localObject;
+    int i;
     switch (i = paramNVTokens.getToken())
     {
     case 4:
@@ -77,7 +78,7 @@ public class NVFactory
       localObject = new Object[] { "=", getContext(paramNVTokens) };
       throw new InvalidSyntaxException("SyntaxError-04602", (Object[])localObject);
     }
-    int i = paramNVTokens.getToken();
+    i = paramNVTokens.getToken();
     if (i == 2)
     {
       paramNVTokens.eatToken();

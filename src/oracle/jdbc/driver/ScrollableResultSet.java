@@ -69,7 +69,7 @@ class ScrollableResultSet extends BaseResultSet
   private Vector refetchRowids;
   private OraclePreparedStatement refetchStmt;
   private int usrFetchDirection;
-  private static final ClassRef XMLTYPE_CLASS = localClassRef;
+  private static final ClassRef XMLTYPE_CLASS;
 
   private static final String _Copyright_2007_Oracle_All_Rights_Reserved_ = null;
   public static final String BUILD_DATE = "Sat_Aug_14_12:18:34_PDT_2010";
@@ -101,9 +101,9 @@ class ScrollableResultSet extends BaseResultSet
       }
       catch (IOException localIOException)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
     }
@@ -150,9 +150,9 @@ class ScrollableResultSet extends BaseResultSet
       }
       catch (IOException localIOException)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       finally
       {
@@ -168,9 +168,9 @@ class ScrollableResultSet extends BaseResultSet
     {
       if (this.wasNull == -1)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 24);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 24);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return this.wasNull == 1;
@@ -271,9 +271,9 @@ class ScrollableResultSet extends BaseResultSet
     {
       if (this.closed)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if (isEmptyResultSet())
@@ -301,9 +301,9 @@ class ScrollableResultSet extends BaseResultSet
     {
       if (this.closed)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       return (!isEmptyResultSet()) && (this.currentRow < 1);
     }
@@ -316,9 +316,9 @@ class ScrollableResultSet extends BaseResultSet
     {
       if (this.closed)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       return (!isEmptyResultSet()) && (this.currentRow > 0) && (!isValidRow(this.currentRow));
     }
@@ -331,9 +331,9 @@ class ScrollableResultSet extends BaseResultSet
     {
       if (this.closed)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       return this.currentRow == 1;
     }
@@ -346,9 +346,9 @@ class ScrollableResultSet extends BaseResultSet
     {
       if (this.closed)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       return (!isEmptyResultSet()) && (isValidRow(this.currentRow)) && (!isValidRow(this.currentRow + 1));
     }
@@ -361,9 +361,9 @@ class ScrollableResultSet extends BaseResultSet
     {
       if (this.closed)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       if (!isEmptyResultSet())
         this.currentRow = 0;
@@ -376,9 +376,9 @@ class ScrollableResultSet extends BaseResultSet
     synchronized (this.connection) {
       if (this.closed)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if (!isEmptyResultSet())
@@ -393,9 +393,9 @@ class ScrollableResultSet extends BaseResultSet
     {
       if (this.closed)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       if (isEmptyResultSet())
       {
@@ -415,9 +415,9 @@ class ScrollableResultSet extends BaseResultSet
     {
       if (this.closed)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       if (isEmptyResultSet())
       {
@@ -437,9 +437,9 @@ class ScrollableResultSet extends BaseResultSet
     {
       if (this.closed)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       if (isValidRow(this.currentRow)) {
         return this.currentRow;
@@ -453,18 +453,18 @@ class ScrollableResultSet extends BaseResultSet
   {
     synchronized (this.connection)
     {
-      SQLException localSQLException;
+      SQLException sqlexception;
       if (this.closed)
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       if (paramInt == 0)
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "absolute(" + paramInt + ")");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "absolute(" + paramInt + ")");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if (isEmptyResultSet())
@@ -491,9 +491,9 @@ class ScrollableResultSet extends BaseResultSet
     {
       if (this.closed)
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       if (isEmptyResultSet())
       {
@@ -506,9 +506,9 @@ class ScrollableResultSet extends BaseResultSet
         return isValidRow(this.currentRow);
       }
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 82, "relative");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 82, "relative");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -519,9 +519,9 @@ class ScrollableResultSet extends BaseResultSet
     {
       if (this.closed)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       if (isEmptyResultSet())
       {
@@ -547,32 +547,32 @@ class ScrollableResultSet extends BaseResultSet
     {
       if (this.closed)
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       this.wasNull = -1;
 
       if (!isValidRow(this.currentRow))
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 11);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 11);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if ((paramInt < 1) || (paramInt > getColumnCount()))
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
-      Object localObject1 = getCachedDatumValueAt(this.currentRow, paramInt + this.beginColumnIndex);
+      Datum datum = getCachedDatumValueAt(this.currentRow, paramInt + this.beginColumnIndex);
 
-      this.wasNull = (localObject1 == null ? 1 : 0);
+      this.wasNull = (datum == null ? 1 : 0);
 
-      return localObject1;
+      return datum;
     }
   }
 
@@ -623,16 +623,16 @@ class ScrollableResultSet extends BaseResultSet
     {
       if (!isValidRow(this.currentRow))
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 11);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 11);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if ((paramInt < 1) || (paramInt > getColumnCount()))
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       Object localObject1 = null;
@@ -643,9 +643,9 @@ class ScrollableResultSet extends BaseResultSet
       }
       catch (IOException localIOException)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if (localObject1 != null) {
@@ -678,9 +678,9 @@ class ScrollableResultSet extends BaseResultSet
 
       if ((l > 65537L) || (l < -65538L))
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 26, "getShort");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 26, "getShort");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return (short)(int)l;
@@ -785,9 +785,9 @@ class ScrollableResultSet extends BaseResultSet
           long l = localBLOB.length();
           if (l > 2147483647L)
           {
-            SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 151);
-            localSQLException.fillInStackTrace();
-            throw localSQLException;
+            SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 151);
+            sqlexception.fillInStackTrace();
+            throw sqlexception;
           }
 
           arrayOfByte = localBLOB.getBytes(1L, (int)l);
@@ -939,9 +939,9 @@ class ScrollableResultSet extends BaseResultSet
           return localDBConversion.ConvertStream(new ByteArrayInputStream(arrayOfByte), 1);
         }
 
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getUnicodeStream");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getUnicodeStream");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return null;
@@ -1202,17 +1202,17 @@ class ScrollableResultSet extends BaseResultSet
         }
         catch (MalformedURLException localMalformedURLException)
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 136);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 136);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
 
       }
       else
       {
-        SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "Conversion to java.net.URL not supported.");
-        localSQLException1.fillInStackTrace();
-        throw localSQLException1;
+        SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "Conversion to java.net.URL not supported.");
+        sqlexception1.fillInStackTrace();
+        throw sqlexception1;
       }
 
       return localURL;
@@ -1224,9 +1224,9 @@ class ScrollableResultSet extends BaseResultSet
   {
     synchronized (this.connection)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getCursor");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getCursor");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -1243,9 +1243,9 @@ class ScrollableResultSet extends BaseResultSet
           return (ROWID)localDatum;
         }
 
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getROWID");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getROWID");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return null;
@@ -1265,9 +1265,9 @@ class ScrollableResultSet extends BaseResultSet
           return (NUMBER)localDatum;
         }
 
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getNUMBER");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getNUMBER");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return null;
@@ -1293,9 +1293,9 @@ class ScrollableResultSet extends BaseResultSet
           return TIMESTAMPTZ.toDATE(this.connection, localDatum.getBytes());
         }
 
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getDATE");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getDATE");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return null;
@@ -1321,9 +1321,9 @@ class ScrollableResultSet extends BaseResultSet
           return new TIMESTAMP((DATE)localDatum);
         }
 
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getTIMESTAMP");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getTIMESTAMP");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return null;
@@ -1345,9 +1345,9 @@ class ScrollableResultSet extends BaseResultSet
           return TIMESTAMPLTZ.toTIMESTAMPTZ(this.connection, localDatum.getBytes());
         }
 
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getTIMESTAMPTZ");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getTIMESTAMPTZ");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return null;
@@ -1367,9 +1367,9 @@ class ScrollableResultSet extends BaseResultSet
           return (TIMESTAMPLTZ)localDatum;
         }
 
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getTIMESTAMPLTZ");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getTIMESTAMPLTZ");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return null;
@@ -1389,9 +1389,9 @@ class ScrollableResultSet extends BaseResultSet
           return (INTERVALDS)localDatum;
         }
 
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getINTERVALDS");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getINTERVALDS");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return null;
@@ -1411,9 +1411,9 @@ class ScrollableResultSet extends BaseResultSet
           return (INTERVALYM)localDatum;
         }
 
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getINTERVALYM");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getINTERVALYM");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return null;
@@ -1433,9 +1433,9 @@ class ScrollableResultSet extends BaseResultSet
           return (ARRAY)localDatum;
         }
 
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getARRAY");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getARRAY");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return null;
@@ -1455,9 +1455,9 @@ class ScrollableResultSet extends BaseResultSet
           return (STRUCT)localDatum;
         }
 
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getSTRUCT");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getSTRUCT");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return null;
@@ -1477,9 +1477,9 @@ class ScrollableResultSet extends BaseResultSet
           return (OPAQUE)localDatum;
         }
 
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getOPAQUE");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getOPAQUE");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return null;
@@ -1499,9 +1499,9 @@ class ScrollableResultSet extends BaseResultSet
           return (REF)localDatum;
         }
 
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getREF");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getREF");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return null;
@@ -1521,9 +1521,9 @@ class ScrollableResultSet extends BaseResultSet
           return (CHAR)localDatum;
         }
 
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getCHAR");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getCHAR");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return null;
@@ -1543,9 +1543,9 @@ class ScrollableResultSet extends BaseResultSet
           return (RAW)localDatum;
         }
 
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getRAW");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getRAW");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return null;
@@ -1565,9 +1565,9 @@ class ScrollableResultSet extends BaseResultSet
           return (BLOB)localDatum;
         }
 
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getBLOB");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getBLOB");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return null;
@@ -1587,9 +1587,9 @@ class ScrollableResultSet extends BaseResultSet
           return (CLOB)localDatum;
         }
 
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getCLOB");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getCLOB");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return null;
@@ -1609,9 +1609,9 @@ class ScrollableResultSet extends BaseResultSet
           return (NCLOB)localDatum;
         }
 
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getCLOB");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getCLOB");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return null;
@@ -1631,9 +1631,9 @@ class ScrollableResultSet extends BaseResultSet
           return (BFILE)localDatum;
         }
 
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getBFILE");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getBFILE");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return null;
@@ -1680,9 +1680,9 @@ class ScrollableResultSet extends BaseResultSet
 
     if (!(localNCLOB instanceof NClob))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 184);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 184);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return localNCLOB;
@@ -1719,9 +1719,9 @@ class ScrollableResultSet extends BaseResultSet
         return new OracleSQLXML(this.connection, (OPAQUE)localDatum);
       }
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getSQLXML");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getSQLXML");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return null;
@@ -1743,9 +1743,9 @@ class ScrollableResultSet extends BaseResultSet
     {
       if (this.closed)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       return this.resultSet.findColumn(paramString) - this.beginColumnIndex;
     }
@@ -1768,9 +1768,9 @@ class ScrollableResultSet extends BaseResultSet
       }
       else
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "setFetchDirection");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "setFetchDirection");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
     }
   }
@@ -1816,9 +1816,9 @@ class ScrollableResultSet extends BaseResultSet
   {
     if (!needIdentifier(this.rsetType, this.rsetConcurency))
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23, "refreshRow");
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23, "refreshRow");
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     if (isValidRow(this.currentRow))
@@ -1828,19 +1828,19 @@ class ScrollableResultSet extends BaseResultSet
       {
         refreshRowsInCache(this.currentRow, getFetchSize(), i);
       }
-      catch (SQLException localSQLException3)
+      catch (SQLException sqlexception3)
       {
-        SQLException localSQLException4 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localSQLException3, 90, "Unsupported syntax for refreshRow()");
-        localSQLException4.fillInStackTrace();
-        throw localSQLException4;
+        SQLException sqlexception4 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), sqlexception3, 90, "Unsupported syntax for refreshRow()");
+        sqlexception4.fillInStackTrace();
+        throw sqlexception4;
       }
 
     }
     else
     {
-      SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 82, "refreshRow");
-      localSQLException2.fillInStackTrace();
-      throw localSQLException2;
+      SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 82, "refreshRow");
+      sqlexception2.fillInStackTrace();
+      throw sqlexception2;
     }
   }
 
@@ -1990,9 +1990,9 @@ class ScrollableResultSet extends BaseResultSet
   {
     if (paramInt < 1)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = this.connection.prepareStatement(((OracleStatement)this.scrollStmt).sqlObject.getRefetchSqlForScrollableResultSet(this, paramInt));
@@ -2041,16 +2041,16 @@ class ScrollableResultSet extends BaseResultSet
     throws SQLException
   {
     CachedRowElement localCachedRowElement = null;
-    Object localObject;
+    byte[] localObject;
     try
     {
       localCachedRowElement = (CachedRowElement)this.rsetCache.get(paramInt1, paramInt2);
     }
     catch (IOException localIOException)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Datum localDatum = null;
@@ -2106,9 +2106,9 @@ class ScrollableResultSet extends BaseResultSet
     }
     catch (IOException localIOException)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -2121,9 +2121,9 @@ class ScrollableResultSet extends BaseResultSet
     }
     catch (IOException localIOException)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -2164,9 +2164,9 @@ class ScrollableResultSet extends BaseResultSet
   {
     synchronized (this.connection)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23, "getCursorName");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23, "getCursorName");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -2190,5 +2190,6 @@ class ScrollableResultSet extends BaseResultSet
     catch (ClassNotFoundException localClassNotFoundException)
     {
     }
+    XMLTYPE_CLASS = localClassRef;
   }
 }

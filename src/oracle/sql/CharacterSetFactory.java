@@ -61,15 +61,14 @@ abstract class CharacterSetFactory
 
             k = 0;
           }
-          Object localObject;
           if (localCharacterSet2.isLossyFrom(localCharacterSet1))
           {
             try
             {
               byte[] arrayOfByte2 = localCharacterSet2.convert(str2);
-              localObject = localCharacterSet2.toString(arrayOfByte2, 0, arrayOfByte2.length);
+              String localObject = localCharacterSet2.toString(arrayOfByte2, 0, arrayOfByte2.length);
 
-              if (!((String)localObject).equals(str5))
+              if (!localObject.equals(str5))
               {
                 System.out.println("    FAILED roundtrip, no throw");
               }
@@ -86,7 +85,7 @@ abstract class CharacterSetFactory
             }
 
             byte[] arrayOfByte3 = localCharacterSet1.convert(str2);
-            localObject = localCharacterSet2.convert(localCharacterSet1, arrayOfByte3, 0, arrayOfByte3.length);
+            byte[] localObject = localCharacterSet2.convert(localCharacterSet1, arrayOfByte3, 0, arrayOfByte3.length);
 
             String str6 = localCharacterSet2.toString((byte[])localObject, 0, localObject.length);
 

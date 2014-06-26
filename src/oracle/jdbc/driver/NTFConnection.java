@@ -8,11 +8,8 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
-import java.util.Set;
-import oracle.jdbc.aq.AQNotificationEvent.AdditionalEventType;
-import oracle.jdbc.aq.AQNotificationEvent.EventType;
-import oracle.jdbc.dcn.DatabaseChangeEvent.AdditionalEventType;
-import oracle.jdbc.dcn.DatabaseChangeEvent.EventType;
+import oracle.jdbc.aq.AQNotificationEvent;
+import oracle.jdbc.dcn.DatabaseChangeEvent;
 import oracle.sql.CharacterSet;
 
 class NTFConnection extends Thread
@@ -248,7 +245,7 @@ class NTFConnection extends Thread
     for (int i8 = 0; i8 < i7; i8++)
     {
       int i9 = readByte();
-      i10 = readInt();
+      int i10 = readInt();
       byte[] arrayOfByte = new byte[i10];
       readBuffer(arrayOfByte, 0, i10);
 
@@ -265,7 +262,7 @@ class NTFConnection extends Thread
     int i13;
     if (i >= 2)
     {
-      i12 = readShort();
+      int i12 = readShort();
       arrayOfNTFRegistration = new NTFRegistration[arrayOfInt.length];
       for (i13 = 0; i13 < arrayOfInt.length; i13++)
       {
@@ -312,7 +309,7 @@ class NTFConnection extends Thread
         }
       }
     }
-    if ((i <= 3) || 
+    if ((i <= 3) ||
       (arrayOfNTFRegistration != null))
     {
       if (i10 == 2)
@@ -469,7 +466,7 @@ class NTFConnection extends Thread
         localStringBuffer.append(' ');
       localStringBuffer.append('|');
       localStringBuffer.append(arrayOfChar, 0, i);
-      for (n = 0; n < m; n++)
+      for (int n = 0; n < m; n++)
         localStringBuffer.append(' ');
       localStringBuffer.append('|');
       localStringBuffer.append('\n');

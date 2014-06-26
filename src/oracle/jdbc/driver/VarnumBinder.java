@@ -245,11 +245,10 @@ abstract class VarnumBinder extends Binder
     if (paramInt < 0) {
       throw new RuntimeException("Assertion botch: negative power of 5");
     }
-    if (b5p == null)
-    {
-      b5p = new FDBigInt[paramInt + 1];
-    }
-    else if (b5p.length <= paramInt)
+    
+    FDBigInt[] b5p = new FDBigInt[paramInt + 1];
+     
+    if (b5p.length <= paramInt)
     {
       FDBigInt[] arrayOfFDBigInt = new FDBigInt[paramInt + 1];
 
@@ -261,9 +260,9 @@ abstract class VarnumBinder extends Binder
     if (b5p[paramInt] != null)
       return b5p[paramInt];
     if (paramInt < small5pow.length)
-      return b5p[paramInt] =  = new FDBigInt(small5pow[paramInt]);
+      return b5p[paramInt] = new FDBigInt(small5pow[paramInt]);
     if (paramInt < long5pow.length) {
-      return b5p[paramInt] =  = new FDBigInt(long5pow[paramInt]);
+      return b5p[paramInt] = new FDBigInt(long5pow[paramInt]);
     }
 
     int i = paramInt >> 1;
@@ -276,7 +275,7 @@ abstract class VarnumBinder extends Binder
     }
     if (j < small5pow.length)
     {
-      return b5p[paramInt] =  = localFDBigInt1.mult(small5pow[j]);
+      return b5p[paramInt] = localFDBigInt1.mult(small5pow[j]);
     }
 
     FDBigInt localFDBigInt2 = b5p[j];
@@ -284,7 +283,7 @@ abstract class VarnumBinder extends Binder
     if (localFDBigInt2 == null) {
       localFDBigInt2 = big5pow(j);
     }
-    return b5p[paramInt] =  = localFDBigInt1.mult(localFDBigInt2);
+    return b5p[paramInt] = localFDBigInt1.mult(localFDBigInt2);
   }
 
   static FDBigInt multPow52(FDBigInt paramFDBigInt, int paramInt1, int paramInt2)
@@ -454,11 +453,11 @@ abstract class VarnumBinder extends Binder
 
       int n = (int)Math.floor((d - 1.5D) * 0.289529654D + 0.176091259D + paramInt2 * 0.301029995663981D);
 
-      i5 = Math.max(0, -n);
-      i4 = i5 + m + paramInt2;
+      int i5 = Math.max(0, -n);
+      int i4 = i5 + m + paramInt2;
 
       int i7 = Math.max(0, n);
-      i6 = i7 + m;
+      int i6 = i7 + m;
 
       i9 = i5;
       i8 = i4 - paramInt3;

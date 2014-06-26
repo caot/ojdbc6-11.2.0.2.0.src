@@ -2,9 +2,11 @@ package oracle.jdbc.driver;
 
 import java.sql.SQLException;
 import java.util.Map;
+
 import oracle.jdbc.OracleResultSetMetaData.SecurityAttribute;
 import oracle.jdbc.internal.OracleConnection;
 import oracle.jdbc.oracore.OracleNamedType;
+import oracle.jdbc.oracore.OracleType;
 import oracle.jdbc.oracore.OracleTypeADT;
 import oracle.sql.StructDescriptor;
 import oracle.sql.TypeDescriptor;
@@ -439,7 +441,7 @@ class OracleResultSetMetaData
       case 2007:
         return "oracle.sql.OPAQUE";
       case 2008:
-        localObject1 = (OracleNamedType)getDescription()[i].describeOtype;
+        OracleType localObject1 = getDescription()[i].describeOtype;
 
         localObject2 = this.connection.getJavaObjectTypeMap();
 
@@ -453,11 +455,11 @@ class OracleResultSetMetaData
         }
         return StructDescriptor.getJavaObjectClassName(this.connection, ((OracleNamedType)localObject1).getSchemaName(), ((OracleNamedType)localObject1).getSimpleName());
       case 2002:
-        localObject1 = this.connection.getTypeMap();
+        Map<String, Class> map = this.connection.getTypeMap();
 
-        if (localObject1 != null)
+        if (map != null)
         {
-          localObject2 = (Class)((Map)localObject1).get(((OracleNamedType)getDescription()[i].describeOtype).getFullName());
+          localObject2 = map.get(((OracleNamedType)getDescription()[i].describeOtype).getFullName());
 
           if (localObject2 != null) {
             return ((Class)localObject2).getName();
@@ -470,9 +472,9 @@ class OracleResultSetMetaData
       case 2005:
       case 2006:
       }
-      Object localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     case 111:
       return "oracle.sql.REF";
     }
@@ -507,7 +509,7 @@ class OracleResultSetMetaData
   public <T> T unwrap(Class<T> paramClass)
     throws SQLException
   {
-    if ((paramClass.isInterface()) && (paramClass.isInstance(this))) return this;
+    if ((paramClass.isInterface()) && (paramClass.isInstance(this))) return (T)this;
 
     SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 177);
     localSQLException.fillInStackTrace();

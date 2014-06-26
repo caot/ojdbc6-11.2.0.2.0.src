@@ -491,7 +491,7 @@ public class NLParamParser
     try
     {
       Object localObject = this.ht.put(paramString, paramObject);
-      return localObject != null ? 2 : 1;
+      return (byte)(localObject != null ? 2 : 1);
     }
     catch (NullPointerException localNullPointerException)
     {
@@ -576,8 +576,8 @@ public class NLParamParser
     else
     {
       arrayOfChar[0] = '(';
-      localObject = System.getProperty("os.name");
-      if ((((String)localObject).equals("Windows NT")) || (((String)localObject).equals("Windows 95")))
+      String localObject = System.getProperty("os.name");
+      if (localObject.equals("Windows NT") || localObject.equals("Windows 95"))
       {
         if ((arrayOfChar[(arrayOfChar.length - 2)] == '/') || (arrayOfChar[(arrayOfChar.length - 2)] == '\\'))
           arrayOfChar[(arrayOfChar.length - 2)] = ')';

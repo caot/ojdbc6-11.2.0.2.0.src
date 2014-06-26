@@ -175,7 +175,7 @@ public class ConnStrategy
   public ConnOption execute()
     throws NetException
   {
-    Object localObject = null;
+    IOException localObject = null;
 
     if (this.connectTimeout == -1)
     {

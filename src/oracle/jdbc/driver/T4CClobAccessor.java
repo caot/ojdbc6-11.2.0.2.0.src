@@ -75,7 +75,7 @@ class T4CClobAccessor extends ClobAccessor
 
     if (this.rowSpaceIndicator == null)
     {
-      i = (int)this.mare.unmarshalUB4();
+      int i = (int)this.mare.unmarshalUB4();
 
       if (i == 0)
       {
@@ -209,7 +209,7 @@ class T4CClobAccessor extends ClobAccessor
 
   byte[][] checkAndAllocateLobPrefetchMemory(byte[][] paramArrayOfByte, int paramInt1, int paramInt2, int paramInt3)
   {
-    Object localObject = paramArrayOfByte;
+    byte[][] localObject = paramArrayOfByte;
     if (localObject == null)
     {
       localObject = new byte[Math.max(paramInt1, paramInt2 + 1)][];
@@ -234,7 +234,7 @@ class T4CClobAccessor extends ClobAccessor
 
   char[][] checkAndAllocateLobPrefetchMemory(char[][] paramArrayOfChar, int paramInt1, int paramInt2, int paramInt3)
   {
-    Object localObject = paramArrayOfChar;
+    char[][] localObject = paramArrayOfChar;
     if (localObject == null)
     {
       localObject = new char[Math.max(paramInt1, paramInt2 + 1)][];
@@ -259,7 +259,7 @@ class T4CClobAccessor extends ClobAccessor
 
   long[] checkAndAllocateLobPrefetchMemory(long[] paramArrayOfLong, int paramInt1, int paramInt2)
   {
-    Object localObject = paramArrayOfLong;
+    long[] localObject = paramArrayOfLong;
     if (localObject == null) {
       localObject = new long[Math.max(paramInt1, paramInt2 + 1)];
     } else if (localObject.length < paramInt2 + 1)
@@ -273,7 +273,7 @@ class T4CClobAccessor extends ClobAccessor
 
   int[] checkAndAllocateLobPrefetchMemory(int[] paramArrayOfInt, int paramInt1, int paramInt2)
   {
-    Object localObject = paramArrayOfInt;
+    int[] localObject = paramArrayOfInt;
     if (localObject == null) {
       localObject = new int[Math.max(paramInt1, paramInt2 + 1)];
     } else if (localObject.length < paramInt2 + 1)
@@ -287,7 +287,7 @@ class T4CClobAccessor extends ClobAccessor
 
   short[] checkAndAllocateLobPrefetchMemory(short[] paramArrayOfShort, int paramInt1, int paramInt2)
   {
-    Object localObject = paramArrayOfShort;
+    short[] localObject = paramArrayOfShort;
     if (localObject == null) {
       localObject = new short[Math.max(paramInt1, paramInt2 + 1)];
     } else if (localObject.length < paramInt2 + 1)
@@ -301,7 +301,7 @@ class T4CClobAccessor extends ClobAccessor
 
   byte[] checkAndAllocateLobPrefetchMemory(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
   {
-    Object localObject = paramArrayOfByte;
+    byte[] localObject = paramArrayOfByte;
     if (localObject == null) {
       localObject = new byte[Math.max(paramInt1, paramInt2 + 1)];
     } else if (localObject.length < paramInt2 + 1)
@@ -315,7 +315,7 @@ class T4CClobAccessor extends ClobAccessor
 
   boolean[] checkAndAllocateLobPrefetchMemory(boolean[] paramArrayOfBoolean, int paramInt1, int paramInt2)
   {
-    Object localObject = paramArrayOfBoolean;
+    boolean[] localObject = paramArrayOfBoolean;
     if (localObject == null) {
       localObject = new boolean[Math.max(paramInt1, paramInt2 + 1)];
     } else if (localObject.length < paramInt2 + 1)
@@ -338,14 +338,14 @@ class T4CClobAccessor extends ClobAccessor
     {
       if (this.prefetchedLobSize[paramInt] > 2147483647L)
       {
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 151);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 151);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if ((this.prefetchedLobCharData != null) && (this.lobPrefetchSizeForThisColumn >= this.prefetchedLobSize[paramInt]))
       {
-        localObject = new String(this.prefetchedLobCharData[paramInt], 0, this.prefetchedLobDataL[paramInt]);
+        String localObject = new String(this.prefetchedLobCharData[paramInt], 0, this.prefetchedLobDataL[paramInt]);
 
         return localObject;
       }
@@ -383,7 +383,7 @@ class T4CClobAccessor extends ClobAccessor
 
       this.prefetchedClobCharset = checkAndAllocateLobPrefetchMemory(this.prefetchedClobCharset, this.statement.rowPrefetchInLastFetch, this.lastRowProcessed);
 
-      if (this.prefetchedClobDBVary[this.lastRowProcessed] != 0)
+      if (this.prefetchedClobDBVary[this.lastRowProcessed])
         this.prefetchedClobCharset[this.lastRowProcessed] = ((short)this.mare.unmarshalUB2());
       else {
         this.prefetchedClobCharset[this.lastRowProcessed] = 0;
@@ -398,7 +398,7 @@ class T4CClobAccessor extends ClobAccessor
       int j = this.lobPrefetchSizeForThisColumn;
 
       int k = -1;
-      if (this.prefetchedClobDBVary[this.lastRowProcessed] != 0) {
+      if (this.prefetchedClobDBVary[this.lastRowProcessed]) {
         k = j * 2;
       }
       else {

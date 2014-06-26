@@ -181,7 +181,7 @@ public class OracleTypeADT extends OracleNamedType
       this.attrNames[i] = paramArrayOfAttributeDescriptor[i].getAttributeName();
     this.statusBits |= 256;
 
-    for (i = 0; i < this.flattenedAttrNum; i++)
+    for (int i = 0; i < this.flattenedAttrNum; i++)
     {
       TypeDescriptor localTypeDescriptor = paramArrayOfAttributeDescriptor[i].getTypeDescriptor();
       switch (localTypeDescriptor.getInternalTypeCode())
@@ -296,14 +296,14 @@ public class OracleTypeADT extends OracleNamedType
       }
       if ((paramObject instanceof Object[]))
       {
-        localObject = createStructDescriptor();
-        STRUCT localSTRUCT = createObjSTRUCT((StructDescriptor)localObject, (Object[])paramObject);
+        StructDescriptor localObject = createStructDescriptor();
+        STRUCT localSTRUCT = createObjSTRUCT(localObject, (Object[])paramObject);
         return localSTRUCT;
       }
 
-      Object localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 59, paramObject);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 59, paramObject);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return null;
@@ -316,7 +316,7 @@ public class OracleTypeADT extends OracleNamedType
 
     if (paramObject != null)
     {
-      Object localObject;
+      Object[] localObject;
       if ((paramObject instanceof Object[]))
       {
         localObject = (Object[])paramObject;
@@ -330,9 +330,9 @@ public class OracleTypeADT extends OracleNamedType
       }
       else
       {
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 59, paramObject);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 59, paramObject);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
     }
 
@@ -451,9 +451,9 @@ public class OracleTypeADT extends OracleNamedType
           {
             if (j != 24331)
             {
-              localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74, this.sqlName.toString());
-              ((SQLException)localObject1).fillInStackTrace();
-              throw ((Throwable)localObject1);
+              SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74, this.sqlName.toString());
+              sqlexception.fillInStackTrace();
+              throw sqlexception;
             }
             if (j == 24331)
             {
@@ -465,9 +465,9 @@ public class OracleTypeADT extends OracleNamedType
               j = localCallableStatement.getInt(1);
               if (j != 0)
               {
-                localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74, this.sqlName.toString());
-                ((SQLException)localObject1).fillInStackTrace();
-                throw ((Throwable)localObject1);
+                SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 74, this.sqlName.toString());
+                sqlexception.fillInStackTrace();
+                throw sqlexception;
               }
 
             }
@@ -666,9 +666,9 @@ public class OracleTypeADT extends OracleNamedType
 
           break;
         default:
-          localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1);
-          ((SQLException)localObject2).fillInStackTrace();
-          throw ((Throwable)localObject2);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
       }
       else
@@ -682,9 +682,9 @@ public class OracleTypeADT extends OracleNamedType
         }
         else
         {
-          localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 47, "parseTDS");
-          ((SQLException)localObject1).fillInStackTrace();
-          throw ((Throwable)localObject1);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 47, "parseTDS");
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
       }
       localTDSPatch = paramTDSReader.getNextPatch();
@@ -695,7 +695,7 @@ public class OracleTypeADT extends OracleNamedType
   {
     synchronized (this.connection)
     {
-      Object localObject1;
+      OracleNamedType localObject1;
       if ((this.attrTypes.length == 1) && ((this.attrTypes[0] instanceof OracleTypeCOLLECTION)))
       {
         localObject1 = (OracleTypeCOLLECTION)this.attrTypes[0];
@@ -752,6 +752,8 @@ public class OracleTypeADT extends OracleNamedType
       }
 
     }
+    
+    OracleType localObject;
 
     switch (this.opcode)
     {
@@ -958,7 +960,7 @@ public class OracleTypeADT extends OracleNamedType
     case 38:
     case 41:
     case 43:
-    case 44: } Object localObject = null;
+    case 44: };
 
     SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 48, "get_next_type: " + this.opcode);
     localSQLException.fillInStackTrace();
@@ -1068,13 +1070,13 @@ public class OracleTypeADT extends OracleNamedType
 
       if (localSTRUCT == null)
       {
-        localObject1 = createStructDescriptor();
+        StructDescriptor localObject1 = createStructDescriptor();
 
-        localSTRUCT = createByteSTRUCT((StructDescriptor)localObject1, (byte[])null);
+        localSTRUCT = createByteSTRUCT(localObject1, (byte[])null);
       }
 
-      Object localObject1 = localSTRUCT.getDescriptor().getOracleTypeADT().getAttrTypes();
-      Object localObject2;
+      OracleType[] localObject1 = localSTRUCT.getDescriptor().getOracleTypeADT().getAttrTypes();
+      Object[] localObject2;
       int i;
       switch (paramInt2)
       {
@@ -1101,9 +1103,9 @@ public class OracleTypeADT extends OracleNamedType
 
         break;
       default:
-        localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1);
-        ((SQLException)localObject2).fillInStackTrace();
-        throw ((Throwable)localObject2);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       break;
@@ -1154,9 +1156,9 @@ public class OracleTypeADT extends OracleNamedType
 
       if ((n | i1) != 0)
       {
-        localObject = DatabaseError.createUnsupportedFeatureSqlException();
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       paramPickleContext.skipTo(l);
@@ -1625,9 +1627,9 @@ public class OracleTypeADT extends OracleNamedType
             {
               if (localResultSet.getInt(1) != j + 1)
               {
-                localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "inconsistent ADT attribute");
-                ((SQLException)localObject1).fillInStackTrace();
-                throw ((Throwable)localObject1);
+                SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "inconsistent ADT attribute");
+                sqlexception.fillInStackTrace();
+                throw sqlexception;
               }
 
               arrayOfString1[j] = localResultSet.getString(2);
@@ -1708,9 +1710,9 @@ public class OracleTypeADT extends OracleNamedType
     Object localObject;
     if (!localPickleContext.readAndCheckVersion())
     {
-      localObject = DatabaseError.createSqlException(null, 1, "Image version is not recognized");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(null, 1, "Image version is not recognized");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     localPickleContext.skipLength();
@@ -1964,7 +1966,7 @@ public class OracleTypeADT extends OracleNamedType
   public boolean isFinalType()
     throws SQLException
   {
-    return ((this.statusBits & 0x20) != 0 ? 1 : 0) | ((this.statusBits & 0x2) != 0 ? 1 : 0);
+    return ((this.statusBits & 0x20) != 0 ? true : false) || ((this.statusBits & 0x2) != 0 ? true : false);
   }
 
   public boolean isJavaObject()
@@ -2104,7 +2106,7 @@ public class OracleTypeADT extends OracleNamedType
 
     paramPrintWriter.println();
 
-    for (j = 0; j < i; j++)
+    for (int j = 0; j < i; j++)
     {
       paramPrintWriter.print(arrayOfInt[j] + " ");
     }
@@ -2144,7 +2146,8 @@ public class OracleTypeADT extends OracleNamedType
   public void printXML(PrintWriter paramPrintWriter, int paramInt, boolean paramBoolean)
     throws SQLException
   {
-    for (int i = 0; i < paramInt; i++) paramPrintWriter.print("  ");
+    int i;
+    for (i = 0; i < paramInt; i++) paramPrintWriter.print("  ");
     paramPrintWriter.print("<OracleTypeADT sqlName=\"" + this.sqlName + "\" ");
 
     paramPrintWriter.print(" typecode=\"" + this.typeCode + "\"");
@@ -2165,7 +2168,7 @@ public class OracleTypeADT extends OracleNamedType
         paramPrintWriter.println("<attribute name=\"" + getAttributeName(i + 1, paramBoolean) + "\" " + " type=\"" + getAttributeType(i + 1, false) + "\" >");
 
         this.attrTypes[i].printXML(paramPrintWriter, paramInt + 3, paramBoolean);
-        for (j = 0; j < paramInt + 2; j++) paramPrintWriter.print("  ");
+        for (int j = 0; j < paramInt + 2; j++) paramPrintWriter.print("  ");
         paramPrintWriter.println("</attribute> ");
       }
       for (i = 0; i < paramInt + 1; i++) paramPrintWriter.print("  ");

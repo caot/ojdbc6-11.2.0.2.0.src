@@ -46,19 +46,19 @@ public class TIMEZONETAB
       }
     }
 
-    ??? = (TIMEZONETAB)instanceCache.get(Integer.valueOf(paramInt));
-    if (??? == null)
+    TIMEZONETAB timezonetab = (TIMEZONETAB)instanceCache.get(Integer.valueOf(paramInt));
+    if (timezonetab == null)
     {
       synchronized (TIMEZONETAB.class) {
-        ??? = (TIMEZONETAB)instanceCache.get(Integer.valueOf(paramInt));
-        if (??? == null)
+        timezonetab = (TIMEZONETAB)instanceCache.get(Integer.valueOf(paramInt));
+        if (timezonetab == null)
         {
-          ??? = new TIMEZONETAB(paramInt);
+          timezonetab = new TIMEZONETAB(paramInt);
         }
       }
     }
 
-    return ((TIMEZONETAB)???).returnInstance();
+    return timezonetab.returnInstance();
   }
 
   private synchronized TIMEZONETAB returnInstance()
@@ -91,7 +91,7 @@ public class TIMEZONETAB
         arrayOfInt[m] = (paramArrayOfByte[(m + k)] & 0xFF);
       }
 
-      m = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
+      int m = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
 
       Calendar localCalendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"), Locale.US);
 
@@ -171,14 +171,15 @@ public class TIMEZONETAB
 
         b = 0;
         if (i2 <= 0) {
-          break label719;
+          break;
         }
         i1 = arrayOfOffsetDST[(i2 - 1)].getDSTFLAG();
 
         if ((n != 0) || (i1 != 1)) {
-          break label719;
+          break;
         }
-        b = 1; break label719;
+        b = 1;
+        break;
       }
 
       if (localCalendar3.before(localCalendar1))
@@ -191,12 +192,12 @@ public class TIMEZONETAB
 
           if (n != 1)
           {
-            break label719;
+            break;
           }
 
           localCalendar1.add(10, -1);
           if (localCalendar3.before(localCalendar1))
-            break label719;
+            break;
           throw new SQLException("Illegal local time.");
         }
 

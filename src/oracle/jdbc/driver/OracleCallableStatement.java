@@ -229,18 +229,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public String getString(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -263,18 +264,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Datum getOracleObject(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -297,18 +299,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public ROWID getROWID(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -331,26 +334,27 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public NUMBER getNUMBER(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
     if ((paramInt <= 0) || (paramInt > this.numberOfBindPositions) || (this.outBindAccessors == null) || ((localObject = this.outBindAccessors[(paramInt - 1)]) == null))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.lastIndex = paramInt;
@@ -365,18 +369,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public DATE getDATE(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -399,18 +404,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public INTERVALYM getINTERVALYM(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -433,18 +439,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public INTERVALDS getINTERVALDS(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -467,18 +474,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public TIMESTAMP getTIMESTAMP(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -501,18 +509,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public TIMESTAMPTZ getTIMESTAMPTZ(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -535,18 +544,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public TIMESTAMPLTZ getTIMESTAMPLTZ(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -569,18 +579,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public REF getREF(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -603,18 +614,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public ARRAY getARRAY(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -637,18 +649,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public STRUCT getSTRUCT(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -671,18 +684,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public OPAQUE getOPAQUE(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -705,18 +719,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public CHAR getCHAR(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -739,18 +754,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Reader getCharacterStream(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -773,18 +789,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public RAW getRAW(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -807,18 +824,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public BLOB getBLOB(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -841,18 +859,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public CLOB getCLOB(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -875,18 +894,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public BFILE getBFILE(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -909,18 +929,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public BFILE getBfile(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -943,18 +964,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public boolean getBoolean(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -977,18 +999,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public byte getByte(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1011,18 +1034,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public short getShort(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1045,18 +1069,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public int getInt(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1079,18 +1104,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public long getLong(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1113,18 +1139,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public float getFloat(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1147,18 +1174,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public double getDouble(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1181,18 +1209,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public BigDecimal getBigDecimal(int paramInt1, int paramInt2)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1215,18 +1244,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public byte[] getBytes(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1249,18 +1279,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public byte[] privateGetBytes(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1283,18 +1314,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Date getDate(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1317,18 +1349,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Time getTime(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1351,18 +1384,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Timestamp getTimestamp(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1385,18 +1419,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public InputStream getAsciiStream(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1419,18 +1454,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public InputStream getUnicodeStream(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1453,18 +1489,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public InputStream getBinaryStream(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1487,18 +1524,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Object getObject(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1534,18 +1572,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Object getCustomDatum(int paramInt, CustomDatumFactory paramCustomDatumFactory)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1568,18 +1607,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Object getORAData(int paramInt, ORADataFactory paramORADataFactory)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1602,18 +1642,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public ResultSet getCursor(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1645,18 +1686,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Object getObject(int paramInt, Map paramMap)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1679,18 +1721,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Ref getRef(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1713,18 +1756,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Blob getBlob(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1747,18 +1791,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Clob getClob(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1781,18 +1826,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Array getArray(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1815,18 +1861,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public BigDecimal getBigDecimal(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1849,18 +1896,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Date getDate(int paramInt, Calendar paramCalendar)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1883,18 +1931,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Time getTime(int paramInt, Calendar paramCalendar)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -1917,18 +1966,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Timestamp getTimestamp(int paramInt, Calendar paramCalendar)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -2002,18 +2052,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public URL getURL(int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -2081,16 +2132,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public String getString(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2117,16 +2170,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public boolean getBoolean(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2153,16 +2208,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public byte getByte(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2189,16 +2246,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public short getShort(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2225,16 +2284,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public int getInt(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2261,16 +2322,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public long getLong(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2297,16 +2360,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public float getFloat(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2333,16 +2398,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public double getDouble(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2369,16 +2436,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public byte[] getBytes(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2405,16 +2474,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Date getDate(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2441,16 +2512,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Time getTime(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2477,16 +2550,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Timestamp getTimestamp(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2513,16 +2588,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Object getObject(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2549,16 +2626,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public BigDecimal getBigDecimal(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2585,16 +2664,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public BigDecimal getBigDecimal(String paramString, int paramInt)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2621,16 +2702,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Object getObject(String paramString, Map paramMap)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2657,16 +2740,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Ref getRef(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2693,16 +2778,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Blob getBlob(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2729,16 +2816,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Clob getClob(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2765,16 +2854,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Array getArray(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2801,16 +2892,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Date getDate(String paramString, Calendar paramCalendar)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2837,16 +2930,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Time getTime(String paramString, Calendar paramCalendar)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2873,16 +2968,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Timestamp getTimestamp(String paramString, Calendar paramCalendar)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2909,16 +3006,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public URL getURL(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -2995,7 +3094,7 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
 
       int i = localPlsqlIndexTableAccessor.elementInternalType;
 
-      Object localObject1 = null;
+      Object[] localObject1 = null;
 
       switch (i)
       {
@@ -3026,25 +3125,26 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
     {
       Datum[] arrayOfDatum = getOraclePlsqlIndexTable(paramInt);
 
+      SQLException sqlexception;
       if ((paramClass == null) || (!paramClass.isPrimitive()))
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       Object localObject1 = paramClass.getName();
       int i;
       if (((String)localObject1).equals("byte"))
       {
-        localObject2 = new byte[arrayOfDatum.length];
+        byte[] localObject2 = new byte[arrayOfDatum.length];
         for (i = 0; i < arrayOfDatum.length; i++)
           localObject2[i] = (arrayOfDatum[i] != null ? arrayOfDatum[i].byteValue() : 0);
         return localObject2;
       }
       if (((String)localObject1).equals("char"))
       {
-        localObject2 = new char[arrayOfDatum.length];
+        char[] localObject2 = new char[arrayOfDatum.length];
         for (i = 0; i < arrayOfDatum.length; i++) {
           localObject2[i] = ((arrayOfDatum[i] != null) && (arrayOfDatum[i].getLength() != 0L) ? (char)arrayOfDatum[i].intValue() : 0);
         }
@@ -3052,7 +3152,7 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
       }
       if (((String)localObject1).equals("double"))
       {
-        localObject2 = new double[arrayOfDatum.length];
+        double[] localObject2 = new double[arrayOfDatum.length];
         for (i = 0; i < arrayOfDatum.length; i++) {
           localObject2[i] = ((arrayOfDatum[i] != null) && (arrayOfDatum[i].getLength() != 0L) ? arrayOfDatum[i].doubleValue() : 0.0D);
         }
@@ -3060,7 +3160,7 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
       }
       if (((String)localObject1).equals("float"))
       {
-        localObject2 = new float[arrayOfDatum.length];
+        float[] localObject2 = new float[arrayOfDatum.length];
         for (i = 0; i < arrayOfDatum.length; i++) {
           localObject2[i] = ((arrayOfDatum[i] != null) && (arrayOfDatum[i].getLength() != 0L) ? arrayOfDatum[i].floatValue() : 0.0F);
         }
@@ -3068,7 +3168,7 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
       }
       if (((String)localObject1).equals("int"))
       {
-        localObject2 = new int[arrayOfDatum.length];
+        int[] localObject2 = new int[arrayOfDatum.length];
         for (i = 0; i < arrayOfDatum.length; i++) {
           localObject2[i] = ((arrayOfDatum[i] != null) && (arrayOfDatum[i].getLength() != 0L) ? arrayOfDatum[i].intValue() : 0);
         }
@@ -3076,7 +3176,7 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
       }
       if (((String)localObject1).equals("long"))
       {
-        localObject2 = new long[arrayOfDatum.length];
+        long[] localObject2 = new long[arrayOfDatum.length];
         for (i = 0; i < arrayOfDatum.length; i++) {
           localObject2[i] = ((arrayOfDatum[i] != null) && (arrayOfDatum[i].getLength() != 0L) ? arrayOfDatum[i].longValue() : 0L);
         }
@@ -3084,7 +3184,7 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
       }
       if (((String)localObject1).equals("short"))
       {
-        localObject2 = new short[arrayOfDatum.length];
+        short[] localObject2 = new short[arrayOfDatum.length];
         for (i = 0; i < arrayOfDatum.length; i++) {
           localObject2[i] = ((arrayOfDatum[i] != null) && (arrayOfDatum[i].getLength() != 0L) ? (short)arrayOfDatum[i].intValue() : 0);
         }
@@ -3092,16 +3192,16 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
       }
       if (((String)localObject1).equals("boolean"))
       {
-        localObject2 = new boolean[arrayOfDatum.length];
+        boolean[] localObject2 = new boolean[arrayOfDatum.length];
         for (i = 0; i < arrayOfDatum.length; i++) {
-          localObject2[i] = ((arrayOfDatum[i] != null) && (arrayOfDatum[i].getLength() != 0L) ? arrayOfDatum[i].booleanValue() : 0);
+          localObject2[i] = ((arrayOfDatum[i] != null) && (arrayOfDatum[i].getLength() != 0L) ? arrayOfDatum[i].booleanValue() : false);
         }
         return localObject2;
       }
 
-      Object localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23);
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -3110,18 +3210,19 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   {
     synchronized (this.connection)
     {
+      SQLException sqlexception;
       if (this.closed)
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if (this.atLeastOneNamedParameter)
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       Object localObject1 = null;
@@ -4487,12 +4588,12 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   {
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject = paramString.toUpperCase().intern();
+    String localObject = paramString.toUpperCase().intern();
 
     for (int i = 0; i < this.parameterCount; i++)
     {
@@ -4518,14 +4619,15 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   {
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -4554,14 +4656,15 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   {
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -4590,14 +4693,15 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   {
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -4626,16 +4730,16 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   {
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -4660,14 +4764,15 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   {
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -4696,16 +4801,16 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   {
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -4730,14 +4835,15 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   {
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -4766,16 +4872,16 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   {
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -4799,14 +4905,15 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   {
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -4834,16 +4941,16 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   {
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -4868,14 +4975,15 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   {
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;
@@ -4904,16 +5012,16 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   {
     if (this.closed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = null;
@@ -4936,16 +5044,18 @@ abstract class OracleCallableStatement extends OraclePreparedStatement
   public Reader getNCharacterStream(String paramString)
     throws SQLException
   {
+    SQLException sqlexception;
     if (!this.atLeastOneNamedParameter)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "Ordinal binding and Named binding cannot be combined!");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = paramString.toUpperCase().intern();
 
-    for (int i = 0; i < this.parameterCount; i++)
+    int i;
+    for (i = 0; i < this.parameterCount; i++)
     {
       if (localObject == this.namedParameters[i])
         break;

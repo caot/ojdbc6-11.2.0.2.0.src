@@ -191,12 +191,10 @@ final class T4C8TTIClob extends T4C8TTILob
   {
     if (paramInt == 12)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 158);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 158);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
-
-    Object localObject = null;
 
     initializeLobdef();
 
@@ -230,6 +228,7 @@ final class T4C8TTIClob extends T4C8TTILob
 
     doRPC();
 
+    CLOB localObject = null;
     if (this.sourceLobLocator != null)
     {
       if (paramShort == 1) {

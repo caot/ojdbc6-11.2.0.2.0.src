@@ -54,7 +54,7 @@ public class Ano
     int m = 0;
     for (int n = 1; n < 5; n++)
       m += this.j[n].f();
-    n = 13 + m;
+    int n = 13 + m;
     a(n, this.j.length - 1, (short)0);
     this.j[4].b();
     this.j[1].b();
@@ -69,9 +69,9 @@ public class Ano
         throw new NetException(arrayOfInt2[2]);
       this.j[arrayOfInt2[0]].c(arrayOfInt2[1]);
     }
-    for (i1 = 1; i1 < 5; i1++)
+    for (int i1 = 1; i1 < 5; i1++)
       this.j[i1].e();
-    i1 = 0;
+    int i1 = 0;
     int i2 = 0;
     if (this.c != null)
     {

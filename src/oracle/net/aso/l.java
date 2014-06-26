@@ -92,7 +92,7 @@ public final class l
   {
     char[] arrayOfChar1 = new char[65];
     char[] arrayOfChar2 = new char[65];
-    byte[] arrayOfByte = new byte[''];
+    byte[] arrayOfByte = new byte[128];
     int i1 = (short)(this.g + 7) / 8;
     int i2 = (short)(this.h + 7) / 8;
     this.l = ((short)i2);
@@ -102,11 +102,11 @@ public final class l
     int tmp80_79 = 0;
     byte[] tmp80_77 = arrayOfByte;
     tmp80_77[tmp80_79] = ((byte)(tmp80_77[tmp80_79] & 255 >>> i1 - 8 * this.g));
-    r.a(arrayOfChar1, this.m, this.e, i2);
-    r.a(this.j, this.m, arrayOfByte, i1);
-    r.a(this.i, this.m, this.f, i2);
-    r.a(arrayOfChar2, arrayOfChar1, this.j, this.i, this.m);
-    r.a(this.k, this.l, arrayOfChar2, this.m);
+    oracle.net.aso.r.a(arrayOfChar1, this.m, this.e, i2);
+    oracle.net.aso.r.a(this.j, this.m, arrayOfByte, i1);
+    oracle.net.aso.r.a(this.i, this.m, this.f, i2);
+    oracle.net.aso.r.a(arrayOfChar2, arrayOfChar1, this.j, this.i, this.m);
+    oracle.net.aso.r.a(this.k, this.l, arrayOfChar2, this.m);
   }
 
   private void c(byte[] paramArrayOfByte, int paramInt)
@@ -115,8 +115,8 @@ public final class l
     char[] arrayOfChar2 = new char[65];
     this.n = this.l;
     this.o = new byte[this.n];
-    r.a(arrayOfChar1, this.m, paramArrayOfByte, paramInt);
-    r.a(arrayOfChar2, arrayOfChar1, this.j, this.i, this.m);
-    r.a(this.o, this.n, arrayOfChar2, this.m);
+    oracle.net.aso.r.a(arrayOfChar1, this.m, paramArrayOfByte, paramInt);
+    oracle.net.aso.r.a(arrayOfChar2, arrayOfChar1, this.j, this.i, this.m);
+    oracle.net.aso.r.a(this.o, this.n, arrayOfChar2, this.m);
   }
 }

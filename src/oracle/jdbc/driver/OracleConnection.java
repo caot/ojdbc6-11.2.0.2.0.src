@@ -139,14 +139,14 @@ public abstract class OracleConnection extends OracleConnectionWrapper
   {
     HashMap localHashMap = new HashMap();
     if (paramProperties != null) {
-      for (localObject = paramProperties.stringPropertyNames().iterator(); ((Iterator)localObject).hasNext(); ) { String str = (String)((Iterator)localObject).next();
+      for (Iterator localObject = paramProperties.stringPropertyNames().iterator(); localObject.hasNext(); ) { String str = (String)((Iterator)localObject).next();
         localHashMap.put(str, ClientInfoStatus.REASON_UNKNOWN);
       }
     }
 
-    Object localObject = DatabaseError.createSQLClientInfoException(253, localHashMap, null);
-    ((SQLClientInfoException)localObject).fillInStackTrace();
-    throw ((Throwable)localObject);
+    SQLClientInfoException sqlclientinfoexception = DatabaseError.createSQLClientInfoException(253, localHashMap, null);
+    sqlclientinfoexception.fillInStackTrace();
+    throw sqlclientinfoexception;
   }
 
   public String getClientInfo(String paramString)
@@ -184,7 +184,7 @@ public abstract class OracleConnection extends OracleConnectionWrapper
   public <T> T unwrap(Class<T> paramClass)
     throws SQLException
   {
-    if ((paramClass.isInterface()) && (paramClass.isInstance(this))) return this;
+    if ((paramClass.isInterface()) && (paramClass.isInstance(this))) return (T)this;
 
     SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 177);
     localSQLException.fillInStackTrace();

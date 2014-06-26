@@ -48,7 +48,7 @@ class BufferCache<T>
 
     if (i >= this.buckets.length) {
       this.stats.requestTooBig();
-      return Array.newInstance(paramClass, paramInt);
+      return (T)Array.newInstance(paramClass, paramInt);
     }
 
     while (this.top[i] > 0) {
@@ -57,12 +57,12 @@ class BufferCache<T>
       Object localObject = localSoftReference.get();
       if (localObject != null) {
         this.stats.cacheHit(i);
-        return localObject;
+        return (T)localObject;
       }
     }
 
     this.stats.cacheMiss(i);
-    return Array.newInstance(paramClass, this.bufferSize[i]);
+    return (T)Array.newInstance(paramClass, this.bufferSize[i]);
   }
 
   void put(T paramT)

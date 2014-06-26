@@ -37,16 +37,16 @@ public class OracleJoinRowSet extends OracleWebRowSet
   {
     if (paramJoinable == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 350);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 350);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (!(paramJoinable instanceof RowSet))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 351);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 351);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = checkAndWrapRowSet((RowSet)paramJoinable);
@@ -200,7 +200,7 @@ public class OracleJoinRowSet extends OracleWebRowSet
     localStringBuffer.append("WHERE\n");
 
     Object localObject1 = (OracleRowSet)this.addedRowSets.get(0);
-    Object localObject2 = ((OracleRowSet)localObject1).getMatchColumnIndexes();
+    int[] localObject2 = ((OracleRowSet)localObject1).getMatchColumnIndexes();
     Object localObject3 = ((OracleRowSet)localObject1).getMetaData();
     Object localObject4 = ((OracleRowSet)localObject1).getTableName();
 
@@ -264,7 +264,7 @@ public class OracleJoinRowSet extends OracleWebRowSet
       for (int j = 1; j <= this.colCount; j++)
       {
         bool = false;
-        for (k = 0; k < arrayOfInt1.length; k++)
+        for (int k = 0; k < arrayOfInt1.length; k++)
         {
           if (j == arrayOfInt1[k])
           {
@@ -286,7 +286,7 @@ public class OracleJoinRowSet extends OracleWebRowSet
       for (int n = 1; n <= k; n++)
       {
         bool = false;
-        for (i1 = 0; i1 < arrayOfInt2.length; i1++)
+        for (int i1 = 0; i1 < arrayOfInt2.length; i1++)
         {
           if (n == arrayOfInt1[i1])
           {
@@ -310,7 +310,7 @@ public class OracleJoinRowSet extends OracleWebRowSet
 
       beforeFirst();
 
-      n = paramOracleCachedRowSet.size();
+      int n = paramOracleCachedRowSet.size();
       int i1 = 0;
 
       for (int i2 = 1; i2 <= this.rowCount; i2++)
@@ -343,7 +343,7 @@ public class OracleJoinRowSet extends OracleWebRowSet
               localOracleRow.updateObject(i5, getObject(i5));
             }
 
-            for (i5 = 1; i5 <= k; i5++)
+            for (int i5 = 1; i5 <= k; i5++)
             {
               if (arrayOfInt3[(i5 - 1)] != -1)
               {
@@ -425,9 +425,9 @@ public class OracleJoinRowSet extends OracleWebRowSet
       }
       else
       {
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 354);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 354);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
     }
     return localOracleCachedRowSet;

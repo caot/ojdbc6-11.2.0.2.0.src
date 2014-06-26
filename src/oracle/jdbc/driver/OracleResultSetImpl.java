@@ -367,7 +367,7 @@ class OracleResultSetImpl extends BaseResultSet
   {
     if (this.explicitly_closed)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
+      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 10);
       localSQLException.fillInStackTrace();
       throw localSQLException;
     }

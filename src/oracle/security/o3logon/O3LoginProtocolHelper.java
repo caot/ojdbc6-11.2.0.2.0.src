@@ -100,7 +100,7 @@ public final class O3LoginProtocolHelper
     a locala;
     byte[] arrayOfByte3 = (locala = new a()).b(arrayOfByte1, paramArrayOfByte);
     byte[] arrayOfByte4;
-    int i = (arrayOfByte4 = paramString2.getBytes()).length % 8 > 0 ? (byte)(8 - arrayOfByte4.length % 8) : 0;
+    byte i = (arrayOfByte4 = paramString2.getBytes()).length % 8 > 0 ? (byte)(8 - arrayOfByte4.length % 8) : 0;
     byte[] arrayOfByte2 = new byte[arrayOfByte4.length + i];
     System.arraycopy(arrayOfByte4, 0, arrayOfByte2, 0, arrayOfByte4.length);
     byte[] arrayOfByte5;

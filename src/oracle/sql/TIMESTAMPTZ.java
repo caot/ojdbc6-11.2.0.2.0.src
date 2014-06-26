@@ -99,8 +99,8 @@ public class TIMESTAMPTZ extends Datum
     throws SQLException
   {
     int[] arrayOfInt = new int[13];
-
-    for (int j = 0; j < 13; j++) {
+    int j;
+    for (j = 0; j < 13; j++) {
       paramArrayOfByte[j] &= 255;
     }
 
@@ -146,8 +146,9 @@ public class TIMESTAMPTZ extends Datum
     throws SQLException
   {
     int[] arrayOfInt = new int[13];
+    int i;
 
-    for (int i = 0; i < 13; i++) {
+    for (i = 0; i < 13; i++) {
       paramArrayOfByte[i] &= 255;
     }
 
@@ -254,7 +255,7 @@ public class TIMESTAMPTZ extends Datum
       l1 += i;
 
       TimeZone localTimeZone = localCalendar1.getTimeZone();
-      localObject = localCalendar3.getTimeZone();
+      TimeZone localObject = localCalendar3.getTimeZone();
 
       if ((!localTimeZone.inDaylightTime(localCalendar1.getTime())) && (((TimeZone)localObject).inDaylightTime(new Timestamp(l1)) == true))
       {
@@ -312,8 +313,9 @@ public class TIMESTAMPTZ extends Datum
     throws SQLException
   {
     int[] arrayOfInt = new int[13];
+    int i;
 
-    for (int i = 0; i < 13; i++) {
+    for (i = 0; i < 13; i++) {
       paramArrayOfByte[i] &= 255;
     }
 
@@ -346,7 +348,8 @@ public class TIMESTAMPTZ extends Datum
     throws SQLException
   {
     int[] arrayOfInt = new int[13];
-    for (int i = 0; i < 13; i++) {
+    int i;
+    for (i = 0; i < 13; i++) {
       paramArrayOfByte[i] &= 255;
     }
 
@@ -929,9 +932,9 @@ public class TIMESTAMPTZ extends Datum
     }
     else
     {
-      localObject1 = localCalendar1.getTimeZone().getID();
+      String localObject1 = localCalendar1.getTimeZone().getID();
 
-      int m = ZONEIDMAP.getID((String)localObject1);
+      int m = ZONEIDMAP.getID(localObject1);
 
       if (!ZONEIDMAP.isValidID(m))
       {
@@ -988,9 +991,9 @@ public class TIMESTAMPTZ extends Datum
     int i1 = localCalendar3.get(1);
     if ((i1 < -4712) || (i1 > 9999))
     {
-      localObject2 = DatabaseError.createSqlException(null, 268);
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(null, 268);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     arrayOfByte[0] = ((byte)(localCalendar3.get(1) / 100 + 100));
@@ -1041,9 +1044,9 @@ public class TIMESTAMPTZ extends Datum
     }
     else
     {
-      localObject1 = paramCalendar.getTimeZone().getID();
+      String localObject1 = paramCalendar.getTimeZone().getID();
 
-      int k = ZONEIDMAP.getID((String)localObject1);
+      int k = ZONEIDMAP.getID(localObject1);
 
       if (!ZONEIDMAP.isValidID(k))
       {
@@ -1098,9 +1101,9 @@ public class TIMESTAMPTZ extends Datum
     int m = localCalendar2.get(1);
     if ((m < -4712) || (m > 9999))
     {
-      localObject2 = DatabaseError.createSqlException(null, 268);
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(null, 268);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     arrayOfByte[0] = ((byte)(localCalendar2.get(1) / 100 + 100));

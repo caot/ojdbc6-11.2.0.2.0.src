@@ -354,9 +354,9 @@ final class T4CTTIoauthenticate extends T4CTTIfun
       {
         if ((this.outKeys == null) || (this.outKeys.length < 1))
         {
-          localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 438);
-          ((SQLException)localObject).fillInStackTrace();
-          throw ((Throwable)localObject);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 438);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
         int i = -1;
@@ -419,16 +419,16 @@ final class T4CTTIoauthenticate extends T4CTTIfun
     {
       if ((str1 != "RADIUS") && (this.encryptedSK.length > 16) && (!this.bUseO5Logon))
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 413);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 413);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if ((this.bUseO5Logon) && ((this.encryptedSK == null) || ((this.encryptedSK.length != 64) && (this.encryptedSK.length != 96))))
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 413);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 413);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       Object localObject1 = paramString1.trim();
@@ -483,9 +483,9 @@ final class T4CTTIoauthenticate extends T4CTTIfun
 
           if (!O5LoginClientHelper.generateOAuthResponse(this.verifierType, this.salt, (String)localObject2, str3, arrayOfByte2, this.encryptedSK, this.encryptedKB, arrayOfByte4, this.meg.conv.isServerCSMultiByte))
           {
-            localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 452);
-            ((SQLException)localObject3).fillInStackTrace();
-            throw ((Throwable)localObject3);
+            SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 452);
+            sqlexception.fillInStackTrace();
+            throw sqlexception;
           }
 
         }
@@ -494,7 +494,7 @@ final class T4CTTIoauthenticate extends T4CTTIfun
           localObject3 = new O3LoginClientHelper(this.meg.conv.isServerCSMultiByte);
 
           byte[] arrayOfByte5 = ((O3LoginClientHelper)localObject3).getSessionKey((String)localObject2, str3, this.encryptedSK);
-          int i;
+          byte i;
           if (arrayOfByte2.length % 8 > 0)
             i = (byte)(8 - arrayOfByte2.length % 8);
           else {
@@ -538,14 +538,14 @@ final class T4CTTIoauthenticate extends T4CTTIfun
           arrayOfByte3 = new byte[arrayOfByte2.length + 1 + j];
 
           System.arraycopy(arrayOfByte2, 0, arrayOfByte3, 0, arrayOfByte2.length);
-          localObject3 = AuthenticationService.obfuscatePasswordForRadius(arrayOfByte3);
+          byte[] bytea = AuthenticationService.obfuscatePasswordForRadius(arrayOfByte3);
 
-          arrayOfByte4 = new byte[localObject3.length * 2];
+          arrayOfByte4 = new byte[bytea.length * 2];
 
-          for (int i2 = 0; i2 < localObject3.length; i2++)
+          for (int i2 = 0; i2 < bytea.length; i2++)
           {
-            int n = (byte)((localObject3[i2] & 0xF0) >> 4);
-            int i1 = (byte)(localObject3[i2] & 0xF);
+            int n = (byte)((bytea[i2] & 0xF0) >> 4);
+            int i1 = (byte)(bytea[i2] & 0xF);
             arrayOfByte4[(i2 * 2)] = ((byte)(n < 10 ? n + 48 : n - 10 + 97));
 
             arrayOfByte4[(i2 * 2 + 1)] = ((byte)(i1 < 10 ? i1 + 48 : i1 - 10 + 97));
@@ -565,7 +565,7 @@ final class T4CTTIoauthenticate extends T4CTTIfun
     byte[] arrayOfByte1 = null;
     byte[] arrayOfByte2 = null;
     String[] arrayOfString = null;
-    Object localObject1 = (byte[][])null;
+    byte[][] localObject1 = null;
     byte[] arrayOfByte3 = null;
     Object localObject2;
     String str;
@@ -723,7 +723,7 @@ final class T4CTTIoauthenticate extends T4CTTIfun
       }
     }
 
-    for (k = paramString.length() - 1; k >= 0; k--)
+    for (int k = paramString.length() - 1; k >= 0; k--)
     {
       if (paramString.charAt(k) != '"')
       {

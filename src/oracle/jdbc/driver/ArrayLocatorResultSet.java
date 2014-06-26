@@ -29,9 +29,9 @@ class ArrayLocatorResultSet extends OracleResultSetImpl
 
     if ((paramArrayDescriptor == null) || (paramOracleConnection == null))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "Invalid arguments");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "Invalid arguments");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.close_statement_on_close = true;

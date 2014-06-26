@@ -86,14 +86,14 @@ public abstract class CharacterConverterJDBC
 
     if (paramInt >>> 26 == 54)
     {
-      arrayOfChar = (char[])paramHashtable1.get(localInteger1);
+      char[] arrayOfChar = (char[])paramHashtable1.get(localInteger1);
 
       if (arrayOfChar == null)
       {
-        arrayOfChar = new char[] { 'ÿ', '\000' };
+        arrayOfChar = new char[] { '\377', '\000' };
       }
 
-      if ((arrayOfChar[0] == 'ÿ') && (arrayOfChar[1] == 0))
+      if ((arrayOfChar[0] == '\377') && (arrayOfChar[1] == 0))
       {
         arrayOfChar[0] = ((char)j);
         arrayOfChar[1] = ((char)j);
@@ -117,10 +117,10 @@ public abstract class CharacterConverterJDBC
 
       if (arrayOfChar == null)
       {
-        arrayOfChar = new char[] { 'ÿ', '\000' };
+        arrayOfChar = new char[] { '\377', '\000' };
       }
 
-      if ((arrayOfChar[0] == 'ÿ') && (arrayOfChar[1] == 0))
+      if ((arrayOfChar[0] == '\377') && (arrayOfChar[1] == 0))
       {
         arrayOfChar[0] = ((char)k);
         arrayOfChar[1] = ((char)k);
@@ -145,10 +145,10 @@ public abstract class CharacterConverterJDBC
 
     if (arrayOfChar == null)
     {
-      arrayOfChar = new char[] { 'ÿ', '\000' };
+      arrayOfChar = new char[] { '\377', '\000' };
     }
 
-    if ((arrayOfChar[0] == 'ÿ') && (arrayOfChar[1] == 0))
+    if ((arrayOfChar[0] == '\377') && (arrayOfChar[1] == 0))
     {
       arrayOfChar[0] = ((char)m);
       arrayOfChar[1] = ((char)m);

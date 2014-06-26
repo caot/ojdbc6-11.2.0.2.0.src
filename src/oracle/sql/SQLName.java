@@ -111,7 +111,7 @@ public class SQLName
 
     if (!paramBoolean)
     {
-      i = paramString.indexOf(".");
+      int i = paramString.indexOf(".");
 
       if (i < 0)
       {

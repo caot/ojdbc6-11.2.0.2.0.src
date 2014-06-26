@@ -499,10 +499,9 @@ public abstract class OracleXAResource
     Xid xid;
     boolean isSuspended;
 
-    XidListEntry(Xid paramBoolean, boolean arg3)
+    XidListEntry(Xid paramBoolean, boolean bool)
     {
       this.xid = paramBoolean;
-      boolean bool;
       this.isSuspended = bool;
     }
   }

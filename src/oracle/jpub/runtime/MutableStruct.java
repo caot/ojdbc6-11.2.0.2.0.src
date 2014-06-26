@@ -336,7 +336,6 @@ public class MutableStruct
   public boolean isNChar(int paramInt)
     throws SQLException
   {
-    int i = this.isNChar[paramInt];
-    return i;
+    return this.isNChar[paramInt];
   }
 }

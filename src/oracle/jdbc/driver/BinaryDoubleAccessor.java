@@ -263,7 +263,7 @@ class BinaryDoubleAccessor extends Accessor
   long getLong(int paramInt)
     throws SQLException
   {
-    return ()getDouble(paramInt);
+    return (long)getDouble(paramInt);
   }
 
   float getFloat(int paramInt)

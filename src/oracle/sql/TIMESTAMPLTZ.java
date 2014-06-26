@@ -541,7 +541,7 @@ public class TIMESTAMPLTZ extends Datum
       paramArrayOfByte[j] &= 255;
     }
 
-    j = getJavaYear(arrayOfInt[0], arrayOfInt[1]);
+    int j = getJavaYear(arrayOfInt[0], arrayOfInt[1]);
 
     if (paramCalendar2 == null)
     {
@@ -579,8 +579,8 @@ public class TIMESTAMPLTZ extends Datum
     {
       OffsetDST localOffsetDST = new OffsetDST();
 
-      k = getZoneOffset(paramConnection, paramCalendar1, localOffsetDST);
-      m = localOffsetDST.getOFFSET();
+      int k = getZoneOffset(paramConnection, paramCalendar1, localOffsetDST);
+      int m = localOffsetDST.getOFFSET();
 
       boolean bool1 = localTimeZone.inDaylightTime(paramCalendar1.getTime());
 
@@ -599,7 +599,7 @@ public class TIMESTAMPLTZ extends Datum
       }
       else
       {
-        n = ZONEIDMAP.getID(str2);
+        int n = ZONEIDMAP.getID(str2);
 
         if (!ZONEIDMAP.isValidID(n))
         {
@@ -636,9 +636,9 @@ public class TIMESTAMPLTZ extends Datum
 
     if ((str2.equals("Custom")) && (str1.equals("Custom")))
     {
-      j = paramCalendar1.getTimeZone().getRawOffset();
-      k = paramCalendar2.getTimeZone().getRawOffset();
-      m = 0;
+      int j = paramCalendar1.getTimeZone().getRawOffset();
+      int k = paramCalendar2.getTimeZone().getRawOffset();
+      int m = 0;
 
       if (j != k)
       {

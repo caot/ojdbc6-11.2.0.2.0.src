@@ -85,7 +85,7 @@ public class DemultiplexingLogHandler extends FileHandler
     Object[] arrayOfObject = paramLogRecord.getParameters();
     if ((arrayOfObject != null) && (arrayOfObject.length > 0))
     {
-      Object localObject = (Handler)this.handlerList.get(arrayOfObject[0]);
+      Handler localObject = (Handler)this.handlerList.get(arrayOfObject[0]);
       if (localObject == null)
       {
         if (this.localPattern == null)
@@ -107,7 +107,7 @@ public class DemultiplexingLogHandler extends FileHandler
 
         this.handlerList.put(arrayOfObject[0], localObject);
       }
-      ((Handler)localObject).publish(paramLogRecord);
+      localObject.publish(paramLogRecord);
     }
     else {
       super.publish(paramLogRecord);

@@ -109,16 +109,16 @@ public class OracleXADataSource extends oracle.jdbc.xa.OracleXADataSource
       {
         if ((str1 != null) && (!str1.matches("jdbc:oracle:.*/.*@.*")))
         {
-          localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 67);
-          ((SQLException)localObject1).fillInStackTrace();
-          throw ((Throwable)localObject1);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 67);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
       }
 
       if ((this.useNativeXA) && ((str1.startsWith("jdbc:oracle:oci8")) || (str1.startsWith("jdbc:oracle:oci"))))
       {
-        localObject1 = new long[] { 0L, 0L };
+        long[] localObject1 = new long[] { 0L, 0L };
 
         String str7 = null;
         String str8 = null;
@@ -172,14 +172,14 @@ public class OracleXADataSource extends oracle.jdbc.xa.OracleXADataSource
 
         if ((str8 != null) && (str8.equalsIgnoreCase("true")))
         {
-          ??? = T2CConnection.getDriverCharSetIdFromNLS_LANG(null);
-          this.driverCharSetIdString = Integer.toString(???);
+          short s = T2CConnection.getDriverCharSetIdFromNLS_LANG(null);
+          this.driverCharSetIdString = Integer.toString(s);
         }
         else if (!str7.equals(this.oldTnsEntry))
         {
-          ??? = T2CConnection.getClientCharSetId();
+          short s = T2CConnection.getClientCharSetId();
 
-          this.driverCharSetIdString = Integer.toString(???);
+          this.driverCharSetIdString = Integer.toString(s);
           this.oldTnsEntry = str7;
         }
 
@@ -196,7 +196,7 @@ public class OracleXADataSource extends oracle.jdbc.xa.OracleXADataSource
 
           int k = 0;
 
-          localOracleXAHeteroConnection = this.connectionProperties != null ? this.connectionProperties.getProperty("oracle.jdbc.XATransLoose") : null;
+          String localOracleXAHeteroConnection = this.connectionProperties != null ? this.connectionProperties.getProperty("oracle.jdbc.XATransLoose") : null;
 
           this.xaOpenString = (str6 = generateXAOpenString(str4, str7, str2, str3, 60, 2000, true, true, ".", k, false, (localOracleXAHeteroConnection != null) && (localOracleXAHeteroConnection.equalsIgnoreCase("true")), this.driverCharSetIdString, this.driverCharSetIdString));
 
@@ -207,18 +207,18 @@ public class OracleXADataSource extends oracle.jdbc.xa.OracleXADataSource
 
         if (j != 0)
         {
-          localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), -1 * j);
-          ((SQLException)localObject2).fillInStackTrace();
-          throw ((Throwable)localObject2);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), -1 * j);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
         j = t2cConvertOciHandles(str4, (long[])localObject1);
 
         if (j != 0)
         {
-          localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), -1 * j);
-          ((SQLException)localObject2).fillInStackTrace();
-          throw ((Throwable)localObject2);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), -1 * j);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
         paramProperties.put("OCISvcCtxHandle", String.valueOf(localObject1[0]));
@@ -253,7 +253,7 @@ public class OracleXADataSource extends oracle.jdbc.xa.OracleXADataSource
       }
       if ((this.thinUseNativeXA) && (str1.startsWith("jdbc:oracle:thin")))
       {
-        localObject1 = new Properties();
+        Properties localObject1 = new Properties();
         synchronized (this)
         {
           synchronized (OracleXADataSource.class)
@@ -280,16 +280,16 @@ public class OracleXADataSource extends oracle.jdbc.xa.OracleXADataSource
           ((Properties)localObject1).setProperty("LoginTimeout", new StringBuilder().append("").append(this.loginTimeout).toString());
         }
 
-        ??? = new T4CXAConnection(super.getPhysicalConnection((Properties)localObject1));
+        T4CXAConnection conn = new T4CXAConnection(super.getPhysicalConnection((Properties)localObject1));
 
         if ((str2 != null) && (str3 != null)) {
-          ((T4CXAConnection)???).setUserName(str2, str3);
+          conn.setUserName(str2, str3);
         }
-        ??? = this.connectionProperties != null ? this.connectionProperties.getProperty("oracle.jdbc.XATransLoose") : null;
+        String xatransloose = this.connectionProperties != null ? this.connectionProperties.getProperty("oracle.jdbc.XATransLoose") : null;
 
-        ((OracleXAConnection)???).isXAResourceTransLoose = ((??? != null) && ((((String)???).equals("true")) || (((String)???).equalsIgnoreCase("true"))));
+        conn.isXAResourceTransLoose = (xatransloose != null && (xatransloose.equals("true") || xatransloose.equalsIgnoreCase("true")));
 
-        return ???;
+        return conn;
       }
 
       Object localObject1 = new Properties();
@@ -308,16 +308,17 @@ public class OracleXADataSource extends oracle.jdbc.xa.OracleXADataSource
         ((Properties)localObject1).setProperty("LoginTimeout", new StringBuilder().append("").append(this.loginTimeout).toString());
       }
 
-      ??? = new OracleXAConnection(super.getPhysicalConnection((Properties)localObject1));
+      OracleXAConnection conn = new OracleXAConnection(super.getPhysicalConnection((Properties)localObject1));
 
       if ((str2 != null) && (str3 != null)) {
-        ((OracleXAConnection)???).setUserName(str2, str3);
+        conn.setUserName(str2, str3);
       }
-      ??? = this.connectionProperties != null ? this.connectionProperties.getProperty("oracle.jdbc.XATransLoose") : null;
+      
+      String xatransloose = this.connectionProperties != null ? this.connectionProperties.getProperty("oracle.jdbc.XATransLoose") : null;
 
-      ((OracleXAConnection)???).isXAResourceTransLoose = ((??? != null) && ((((String)???).equals("true")) || (((String)???).equalsIgnoreCase("true"))));
+      conn.isXAResourceTransLoose = (xatransloose != null && (xatransloose.equals("true") || xatransloose.equalsIgnoreCase("true")));
 
-      return ???;
+      return conn;
     }
     catch (XAException localXAException)
     {

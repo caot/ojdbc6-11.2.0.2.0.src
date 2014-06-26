@@ -53,7 +53,7 @@ public class ConnectPacket extends Packet
 
     if (!paramSessionAtts.anoEnabled)
     {
-      int tmp351_350 = 4; this.buffer[33] = tmp351_350; this.buffer[32] = tmp351_350;
+      byte tmp351_350 = 4; this.buffer[33] = tmp351_350; this.buffer[32] = tmp351_350;
     }
     else
     {

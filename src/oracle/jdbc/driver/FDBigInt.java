@@ -97,8 +97,8 @@ class FDBigInt
     int j = 0;
     int k = 0;
     int m = 0;
-
-    for (int i = this.nWords - 1; (i >= 0) && ((m = this.data[i]) == 0); i--)
+    int i;
+    for (i = this.nWords - 1; (i >= 0) && ((m = this.data[i]) == 0); i--)
     {
       j++;
     }
@@ -163,13 +163,13 @@ class FDBigInt
   FDBigInt mult(FDBigInt paramFDBigInt)
   {
     int[] arrayOfInt = new int[this.nWords + paramFDBigInt.nWords];
-
-    for (int i = 0; i < this.nWords; i++)
+    int i;
+    for (i = 0; i < this.nWords; i++)
     {
       long l1 = this.data[i] & 0xFFFFFFFF;
       long l2 = 0L;
-
-      for (int j = 0; j < paramFDBigInt.nWords; j++)
+      int j;
+      for (j = 0; j < paramFDBigInt.nWords; j++)
       {
         l2 += (arrayOfInt[(i + j)] & 0xFFFFFFFF) + l1 * (paramFDBigInt.data[j] & 0xFFFFFFFF);
 
@@ -208,8 +208,8 @@ class FDBigInt
     }
 
     int[] arrayOfInt3 = new int[j];
-
-    for (int i = 0; i < j; i++)
+    int i;
+    for (i = 0; i < j; i++)
     {
       l += (arrayOfInt1[i] & 0xFFFFFFFF);
 
@@ -239,6 +239,7 @@ class FDBigInt
   int cmp(FDBigInt paramFDBigInt)
   {
     int i;
+    int j;
     if (this.nWords > paramFDBigInt.nWords)
     {
       j = paramFDBigInt.nWords - 1;
@@ -265,7 +266,7 @@ class FDBigInt
       i--;
     }
 
-    int j = this.data[i];
+    j = this.data[i];
     int k = paramFDBigInt.data[i];
 
     if (j < 0)
@@ -295,8 +296,10 @@ class FDBigInt
     }
 
     int i = this.nWords - 1;
+    int k;
     long l1 = (this.data[i] & 0xFFFFFFFF) / paramFDBigInt.data[i];
     long l2 = 0L;
+    long l3 = 0L;
 
     for (int j = 0; j <= i; j++)
     {
@@ -330,9 +333,7 @@ class FDBigInt
 
     }
 
-    long l3 = 0L;
-
-    for (int k = 0; k <= i; k++)
+    for (k = 0; k <= i; k++)
     {
       l3 += 10L * (this.data[k] & 0xFFFFFFFF);
       this.data[k] = ((int)l3);

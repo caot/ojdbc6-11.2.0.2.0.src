@@ -85,7 +85,7 @@ class T4CRowidAccessor extends RowidAccessor
     int i2;
     if (this.rowSpaceIndicator == null)
     {
-      i = this.mare.unmarshalUB1();
+      int i = this.mare.unmarshalUB1();
       long l1 = 0L;
       m = 0;
       int n = 0;
@@ -404,7 +404,7 @@ class T4CRowidAccessor extends RowidAccessor
   static final int kgrdc2ub(byte[] paramArrayOfByte1, int paramInt1, byte[] paramArrayOfByte2, int paramInt2, int paramInt3)
     throws SQLException
   {
-    int i = getRowidType(paramArrayOfByte1, paramInt1);
+    byte i = getRowidType(paramArrayOfByte1, paramInt1);
     byte[] arrayOfByte1 = paramArrayOfByte2;
     int j = paramInt3 - 1;
     int k = 0;

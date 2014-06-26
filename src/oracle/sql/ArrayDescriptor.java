@@ -45,10 +45,10 @@ public class ArrayDescriptor extends TypeDescriptor
   {
     if ((paramString == null) || (paramString.length() == 0) || (paramConnection == null))
     {
-      localObject = DatabaseError.createSqlException(null, 60, "ArrayDescriptor.createDescriptor: Invalid argument,'name' should not be an empty string and 'conn' should not be null.");
+      SQLException sqlexception = DatabaseError.createSqlException(null, 60, "ArrayDescriptor.createDescriptor: Invalid argument,'name' should not be an empty string and 'conn' should not be null.");
 
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = new SQLName(paramString, (oracle.jdbc.OracleConnection)paramConnection);
@@ -378,7 +378,6 @@ public class ArrayDescriptor extends TypeDescriptor
     throws SQLException
   {
     byte[] arrayOfByte = paramARRAY.shareBytes();
-    Object localObject;
     if (arrayOfByte == null)
     {
       if ((paramARRAY.datumArray != null) || (paramARRAY.locator != null))
@@ -404,9 +403,9 @@ public class ArrayDescriptor extends TypeDescriptor
       }
       else
       {
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "Array is in inconsistent status");
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "Array is in inconsistent status");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
     }
@@ -414,7 +413,7 @@ public class ArrayDescriptor extends TypeDescriptor
     {
       if ((paramARRAY.imageOffset != 0L) || (paramARRAY.imageLength != arrayOfByte.length))
       {
-        localObject = new byte[(int)paramARRAY.imageLength];
+        byte[] localObject = new byte[(int)paramARRAY.imageLength];
 
         System.arraycopy(arrayOfByte, (int)paramARRAY.imageOffset, localObject, 0, (int)paramARRAY.imageLength);
 
@@ -693,7 +692,7 @@ public class ArrayDescriptor extends TypeDescriptor
   public static Object[] makeJavaArray(int paramInt1, int paramInt2)
     throws SQLException
   {
-    Object localObject = null;
+    Object[] localObject = null;
 
     switch (paramInt2)
     {
@@ -855,80 +854,79 @@ public class ArrayDescriptor extends TypeDescriptor
 
     if (i < 0)
       i = 0;
-    Object localObject2;
     int j;
     Datum localDatum;
     switch (paramInt2)
     {
     case 4:
-      localObject2 = new int[i];
+      int[] ia = new int[i];
 
       for (j = 0; j < i; j++)
       {
         localDatum = paramArrayOfDatum[((int)paramLong + j - 1)];
 
         if (localDatum != null) {
-          localObject2[j] = localDatum.intValue();
+          ia[j] = localDatum.intValue();
         }
       }
-      localObject1 = localObject2;
+      localObject1 = ia;
       break;
     case 5:
-      localObject2 = new double[i];
+      double[] d = new double[i];
 
       for (j = 0; j < i; j++)
       {
         localDatum = paramArrayOfDatum[((int)paramLong + j - 1)];
 
         if (localDatum != null) {
-          localObject2[j] = localDatum.doubleValue();
+          d[j] = localDatum.doubleValue();
         }
       }
-      localObject1 = localObject2;
+      localObject1 = d;
       break;
     case 6:
-      localObject2 = new float[i];
+      float[] f = new float[i];
 
       for (j = 0; j < i; j++)
       {
         localDatum = paramArrayOfDatum[((int)paramLong + j - 1)];
 
         if (localDatum != null) {
-          localObject2[j] = localDatum.floatValue();
+          f[j] = localDatum.floatValue();
         }
       }
-      localObject1 = localObject2;
+      localObject1 = f;
       break;
     case 7:
-      localObject2 = new long[i];
+      long[] l = new long[i];
 
       for (j = 0; j < i; j++)
       {
         localDatum = paramArrayOfDatum[((int)paramLong + j - 1)];
 
         if (localDatum != null) {
-          localObject2[j] = localDatum.longValue();
+          l[j] = localDatum.longValue();
         }
       }
-      localObject1 = localObject2;
+      localObject1 = l;
       break;
     case 8:
-      localObject2 = new short[i];
+      short[] s = new short[i];
 
       for (j = 0; j < i; j++)
       {
         localDatum = paramArrayOfDatum[((int)paramLong + j - 1)];
 
         if (localDatum != null) {
-          localObject2[j] = ((NUMBER)localDatum).shortValue();
+          s[j] = ((NUMBER)localDatum).shortValue();
         }
       }
-      localObject1 = localObject2;
+      localObject1 = s;
       break;
     default:
-      localObject2 = DatabaseError.createUnsupportedFeatureSqlException();
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return localObject1;
@@ -944,63 +942,62 @@ public class ArrayDescriptor extends TypeDescriptor
     ResultSet localResultSet = toResultSetFromLocator(paramArrayOfByte, paramLong, paramInt1, null);
 
     int j = 0;
-    Object localObject2;
     switch (paramInt2)
     {
     case 4:
-      localObject2 = new int[i];
+      int[] ia = new int[i];
 
       while ((localResultSet.next()) && (j < i)) {
-        localObject2[(j++)] = ((OracleResultSet)localResultSet).getInt(2);
+        ia[(j++)] = ((OracleResultSet)localResultSet).getInt(2);
       }
       localResultSet.close();
 
-      localObject1 = localObject2;
+      localObject1 = ia;
       break;
     case 5:
-      localObject2 = new double[i];
+      double[] d = new double[i];
 
       while ((localResultSet.next()) && (j < i)) {
-        localObject2[(j++)] = ((OracleResultSet)localResultSet).getDouble(2);
+        d[(j++)] = ((OracleResultSet)localResultSet).getDouble(2);
       }
       localResultSet.close();
 
-      localObject1 = localObject2;
+      localObject1 = d;
       break;
     case 6:
-      localObject2 = new float[i];
+      float[] f = new float[i];
 
       while ((localResultSet.next()) && (j < i)) {
-        localObject2[(j++)] = ((OracleResultSet)localResultSet).getFloat(2);
+        f[(j++)] = ((OracleResultSet)localResultSet).getFloat(2);
       }
       localResultSet.close();
 
-      localObject1 = localObject2;
+      localObject1 = f;
       break;
     case 7:
-      localObject2 = new long[i];
+      long[] l = new long[i];
 
       while ((localResultSet.next()) && (j < i)) {
-        localObject2[(j++)] = ((OracleResultSet)localResultSet).getLong(2);
+        l[(j++)] = ((OracleResultSet)localResultSet).getLong(2);
       }
       localResultSet.close();
 
-      localObject1 = localObject2;
+      localObject1 = l;
       break;
     case 8:
-      localObject2 = new short[i];
+      short[] s = new short[i];
 
       while ((localResultSet.next()) && (j < i)) {
-        localObject2[(j++)] = ((OracleResultSet)localResultSet).getShort(2);
+        s[(j++)] = ((OracleResultSet)localResultSet).getShort(2);
       }
       localResultSet.close();
 
-      localObject1 = localObject2;
+      localObject1 = s;
       break;
     default:
-      localObject2 = DatabaseError.createUnsupportedFeatureSqlException();
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return localObject1;
@@ -1012,9 +1009,9 @@ public class ArrayDescriptor extends TypeDescriptor
     OracleType localOracleType = getElementType();
     if ((!(localOracleType instanceof OracleTypeNUMBER)) && (!(localOracleType instanceof OracleTypeFLOAT)))
     {
-      localObject1 = DatabaseError.createUnsupportedFeatureSqlException();
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject1 = null;

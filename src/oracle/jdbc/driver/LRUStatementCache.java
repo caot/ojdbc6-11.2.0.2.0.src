@@ -43,12 +43,12 @@ class LRUStatementCache
   protected void resize(int paramInt)
     throws SQLException
   {
-    Object localObject;
+    SQLException localObject;
     if (paramInt < 0)
     {
       localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 123);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if ((paramInt >= this.cacheSize) || (paramInt >= this.numElements))
@@ -57,9 +57,10 @@ class LRUStatementCache
     }
     else
     {
-      for (localObject = this.applicationCacheEnd; 
-        this.numElements > paramInt; localObject = ((OracleStatementCacheEntry)localObject).applicationPrev) {
-        purgeCacheEntry((OracleStatementCacheEntry)localObject);
+      OracleStatementCacheEntry oraclestatementcacheentry;
+      for (oraclestatementcacheentry = this.applicationCacheEnd; 
+        this.numElements > paramInt; oraclestatementcacheentry = oraclestatementcacheentry.applicationPrev) {
+        purgeCacheEntry(oraclestatementcacheentry);
       }
       this.cacheSize = paramInt;
     }
@@ -375,7 +376,8 @@ class LRUStatementCache
 
     System.out.println("applicationStart: " + this.applicationCacheStart + "  applicationEnd: " + this.applicationCacheEnd);
 
-    for (OracleStatementCacheEntry localOracleStatementCacheEntry = this.applicationCacheStart; localOracleStatementCacheEntry != null; localOracleStatementCacheEntry = localOracleStatementCacheEntry.applicationNext) {
+    OracleStatementCacheEntry localOracleStatementCacheEntry;
+    for (localOracleStatementCacheEntry = this.applicationCacheStart; localOracleStatementCacheEntry != null; localOracleStatementCacheEntry = localOracleStatementCacheEntry.applicationNext) {
       localOracleStatementCacheEntry.print();
     }
     System.out.println("implicitStart: " + this.implicitCacheStart);

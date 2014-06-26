@@ -70,7 +70,7 @@ class T4CBlobAccessor extends BlobAccessor
 
     if (this.rowSpaceIndicator == null)
     {
-      i = (int)this.mare.unmarshalUB4();
+      int i = (int)this.mare.unmarshalUB4();
 
       if (i == 0)
       {
@@ -204,7 +204,7 @@ class T4CBlobAccessor extends BlobAccessor
 
   byte[][] checkAndAllocateLobPrefetchMemory(byte[][] paramArrayOfByte, int paramInt1, int paramInt2, int paramInt3)
   {
-    Object localObject = paramArrayOfByte;
+    byte[][] localObject = paramArrayOfByte;
     if (localObject == null)
     {
       localObject = new byte[Math.max(paramInt1, paramInt2 + 1)][];
@@ -229,7 +229,7 @@ class T4CBlobAccessor extends BlobAccessor
 
   char[][] checkAndAllocateLobPrefetchMemory(char[][] paramArrayOfChar, int paramInt1, int paramInt2, int paramInt3)
   {
-    Object localObject = paramArrayOfChar;
+    char[][] localObject = paramArrayOfChar;
     if (localObject == null)
     {
       localObject = new char[Math.max(paramInt1, paramInt2 + 1)][];
@@ -254,7 +254,7 @@ class T4CBlobAccessor extends BlobAccessor
 
   long[] checkAndAllocateLobPrefetchMemory(long[] paramArrayOfLong, int paramInt1, int paramInt2)
   {
-    Object localObject = paramArrayOfLong;
+    long[] localObject = paramArrayOfLong;
     if (localObject == null) {
       localObject = new long[Math.max(paramInt1, paramInt2 + 1)];
     } else if (localObject.length < paramInt2 + 1)
@@ -268,7 +268,7 @@ class T4CBlobAccessor extends BlobAccessor
 
   int[] checkAndAllocateLobPrefetchMemory(int[] paramArrayOfInt, int paramInt1, int paramInt2)
   {
-    Object localObject = paramArrayOfInt;
+    int[] localObject = paramArrayOfInt;
     if (localObject == null) {
       localObject = new int[Math.max(paramInt1, paramInt2 + 1)];
     } else if (localObject.length < paramInt2 + 1)
@@ -282,7 +282,7 @@ class T4CBlobAccessor extends BlobAccessor
 
   short[] checkAndAllocateLobPrefetchMemory(short[] paramArrayOfShort, int paramInt1, int paramInt2)
   {
-    Object localObject = paramArrayOfShort;
+    short[] localObject = paramArrayOfShort;
     if (localObject == null) {
       localObject = new short[Math.max(paramInt1, paramInt2 + 1)];
     } else if (localObject.length < paramInt2 + 1)
@@ -296,7 +296,7 @@ class T4CBlobAccessor extends BlobAccessor
 
   byte[] checkAndAllocateLobPrefetchMemory(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
   {
-    Object localObject = paramArrayOfByte;
+    byte[] localObject = paramArrayOfByte;
     if (localObject == null) {
       localObject = new byte[Math.max(paramInt1, paramInt2 + 1)];
     } else if (localObject.length < paramInt2 + 1)
@@ -310,7 +310,7 @@ class T4CBlobAccessor extends BlobAccessor
 
   boolean[] checkAndAllocateLobPrefetchMemory(boolean[] paramArrayOfBoolean, int paramInt1, int paramInt2)
   {
-    Object localObject = paramArrayOfBoolean;
+    boolean[] localObject = paramArrayOfBoolean;
     if (localObject == null) {
       localObject = new boolean[Math.max(paramInt1, paramInt2 + 1)];
     } else if (localObject.length < paramInt2 + 1)
@@ -333,14 +333,14 @@ class T4CBlobAccessor extends BlobAccessor
     {
       if (this.prefetchedLobSize[paramInt] > 2147483647L)
       {
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 151);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 151);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if ((this.prefetchedLobData != null) && (this.lobPrefetchSizeForThisColumn >= this.prefetchedLobSize[paramInt]))
       {
-        localObject = new byte[(int)this.prefetchedLobSize[paramInt]];
+        byte[] localObject = new byte[(int)this.prefetchedLobSize[paramInt]];
         System.arraycopy(this.prefetchedLobData[paramInt], 0, localObject, 0, (int)this.prefetchedLobSize[paramInt]);
         return localObject;
       }

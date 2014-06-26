@@ -49,13 +49,14 @@ public final class r
     char[][] arrayOfChar = new char[16][65];
     char[] arrayOfChar2 = new char[65];
     c(arrayOfChar1, paramArrayOfChar4, paramInt);
-    int j;
-    int k = j < 64 ? 3 : j < 16 ? 2 : (j = b(paramArrayOfChar3, paramInt)) < 4 ? 1 : 4;
+    int j = b(paramArrayOfChar3, paramInt);
+    int k = j < 64 ? 3 : j < 16 ? 2 : j < 4 ? 1 : 4;
     c(arrayOfChar[0], 1, paramInt);
     a(arrayOfChar[1], paramArrayOfChar2, paramInt);
     arrayOfBoolean[0] = true;
     arrayOfBoolean[1] = true;
-    for (int m = 2; m < 64; m++)
+    int m;
+    for (m = 2; m < 64; m++)
       arrayOfBoolean[m] = false;
     m = 0;
     int i = 0;
@@ -65,7 +66,7 @@ public final class r
       if (i != 0)
         b(arrayOfChar2, arrayOfChar2, paramArrayOfChar4, arrayOfChar1, paramInt);
       m <<= 1;
-      if (arrayOfBoolean[m] == 0)
+      if (arrayOfBoolean[m] == false)
       {
         b(arrayOfChar[m], arrayOfChar[(m / 2)], paramArrayOfChar4, arrayOfChar1, paramInt);
         arrayOfBoolean[m] = true;
@@ -73,7 +74,7 @@ public final class r
       if ((paramArrayOfChar3[(i1 / 16)] & n) > 0)
         m += 1;
       n = n == 1 ? 32768 : (char)(n >>> 1 & 0x7FFF);
-      if (arrayOfBoolean[m] == 0)
+      if (arrayOfBoolean[m] == false)
       {
         a(arrayOfChar[m], arrayOfChar[(m - 1)], paramArrayOfChar2, paramArrayOfChar4, arrayOfChar1, paramInt);
         arrayOfBoolean[m] = true;
@@ -116,7 +117,8 @@ public final class r
   private static int b(char[] paramArrayOfChar, int paramInt)
   {
     int i = (char)((paramArrayOfChar[(paramInt - 1)] & 0x8000) > 0 ? -1 : 0);
-    for (int j = paramInt - 1; (j >= 0) && (paramArrayOfChar[j] == i); j--);
+    int j;
+    for (j = paramInt - 1; (j >= 0) && (paramArrayOfChar[j] == i); j--);
     if (j == -1)
       return 1;
     int m = 16;
@@ -140,7 +142,8 @@ public final class r
   private static void c(char[] paramArrayOfChar, int paramInt)
   {
     int i = 1;
-    for (int j = 0; (j < paramInt - 1) && (i != 0); j++)
+    int j;
+    for (j = 0; (j < paramInt - 1) && (i != 0); j++)
     {
       paramArrayOfChar[j] = ((char)(paramArrayOfChar[j] + '\001'));
       if (paramArrayOfChar[j] > 0)
@@ -223,7 +226,8 @@ public final class r
     int j;
     if ((j = b(paramArrayOfChar2, 0, paramInt)) <= 0)
       return;
-    for (int k = 0; k < j - 1; k++)
+    int k;
+    for (k = 0; k < j - 1; k++)
       paramArrayOfChar1[(j + k)] = a(paramArrayOfChar1, 2 * k + 1, paramArrayOfChar2[k], paramArrayOfChar2, k + 1, j - k - 1);
     a(paramArrayOfChar1, paramArrayOfChar1, paramArrayOfChar1, 2 * paramInt);
     for (k = 0; k < j; k++)
@@ -240,7 +244,8 @@ public final class r
   private static void e(char[] paramArrayOfChar, int paramInt)
   {
     int i = 1;
-    for (int j = 0; (j < paramInt - 1) && (i != 0); j++)
+    int j;
+    for (j = 0; (j < paramInt - 1) && (i != 0); j++)
     {
       paramArrayOfChar[j] = ((char)(paramArrayOfChar[j] - '\001'));
       if (paramArrayOfChar[j] != 65535)
@@ -253,14 +258,14 @@ public final class r
   private static void b(char[] paramArrayOfChar1, char[] paramArrayOfChar2, char[] paramArrayOfChar3, char[] paramArrayOfChar4, int paramInt)
   {
     char[] arrayOfChar;
-    b(arrayOfChar = new char[''], paramArrayOfChar2, paramInt);
+    b(arrayOfChar = new char[130], paramArrayOfChar2, paramInt);
     c(paramArrayOfChar1, arrayOfChar, paramArrayOfChar3, paramArrayOfChar4, paramInt);
   }
 
   private static void c(char[] paramArrayOfChar1, char[] paramArrayOfChar2, int paramInt)
   {
-    char[] arrayOfChar1 = new char[''];
-    char[] arrayOfChar2 = new char[''];
+    char[] arrayOfChar1 = new char[134];
+    char[] arrayOfChar2 = new char[136];
     char[] arrayOfChar3 = new char[68];
     int i = b(paramArrayOfChar2, paramInt);
     int j;
@@ -290,7 +295,7 @@ public final class r
 
   private static void c(char[] paramArrayOfChar, int paramInt1, int paramInt2)
   {
-    int i = (char)((paramInt1 & 0x8000) > 0 ? -1 : 0);
+    char i = (char)((paramInt1 & 0x8000) > 0 ? -1 : 0);
     paramArrayOfChar[0] = ((char)paramInt1);
     for (int j = 1; j < paramInt2; j++)
       paramArrayOfChar[j] = i;
@@ -299,7 +304,7 @@ public final class r
   private static void a(char[] paramArrayOfChar1, char[] paramArrayOfChar2, char[] paramArrayOfChar3, char[] paramArrayOfChar4, char[] paramArrayOfChar5, int paramInt)
   {
     char[] arrayOfChar;
-    b(arrayOfChar = new char[''], paramArrayOfChar2, paramArrayOfChar3, paramInt);
+    b(arrayOfChar = new char[130], paramArrayOfChar2, paramArrayOfChar3, paramInt);
     c(paramArrayOfChar1, arrayOfChar, paramArrayOfChar4, paramArrayOfChar5, paramInt);
   }
 
@@ -331,9 +336,9 @@ public final class r
 
   private static void b(char[] paramArrayOfChar1, char[] paramArrayOfChar2, char[] paramArrayOfChar3, char[] paramArrayOfChar4, char[] paramArrayOfChar5, int paramInt)
   {
-    char[] arrayOfChar1 = new char[''];
-    char[] arrayOfChar2 = new char[''];
-    char[] arrayOfChar3 = new char[''];
+    char[] arrayOfChar1 = new char[134];
+    char[] arrayOfChar2 = new char[134];
+    char[] arrayOfChar3 = new char[132];
     int n = b(paramArrayOfChar4, paramInt);
     int k;
     int m = (k = b(2 * n)) / 16;
@@ -363,7 +368,8 @@ public final class r
       return 1;
     if (i < j)
       return -1;
-    for (int k = paramInt - 1; (k >= 0) && (paramArrayOfChar1[k] == paramArrayOfChar2[k]); k--);
+    int k;
+    for (k = paramInt - 1; (k >= 0) && (paramArrayOfChar1[k] == paramArrayOfChar2[k]); k--);
     if (k == -1)
       return 0;
     if (paramArrayOfChar1[k] > paramArrayOfChar2[k])

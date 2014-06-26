@@ -69,13 +69,13 @@ class ClobAccessor extends Accessor
   CLOB getCLOB(int paramInt)
     throws SQLException
   {
-    Object localObject = null;
+    CLOB clob = null;
 
     if (this.rowSpaceIndicator == null)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1)
@@ -88,28 +88,28 @@ class ClobAccessor extends Accessor
       System.arraycopy(this.rowSpaceByte, i, arrayOfByte, 0, j);
 
       if (this.formOfUse == 1) {
-        localObject = new CLOB(this.statement.connection, arrayOfByte, this.formOfUse);
+        clob = new CLOB(this.statement.connection, arrayOfByte, this.formOfUse);
       }
       else {
-        localObject = new NCLOB(this.statement.connection, arrayOfByte);
+        clob = new NCLOB(this.statement.connection, arrayOfByte);
       }
 
       if ((this.lobPrefetchSizeForThisColumn != -1) && (this.prefetchedLobSize != null))
       {
-        ((CLOB)localObject).setActivePrefetch(true);
-        ((CLOB)localObject).setLength(this.prefetchedLobSize[paramInt]);
-        ((CLOB)localObject).setChunkSize(this.prefetchedLobChunkSize[paramInt]);
+        clob.setActivePrefetch(true);
+        clob.setLength(this.prefetchedLobSize[paramInt]);
+        clob.setChunkSize(this.prefetchedLobChunkSize[paramInt]);
 
         if ((this.prefetchedLobDataL != null) && (this.prefetchedLobDataL[paramInt] > 0))
         {
-          initializeClobForPrefetch(paramInt, (CLOB)localObject);
+          initializeClobForPrefetch(paramInt, clob);
         }
         else {
-          ((CLOB)localObject).setPrefetchedData(null);
+          clob.setPrefetchedData(null);
         }
       }
     }
-    return localObject;
+    return clob;
   }
 
   void initializeClobForPrefetch(int paramInt, CLOB paramCLOB)
@@ -174,9 +174,9 @@ class ClobAccessor extends Accessor
     }
     catch (IOException localIOException)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     catch (IndexOutOfBoundsException localIndexOutOfBoundsException)
     {

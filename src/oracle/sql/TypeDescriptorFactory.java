@@ -19,7 +19,7 @@ class TypeDescriptorFactory
 
     if (paramInt == 2007)
     {
-      localObject = (OPAQUE)paramDatum;
+      OPAQUE localObject = (OPAQUE)paramDatum;
       byte[] arrayOfByte = ((OPAQUE)localObject).getBytesValue();
       short[] arrayOfShort = new short[1];
       TypeDescriptor localTypeDescriptor = TypeDescriptor.unpickleOpaqueTypeImage(new PickleContext(arrayOfByte, 0L), ((OPAQUE)localObject).getPhysicalConnection(), arrayOfShort);
@@ -27,9 +27,9 @@ class TypeDescriptorFactory
       return localTypeDescriptor;
     }
 
-    Object localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1);
-    ((SQLException)localObject).fillInStackTrace();
-    throw ((Throwable)localObject);
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   protected OracleConnection getConnectionDuringExceptionHandling()

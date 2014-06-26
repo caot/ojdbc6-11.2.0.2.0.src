@@ -95,10 +95,12 @@ public class NSProtocol
     }
 
     Object localObject3;
+    
+    label0:
     while (true)
     {
-      localObject2 = null;
-      localConnectPacket = new ConnectPacket(this.sAtts, i == 0, bool);
+      IOException localObject2 = null;
+      ConnectPacket localConnectPacket = new ConnectPacket(this.sAtts, i == 0, bool);
       this.packet = new Packet(this.sAtts, this.sAtts.getSDU());
       try
       {
@@ -119,11 +121,11 @@ public class NSProtocol
       switch (this.packet.type)
       {
       case 2:
-        localAcceptPacket = new AcceptPacket(this.packet);
-
-        break;
+        AcceptPacket localAcceptPacket = new AcceptPacket(this.packet);
+        break label0;
+        
       case 5:
-        localRedirectPacket = new RedirectPacket(this.packet);
+        RedirectPacket localRedirectPacket = new RedirectPacket(this.packet);
 
         localObject3 = this.sAtts.cOption;
         this.addrRes.connection_redirected = true;
@@ -134,8 +136,9 @@ public class NSProtocol
         this.sAtts.cOption.restoreFromOrigCoption((ConnOption)localObject3);
 
         break;
+        
       case 4:
-        localRefusePacket = new RefusePacket(this.packet);
+        RefusePacket localRefusePacket = new RefusePacket(this.packet);
 
         this.sAtts.cOption.nt.disconnect();
         this.sAtts.cOption = null;
@@ -145,7 +148,7 @@ public class NSProtocol
         if (this.sAtts.cOption == null)
         {
           if (localObject2 != null) {
-            throw ((Throwable)localObject2);
+            throw localObject2;
           }
 
           try
@@ -170,7 +173,8 @@ public class NSProtocol
       case 11:
         if ((this.packet.flags & 0x8) == 8)
         {
-          this.sAtts.renegotiateSSLSession(); } break;
+          this.sAtts.renegotiateSSLSession(); }
+        break;
       case 3:
       case 6:
       case 7:
@@ -234,7 +238,7 @@ public class NSProtocol
   {
     if (!this.sAtts.connected)
       throw new NetException(200);
-    Object localObject = null;
+    IOException localObject = null;
     try
     {
       this.sAtts.nsOutputStream.close();

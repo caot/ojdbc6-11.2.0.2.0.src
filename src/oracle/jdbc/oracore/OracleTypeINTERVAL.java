@@ -120,7 +120,7 @@ public class OracleTypeINTERVAL extends OracleType
   public Datum toDatum(Object paramObject, OracleConnection paramOracleConnection)
     throws SQLException
   {
-    Object localObject = null;
+    Datum localObject = null;
 
     if (paramObject != null)
     {

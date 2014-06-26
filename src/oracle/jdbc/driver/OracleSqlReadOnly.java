@@ -141,7 +141,7 @@ class OracleSqlReadOnly
   private static final int EOKTSS_LAST_STATE = 135;
   public static final String[] PARSER_STATE_NAME = { "BASE", "BASE_1", "BASE_2", "B_STRING", "B_NAME", "B_C_COMMENT", "B_C_COMMENT_1", "B_COMMENT", "PARAMETER", "TOKEN", "B_EGIN", "BE_GIN", "BEG_IN", "BEGI_N", "BEGIN_", "C_ALL", "CA_LL", "CAL_L", "CALL_", "D_Eetc", "DE_etc", "DEC_LARE", "DECL_ARE", "DECLA_RE", "DECLAR_E", "DECLARE_", "DEL_ETE", "DELE_TE", "DELET_E", "DELETE_", "I_NSERT", "IN_SERT", "INS_ERT", "INSE_RT", "INSER_T", "INSERT_", "S_ELECT", "SE_LECT", "SEL_ECT", "SELE_CT", "SELEC_T", "SELECT_", "U_PDATE", "UP_DATE", "UPD_ATE", "UPDA_TE", "UPDAT_E", "UPDATE_", "M_ERGE", "ME_RGE", "MER_GE", "MERG_E", "MERGE_", "W_ITH", "WI_TH", "WIT_H", "WITH_", "KNOW_KIND", "KNOW_KIND_1", "KNOW_KIND_2", "K_STRING", "K_NAME", "K_C_COMMENT", "K_C_COMMENT_1", "K_COMMENT", "K_PARAMETER", "TOKEN_KK", "W_HERE", "WH_ERE", "WHE_RE", "WHER_E", "WHERE_", "O_RDER_BY", "OR_DER_BY", "ORD_ER_BY", "ORDE_R_BY", "ORDER__BY", "ORDER_xBY", "ORDER_B_Y", "ORDER_BY_", "ORDER_xBY_CC_1", "ORDER_xBY_CC_2", "ORDER_xBY_CC_3", "ORDER_xBY_C_1 ", "ORDER_xBY_C_2 ", "F_OR_UPDATE", "FO_R_UPDATE", "FOR__UPDATE", "FOR_xUPDATE", "FOR_U_PDATE", "FOR_UP_DATE", "FOR_UPD_ATE", "FOR_UPDA_TE", "FOR_UPDAT_E", "FOR_UPDATE_", "FOR_xUPDATE_CC_1", "FOR_xUPDATE_CC_2", "FOR_xUPDATE_CC_3", "FOR_xUPDATE_C_1 ", "FOR_xUPDATE_C_2 ", "B_N_tick", "B_NCHAR", "K_N_tick", "K_NCHAR", "K_NCHAR_tick", "B_Q_tickDelimiterCharDelimiterTick", "B_QTick_delimiterCharDelimiterTick", "B_QTickDelimiter_charDelimiterTick", "B_QTickDelimiterChar_delimiterTick", "B_QTickDelimiterCharDelimiter_tick", "K_Q_tickDelimiterCharDelimiterTick", "K_QTick_delimiterCharDelimiterTick", "K_QTickDelimiter_charDelimiterTick", "K_QTickDelimiterChar_delimiterTick", "K_QTickDelimiterCharDelimiter_tick", "K_EscEtc", "K_EscQuestion", "K_EscC_ALL", "K_EscCA_LL", "K_EscCAL_L", "K_EscCALL_", "K_EscT", "K_EscTS_", "K_EscD_", "K_EscE_SCAPE", "K_EscES_CAPE", "K_EscESC_APE", "K_EscESCA_PE", "K_EscESCAP_E", "K_EscESCAPE_", "K_EscF_N", "K_EscFN_", "K_EscO_J", "K_EscOJ_", "SKIP_PARAMETER_WHITESPACE", "LAST_STATE" };
 
-  static final int[][] TRANSITION = new int[''][];
+  static final int[][] TRANSITION = new int[135][];
   static final int NO_ACTION = 0;
   static final int DELETE_ACTION = 1;
   static final int INSERT_ACTION = 2;
@@ -165,62 +165,62 @@ class OracleSqlReadOnly
   static final int LOOK_FOR_DELIMITER_ACTION = 20;
   public static final String[] CBI_ACTION_NAME = { "NO_ACTION", "DELETE_ACTION", "INSERT_ACTION", "MERGE_ACTION", "UPDATE_ACTION", "PLSQL_ACTION", "CALL_ACTION", "SELECT_ACTION", "OTHER_ACTION", "WHERE_ACTION", "ORDER_ACTION", "ORDER_BY_ACTION", "FOR_ACTION", "FOR_UPDATE_ACTION", "QUESTION_ACTION", "PARAMETER_ACTION", "END_PARAMETER_ACTION", "START_NCHAR_LITERAL_ACTION", "END_NCHAR_LITERAL_ACTION", "SAVE_DELIMITER_ACTION", "LOOK_FOR_DELIMITER_ACTION" };
 
-  static final int[][] ACTION = new int[''][];
+  static final int[][] ACTION = new int[135][];
   static final int INITIAL_STATE = 0;
   static final int RESTART_STATE = 66;
-  static final ODBCAction[][] ODBC_ACTION = new ODBCAction[''][];
+  static final ODBCAction[][] ODBC_ACTION = new ODBCAction[135][];
   static final int cMax = 127;
   private static final int cMaxLength = 128;
 
-  private static final int[] copy(int[] paramArrayOfInt)
+  private static final int[] copy(int[] a)
   {
-    int[] arrayOfInt = new int[paramArrayOfInt.length];
-    System.arraycopy(paramArrayOfInt, 0, arrayOfInt, 0, paramArrayOfInt.length);
-    return arrayOfInt;
+    int[] r = new int[a.length];
+    System.arraycopy(a, 0, r, 0, a.length);
+    return r;
   }
 
-  private static final ODBCAction[] copy(ODBCAction[] paramArrayOfODBCAction)
+  private static final ODBCAction[] copy(ODBCAction[] a)
   {
-    ODBCAction[] arrayOfODBCAction = new ODBCAction[paramArrayOfODBCAction.length];
-    System.arraycopy(paramArrayOfODBCAction, 0, arrayOfODBCAction, 0, paramArrayOfODBCAction.length);
-    return arrayOfODBCAction;
+    ODBCAction[] r = new ODBCAction[a.length];
+    System.arraycopy(a, 0, r, 0, a.length);
+    return r;
   }
 
-  private static final int[] newArray(int paramInt1, int paramInt2)
+  private static final int[] newArray(int length, int value)
   {
-    int[] arrayOfInt = new int[paramInt1];
+    int[] r = new int[length];
 
-    for (int i = 0; i < paramInt1; i++) {
-      arrayOfInt[i] = paramInt2;
+    for (int i = 0; i < length; i++) {
+      r[i] = value;
     }
-    return arrayOfInt;
+    return r;
   }
 
-  private static final ODBCAction[] newArray(int paramInt, ODBCAction paramODBCAction)
+  private static final ODBCAction[] newArray(int length, ODBCAction value)
   {
-    ODBCAction[] arrayOfODBCAction = new ODBCAction[paramInt];
+    ODBCAction[] r = new ODBCAction[length];
 
-    for (int i = 0; i < paramInt; i++) {
-      arrayOfODBCAction[i] = paramODBCAction;
+    for (int i = 0; i < length; i++) {
+      r[i] = value;
     }
-    return arrayOfODBCAction;
+    return r;
   }
 
-  private static final int[] copyReplacing(int[] paramArrayOfInt, int paramInt1, int paramInt2)
+  private static final int[] copyReplacing(int[] a, int source, int target)
   {
-    int[] arrayOfInt = new int[paramArrayOfInt.length];
+    int[] r = new int[a.length];
 
-    for (int i = 0; i < arrayOfInt.length; i++)
+    for (int i = 0; i < r.length; i++)
     {
-      int j = paramArrayOfInt[i];
+      int j = a[i];
 
-      if (j == paramInt1)
-        arrayOfInt[i] = paramInt2;
+      if (j == source)
+        r[i] = target;
       else {
-        arrayOfInt[i] = j;
+        r[i] = j;
       }
     }
-    return arrayOfInt;
+    return r;
   }
 
   private static final ODBCAction[] copyReplacing(ODBCAction[] paramArrayOfODBCAction, ODBCAction paramODBCAction1, ODBCAction paramODBCAction2)
@@ -244,64 +244,64 @@ class OracleSqlReadOnly
   {
     try
     {
-      int[] arrayOfInt1 = { 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 9, 9, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 57, 57, 57, 57, 57, 57, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 57, 57, 57, 57, 9, 57, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 57, 57, 57, 57, 57 };
+      int[] token0 = { 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 9, 9, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 57, 57, 57, 57, 57, 57, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 57, 57, 57, 57, 9, 57, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 57, 57, 57, 57, 57 };
 
-      int[] arrayOfInt2 = copy(arrayOfInt1);
-      arrayOfInt2[34] = 4;
-      arrayOfInt2[39] = 3;
-      arrayOfInt2[45] = 2;
-      arrayOfInt2[47] = 1;
-      arrayOfInt2[58] = 8;
-      arrayOfInt2[123] = 115;
+      int[] token = copy(token0);
+      token[34] = 4;
+      token[39] = 3;
+      token[45] = 2;
+      token[47] = 1;
+      token[58] = 8;
+      token[123] = 115;
 
-      int[] arrayOfInt3 = copyReplacing(arrayOfInt2, 57, 0);
-      arrayOfInt3[66] = 10;
-      arrayOfInt3[98] = 10;
-      arrayOfInt3[67] = 15;
-      arrayOfInt3[99] = 15;
-      arrayOfInt3[68] = 19;
-      arrayOfInt3[100] = 19;
-      arrayOfInt3[73] = 30;
-      arrayOfInt3[105] = 30;
-      arrayOfInt3[109] = 48;
-      arrayOfInt3[77] = 48;
-      arrayOfInt3[78] = 100;
-      arrayOfInt3[110] = 100;
-      arrayOfInt3[81] = 105;
-      arrayOfInt3[113] = 105;
-      arrayOfInt3[83] = 36;
-      arrayOfInt3[115] = 36;
-      arrayOfInt3[85] = 42;
-      arrayOfInt3[117] = 42;
-      arrayOfInt3[87] = 53;
-      arrayOfInt3[119] = 53;
+      int[] base = copyReplacing(token, 57, 0);
+      base[66] = 10;
+      base[98] = 10;
+      base[67] = 15;
+      base[99] = 15;
+      base[68] = 19;
+      base[100] = 19;
+      base[73] = 30;
+      base[105] = 30;
+      base[109] = 48;
+      base[77] = 48;
+      base[78] = 100;
+      base[110] = 100;
+      base[81] = 105;
+      base[113] = 105;
+      base[83] = 36;
+      base[115] = 36;
+      base[85] = 42;
+      base[117] = 42;
+      base[87] = 53;
+      base[119] = 53;
 
-      int[] arrayOfInt4 = copyReplacing(arrayOfInt2, 9, 66);
-      arrayOfInt4[34] = 61;
-      arrayOfInt4[39] = 60;
-      arrayOfInt4[45] = 59;
-      arrayOfInt4[47] = 58;
-      arrayOfInt4[58] = 134;
-      arrayOfInt4[32] = 57;
-      arrayOfInt4[32] = 57;
-      arrayOfInt4[9] = 57;
-      arrayOfInt4[10] = 57;
-      arrayOfInt4[13] = 57;
-      arrayOfInt4[61] = 57;
+      int[] found = copyReplacing(token, 9, 66);
+      found[34] = 61;
+      found[39] = 60;
+      found[45] = 59;
+      found[47] = 58;
+      found[58] = 134;
+      found[32] = 57;
+      found[32] = 57;
+      found[9] = 57;
+      found[10] = 57;
+      found[13] = 57;
+      found[61] = 57;
 
-      int[] arrayOfInt5 = copyReplacing(arrayOfInt4, 9, 66);
-      arrayOfInt5[78] = 102;
-      arrayOfInt5[110] = 102;
-      arrayOfInt5[81] = 110;
-      arrayOfInt5[113] = 110;
-      arrayOfInt5[87] = 67;
-      arrayOfInt5[119] = 67;
-      arrayOfInt5[79] = 72;
-      arrayOfInt5[111] = 72;
-      arrayOfInt5[70] = 85;
-      arrayOfInt5[102] = 85;
+      int[] known = copyReplacing(found, 9, 66);
+      known[78] = 102;
+      known[110] = 102;
+      known[81] = 110;
+      known[113] = 110;
+      known[87] = 67;
+      known[119] = 67;
+      known[79] = 72;
+      known[111] = 72;
+      known[70] = 85;
+      known[102] = 85;
 
-      int[] arrayOfInt6 = copyReplacing(arrayOfInt5, 57, 115);
+      int[] arrayOfInt6 = copyReplacing(known, 57, 115);
 
       arrayOfInt6[63] = 116;
       arrayOfInt6[99] = 117;
@@ -317,19 +317,19 @@ class OracleSqlReadOnly
       arrayOfInt6[111] = 132;
       arrayOfInt6[79] = 132;
 
-      TRANSITION[0] = arrayOfInt3;
-      TRANSITION[1] = copy(arrayOfInt3);
+      TRANSITION[0] = base;
+      TRANSITION[1] = copy(base);
       TRANSITION[1][42] = 5;
-      TRANSITION[2] = copy(arrayOfInt3);
+      TRANSITION[2] = copy(base);
       TRANSITION[2][45] = 7;
       TRANSITION[3] = newArray(128, 3);
       TRANSITION[3][39] = 0;
-      TRANSITION[100] = copy(arrayOfInt2);
+      TRANSITION[100] = copy(token);
       TRANSITION[100][39] = 101;
       TRANSITION[101] = newArray(128, 101);
       TRANSITION[101][39] = 0;
 
-      TRANSITION[105] = copy(arrayOfInt2);
+      TRANSITION[105] = copy(token);
       TRANSITION[105][39] = 106;
       TRANSITION[106] = newArray(128, 107);
       TRANSITION[107] = newArray(128, 107);
@@ -347,137 +347,137 @@ class OracleSqlReadOnly
       TRANSITION[6][47] = 0;
       TRANSITION[7] = newArray(128, 7);
       TRANSITION[7][10] = 0;
-      TRANSITION[8] = copyReplacing(arrayOfInt2, 9, 8);
-      TRANSITION[9] = arrayOfInt2;
-      TRANSITION[10] = copy(arrayOfInt2);
+      TRANSITION[8] = copyReplacing(token, 9, 8);
+      TRANSITION[9] = token;
+      TRANSITION[10] = copy(token);
       TRANSITION[10][69] = 11;
       TRANSITION[10][101] = 11;
-      TRANSITION[11] = copy(arrayOfInt2);
+      TRANSITION[11] = copy(token);
       TRANSITION[11][71] = 12;
       TRANSITION[11][103] = 12;
-      TRANSITION[12] = copy(arrayOfInt2);
+      TRANSITION[12] = copy(token);
       TRANSITION[12][73] = 13;
       TRANSITION[12][105] = 13;
-      TRANSITION[13] = copy(arrayOfInt2);
+      TRANSITION[13] = copy(token);
       TRANSITION[13][78] = 14;
       TRANSITION[13][110] = 14;
-      TRANSITION[14] = arrayOfInt5;
-      TRANSITION[15] = copy(arrayOfInt2);
+      TRANSITION[14] = known;
+      TRANSITION[15] = copy(token);
       TRANSITION[15][65] = 16;
       TRANSITION[15][97] = 16;
-      TRANSITION[16] = copy(arrayOfInt2);
+      TRANSITION[16] = copy(token);
       TRANSITION[16][76] = 17;
       TRANSITION[16][108] = 17;
-      TRANSITION[17] = copy(arrayOfInt2);
+      TRANSITION[17] = copy(token);
       TRANSITION[17][76] = 18;
       TRANSITION[17][108] = 18;
-      TRANSITION[18] = arrayOfInt5;
-      TRANSITION[19] = copy(arrayOfInt2);
+      TRANSITION[18] = known;
+      TRANSITION[19] = copy(token);
       TRANSITION[19][69] = 20;
       TRANSITION[19][101] = 20;
-      TRANSITION[20] = copy(arrayOfInt2);
+      TRANSITION[20] = copy(token);
       TRANSITION[20][67] = 21;
       TRANSITION[20][99] = 21;
       TRANSITION[20][76] = 26;
       TRANSITION[20][108] = 26;
-      TRANSITION[21] = copy(arrayOfInt2);
+      TRANSITION[21] = copy(token);
       TRANSITION[21][76] = 22;
       TRANSITION[21][108] = 22;
-      TRANSITION[22] = copy(arrayOfInt2);
+      TRANSITION[22] = copy(token);
       TRANSITION[22][65] = 23;
       TRANSITION[22][97] = 23;
-      TRANSITION[23] = copy(arrayOfInt2);
+      TRANSITION[23] = copy(token);
       TRANSITION[23][82] = 24;
       TRANSITION[23][114] = 24;
-      TRANSITION[24] = copy(arrayOfInt2);
+      TRANSITION[24] = copy(token);
       TRANSITION[24][69] = 25;
       TRANSITION[24][101] = 25;
-      TRANSITION[25] = arrayOfInt5;
-      TRANSITION[26] = copy(arrayOfInt2);
+      TRANSITION[25] = known;
+      TRANSITION[26] = copy(token);
       TRANSITION[26][69] = 27;
       TRANSITION[26][101] = 27;
-      TRANSITION[27] = copy(arrayOfInt2);
+      TRANSITION[27] = copy(token);
       TRANSITION[27][84] = 28;
       TRANSITION[27][116] = 28;
-      TRANSITION[28] = copy(arrayOfInt2);
+      TRANSITION[28] = copy(token);
       TRANSITION[28][69] = 29;
       TRANSITION[28][101] = 29;
-      TRANSITION[29] = arrayOfInt5;
-      TRANSITION[30] = copy(arrayOfInt2);
+      TRANSITION[29] = known;
+      TRANSITION[30] = copy(token);
       TRANSITION[30][78] = 31;
       TRANSITION[30][110] = 31;
-      TRANSITION[31] = copy(arrayOfInt2);
+      TRANSITION[31] = copy(token);
       TRANSITION[31][83] = 32;
       TRANSITION[31][115] = 32;
-      TRANSITION[32] = copy(arrayOfInt2);
+      TRANSITION[32] = copy(token);
       TRANSITION[32][69] = 33;
       TRANSITION[32][101] = 33;
-      TRANSITION[33] = copy(arrayOfInt2);
+      TRANSITION[33] = copy(token);
       TRANSITION[33][82] = 34;
       TRANSITION[33][114] = 34;
-      TRANSITION[34] = copy(arrayOfInt2);
+      TRANSITION[34] = copy(token);
       TRANSITION[34][84] = 35;
       TRANSITION[34][116] = 35;
-      TRANSITION[35] = arrayOfInt5;
-      TRANSITION[36] = copy(arrayOfInt2);
+      TRANSITION[35] = known;
+      TRANSITION[36] = copy(token);
       TRANSITION[36][69] = 37;
       TRANSITION[36][101] = 37;
-      TRANSITION[37] = copy(arrayOfInt2);
+      TRANSITION[37] = copy(token);
       TRANSITION[37][76] = 38;
       TRANSITION[37][108] = 38;
-      TRANSITION[38] = copy(arrayOfInt2);
+      TRANSITION[38] = copy(token);
       TRANSITION[38][69] = 39;
       TRANSITION[38][101] = 39;
-      TRANSITION[39] = copy(arrayOfInt2);
+      TRANSITION[39] = copy(token);
       TRANSITION[39][67] = 40;
       TRANSITION[39][99] = 40;
-      TRANSITION[40] = copy(arrayOfInt2);
+      TRANSITION[40] = copy(token);
       TRANSITION[40][84] = 41;
       TRANSITION[40][116] = 41;
-      TRANSITION[41] = arrayOfInt5;
-      TRANSITION[42] = copy(arrayOfInt2);
+      TRANSITION[41] = known;
+      TRANSITION[42] = copy(token);
       TRANSITION[42][80] = 43;
       TRANSITION[42][112] = 43;
-      TRANSITION[43] = copy(arrayOfInt2);
+      TRANSITION[43] = copy(token);
       TRANSITION[43][68] = 44;
       TRANSITION[43][100] = 44;
-      TRANSITION[44] = copy(arrayOfInt2);
+      TRANSITION[44] = copy(token);
       TRANSITION[44][65] = 45;
       TRANSITION[44][97] = 45;
-      TRANSITION[45] = copy(arrayOfInt2);
+      TRANSITION[45] = copy(token);
       TRANSITION[45][84] = 46;
       TRANSITION[45][116] = 46;
-      TRANSITION[46] = copy(arrayOfInt2);
+      TRANSITION[46] = copy(token);
       TRANSITION[46][69] = 47;
       TRANSITION[46][101] = 47;
-      TRANSITION[47] = arrayOfInt5;
-      TRANSITION[48] = copy(arrayOfInt2);
+      TRANSITION[47] = known;
+      TRANSITION[48] = copy(token);
       TRANSITION[48][69] = 49;
       TRANSITION[48][101] = 49;
-      TRANSITION[49] = copy(arrayOfInt2);
+      TRANSITION[49] = copy(token);
       TRANSITION[49][82] = 50;
       TRANSITION[49][114] = 50;
-      TRANSITION[50] = copy(arrayOfInt2);
+      TRANSITION[50] = copy(token);
       TRANSITION[50][71] = 51;
       TRANSITION[50][103] = 51;
-      TRANSITION[51] = copy(arrayOfInt2);
+      TRANSITION[51] = copy(token);
       TRANSITION[51][69] = 52;
       TRANSITION[51][101] = 52;
-      TRANSITION[52] = arrayOfInt5;
-      TRANSITION[53] = copy(arrayOfInt2);
+      TRANSITION[52] = known;
+      TRANSITION[53] = copy(token);
       TRANSITION[53][73] = 54;
       TRANSITION[53][105] = 54;
-      TRANSITION[54] = copy(arrayOfInt2);
+      TRANSITION[54] = copy(token);
       TRANSITION[54][84] = 55;
       TRANSITION[54][116] = 55;
-      TRANSITION[55] = copy(arrayOfInt2);
+      TRANSITION[55] = copy(token);
       TRANSITION[55][72] = 56;
       TRANSITION[55][104] = 56;
-      TRANSITION[56] = arrayOfInt5;
-      TRANSITION[66] = arrayOfInt4;
-      TRANSITION[58] = copy(arrayOfInt5);
+      TRANSITION[56] = known;
+      TRANSITION[66] = found;
+      TRANSITION[58] = copy(known);
       TRANSITION[58][42] = 62;
-      TRANSITION[59] = copy(arrayOfInt5);
+      TRANSITION[59] = copy(known);
       TRANSITION[59][45] = 64;
       TRANSITION[62] = newArray(128, 62);
       TRANSITION[62][42] = 63;
@@ -490,47 +490,47 @@ class OracleSqlReadOnly
       TRANSITION[61][34] = 57;
       TRANSITION[60] = newArray(128, 60);
       TRANSITION[60][39] = 57;
-      TRANSITION[65] = copyReplacing(arrayOfInt4, 66, 65);
-      TRANSITION[''] = copyReplacing(arrayOfInt4, 66, 65);
-      TRANSITION[''][32] = '';
-      TRANSITION[''][10] = '';
-      TRANSITION[''][13] = '';
-      TRANSITION[''][9] = '';
+      TRANSITION[65] = copyReplacing(found, 66, 65);
+      TRANSITION[134] = copyReplacing(found, 66, 65);
+      TRANSITION[134][32] = 134;
+      TRANSITION[134][10] = 134;
+      TRANSITION[134][13] = 134;
+      TRANSITION[134][9] = 134;
 
-      TRANSITION[57] = arrayOfInt5;
-      TRANSITION[67] = copy(arrayOfInt4);
+      TRANSITION[57] = known;
+      TRANSITION[67] = copy(found);
       TRANSITION[67][72] = 68;
       TRANSITION[67][104] = 68;
-      TRANSITION[68] = copy(arrayOfInt4);
+      TRANSITION[68] = copy(found);
       TRANSITION[68][69] = 69;
       TRANSITION[68][101] = 69;
-      TRANSITION[69] = copy(arrayOfInt4);
+      TRANSITION[69] = copy(found);
       TRANSITION[69][82] = 70;
       TRANSITION[69][114] = 70;
-      TRANSITION[70] = copy(arrayOfInt4);
+      TRANSITION[70] = copy(found);
       TRANSITION[70][69] = 71;
       TRANSITION[70][101] = 71;
-      TRANSITION[71] = arrayOfInt5;
+      TRANSITION[71] = known;
 
-      TRANSITION[72] = copy(arrayOfInt4);
+      TRANSITION[72] = copy(found);
       TRANSITION[72][82] = 73;
       TRANSITION[72][114] = 73;
-      TRANSITION[73] = copy(arrayOfInt4);
+      TRANSITION[73] = copy(found);
       TRANSITION[73][68] = 74;
       TRANSITION[73][100] = 74;
-      TRANSITION[74] = copy(arrayOfInt4);
+      TRANSITION[74] = copy(found);
       TRANSITION[74][69] = 75;
       TRANSITION[74][101] = 75;
-      TRANSITION[75] = copy(arrayOfInt4);
+      TRANSITION[75] = copy(found);
       TRANSITION[75][82] = 76;
       TRANSITION[75][114] = 76;
-      TRANSITION[76] = copyReplacing(arrayOfInt5, 57, 77);
+      TRANSITION[76] = copyReplacing(known, 57, 77);
       TRANSITION[76][47] = 80;
       TRANSITION[76][45] = 83;
 
-      TRANSITION[77] = copyReplacing(arrayOfInt5, 57, 77);
+      TRANSITION[77] = copyReplacing(known, 57, 77);
       TRANSITION[77][47] = 80;
-      TRANSITION[80] = copy(arrayOfInt5);
+      TRANSITION[80] = copy(known);
       TRANSITION[80][42] = 81;
       TRANSITION[81] = newArray(128, 81);
       TRANSITION[81][42] = 82;
@@ -538,31 +538,31 @@ class OracleSqlReadOnly
       TRANSITION[82][47] = 77;
 
       TRANSITION[77][45] = 83;
-      TRANSITION[83] = copy(arrayOfInt5);
+      TRANSITION[83] = copy(known);
       TRANSITION[83][45] = 84;
       TRANSITION[84] = newArray(128, 84);
       TRANSITION[84][10] = 77;
 
       TRANSITION[77][66] = 78;
       TRANSITION[77][98] = 78;
-      TRANSITION[78] = copy(arrayOfInt4);
+      TRANSITION[78] = copy(found);
       TRANSITION[78][89] = 79;
       TRANSITION[78][121] = 79;
-      TRANSITION[79] = arrayOfInt5;
+      TRANSITION[79] = known;
 
-      TRANSITION[85] = copy(arrayOfInt5);
+      TRANSITION[85] = copy(known);
       TRANSITION[85][79] = 86;
       TRANSITION[85][111] = 86;
-      TRANSITION[86] = copy(arrayOfInt5);
+      TRANSITION[86] = copy(known);
       TRANSITION[86][82] = 87;
       TRANSITION[86][114] = 87;
-      TRANSITION[87] = copyReplacing(arrayOfInt4, 57, 88);
+      TRANSITION[87] = copyReplacing(found, 57, 88);
       TRANSITION[87][47] = 95;
       TRANSITION[87][45] = 98;
 
-      TRANSITION[88] = copyReplacing(arrayOfInt4, 57, 88);
+      TRANSITION[88] = copyReplacing(found, 57, 88);
       TRANSITION[88][47] = 95;
-      TRANSITION[95] = copy(arrayOfInt5);
+      TRANSITION[95] = copy(known);
       TRANSITION[95][42] = 96;
       TRANSITION[96] = newArray(128, 96);
       TRANSITION[96][42] = 97;
@@ -570,31 +570,31 @@ class OracleSqlReadOnly
       TRANSITION[97][47] = 88;
 
       TRANSITION[88][45] = 98;
-      TRANSITION[98] = copy(arrayOfInt5);
+      TRANSITION[98] = copy(known);
       TRANSITION[98][45] = 99;
       TRANSITION[99] = newArray(128, 99);
       TRANSITION[99][10] = 88;
 
       TRANSITION[88][85] = 89;
       TRANSITION[88][117] = 89;
-      TRANSITION[89] = copy(arrayOfInt5);
+      TRANSITION[89] = copy(known);
       TRANSITION[89][80] = 90;
       TRANSITION[89][112] = 90;
-      TRANSITION[90] = copy(arrayOfInt5);
+      TRANSITION[90] = copy(known);
       TRANSITION[90][68] = 91;
       TRANSITION[90][100] = 91;
-      TRANSITION[91] = copy(arrayOfInt5);
+      TRANSITION[91] = copy(known);
       TRANSITION[91][65] = 92;
       TRANSITION[91][97] = 92;
-      TRANSITION[92] = copy(arrayOfInt5);
+      TRANSITION[92] = copy(known);
       TRANSITION[92][84] = 93;
       TRANSITION[92][116] = 93;
-      TRANSITION[93] = copy(arrayOfInt5);
+      TRANSITION[93] = copy(known);
       TRANSITION[93][69] = 94;
       TRANSITION[93][101] = 94;
-      TRANSITION[94] = arrayOfInt5;
+      TRANSITION[94] = known;
 
-      TRANSITION[102] = copy(arrayOfInt4);
+      TRANSITION[102] = copy(found);
       TRANSITION[102][39] = 103;
       TRANSITION[103] = newArray(128, 103);
       TRANSITION[103][39] = 104;
@@ -602,7 +602,7 @@ class OracleSqlReadOnly
       TRANSITION[104] = newArray(128, 57);
       TRANSITION[104][39] = 103;
 
-      TRANSITION[110] = copy(arrayOfInt5);
+      TRANSITION[110] = copy(known);
       TRANSITION[110][39] = 111;
       TRANSITION[111] = newArray(128, 112);
       TRANSITION[112] = newArray(128, 112);
@@ -612,56 +612,56 @@ class OracleSqlReadOnly
       TRANSITION[114][39] = 57;
 
       TRANSITION[115] = arrayOfInt6;
-      TRANSITION[116] = arrayOfInt5;
-      TRANSITION[117] = copy(arrayOfInt5);
+      TRANSITION[116] = known;
+      TRANSITION[117] = copy(known);
       TRANSITION[117][97] = 118;
       TRANSITION[117][65] = 118;
-      TRANSITION[118] = copy(arrayOfInt5);
+      TRANSITION[118] = copy(known);
       TRANSITION[118][108] = 119;
       TRANSITION[118][76] = 119;
-      TRANSITION[119] = copy(arrayOfInt5);
+      TRANSITION[119] = copy(known);
       TRANSITION[119][108] = 120;
       TRANSITION[119][76] = 120;
-      TRANSITION[120] = arrayOfInt5;
-      TRANSITION[121] = copy(arrayOfInt5);
+      TRANSITION[120] = known;
+      TRANSITION[121] = copy(known);
       TRANSITION[121][115] = 122;
       TRANSITION[121][83] = 122;
-      TRANSITION[122] = arrayOfInt5;
-      TRANSITION[123] = arrayOfInt5;
-      TRANSITION[124] = copy(arrayOfInt5);
+      TRANSITION[122] = known;
+      TRANSITION[123] = known;
+      TRANSITION[124] = copy(known);
       TRANSITION[124][115] = 125;
       TRANSITION[124][83] = 125;
-      TRANSITION[125] = copy(arrayOfInt5);
+      TRANSITION[125] = copy(known);
       TRANSITION[125][99] = 126;
       TRANSITION[125][67] = 126;
-      TRANSITION[126] = copy(arrayOfInt5);
+      TRANSITION[126] = copy(known);
       TRANSITION[126][97] = 127;
       TRANSITION[126][65] = 127;
-      TRANSITION[127] = copy(arrayOfInt5);
-      TRANSITION[127][112] = '';
-      TRANSITION[127][80] = '';
-      TRANSITION[''] = copy(arrayOfInt5);
-      TRANSITION[''][101] = '';
-      TRANSITION[''][69] = '';
-      TRANSITION[''] = arrayOfInt5;
-      TRANSITION[''] = copy(arrayOfInt5);
-      TRANSITION[''][110] = '';
-      TRANSITION[''][78] = '';
-      TRANSITION[''] = arrayOfInt5;
-      TRANSITION[''] = copy(arrayOfInt5);
-      TRANSITION[''][106] = '';
-      TRANSITION[''][74] = '';
-      TRANSITION[''] = arrayOfInt5;
+      TRANSITION[127] = copy(known);
+      TRANSITION[127][112] = 128;
+      TRANSITION[127][80] = 128;
+      TRANSITION[128] = copy(known);
+      TRANSITION[128][101] = 129;
+      TRANSITION[128][69] = 129;
+      TRANSITION[129] = known;
+      TRANSITION[130] = copy(known);
+      TRANSITION[130][110] = 131;
+      TRANSITION[130][78] = 131;
+      TRANSITION[131] = known;
+      TRANSITION[132] = copy(known);
+      TRANSITION[132][106] = 133;
+      TRANSITION[132][74] = 133;
+      TRANSITION[133] = known;
 
-      Object localObject1 = newArray(128, 0);
+      int[] none = newArray(128, 0);
 
-      Object localObject2 = copy((int[])localObject1);
+      int[] localObject2 = copy((int[])none);
       localObject2[63] = 14;
 
-      Object localObject3 = copy((int[])localObject2);
+      int[] localObject3 = copy((int[])localObject2);
       localObject3[123] = 5;
 
-      Object localObject4 = new int[''];
+      int[] localObject4 = new int[128];
 
       for (int i = 0; i < localObject4.length; i++) {
         if (TRANSITION[8][i] == 8)
@@ -669,7 +669,7 @@ class OracleSqlReadOnly
         else
           localObject4[i] = 16;
       }
-      Object localObject5 = new int[''];
+      int[] localObject5 = new int[128];
 
       for (int j = 0; j < localObject5.length; j++) {
         if (TRANSITION[65][j] == 65)
@@ -677,19 +677,19 @@ class OracleSqlReadOnly
         else
           localObject5[j] = 16;
       }
-      Object localObject6 = copy((int[])localObject5);
+      int[] localObject6 = copy((int[])localObject5);
       localObject6[32] = 0;
       localObject6[10] = 0;
       localObject6[9] = 0;
       localObject6[13] = 0;
 
-      Object localObject7 = copy((int[])localObject1);
+      int[] localObject7 = copy((int[])none);
 
       for (int k = 0; k < localObject7.length; k++) {
-        if (arrayOfInt5[k] != 66)
+        if (known[k] != 66)
           localObject7[k] = 5;
       }
-      Object localObject8 = copyReplacing((int[])localObject7, 5, 6);
+      int[] localObject8 = copyReplacing((int[])localObject7, 5, 6);
       int[] arrayOfInt7 = copyReplacing((int[])localObject7, 5, 1);
       int[] arrayOfInt8 = copyReplacing((int[])localObject7, 5, 2);
       int[] arrayOfInt9 = copyReplacing((int[])localObject7, 5, 3);
@@ -710,32 +710,32 @@ class OracleSqlReadOnly
       int[] arrayOfInt16 = copyReplacing(arrayOfInt13, 10, 12);
       int[] arrayOfInt17 = copyReplacing(arrayOfInt13, 10, 13);
 
-      int[] arrayOfInt18 = copy((int[])localObject1);
+      int[] arrayOfInt18 = copy((int[])none);
       arrayOfInt18[39] = 17;
 
-      int[] arrayOfInt19 = copyReplacing((int[])localObject1, 0, 18);
+      int[] arrayOfInt19 = copyReplacing((int[])none, 0, 18);
       arrayOfInt19[39] = 0;
 
-      int[] arrayOfInt20 = copyReplacing((int[])localObject1, 0, 19);
+      int[] arrayOfInt20 = copyReplacing((int[])none, 0, 19);
 
-      int[] arrayOfInt21 = copyReplacing((int[])localObject1, 0, 20);
+      int[] arrayOfInt21 = copyReplacing((int[])none, 0, 20);
 
       int[] arrayOfInt22 = copy(arrayOfInt21);
       arrayOfInt22[39] = 0;
 
-      ACTION[0] = localObject3;
-      ACTION[1] = localObject3;
-      ACTION[2] = localObject3;
-      ACTION[3] = localObject1;
-      ACTION[4] = localObject1;
-      ACTION[5] = localObject1;
-      ACTION[6] = localObject1;
-      ACTION[7] = localObject1;
+      ACTION[BASE] = localObject3;
+      ACTION[BASE_1] = localObject3;
+      ACTION[BASE_2] = localObject3;
+      ACTION[3] = none;
+      ACTION[4] = none;
+      ACTION[5] = none;
+      ACTION[6] = none;
+      ACTION[7] = none;
       ACTION[8] = localObject4;
-      ACTION[''] = localObject6;
+      ACTION[134] = localObject6;
       ACTION[100] = arrayOfInt18;
       ACTION[101] = arrayOfInt19;
-      ACTION[105] = localObject1;
+      ACTION[105] = none;
       ACTION[106] = arrayOfInt20;
       ACTION[107] = arrayOfInt21;
       ACTION[108] = null;
@@ -791,16 +791,16 @@ class OracleSqlReadOnly
       ACTION[66] = localObject2;
       ACTION[58] = localObject2;
       ACTION[59] = localObject2;
-      ACTION[60] = localObject1;
-      ACTION[61] = localObject1;
-      ACTION[62] = localObject1;
-      ACTION[63] = localObject1;
-      ACTION[64] = localObject1;
+      ACTION[60] = none;
+      ACTION[61] = none;
+      ACTION[62] = none;
+      ACTION[63] = none;
+      ACTION[64] = none;
       ACTION[65] = localObject5;
       ACTION[102] = arrayOfInt18;
-      ACTION[103] = localObject1;
+      ACTION[103] = none;
       ACTION[104] = arrayOfInt19;
-      ACTION[110] = localObject1;
+      ACTION[110] = none;
       ACTION[111] = arrayOfInt20;
       ACTION[112] = arrayOfInt21;
       ACTION[113] = null;
@@ -808,219 +808,219 @@ class OracleSqlReadOnly
 
       ACTION[57] = localObject2;
 
-      ACTION[67] = localObject1;
-      ACTION[68] = localObject1;
-      ACTION[69] = localObject1;
-      ACTION[70] = localObject1;
+      ACTION[67] = none;
+      ACTION[68] = none;
+      ACTION[69] = none;
+      ACTION[70] = none;
       ACTION[71] = arrayOfInt15;
 
-      ACTION[72] = localObject1;
-      ACTION[73] = localObject1;
-      ACTION[74] = localObject1;
-      ACTION[75] = localObject1;
+      ACTION[72] = none;
+      ACTION[73] = none;
+      ACTION[74] = none;
+      ACTION[75] = none;
       ACTION[76] = arrayOfInt13;
 
-      ACTION[77] = localObject1;
-      ACTION[78] = localObject1;
+      ACTION[77] = none;
+      ACTION[78] = none;
       ACTION[79] = arrayOfInt14;
 
-      ACTION[80] = localObject1;
-      ACTION[81] = localObject1;
-      ACTION[82] = localObject1;
-      ACTION[83] = localObject1;
-      ACTION[84] = localObject1;
+      ACTION[80] = none;
+      ACTION[81] = none;
+      ACTION[82] = none;
+      ACTION[83] = none;
+      ACTION[84] = none;
 
-      ACTION[85] = localObject1;
-      ACTION[86] = localObject1;
+      ACTION[85] = none;
+      ACTION[86] = none;
       ACTION[87] = arrayOfInt16;
 
       ACTION[88] = localObject2;
-      ACTION[89] = localObject1;
-      ACTION[90] = localObject1;
-      ACTION[91] = localObject1;
-      ACTION[92] = localObject1;
-      ACTION[93] = localObject1;
+      ACTION[89] = none;
+      ACTION[90] = none;
+      ACTION[91] = none;
+      ACTION[92] = none;
+      ACTION[93] = none;
       ACTION[94] = arrayOfInt17;
 
-      ACTION[95] = localObject1;
-      ACTION[96] = localObject1;
-      ACTION[97] = localObject1;
-      ACTION[98] = localObject1;
-      ACTION[99] = localObject1;
+      ACTION[95] = none;
+      ACTION[96] = none;
+      ACTION[97] = none;
+      ACTION[98] = none;
+      ACTION[99] = none;
 
-      ACTION[115] = copy((int[])localObject1);
+      ACTION[115] = copy((int[])none);
       ACTION[115][63] = 14;
-      ACTION[116] = localObject1;
-      ACTION[117] = localObject1;
-      ACTION[118] = localObject1;
-      ACTION[119] = localObject1;
-      ACTION[120] = localObject1;
-      ACTION[121] = localObject1;
-      ACTION[122] = localObject1;
-      ACTION[123] = localObject1;
-      ACTION[124] = localObject1;
-      ACTION[125] = localObject1;
-      ACTION[126] = localObject1;
-      ACTION[127] = localObject1;
-      ACTION[''] = localObject1;
-      ACTION[''] = localObject1;
-      ACTION[''] = localObject1;
-      ACTION[''] = localObject1;
-      ACTION[''] = localObject1;
-      ACTION[''] = localObject1;
+      ACTION[116] = none;
+      ACTION[117] = none;
+      ACTION[118] = none;
+      ACTION[119] = none;
+      ACTION[120] = none;
+      ACTION[121] = none;
+      ACTION[122] = none;
+      ACTION[123] = none;
+      ACTION[124] = none;
+      ACTION[125] = none;
+      ACTION[126] = none;
+      ACTION[127] = none;
+      ACTION[128] = none;
+      ACTION[129] = none;
+      ACTION[130] = none;
+      ACTION[131] = none;
+      ACTION[132] = none;
+      ACTION[133] = none;
 
-      localObject1 = newArray(128, ODBCAction.NONE);
+      ODBCAction[] none_odbcaction = newArray(128, ODBCAction.NONE);
 
-      localObject2 = newArray(128, ODBCAction.COPY);
+      ODBCAction[] localObject2_odbcaction = newArray(128, ODBCAction.COPY);
 
-      localObject3 = copy((ODBCAction[])localObject2);
-      localObject3[123] = ODBCAction.NONE;
-      localObject3[63] = ODBCAction.QUESTION;
-      localObject3[125] = ODBCAction.END_ODBC_ESCAPE;
-      localObject3[44] = ODBCAction.COMMA;
-      localObject3[40] = ODBCAction.OPEN_PAREN;
-      localObject3[41] = ODBCAction.CLOSE_PAREN;
+      ODBCAction[] localObject3_odbcaction = copy((ODBCAction[])localObject2_odbcaction);
+      localObject3_odbcaction[123] = ODBCAction.NONE;
+      localObject3_odbcaction[63] = ODBCAction.QUESTION;
+      localObject3_odbcaction[125] = ODBCAction.END_ODBC_ESCAPE;
+      localObject3_odbcaction[44] = ODBCAction.COMMA;
+      localObject3_odbcaction[40] = ODBCAction.OPEN_PAREN;
+      localObject3_odbcaction[41] = ODBCAction.CLOSE_PAREN;
 
-      localObject4 = copyReplacing((ODBCAction[])localObject2, ODBCAction.COPY, ODBCAction.SAVE_DELIMITER);
+      ODBCAction[] localObject4_odbcaction = copyReplacing((ODBCAction[])localObject2_odbcaction, ODBCAction.COPY, ODBCAction.SAVE_DELIMITER);
 
-      localObject5 = copyReplacing((ODBCAction[])localObject2, ODBCAction.COPY, ODBCAction.LOOK_FOR_DELIMITER);
+      ODBCAction[] localObject5_odbcaction = copyReplacing((ODBCAction[])localObject2_odbcaction, ODBCAction.COPY, ODBCAction.LOOK_FOR_DELIMITER);
 
-      localObject6 = copy((ODBCAction[])localObject5);
-      localObject6[39] = ODBCAction.COPY;
+      ODBCAction[] localObject6_odbcaction = copy((ODBCAction[])localObject5_odbcaction);
+      localObject6_odbcaction[39] = ODBCAction.COPY;
 
-      localObject7 = newArray(128, ODBCAction.UNKNOWN_ESCAPE);
+      ODBCAction[] localObject7_odbcaction = newArray(128, ODBCAction.UNKNOWN_ESCAPE);
 
-      localObject8 = copy((ODBCAction[])localObject1);
-      for (int m = 0; m < arrayOfInt1.length; m++) {
-        if (arrayOfInt1[m] == 9) localObject7[m] = ODBCAction.UNKNOWN_ESCAPE;
+      ODBCAction[] localObject8_odbcaction = copy((ODBCAction[])none_odbcaction);
+      for (int m = 0; m < token0.length; m++) {
+        if (token0[m] == 9) localObject7_odbcaction[m] = ODBCAction.UNKNOWN_ESCAPE;
       }
 
-      ODBC_ACTION[0] = localObject3;
-      ODBC_ACTION[1] = localObject3;
-      ODBC_ACTION[2] = localObject3;
-      ODBC_ACTION[3] = localObject2;
-      ODBC_ACTION[4] = localObject3;
-      ODBC_ACTION[5] = localObject2;
-      ODBC_ACTION[6] = localObject2;
-      ODBC_ACTION[7] = localObject2;
-      ODBC_ACTION[8] = localObject3;
-      ODBC_ACTION[''] = localObject3;
-      ODBC_ACTION[100] = localObject2;
-      ODBC_ACTION[101] = localObject2;
-      ODBC_ACTION[105] = localObject2;
-      ODBC_ACTION[106] = localObject4;
-      ODBC_ACTION[107] = localObject5;
+      ODBC_ACTION[0] = localObject3_odbcaction;
+      ODBC_ACTION[1] = localObject3_odbcaction;
+      ODBC_ACTION[2] = localObject3_odbcaction;
+      ODBC_ACTION[3] = localObject2_odbcaction;
+      ODBC_ACTION[4] = localObject3_odbcaction;
+      ODBC_ACTION[5] = localObject2_odbcaction;
+      ODBC_ACTION[6] = localObject2_odbcaction;
+      ODBC_ACTION[7] = localObject2_odbcaction;
+      ODBC_ACTION[8] = localObject3_odbcaction;
+      ODBC_ACTION[134] = localObject3_odbcaction;
+      ODBC_ACTION[100] = localObject2_odbcaction;
+      ODBC_ACTION[101] = localObject2_odbcaction;
+      ODBC_ACTION[105] = localObject2_odbcaction;
+      ODBC_ACTION[106] = localObject4_odbcaction;
+      ODBC_ACTION[107] = localObject5_odbcaction;
       ODBC_ACTION[108] = null;
-      ODBC_ACTION[109] = localObject6;
-      ODBC_ACTION[9] = localObject3;
-      ODBC_ACTION[10] = localObject3;
-      ODBC_ACTION[11] = localObject3;
-      ODBC_ACTION[12] = localObject3;
-      ODBC_ACTION[13] = localObject3;
-      ODBC_ACTION[14] = localObject3;
-      ODBC_ACTION[15] = localObject3;
-      ODBC_ACTION[16] = localObject3;
-      ODBC_ACTION[17] = localObject3;
-      ODBC_ACTION[18] = localObject3;
-      ODBC_ACTION[19] = localObject3;
-      ODBC_ACTION[20] = localObject3;
-      ODBC_ACTION[21] = localObject3;
-      ODBC_ACTION[22] = localObject3;
-      ODBC_ACTION[23] = localObject3;
-      ODBC_ACTION[24] = localObject3;
-      ODBC_ACTION[25] = localObject3;
-      ODBC_ACTION[26] = localObject3;
-      ODBC_ACTION[27] = localObject3;
-      ODBC_ACTION[28] = localObject3;
-      ODBC_ACTION[29] = localObject3;
-      ODBC_ACTION[30] = localObject3;
-      ODBC_ACTION[31] = localObject3;
-      ODBC_ACTION[32] = localObject3;
-      ODBC_ACTION[33] = localObject3;
-      ODBC_ACTION[34] = localObject3;
-      ODBC_ACTION[35] = localObject3;
-      ODBC_ACTION[36] = localObject3;
-      ODBC_ACTION[37] = localObject3;
-      ODBC_ACTION[38] = localObject3;
-      ODBC_ACTION[39] = localObject3;
-      ODBC_ACTION[40] = localObject3;
-      ODBC_ACTION[41] = localObject3;
-      ODBC_ACTION[42] = localObject3;
-      ODBC_ACTION[43] = localObject3;
-      ODBC_ACTION[44] = localObject3;
-      ODBC_ACTION[45] = localObject3;
-      ODBC_ACTION[46] = localObject3;
-      ODBC_ACTION[47] = localObject3;
-      ODBC_ACTION[48] = localObject3;
-      ODBC_ACTION[49] = localObject3;
-      ODBC_ACTION[50] = localObject3;
-      ODBC_ACTION[51] = localObject3;
-      ODBC_ACTION[52] = localObject3;
-      ODBC_ACTION[53] = localObject3;
-      ODBC_ACTION[54] = localObject3;
-      ODBC_ACTION[55] = localObject3;
-      ODBC_ACTION[56] = localObject3;
-      ODBC_ACTION[66] = localObject3;
-      ODBC_ACTION[58] = localObject3;
-      ODBC_ACTION[59] = localObject3;
-      ODBC_ACTION[60] = localObject2;
-      ODBC_ACTION[61] = localObject2;
-      ODBC_ACTION[62] = localObject2;
-      ODBC_ACTION[63] = localObject2;
-      ODBC_ACTION[64] = localObject2;
-      ODBC_ACTION[65] = localObject3;
-      ODBC_ACTION[102] = localObject2;
-      ODBC_ACTION[103] = localObject2;
-      ODBC_ACTION[104] = localObject2;
-      ODBC_ACTION[110] = localObject2;
-      ODBC_ACTION[111] = localObject4;
-      ODBC_ACTION[112] = localObject5;
+      ODBC_ACTION[109] = localObject6_odbcaction;
+      ODBC_ACTION[9] = localObject3_odbcaction;
+      ODBC_ACTION[10] = localObject3_odbcaction;
+      ODBC_ACTION[11] = localObject3_odbcaction;
+      ODBC_ACTION[12] = localObject3_odbcaction;
+      ODBC_ACTION[13] = localObject3_odbcaction;
+      ODBC_ACTION[14] = localObject3_odbcaction;
+      ODBC_ACTION[15] = localObject3_odbcaction;
+      ODBC_ACTION[16] = localObject3_odbcaction;
+      ODBC_ACTION[17] = localObject3_odbcaction;
+      ODBC_ACTION[18] = localObject3_odbcaction;
+      ODBC_ACTION[19] = localObject3_odbcaction;
+      ODBC_ACTION[20] = localObject3_odbcaction;
+      ODBC_ACTION[21] = localObject3_odbcaction;
+      ODBC_ACTION[22] = localObject3_odbcaction;
+      ODBC_ACTION[23] = localObject3_odbcaction;
+      ODBC_ACTION[24] = localObject3_odbcaction;
+      ODBC_ACTION[25] = localObject3_odbcaction;
+      ODBC_ACTION[26] = localObject3_odbcaction;
+      ODBC_ACTION[27] = localObject3_odbcaction;
+      ODBC_ACTION[28] = localObject3_odbcaction;
+      ODBC_ACTION[29] = localObject3_odbcaction;
+      ODBC_ACTION[30] = localObject3_odbcaction;
+      ODBC_ACTION[31] = localObject3_odbcaction;
+      ODBC_ACTION[32] = localObject3_odbcaction;
+      ODBC_ACTION[33] = localObject3_odbcaction;
+      ODBC_ACTION[34] = localObject3_odbcaction;
+      ODBC_ACTION[35] = localObject3_odbcaction;
+      ODBC_ACTION[36] = localObject3_odbcaction;
+      ODBC_ACTION[37] = localObject3_odbcaction;
+      ODBC_ACTION[38] = localObject3_odbcaction;
+      ODBC_ACTION[39] = localObject3_odbcaction;
+      ODBC_ACTION[40] = localObject3_odbcaction;
+      ODBC_ACTION[41] = localObject3_odbcaction;
+      ODBC_ACTION[42] = localObject3_odbcaction;
+      ODBC_ACTION[43] = localObject3_odbcaction;
+      ODBC_ACTION[44] = localObject3_odbcaction;
+      ODBC_ACTION[45] = localObject3_odbcaction;
+      ODBC_ACTION[46] = localObject3_odbcaction;
+      ODBC_ACTION[47] = localObject3_odbcaction;
+      ODBC_ACTION[48] = localObject3_odbcaction;
+      ODBC_ACTION[49] = localObject3_odbcaction;
+      ODBC_ACTION[50] = localObject3_odbcaction;
+      ODBC_ACTION[51] = localObject3_odbcaction;
+      ODBC_ACTION[52] = localObject3_odbcaction;
+      ODBC_ACTION[53] = localObject3_odbcaction;
+      ODBC_ACTION[54] = localObject3_odbcaction;
+      ODBC_ACTION[55] = localObject3_odbcaction;
+      ODBC_ACTION[56] = localObject3_odbcaction;
+      ODBC_ACTION[66] = localObject3_odbcaction;
+      ODBC_ACTION[58] = localObject3_odbcaction;
+      ODBC_ACTION[59] = localObject3_odbcaction;
+      ODBC_ACTION[60] = localObject2_odbcaction;
+      ODBC_ACTION[61] = localObject2_odbcaction;
+      ODBC_ACTION[62] = localObject2_odbcaction;
+      ODBC_ACTION[63] = localObject2_odbcaction;
+      ODBC_ACTION[64] = localObject2_odbcaction;
+      ODBC_ACTION[65] = localObject3_odbcaction;
+      ODBC_ACTION[102] = localObject2_odbcaction;
+      ODBC_ACTION[103] = localObject2_odbcaction;
+      ODBC_ACTION[104] = localObject2_odbcaction;
+      ODBC_ACTION[110] = localObject2_odbcaction;
+      ODBC_ACTION[111] = localObject4_odbcaction;
+      ODBC_ACTION[112] = localObject5_odbcaction;
       ODBC_ACTION[113] = null;
-      ODBC_ACTION[114] = localObject6;
+      ODBC_ACTION[114] = localObject6_odbcaction;
 
-      ODBC_ACTION[57] = localObject3;
+      ODBC_ACTION[57] = localObject3_odbcaction;
 
-      ODBC_ACTION[67] = localObject3;
-      ODBC_ACTION[68] = localObject3;
-      ODBC_ACTION[69] = localObject3;
-      ODBC_ACTION[70] = localObject3;
-      ODBC_ACTION[71] = localObject3;
+      ODBC_ACTION[67] = localObject3_odbcaction;
+      ODBC_ACTION[68] = localObject3_odbcaction;
+      ODBC_ACTION[69] = localObject3_odbcaction;
+      ODBC_ACTION[70] = localObject3_odbcaction;
+      ODBC_ACTION[71] = localObject3_odbcaction;
 
-      ODBC_ACTION[72] = localObject3;
-      ODBC_ACTION[73] = localObject3;
-      ODBC_ACTION[74] = localObject3;
-      ODBC_ACTION[75] = localObject3;
-      ODBC_ACTION[76] = localObject3;
+      ODBC_ACTION[72] = localObject3_odbcaction;
+      ODBC_ACTION[73] = localObject3_odbcaction;
+      ODBC_ACTION[74] = localObject3_odbcaction;
+      ODBC_ACTION[75] = localObject3_odbcaction;
+      ODBC_ACTION[76] = localObject3_odbcaction;
 
-      ODBC_ACTION[77] = localObject3;
-      ODBC_ACTION[78] = localObject3;
-      ODBC_ACTION[79] = localObject3;
+      ODBC_ACTION[77] = localObject3_odbcaction;
+      ODBC_ACTION[78] = localObject3_odbcaction;
+      ODBC_ACTION[79] = localObject3_odbcaction;
 
-      ODBC_ACTION[80] = localObject3;
-      ODBC_ACTION[81] = localObject3;
-      ODBC_ACTION[82] = localObject3;
-      ODBC_ACTION[83] = localObject3;
-      ODBC_ACTION[84] = localObject3;
+      ODBC_ACTION[80] = localObject3_odbcaction;
+      ODBC_ACTION[81] = localObject3_odbcaction;
+      ODBC_ACTION[82] = localObject3_odbcaction;
+      ODBC_ACTION[83] = localObject3_odbcaction;
+      ODBC_ACTION[84] = localObject3_odbcaction;
 
-      ODBC_ACTION[85] = localObject3;
-      ODBC_ACTION[86] = localObject3;
-      ODBC_ACTION[87] = localObject3;
+      ODBC_ACTION[85] = localObject3_odbcaction;
+      ODBC_ACTION[86] = localObject3_odbcaction;
+      ODBC_ACTION[87] = localObject3_odbcaction;
 
-      ODBC_ACTION[88] = localObject3;
-      ODBC_ACTION[89] = localObject3;
-      ODBC_ACTION[90] = localObject3;
-      ODBC_ACTION[91] = localObject3;
-      ODBC_ACTION[92] = localObject3;
-      ODBC_ACTION[93] = localObject3;
-      ODBC_ACTION[94] = localObject3;
+      ODBC_ACTION[88] = localObject3_odbcaction;
+      ODBC_ACTION[89] = localObject3_odbcaction;
+      ODBC_ACTION[90] = localObject3_odbcaction;
+      ODBC_ACTION[91] = localObject3_odbcaction;
+      ODBC_ACTION[92] = localObject3_odbcaction;
+      ODBC_ACTION[93] = localObject3_odbcaction;
+      ODBC_ACTION[94] = localObject3_odbcaction;
 
-      ODBC_ACTION[95] = localObject3;
-      ODBC_ACTION[96] = localObject3;
-      ODBC_ACTION[97] = localObject3;
-      ODBC_ACTION[98] = localObject3;
-      ODBC_ACTION[99] = localObject3;
+      ODBC_ACTION[95] = localObject3_odbcaction;
+      ODBC_ACTION[96] = localObject3_odbcaction;
+      ODBC_ACTION[97] = localObject3_odbcaction;
+      ODBC_ACTION[98] = localObject3_odbcaction;
+      ODBC_ACTION[99] = localObject3_odbcaction;
 
-      ODBC_ACTION[115] = copy((ODBCAction[])localObject8);
+      ODBC_ACTION[115] = copy((ODBCAction[])localObject8_odbcaction);
       ODBC_ACTION[115][63] = ODBCAction.NONE;
       ODBC_ACTION[115][99] = ODBCAction.NONE;
       ODBC_ACTION[115][67] = ODBCAction.NONE;
@@ -1035,45 +1035,45 @@ class OracleSqlReadOnly
       ODBC_ACTION[115][111] = ODBCAction.NONE;
       ODBC_ACTION[115][79] = ODBCAction.NONE;
       ODBC_ACTION[116] = newArray(128, ODBCAction.FUNCTION);
-      ODBC_ACTION[117] = copy((ODBCAction[])localObject7);
+      ODBC_ACTION[117] = copy((ODBCAction[])localObject7_odbcaction);
       ODBC_ACTION[117][97] = ODBCAction.NONE;
       ODBC_ACTION[117][65] = ODBCAction.NONE;
-      ODBC_ACTION[118] = copy((ODBCAction[])localObject7);
+      ODBC_ACTION[118] = copy((ODBCAction[])localObject7_odbcaction);
       ODBC_ACTION[118][108] = ODBCAction.NONE;
       ODBC_ACTION[118][76] = ODBCAction.NONE;
-      ODBC_ACTION[119] = copy((ODBCAction[])localObject7);
+      ODBC_ACTION[119] = copy((ODBCAction[])localObject7_odbcaction);
       ODBC_ACTION[119][108] = ODBCAction.NONE;
       ODBC_ACTION[119][76] = ODBCAction.NONE;
-      ODBC_ACTION[120] = copyReplacing((ODBCAction[])localObject8, ODBCAction.NONE, ODBCAction.CALL);
-      ODBC_ACTION[121] = copyReplacing((ODBCAction[])localObject8, ODBCAction.NONE, ODBCAction.TIME);
+      ODBC_ACTION[120] = copyReplacing((ODBCAction[])localObject8_odbcaction, ODBCAction.NONE, ODBCAction.CALL);
+      ODBC_ACTION[121] = copyReplacing((ODBCAction[])localObject8_odbcaction, ODBCAction.NONE, ODBCAction.TIME);
       ODBC_ACTION[121][115] = ODBCAction.NONE;
       ODBC_ACTION[121][83] = ODBCAction.NONE;
-      ODBC_ACTION[122] = copyReplacing((ODBCAction[])localObject8, ODBCAction.NONE, ODBCAction.TIMESTAMP);
-      ODBC_ACTION[123] = copyReplacing((ODBCAction[])localObject8, ODBCAction.NONE, ODBCAction.DATE);
-      ODBC_ACTION[124] = copy((ODBCAction[])localObject7);
+      ODBC_ACTION[122] = copyReplacing((ODBCAction[])localObject8_odbcaction, ODBCAction.NONE, ODBCAction.TIMESTAMP);
+      ODBC_ACTION[123] = copyReplacing((ODBCAction[])localObject8_odbcaction, ODBCAction.NONE, ODBCAction.DATE);
+      ODBC_ACTION[124] = copy((ODBCAction[])localObject7_odbcaction);
       ODBC_ACTION[124][115] = ODBCAction.NONE;
       ODBC_ACTION[124][83] = ODBCAction.NONE;
-      ODBC_ACTION[125] = copy((ODBCAction[])localObject7);
+      ODBC_ACTION[125] = copy((ODBCAction[])localObject7_odbcaction);
       ODBC_ACTION[125][99] = ODBCAction.NONE;
       ODBC_ACTION[125][67] = ODBCAction.NONE;
-      ODBC_ACTION[126] = copy((ODBCAction[])localObject7);
+      ODBC_ACTION[126] = copy((ODBCAction[])localObject7_odbcaction);
       ODBC_ACTION[126][97] = ODBCAction.NONE;
       ODBC_ACTION[126][65] = ODBCAction.NONE;
-      ODBC_ACTION[127] = copy((ODBCAction[])localObject7);
+      ODBC_ACTION[127] = copy((ODBCAction[])localObject7_odbcaction);
       ODBC_ACTION[127][112] = ODBCAction.NONE;
       ODBC_ACTION[127][80] = ODBCAction.NONE;
-      ODBC_ACTION[''] = copy((ODBCAction[])localObject7);
-      ODBC_ACTION[''][101] = ODBCAction.NONE;
-      ODBC_ACTION[''][69] = ODBCAction.NONE;
-      ODBC_ACTION[''] = copyReplacing((ODBCAction[])localObject8, ODBCAction.NONE, ODBCAction.ESCAPE);
-      ODBC_ACTION[''] = copy((ODBCAction[])localObject7);
-      ODBC_ACTION[''][110] = ODBCAction.NONE;
-      ODBC_ACTION[''][78] = ODBCAction.NONE;
-      ODBC_ACTION[''] = copyReplacing((ODBCAction[])localObject8, ODBCAction.NONE, ODBCAction.SCALAR_FUNCTION);
-      ODBC_ACTION[''] = copy((ODBCAction[])localObject7);
-      ODBC_ACTION[''][106] = ODBCAction.NONE;
-      ODBC_ACTION[''][74] = ODBCAction.NONE;
-      ODBC_ACTION[''] = copyReplacing((ODBCAction[])localObject8, ODBCAction.NONE, ODBCAction.OUTER_JOIN);
+      ODBC_ACTION[128] = copy((ODBCAction[])localObject7_odbcaction);
+      ODBC_ACTION[128][101] = ODBCAction.NONE;
+      ODBC_ACTION[128][69] = ODBCAction.NONE;
+      ODBC_ACTION[129] = copyReplacing((ODBCAction[])localObject8_odbcaction, ODBCAction.NONE, ODBCAction.ESCAPE);
+      ODBC_ACTION[130] = copy((ODBCAction[])localObject7_odbcaction);
+      ODBC_ACTION[130][110] = ODBCAction.NONE;
+      ODBC_ACTION[130][78] = ODBCAction.NONE;
+      ODBC_ACTION[131] = copyReplacing((ODBCAction[])localObject8_odbcaction, ODBCAction.NONE, ODBCAction.SCALAR_FUNCTION);
+      ODBC_ACTION[132] = copy((ODBCAction[])localObject7_odbcaction);
+      ODBC_ACTION[132][106] = ODBCAction.NONE;
+      ODBC_ACTION[132][74] = ODBCAction.NONE;
+      ODBC_ACTION[133] = copyReplacing((ODBCAction[])localObject8_odbcaction, ODBCAction.NONE, ODBCAction.OUTER_JOIN);
     }
     catch (Throwable localThrowable) {
       localThrowable.printStackTrace();

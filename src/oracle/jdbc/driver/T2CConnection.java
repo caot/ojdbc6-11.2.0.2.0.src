@@ -175,15 +175,15 @@ public class T2CConnection extends PhysicalConnection
         }
         else
         {
-          localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 89);
-          ((SQLException)localObject1).fillInStackTrace();
-          throw ((Throwable)localObject1);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 89);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
         this.conversion = new DBConversion(this.m_clientCharacterSet, this.m_clientCharacterSet, this.m_clientCharacterSet);
 
-        localObject1 = new short[5];
-        localObject2 = new long[] { this.defaultLobPrefetchSize };
+        short[] localObject1 = new short[5];
+        long[] localObject2 = new long[] { this.defaultLobPrefetchSize };
 
         this.sqlWarning = checkError(t2cUseConnection(this.m_nativeState, l2, l1, l3, (short[])localObject1, (long[])localObject2), this.sqlWarning);
 
@@ -203,8 +203,8 @@ public class T2CConnection extends PhysicalConnection
       else if (this.internalLogon.equalsIgnoreCase("SYSASM")) {
         this.logon_mode = 32768;
       }
-      Object localObject1 = null;
-      Object localObject2 = null;
+      byte[] localObject1 = null;
+      byte[] localObject2 = null;
       byte[] arrayOfByte1 = null;
       String str1 = this.setNewPassword;
       byte[] arrayOfByte2 = new byte[0];
@@ -247,9 +247,9 @@ public class T2CConnection extends PhysicalConnection
 
       if ((arrayOfByte6 == null) || (arrayOfByte7 == null))
       {
-        localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 176);
-        ((SQLException)localObject3).fillInStackTrace();
-        throw ((Throwable)localObject3);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 176);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       Object localObject3 = TimeZone.getDefault();
@@ -427,7 +427,7 @@ public class T2CConnection extends PhysicalConnection
   protected SQLWarning checkError(int paramInt, SQLWarning paramSQLWarning)
     throws SQLException
   {
-    Object localObject1;
+    T2CError localObject1;
     switch (paramInt)
     {
     case 0:
@@ -445,14 +445,14 @@ public class T2CConnection extends PhysicalConnection
       else {
         if (this.fatalErrorNumber != 0)
         {
-          localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 269);
-          ((SQLException)localObject2).fillInStackTrace();
-          throw ((Throwable)localObject2);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 269);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
-        localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-        ((SQLException)localObject2).fillInStackTrace();
-        throw ((Throwable)localObject2);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       Object localObject2 = null;
@@ -502,9 +502,9 @@ public class T2CConnection extends PhysicalConnection
 
       break;
     case -4:
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 254);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 254);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     case -3:
     case -2:
     }
@@ -583,12 +583,12 @@ public class T2CConnection extends PhysicalConnection
   public synchronized Properties getOCIHandles()
     throws SQLException
   {
-    Object localObject;
+    long[] localObject;
     if (this.lifecycle != 1)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.nativeInfo == null)
@@ -650,11 +650,11 @@ public class T2CConnection extends PhysicalConnection
   {
     if (this.lifecycle != 1)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
-    Object localObject = new Properties();
+    Properties localObject = new Properties();
 
     checkError(t2cGetConnPoolInfo(this.m_nativeState, (Properties)localObject));
 
@@ -672,11 +672,11 @@ public class T2CConnection extends PhysicalConnection
   {
     if (this.lifecycle != 1)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
-    Object localObject = paramString1 == null ? new byte[0] : DBConversion.stringToDriverCharBytes(paramString1, this.m_clientCharacterSet);
+    byte[] localObject = paramString1 == null ? new byte[0] : DBConversion.stringToDriverCharBytes(paramString1, this.m_clientCharacterSet);
 
     byte[] arrayOfByte1 = paramString2 == null ? new byte[0] : DBConversion.stringToDriverCharBytes(paramString2, this.m_clientCharacterSet);
 
@@ -690,9 +690,9 @@ public class T2CConnection extends PhysicalConnection
   {
     if (this.lifecycle != 1)
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject1 = null;
@@ -729,14 +729,14 @@ public class T2CConnection extends PhysicalConnection
 
     if ((arrayOfByte6 == null) || (arrayOfByte7 == null))
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 176);
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 176);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject2 = new short[5];
+    short[] localObject2 = new short[5];
     long[] arrayOfLong = { this.defaultLobPrefetchSize };
-    Object localObject3;
+    int[] localObject3;
     if (this.ociConnectionPoolLogonMode == "connection_pool")
     {
       arrayOfByte1 = this.userName == null ? new byte[0] : DBConversion.stringToDriverCharBytes(this.userName, this.m_clientCharacterSet);
@@ -757,9 +757,9 @@ public class T2CConnection extends PhysicalConnection
       }
       else
       {
-        localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 0, "Internal Error: ");
-        ((SQLException)localObject3).fillInStackTrace();
-        throw ((Throwable)localObject3);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 0, "Internal Error: ");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
     }
@@ -777,21 +777,19 @@ public class T2CConnection extends PhysicalConnection
     {
       this.logon_mode = 8;
 
-      localObject3 = null;
-
-      localObject3 = (byte[])this.ociConnectionPoolConnID;
+      byte[] bytea = (byte[])this.ociConnectionPoolConnID;
 
       arrayOfByte1 = this.userName == null ? new byte[0] : DBConversion.stringToDriverCharBytes(this.userName, this.m_clientCharacterSet);
 
       this.conversion = new DBConversion(this.m_clientCharacterSet, this.m_clientCharacterSet, this.m_clientCharacterSet);
 
-      this.sqlWarning = checkError(t2cConnPoolLogon(((T2CConnection)localObject1).m_nativeState, arrayOfByte1, arrayOfByte1.length, arrayOfByte2, arrayOfByte2.length, arrayOfByte3, arrayOfByte3.length, arrayOfByte4, arrayOfByte4.length, arrayOfByte5, arrayOfByte5.length, this.logon_mode, 0, 0, null, null, 0, null, 0, null, 0, null, 0, (byte[])localObject3, localObject3 == null ? 0 : localObject3.length, (short[])localObject2, arrayOfByte6, arrayOfByte7, arrayOfLong), this.sqlWarning);
+      this.sqlWarning = checkError(t2cConnPoolLogon(((T2CConnection)localObject1).m_nativeState, arrayOfByte1, arrayOfByte1.length, arrayOfByte2, arrayOfByte2.length, arrayOfByte3, arrayOfByte3.length, arrayOfByte4, arrayOfByte4.length, arrayOfByte5, arrayOfByte5.length, this.logon_mode, 0, 0, null, null, 0, null, 0, null, 0, null, 0, bytea, bytea == null ? 0 : bytea.length, (short[])localObject2, arrayOfByte6, arrayOfByte7, arrayOfLong), this.sqlWarning);
     }
     else if (this.ociConnectionPoolLogonMode == "connpool_proxy_connection")
     {
       this.logon_mode = 7;
 
-      localObject3 = this.ociConnectionPoolProxyType;
+      String str = this.ociConnectionPoolProxyType;
 
       int i = this.ociConnectionPoolProxyNumRoles.intValue();
 
@@ -808,8 +806,7 @@ public class T2CConnection extends PhysicalConnection
       byte[] arrayOfByte11 = null;
 
       int j = 0;
-      String str;
-      if (localObject3 == "proxytype_user_name")
+      if (str == "proxytype_user_name")
       {
         j = 1;
 
@@ -823,7 +820,7 @@ public class T2CConnection extends PhysicalConnection
         if (str != null)
           arrayOfByte9 = str.getBytes();
       }
-      else if (localObject3 == "proxytype_distinguished_name")
+      else if (str == "proxytype_distinguished_name")
       {
         j = 2;
 
@@ -832,7 +829,7 @@ public class T2CConnection extends PhysicalConnection
         if (str != null)
           arrayOfByte10 = str.getBytes();
       }
-      else if (localObject3 == "proxytype_certificate")
+      else if (str == "proxytype_certificate")
       {
         j = 3;
 
@@ -853,9 +850,9 @@ public class T2CConnection extends PhysicalConnection
     }
     else
     {
-      localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23, "connection-pool-logon");
-      ((SQLException)localObject3).fillInStackTrace();
-      throw ((Throwable)localObject3);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23, "connection-pool-logon");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.conversion = new DBConversion(localObject2[0], this.m_clientCharacterSet, localObject2[1]);
@@ -1029,7 +1026,7 @@ public class T2CConnection extends PhysicalConnection
     }
     if (this.useNio)
     {
-      i = paramArrayOfByte.length;
+      int i = paramArrayOfByte.length;
       if ((this.nioBufferForLob == null) || (this.nioBufferForLob.capacity() < i))
         this.nioBufferForLob = ByteBuffer.allocateDirect(i);
       else {
@@ -1561,9 +1558,9 @@ public class T2CConnection extends PhysicalConnection
   {
     if (paramString == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     checkTrue(this.lifecycle == 1, 8);
@@ -1571,12 +1568,12 @@ public class T2CConnection extends PhysicalConnection
 
     if (paramLong < 1L)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject = new char[paramString.length()];
+    char[] localObject = new char[paramString.length()];
 
     paramString.getChars(0, localObject.length, (char[])localObject, 0);
 
@@ -1735,7 +1732,7 @@ public class T2CConnection extends PhysicalConnection
   public synchronized CLOB createTemporaryClob(Connection paramConnection, boolean paramBoolean, int paramInt, short paramShort)
     throws SQLException
   {
-    Object localObject = null;
+    CLOB localObject = null;
 
     checkTrue(this.lifecycle == 1, 8);
 
@@ -1937,14 +1934,14 @@ public class T2CConnection extends PhysicalConnection
     {
       if (i == -999)
       {
-        localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23);
-        localSQLException2.fillInStackTrace();
-        throw localSQLException2;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
-      SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 89);
-      localSQLException2.fillInStackTrace();
-      throw localSQLException2;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 89);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return i;
@@ -1966,16 +1963,16 @@ public class T2CConnection extends PhysicalConnection
     {
       if (i == -999)
       {
-        localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23);
-        localSQLException2.fillInStackTrace();
-        throw localSQLException2;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       checkError(i);
 
-      SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 89);
-      localSQLException2.fillInStackTrace();
-      throw localSQLException2;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 89);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return i;
@@ -2008,7 +2005,7 @@ public class T2CConnection extends PhysicalConnection
   void doProxySession(int paramInt, Properties paramProperties)
     throws SQLException
   {
-    Object localObject1 = (byte[][])null;
+    byte[][] localObject1 = null;
 
     int i = 0;
 

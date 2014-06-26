@@ -432,7 +432,7 @@ public class OracleTypeCOLLECTION extends OracleTypeADT
     throws SQLException
   {
     int i = ArrayDescriptor.getCacheStyle(paramARRAY) == 1 ? 1 : 0;
-    Object localObject;
+    Datum[] localObject;
     int j;
     switch (paramInt3)
     {
@@ -460,7 +460,7 @@ public class OracleTypeCOLLECTION extends OracleTypeADT
 
       break;
     case 2:
-      localObject = ArrayDescriptor.makeJavaArray(paramInt2, this.elementType.getTypeCode());
+      localObject = (Datum[])ArrayDescriptor.makeJavaArray(paramInt2, this.elementType.getTypeCode());
 
       if (i != 0)
       {
@@ -468,13 +468,13 @@ public class OracleTypeCOLLECTION extends OracleTypeADT
         {
           paramARRAY.setIndexOffset(paramInt1 + j, paramPickleContext.offset());
 
-          localObject[j] = this.elementType.unpickle81rec(paramPickleContext, paramInt3, paramMap);
+          localObject[j] = (Datum)this.elementType.unpickle81rec(paramPickleContext, paramInt3, paramMap);
         }
       }
       else
       {
         for (j = 0; j < paramInt2; j++) {
-          localObject[j] = this.elementType.unpickle81rec(paramPickleContext, paramInt3, paramMap);
+          localObject[j] = (Datum)this.elementType.unpickle81rec(paramPickleContext, paramInt3, paramMap);
         }
       }
       paramARRAY.setObjArray(localObject);
@@ -491,17 +491,17 @@ public class OracleTypeCOLLECTION extends OracleTypeADT
       }
       else
       {
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23, "This feature is limited to numeric collection");
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23, "This feature is limited to numeric collection");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       break;
     case 3:
     default:
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "Invalid conversion type " + this.elementType);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "Invalid conversion type " + this.elementType);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     paramARRAY.setLastIndexOffset(paramInt1 + paramInt2, paramPickleContext.offset());
@@ -818,7 +818,7 @@ public class OracleTypeCOLLECTION extends OracleTypeADT
 
     if (this.elementType != null)
       this.elementType.printXML(paramPrintWriter, paramInt + 1, paramBoolean);
-    for (i = 0; i < paramInt; i++) paramPrintWriter.print("  ");
+    for (int i = 0; i < paramInt; i++) paramPrintWriter.print("  ");
     paramPrintWriter.println("</OracleTypeCOLLECTION>");
   }
 }

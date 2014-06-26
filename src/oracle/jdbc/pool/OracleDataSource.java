@@ -136,9 +136,9 @@ public class OracleDataSource
       localConnection = getPhysicalConnection(localProperties);
       if (localConnection == null)
       {
-        ??? = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 67);
-        ((SQLException)???).fillInStackTrace();
-        throw ((Throwable)???);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 67);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
     }
     return localConnection;
@@ -200,9 +200,9 @@ public class OracleDataSource
 
     if (localConnection == null)
     {
-      ??? = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 67);
-      ((SQLException)???).fillInStackTrace();
-      throw ((Throwable)???);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 67);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     str4 = paramProperties.getProperty("stmt_cache_size");
@@ -255,9 +255,9 @@ public class OracleDataSource
       str2 = this.password;
     }
 
-    ??? = getConnection(str1, str2, paramProperties);
+    Connection connection = getConnection(str1, str2, paramProperties);
 
-    return ???;
+    return connection;
   }
 
   /** @deprecated */
@@ -266,17 +266,17 @@ public class OracleDataSource
   {
     if (!this.connCachingEnabled)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 137);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 137);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.odsCache == null) {
       cacheInitialize();
     }
-    Object localObject = this.odsCache.getConnection(paramString1, paramString2, paramProperties);
+    Connection connection = this.odsCache.getConnection(paramString1, paramString2, paramProperties);
 
-    return localObject;
+    return connection;
   }
 
   private synchronized void cacheInitialize()
@@ -824,7 +824,7 @@ public class OracleDataSource
   public <T> T unwrap(Class<T> paramClass)
     throws SQLException
   {
-    if ((paramClass.isInterface()) && (paramClass.isInstance(this))) return this;
+    if ((paramClass.isInterface()) && (paramClass.isInstance(this))) return (T)this;
 
     SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 177);
     localSQLException.fillInStackTrace();

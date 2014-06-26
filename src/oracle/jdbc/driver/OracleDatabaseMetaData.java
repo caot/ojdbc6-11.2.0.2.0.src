@@ -21,7 +21,7 @@ class OracleDatabaseMetaData extends oracle.jdbc.OracleDatabaseMetaData
 
   public OracleDatabaseMetaData(OracleConnection paramOracleConnection)
   {
-    this(paramOracleConnection);
+    super(paramOracleConnection);
   }
 
   public synchronized ResultSet getColumns(String paramString1, String paramString2, String paramString3, String paramString4)
@@ -60,7 +60,7 @@ class OracleDatabaseMetaData extends oracle.jdbc.OracleDatabaseMetaData
     String str2 = " NULL AS table_cat,\n";
 
     String str3 = "";
-    if (((i >= 10200 ? 1 : 0) & (i < 11100 ? 1 : 0) & paramBoolean) != 0) str3 = "/*+ CHOOSE */";
+    if (i >= 10200 && i < 11100 && paramBoolean) str3 = "/*+ CHOOSE */";
 
     String str4 = "       t.owner AS table_schem,\n       t.table_name AS table_name,\n";
 

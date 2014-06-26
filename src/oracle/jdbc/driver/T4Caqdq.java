@@ -271,6 +271,7 @@ final class T4Caqdq extends T4CTTIfun
       this.properties.setPriority(this.aqm.aqmpri);
       this.properties.setDelay(this.aqm.aqmdel);
       this.properties.setExpiration(this.aqm.aqmexp);
+      String localObject;
       if (this.aqm.aqmcorBytes != null)
       {
         localObject = this.meg.conv.CharBytesToString(this.aqm.aqmcorBytes, this.aqm.aqmcorBytesLength, true);
@@ -284,22 +285,22 @@ final class T4Caqdq extends T4CTTIfun
 
         this.properties.setExceptionQueue((String)localObject);
       }
-      this.properties.setMessageState(AQMessageProperties.MessageState.getMessageState(this.aqm.aqmsta));
+      this.properties.setMessageState(MessageState.getMessageState(this.aqm.aqmsta));
       this.properties.setEnqueueTime(this.aqm.aqmeqt.timestampValue());
-      Object localObject = new AQAgentI();
+      AQAgentI aqagenti = new AQAgentI();
       if (this.aqm.senderAgentName != null) {
-        ((AQAgentI)localObject).setName(this.meg.conv.CharBytesToString(this.aqm.senderAgentName, this.aqm.senderAgentNameLength, true));
+        aqagenti.setName(this.meg.conv.CharBytesToString(this.aqm.senderAgentName, this.aqm.senderAgentNameLength, true));
       }
 
       if (this.aqm.senderAgentAddress != null) {
-        ((AQAgentI)localObject).setAddress(this.meg.conv.CharBytesToString(this.aqm.senderAgentAddress, this.aqm.senderAgentAddressLength, true));
+        aqagenti.setAddress(this.meg.conv.CharBytesToString(this.aqm.senderAgentAddress, this.aqm.senderAgentAddressLength, true));
       }
 
-      ((AQAgentI)localObject).setProtocol(this.aqm.senderAgentProtocol);
+      aqagenti.setProtocol(this.aqm.senderAgentProtocol);
 
-      this.properties.setSender((AQAgent)localObject);
+      this.properties.setSender((AQAgent)aqagenti);
       this.properties.setPreviousQueueMessageId(this.aqm.originalMsgId);
-      this.properties.setDeliveryMode(AQMessageProperties.DeliveryMode.getDeliveryMode(this.aqm.aqmflg));
+      this.properties.setDeliveryMode(DeliveryMode.getDeliveryMode(this.aqm.aqmflg));
 
       if (this.aqm.aqmetiBytes != null)
       {

@@ -74,38 +74,38 @@ public class OracleConnectionCacheManager
   }
 
   /** @deprecated */
-  public String createCache(OracleDataSource paramOracleDataSource, Properties paramProperties)
+  public String createCache(OracleDataSource oracleDataSource, Properties paramProperties)
     throws SQLException
   {
     String str = null;
 
-    if ((paramOracleDataSource == null) || (!paramOracleDataSource.getConnectionCachingEnabled()))
+    if ((oracleDataSource == null) || (!oracleDataSource.getConnectionCachingEnabled()))
     {
       SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 137);
       localSQLException.fillInStackTrace();
       throw localSQLException;
     }
 
-    if (paramOracleDataSource.connCacheName != null)
+    if (oracleDataSource.connCacheName != null)
     {
-      str = paramOracleDataSource.connCacheName;
+      str = oracleDataSource.connCacheName;
     }
     else
     {
-      str = paramOracleDataSource.dataSourceName + "#0x" + Integer.toHexString(UNNAMED_CACHE_COUNT.getAndIncrement());
+      str = oracleDataSource.dataSourceName + "#0x" + Integer.toHexString(UNNAMED_CACHE_COUNT.getAndIncrement());
     }
 
-    createCache(str, paramOracleDataSource, paramProperties);
+    createCache(str, oracleDataSource, paramProperties);
 
     return str;
   }
 
   /** @deprecated */
-  public void createCache(String paramString, OracleDataSource paramOracleDataSource, Properties paramProperties)
+  public void createCache(String paramString, OracleDataSource oracleDataSource, Properties paramProperties)
     throws SQLException
   {
     SQLException localSQLException1;
-    if ((paramOracleDataSource == null) || (!paramOracleDataSource.getConnectionCachingEnabled()))
+    if ((oracleDataSource == null) || (!oracleDataSource.getConnectionCachingEnabled()))
     {
       localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 137);
       localSQLException1.fillInStackTrace();
@@ -126,13 +126,13 @@ public class OracleConnectionCacheManager
       throw localSQLException1;
     }
 
-    boolean bool = paramOracleDataSource.getFastConnectionFailoverEnabled();
+    boolean bool = oracleDataSource.getFastConnectionFailoverEnabled();
 
     if ((bool) && (this.failoverEventHandlerThread == null))
     {
-      localObject1 = paramOracleDataSource.getONSConfiguration();
+      final String onsConfigStr = oracleDataSource.getONSConfiguration();
 
-      if ((localObject1 != null) && (!((String)localObject1).equals("")))
+      if ((onsConfigStr != null) && (!onsConfigStr.equals("")))
       {
         synchronized (this)
         {
@@ -145,7 +145,7 @@ public class OracleConnectionCacheManager
                 public Object run()
                   throws ONSException
                 {
-                  ONS localONS = new ONS(this.val$onsConfigStr);
+                  ONS localONS = new ONS(onsConfigStr);
                   return null;
                 }
 
@@ -166,10 +166,10 @@ public class OracleConnectionCacheManager
       this.failoverEventHandlerThread = new OracleFailoverEventHandlerThread();
     }
 
-    Object localObject1 = new OracleImplicitConnectionCache(paramOracleDataSource, paramProperties);
+    Object localObject1 = new OracleImplicitConnectionCache(oracleDataSource, paramProperties);
 
     ((OracleImplicitConnectionCache)localObject1).cacheName = paramString;
-    paramOracleDataSource.odsCache = ((OracleImplicitConnectionCache)localObject1);
+    oracleDataSource.odsCache = ((OracleImplicitConnectionCache)localObject1);
 
     this.m_connCache.put(paramString, localObject1);
 
@@ -221,12 +221,12 @@ public class OracleConnectionCacheManager
   public void reinitializeCache(String paramString, Properties paramProperties)
     throws SQLException
   {
-    Object localObject = paramString != null ? (OracleImplicitConnectionCache)this.m_connCache.get(paramString) : null;
+    OracleImplicitConnectionCache cache = paramString != null ? (OracleImplicitConnectionCache)this.m_connCache.get(paramString) : null;
 
-    if (localObject != null)
+    if (cache != null)
     {
       disableCache(paramString);
-      localObject.reinitializeCacheConnections(paramProperties);
+      cache.reinitializeCacheConnections(paramProperties);
       enableCache(paramString);
     }
     else
@@ -248,11 +248,11 @@ public class OracleConnectionCacheManager
   public void enableCache(String paramString)
     throws SQLException
   {
-    Object localObject = paramString != null ? (OracleImplicitConnectionCache)this.m_connCache.get(paramString) : null;
+    OracleImplicitConnectionCache cache = paramString != null ? (OracleImplicitConnectionCache)this.m_connCache.get(paramString) : null;
 
-    if (localObject != null)
+    if (cache != null)
     {
-      localObject.enableConnectionCache();
+      cache.enableConnectionCache();
     }
     else
     {
@@ -266,11 +266,11 @@ public class OracleConnectionCacheManager
   public void disableCache(String paramString)
     throws SQLException
   {
-    Object localObject = paramString != null ? (OracleImplicitConnectionCache)this.m_connCache.get(paramString) : null;
+    OracleImplicitConnectionCache cache = paramString != null ? (OracleImplicitConnectionCache)this.m_connCache.get(paramString) : null;
 
-    if (localObject != null)
+    if (cache != null)
     {
-      localObject.disableConnectionCache();
+      cache.disableConnectionCache();
     }
     else
     {
@@ -284,15 +284,15 @@ public class OracleConnectionCacheManager
   public void refreshCache(String paramString, int paramInt)
     throws SQLException
   {
-    Object localObject = paramString != null ? (OracleImplicitConnectionCache)this.m_connCache.get(paramString) : null;
+    OracleImplicitConnectionCache cache = paramString != null ? (OracleImplicitConnectionCache)this.m_connCache.get(paramString) : null;
     SQLException localSQLException;
-    if (localObject != null)
+    if (cache != null)
     {
       switch (paramInt)
       {
       case 4096:
       case 8192:
-        localObject.refreshCacheConnections(paramInt);
+        cache.refreshCacheConnections(paramInt);
         break;
       default:
         localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
@@ -313,11 +313,11 @@ public class OracleConnectionCacheManager
   public void purgeCache(String paramString, boolean paramBoolean)
     throws SQLException
   {
-    Object localObject = paramString != null ? (OracleImplicitConnectionCache)this.m_connCache.get(paramString) : null;
+    OracleImplicitConnectionCache cache = paramString != null ? (OracleImplicitConnectionCache)this.m_connCache.get(paramString) : null;
 
-    if (localObject != null)
+    if (cache != null)
     {
-      localObject.purgeCacheConnections(paramBoolean, 1);
+      cache.purgeCacheConnections(paramBoolean, 1);
     }
     else
     {
@@ -331,11 +331,11 @@ public class OracleConnectionCacheManager
   public Properties getCacheProperties(String paramString)
     throws SQLException
   {
-    Object localObject = paramString != null ? (OracleImplicitConnectionCache)this.m_connCache.get(paramString) : null;
+    OracleImplicitConnectionCache cache = paramString != null ? (OracleImplicitConnectionCache)this.m_connCache.get(paramString) : null;
 
-    if (localObject != null)
+    if (cache != null)
     {
-      return localObject.getConnectionCacheProperties();
+      return cache.getConnectionCacheProperties();
     }
 
     SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 141);
@@ -356,11 +356,11 @@ public class OracleConnectionCacheManager
   public int getNumberOfAvailableConnections(String paramString)
     throws SQLException
   {
-    Object localObject = paramString != null ? (OracleImplicitConnectionCache)this.m_connCache.get(paramString) : null;
+    OracleImplicitConnectionCache cache = paramString != null ? (OracleImplicitConnectionCache)this.m_connCache.get(paramString) : null;
 
-    if (localObject != null)
+    if (cache != null)
     {
-      return localObject.cacheSize;
+      return cache.cacheSize;
     }
 
     SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 141);
@@ -372,11 +372,11 @@ public class OracleConnectionCacheManager
   public int getNumberOfActiveConnections(String paramString)
     throws SQLException
   {
-    Object localObject = paramString != null ? (OracleImplicitConnectionCache)this.m_connCache.get(paramString) : null;
+    OracleImplicitConnectionCache cache = paramString != null ? (OracleImplicitConnectionCache)this.m_connCache.get(paramString) : null;
 
-    if (localObject != null)
+    if (cache != null)
     {
-      return localObject.getNumberOfCheckedOutConnections();
+      return cache.getNumberOfCheckedOutConnections();
     }
 
     SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 141);
@@ -388,7 +388,7 @@ public class OracleConnectionCacheManager
   public synchronized void setConnectionPoolDataSource(String paramString, ConnectionPoolDataSource paramConnectionPoolDataSource)
     throws SQLException
   {
-    Object localObject = paramString != null ? (OracleImplicitConnectionCache)this.m_connCache.get(paramString) : null;
+    OracleImplicitConnectionCache localObject = paramString != null ? (OracleImplicitConnectionCache)this.m_connCache.get(paramString) : null;
     SQLException localSQLException;
     if (localObject != null)
     {
@@ -415,11 +415,11 @@ public class OracleConnectionCacheManager
   protected void verifyAndHandleEvent(int paramInt, byte[] paramArrayOfByte)
     throws SQLException
   {
-    Object localObject1 = null;
+    String str0 = null;
     String str1 = null;
     String str2 = null;
     String str3 = null;
-    Object localObject2 = null;
+    String str9 = null;
 
     int i = 0;
     StringTokenizer localStringTokenizer = null;
@@ -456,7 +456,7 @@ public class OracleConnectionCacheManager
       }
 
       if ((str6.equalsIgnoreCase("service")) && (str5 != null)) {
-        localObject1 = str5;
+        str0 = str5;
       }
       if ((str6.equalsIgnoreCase("instance")) && (str5 != null) && (!str5.equals(" ")))
       {
@@ -470,7 +470,7 @@ public class OracleConnectionCacheManager
         str3 = str5.toLowerCase().intern();
       }
       if ((str6.equalsIgnoreCase("status")) && (str5 != null)) {
-        localObject2 = str5;
+        str9 = str5;
       }
       if ((str6.equalsIgnoreCase("card")) && (str5 != null))
       {
@@ -485,7 +485,7 @@ public class OracleConnectionCacheManager
 
     }
 
-    invokeFailoverProcessingThreads(paramInt, localObject1, str1, str2, str3, localObject2, i);
+    invokeFailoverProcessingThreads(paramInt, str0, str1, str2, str3, str9, i);
 
     localStringTokenizer = null;
   }

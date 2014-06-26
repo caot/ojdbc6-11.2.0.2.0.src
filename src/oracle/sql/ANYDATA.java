@@ -63,7 +63,7 @@ public class ANYDATA
       this.isNull = false;
     if (!this.isNull)
     {
-      j = (int)localPickleContext.readUB4();
+      int j = (int)localPickleContext.readUB4();
       this.data = localPickleContext.readDataValue(j);
     }
     if (arrayOfShort[0] == 110)
@@ -300,7 +300,7 @@ public class ANYDATA
   public Datum accessDatum()
     throws SQLException
   {
-    Object localObject = null;
+    Datum localObject = null;
     if (!this.isNull)
     {
       int i = this.type.getInternalTypeCode();

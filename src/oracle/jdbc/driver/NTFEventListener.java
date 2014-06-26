@@ -76,7 +76,7 @@ class NTFEventListener
 
   EventListener getListener()
   {
-    Object localObject = this.dcnlistener;
+    EventListener localObject = this.dcnlistener;
     if (localObject == null)
       localObject = this.aqlistener;
     return localObject;

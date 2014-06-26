@@ -129,8 +129,7 @@ public class AnoComm
     throws NetException, IOException
   {
     e(2);
-    int i;
-    return i = m();
+    return (short)m();
   }
 
   protected final int f()

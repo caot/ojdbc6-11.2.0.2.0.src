@@ -124,9 +124,10 @@ public class q
     byte[] arrayOfByte1 = new byte[56];
     byte[] arrayOfByte2 = new byte[56];
     int[] arrayOfInt = new int[32];
-    int i3;
+    int i2;
+    int i3 = 0;
     int i4;
-    for (int i2 = 0; i2 < 56; i2++)
+    for (i2 = 0; i2 < 56; i2++)
     {
       i4 = (i3 = n[i2]) & 0x7;
       arrayOfByte1[i2] = ((byte)((paramArrayOfByte[(i3 >> 3)] & l[i4]) != 0 ? 1 : 0));

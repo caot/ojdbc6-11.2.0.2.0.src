@@ -76,7 +76,7 @@ class PlsqlIndexTableAccessor extends Accessor
   Object[] getPlsqlIndexTable(int paramInt)
     throws SQLException
   {
-    Object localObject = null;
+    Object[] localObject = null;
     short[] arrayOfShort = this.statement.ibtBindIndicators;
     int i = ((arrayOfShort[(this.ibtMetaIndex + 4)] & 0xFFFF) << 16) + (arrayOfShort[(this.ibtMetaIndex + 5)] & 0xFFFF);
 
@@ -120,7 +120,7 @@ class PlsqlIndexTableAccessor extends Accessor
 
           System.arraycopy(arrayOfByte1, j + 1, arrayOfByte2, 0, n);
 
-          localObject[m] = NUMBER.toBigDecimal(arrayOfByte2);
+          localObject[m] = oracle.sql.NUMBER.toBigDecimal(arrayOfByte2);
         }
 
         j += this.elementMaxLen;
@@ -139,7 +139,7 @@ class PlsqlIndexTableAccessor extends Accessor
   Datum[] getOraclePlsqlIndexTable(int paramInt)
     throws SQLException
   {
-    Object localObject = null;
+    Datum[] localObject = null;
     short[] arrayOfShort = this.statement.ibtBindIndicators;
     int i = ((arrayOfShort[(this.ibtMetaIndex + 4)] & 0xFFFF) << 16) + (arrayOfShort[(this.ibtMetaIndex + 5)] & 0xFFFF);
 

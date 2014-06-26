@@ -322,7 +322,7 @@ public class Packet
       }
       paramStringBuilder1.append("     |");
       paramStringBuilder1.append(paramStringBuilder2.substring(0, paramStringBuilder2.length()));
-      for (i2 = 0; i2 <= i1; i2++)
+      for (int i2 = 0; i2 <= i1; i2++)
         paramStringBuilder1.append(" ");
       paramStringBuilder1.append("|\n");
       paramStringBuilder2.delete(0, paramStringBuilder2.length());

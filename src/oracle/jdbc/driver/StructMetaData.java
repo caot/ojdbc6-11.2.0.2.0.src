@@ -393,7 +393,7 @@ class StructMetaData
   public <T> T unwrap(Class<T> paramClass)
     throws SQLException
   {
-    if ((paramClass.isInterface()) && (paramClass.isInstance(this))) return this;
+    if ((paramClass.isInterface()) && (paramClass.isInstance(this))) return (T)this;
 
     SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 177);
     localSQLException.fillInStackTrace();

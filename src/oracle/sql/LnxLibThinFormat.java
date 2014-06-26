@@ -137,10 +137,10 @@ class LnxLibThinFormat
         i++;
         if (i1 != 48)
         {
-          break label2099;
+          break;
         }
         if ((k == 0) && (j != 0))
-          break label2099;
+          break;
         j = i; break;
       case 103:
         if ((this.LNXNFFSN) || (this.LNXNFFHX) || (k != 0) || (i8 == i9) || (i10 > 0) || (i == 0))
@@ -189,7 +189,7 @@ class LnxLibThinFormat
         if (i4 == i5)
         {
           this.LNXNFFCH = true;
-          break label2099;
+          break;
         }
 
         if (i3 == 2)
@@ -205,7 +205,7 @@ class LnxLibThinFormat
         if ((i3 == 1) || ((i3 == 2) && (i6 == 115)) || ((i3 == 3) && (((i6 == 112) && (i7 == 114)) || ((i6 == 112) && (i7 == 116)) || ((i6 == 109) && (i7 == 105)))))
         {
           this.LNXNFFCT = true;
-          break label2099;
+          break;
         }
 
         if (this.LNXNFF05)
@@ -247,11 +247,11 @@ class LnxLibThinFormat
 
         i = 0;
         if ((i1 != 46) && (i1 != 100))
-          break label2099;
+          break;
         n++;
 
         if (i1 != 46) {
-          break label2099;
+          break;
         }
         if (i10 < 0)
         {
@@ -324,7 +324,7 @@ class LnxLibThinFormat
 
           i5 = i4 + 1;
           i1 = 109;
-          break label2099;
+          break;
         }
 
         throw new SQLException(CoreException.getMessage((byte)5));
@@ -346,13 +346,13 @@ class LnxLibThinFormat
         if (Character.toLowerCase(arrayOfChar[i4]) == 'r')
         {
           this.LNXNFFPR = true;
-          break label2099;
+          break;
         }
 
         if (Character.toLowerCase(arrayOfChar[i4]) == 't')
         {
           this.LNXNFFPT = true;
-          break label2099;
+          break;
         }
 
         throw new SQLException(CoreException.getMessage((byte)5));
@@ -369,7 +369,7 @@ class LnxLibThinFormat
         {
           i3--;
           if (i3 <= 1)
-            break label2099;
+            break;
           throw new SQLException(CoreException.getMessage((byte)5));
         }
 
@@ -385,12 +385,12 @@ class LnxLibThinFormat
           this.LNXNFFSH = true;
 
           i5++;
-          break label2099;
+          break;
         }
         if (i3 == 1)
         {
           this.LNXNFFST = true;
-          break label2099;
+          break;
         }
 
         throw new SQLException(CoreException.getMessage((byte)5));
@@ -489,9 +489,12 @@ class LnxLibThinFormat
       case 110:
       case 111:
       case 113:
-      case 119: } throw new SQLException(CoreException.getMessage((byte)5));
+      case 119:
+      default:
+        throw new SQLException(CoreException.getMessage((byte)5));
+      }
 
-      label2099: i2 = i1;
+      i2 = i1;
 
       i4++;
       i3--;

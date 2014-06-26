@@ -472,7 +472,7 @@ class T4C8TTIdty extends T4CTTIMsg
       for (int j = 1; j < this.runtimeTypeAndRep[0]; j++)
         this.meg.marshalUB2(this.runtimeTypeAndRep[j]);
       this.meg.marshalUB2(0);
-      this.meg.types.setRep((byte)1, i);
+      this.meg.types.setRep((byte)1, (byte)i);
     }
   }
 

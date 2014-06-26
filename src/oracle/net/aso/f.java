@@ -102,7 +102,7 @@ public final class f
       j = paramArrayOfByte2.length;
     byte[] arrayOfByte = new byte[i + 1 + j];
     System.arraycopy(paramArrayOfByte1, paramArrayOfByte1.length - i, arrayOfByte, 0, i);
-    arrayOfByte[i] = (!this.e ? 123 : -1);
+    arrayOfByte[i] = (byte)(!this.e ? 123 : -1);
     if (paramArrayOfByte2 != null)
       System.arraycopy(paramArrayOfByte2, 0, arrayOfByte, i + 1, paramArrayOfByte2.length);
     this.a.a(arrayOfByte, arrayOfByte.length);

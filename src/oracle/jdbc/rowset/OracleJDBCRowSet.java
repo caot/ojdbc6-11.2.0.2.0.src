@@ -140,9 +140,9 @@ public class OracleJDBCRowSet extends OracleRowSet
         }
         catch (NamingException localNamingException)
         {
-          localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 300, localNamingException.getMessage());
-          ((SQLException)localObject).fillInStackTrace();
-          throw ((Throwable)localObject);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 300, localNamingException.getMessage());
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
       }

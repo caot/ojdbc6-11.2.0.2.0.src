@@ -61,62 +61,62 @@ public class OracleTypeNUMBER extends OracleType
     switch (paramInt2)
     {
     case 4:
-      localObject = new int[paramInt1];
+      int[] i = new int[paramInt1];
 
       for (j = 0; j < paramInt1; j++)
       {
         if ((arrayOfByte = paramPickleContext.readDataValue()) != null) {
-          localObject[j] = NUMBER.toInt(arrayOfByte);
+          i[j] = NUMBER.toInt(arrayOfByte);
         }
 
       }
 
-      return localObject;
+      return i;
     case 5:
-      localObject = new double[paramInt1];
+      double[] d = new double[paramInt1];
 
       for (j = 0; j < paramInt1; j++)
       {
         if ((arrayOfByte = paramPickleContext.readDataValue()) != null) {
-          localObject[j] = NUMBER.toDouble(arrayOfByte);
+          d[j] = NUMBER.toDouble(arrayOfByte);
         }
       }
-      return localObject;
+      return d;
     case 7:
-      localObject = new long[paramInt1];
+      long[] l = new long[paramInt1];
 
       for (j = 0; j < paramInt1; j++)
       {
         if ((arrayOfByte = paramPickleContext.readDataValue()) != null) {
-          localObject[j] = NUMBER.toLong(arrayOfByte);
+          l[j] = NUMBER.toLong(arrayOfByte);
         }
       }
-      return localObject;
+      return l;
     case 6:
-      localObject = new float[paramInt1];
+      float[] f = new float[paramInt1];
 
       for (j = 0; j < paramInt1; j++)
       {
         if ((arrayOfByte = paramPickleContext.readDataValue()) != null) {
-          localObject[j] = NUMBER.toFloat(arrayOfByte);
+          f[j] = NUMBER.toFloat(arrayOfByte);
         }
       }
-      return localObject;
+      return f;
     case 8:
-      localObject = new short[paramInt1];
+      short[] s = new short[paramInt1];
 
       for (j = 0; j < paramInt1; j++)
       {
         if ((arrayOfByte = paramPickleContext.readDataValue()) != null) {
-          localObject[j] = NUMBER.toShort(arrayOfByte);
+          s[j] = NUMBER.toShort(arrayOfByte);
         }
       }
-      return localObject;
+      return s;
     }
 
-    Object localObject = DatabaseError.createSqlException(null, 23);
-    ((SQLException)localObject).fillInStackTrace();
-    throw ((Throwable)localObject);
+    SQLException sqlexception = DatabaseError.createSqlException(null, 23);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   protected Object toObject(byte[] paramArrayOfByte, int paramInt, Map paramMap)
@@ -204,12 +204,11 @@ public class OracleTypeNUMBER extends OracleType
 
     if (paramObject != null)
     {
-      Object localObject;
       int i;
       int j;
       if ((paramObject instanceof short[]))
       {
-        localObject = (short[])paramObject;
+        short[] localObject = (short[])paramObject;
         i = (int)(paramInt == -1 ? localObject.length : Math.min(localObject.length - paramLong + 1L, paramInt));
 
         arrayOfDatum = new Datum[i];
@@ -219,7 +218,7 @@ public class OracleTypeNUMBER extends OracleType
       }
       else if ((paramObject instanceof int[]))
       {
-        localObject = (int[])paramObject;
+        int[] localObject = (int[])paramObject;
         i = (int)(paramInt == -1 ? localObject.length : Math.min(localObject.length - paramLong + 1L, paramInt));
 
         arrayOfDatum = new Datum[i];
@@ -229,7 +228,7 @@ public class OracleTypeNUMBER extends OracleType
       }
       else if ((paramObject instanceof long[]))
       {
-        localObject = (long[])paramObject;
+        long[] localObject = (long[])paramObject;
         i = (int)(paramInt == -1 ? localObject.length : Math.min(localObject.length - paramLong + 1L, paramInt));
 
         arrayOfDatum = new Datum[i];
@@ -239,7 +238,7 @@ public class OracleTypeNUMBER extends OracleType
       }
       else if ((paramObject instanceof float[]))
       {
-        localObject = (float[])paramObject;
+        float[] localObject = (float[])paramObject;
         i = (int)(paramInt == -1 ? localObject.length : Math.min(localObject.length - paramLong + 1L, paramInt));
 
         arrayOfDatum = new Datum[i];
@@ -249,7 +248,7 @@ public class OracleTypeNUMBER extends OracleType
       }
       else if ((paramObject instanceof double[]))
       {
-        localObject = (double[])paramObject;
+        double[] localObject = (double[])paramObject;
         i = (int)(paramInt == -1 ? localObject.length : Math.min(localObject.length - paramLong + 1L, paramInt));
 
         arrayOfDatum = new Datum[i];
@@ -259,7 +258,7 @@ public class OracleTypeNUMBER extends OracleType
       }
       else if ((paramObject instanceof boolean[]))
       {
-        localObject = (boolean[])paramObject;
+        boolean[] localObject = (boolean[])paramObject;
         i = (int)(paramInt == -1 ? localObject.length : Math.min(localObject.length - paramLong + 1L, paramInt));
 
         arrayOfDatum = new Datum[i];
@@ -270,7 +269,7 @@ public class OracleTypeNUMBER extends OracleType
       }
       else if ((paramObject instanceof char[][]))
       {
-        localObject = (char[][])paramObject;
+        char[][] localObject = (char[][])paramObject;
         i = (int)(paramInt == -1 ? localObject.length : Math.min(localObject.length - paramLong + 1L, paramInt));
 
         arrayOfDatum = new Datum[i];
@@ -282,9 +281,9 @@ public class OracleTypeNUMBER extends OracleType
       }
       else
       {
-        localObject = DatabaseError.createSqlException(null, 59, paramObject);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(null, 59, paramObject);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
     }
 

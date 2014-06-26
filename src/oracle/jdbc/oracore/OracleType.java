@@ -83,7 +83,7 @@ public abstract class OracleType
 
     if (paramObject != null)
     {
-      Object localObject;
+      Object[] localObject;
       if ((paramObject instanceof Object[]))
       {
         localObject = (Object[])paramObject;
@@ -97,9 +97,9 @@ public abstract class OracleType
       }
       else
       {
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 59, paramObject);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 59, paramObject);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
     }
     return arrayOfDatum;

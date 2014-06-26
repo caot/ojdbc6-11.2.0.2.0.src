@@ -131,15 +131,19 @@ abstract class DateCommonBinder extends Binder
 
     long l1 = paramLong + i2;
     long l2;
+    long l3;
     int n;
     int i;
     int i1;
     int m;
+    int i3 = 0;
+    int i7;
     if (l1 >= -12219292800000L)
     {
       l2 = 2440588L + floorDivide(l1, 86400000L) - 1721426L;
       int i5;
       int i6;
+      
       int i8;
       if (l2 > 0L)
       {
@@ -192,7 +196,7 @@ abstract class DateCommonBinder extends Binder
       m = (int)((l2 - 1L) % 7L);
     }
 
-    int i3 = 0;
+
     int i4 = i1 != 0 ? 60 : 59;
 
     if (n >= i4)
@@ -206,8 +210,8 @@ abstract class DateCommonBinder extends Binder
 
     m += (m < 0 ? 8 : 1);
 
-    long l3 = l1 / 86400000L;
-    int i7 = (int)(l1 - l3 * 86400000L);
+    l3 = l1 / 86400000L;
+    i7 = (int)(l1 - l3 * 86400000L);
 
     if (i7 < 0)
     {

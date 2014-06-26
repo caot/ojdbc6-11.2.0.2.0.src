@@ -245,7 +245,7 @@ public class SQLUtil
   public static Datum makeDatum(OracleConnection paramOracleConnection, byte[] paramArrayOfByte, int paramInt1, String paramString, int paramInt2)
     throws SQLException
   {
-    Object localObject1 = null;
+    Datum datum = null;
 
     int i = paramOracleConnection.getDbCsId();
     int j = paramOracleConnection.getJdbcCsId();
@@ -256,79 +256,79 @@ public class SQLUtil
     case 96:
       if ((paramInt2 != 0) && (paramInt2 < paramArrayOfByte.length) && (k == 1))
       {
-        localObject1 = new CHAR(paramArrayOfByte, 0, paramInt2, CharacterSet.make(paramOracleConnection.getJdbcCsId()));
+        datum = new CHAR(paramArrayOfByte, 0, paramInt2, CharacterSet.make(paramOracleConnection.getJdbcCsId()));
       }
       else
       {
-        localObject1 = new CHAR(paramArrayOfByte, CharacterSet.make(paramOracleConnection.getJdbcCsId()));
+        datum = new CHAR(paramArrayOfByte, CharacterSet.make(paramOracleConnection.getJdbcCsId()));
       }
 
       break;
     case 1:
     case 8:
-      localObject1 = new CHAR(paramArrayOfByte, CharacterSet.make(paramOracleConnection.getJdbcCsId()));
+      datum = new CHAR(paramArrayOfByte, CharacterSet.make(paramOracleConnection.getJdbcCsId()));
 
       break;
     case 2:
     case 6:
-      localObject1 = new NUMBER(paramArrayOfByte);
+      datum = new NUMBER(paramArrayOfByte);
 
       break;
     case 100:
-      localObject1 = new BINARY_FLOAT(paramArrayOfByte);
+      datum = new BINARY_FLOAT(paramArrayOfByte);
 
       break;
     case 101:
-      localObject1 = new BINARY_DOUBLE(paramArrayOfByte);
+      datum = new BINARY_DOUBLE(paramArrayOfByte);
 
       break;
     case 23:
     case 24:
-      localObject1 = new RAW(paramArrayOfByte);
+      datum = new RAW(paramArrayOfByte);
 
       break;
     case 104:
-      localObject1 = new ROWID(paramArrayOfByte);
+      datum = new ROWID(paramArrayOfByte);
 
       break;
     case 102:
-      localObject2 = DatabaseError.createSqlException(null, 1, "need resolution: do we want to handle ResultSet?");
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(null, 1, "need resolution: do we want to handle ResultSet?");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     case 12:
-      localObject1 = new DATE(paramArrayOfByte);
+      datum = new DATE(paramArrayOfByte);
 
       break;
     case 182:
-      localObject1 = new INTERVALYM(paramArrayOfByte);
+      datum = new INTERVALYM(paramArrayOfByte);
 
       break;
     case 183:
-      localObject1 = new INTERVALDS(paramArrayOfByte);
+      datum = new INTERVALDS(paramArrayOfByte);
 
       break;
     case 180:
-      localObject1 = new TIMESTAMP(paramArrayOfByte);
+      datum = new TIMESTAMP(paramArrayOfByte);
 
       break;
     case 181:
-      localObject1 = new TIMESTAMPTZ(paramArrayOfByte);
+      datum = new TIMESTAMPTZ(paramArrayOfByte);
 
       break;
     case 231:
-      localObject1 = new TIMESTAMPLTZ(paramArrayOfByte);
+      datum = new TIMESTAMPLTZ(paramArrayOfByte);
 
       break;
     case 113:
-      localObject1 = paramOracleConnection.createBlob(paramArrayOfByte);
+      datum = paramOracleConnection.createBlob(paramArrayOfByte);
 
       break;
     case 112:
-      localObject1 = paramOracleConnection.createClob(paramArrayOfByte);
+      datum = paramOracleConnection.createClob(paramArrayOfByte);
 
       break;
     case 114:
-      localObject1 = paramOracleConnection.createBfile(paramArrayOfByte);
+      datum = paramOracleConnection.createBfile(paramArrayOfByte);
 
       break;
     case 109:
@@ -336,15 +336,15 @@ public class SQLUtil
 
       if ((localObject2 instanceof StructDescriptor))
       {
-        localObject1 = new STRUCT((StructDescriptor)localObject2, paramArrayOfByte, paramOracleConnection);
+        datum = new STRUCT((StructDescriptor)localObject2, paramArrayOfByte, paramOracleConnection);
       }
       else if ((localObject2 instanceof ArrayDescriptor))
       {
-        localObject1 = new ARRAY((ArrayDescriptor)localObject2, paramArrayOfByte, paramOracleConnection);
+        datum = new ARRAY((ArrayDescriptor)localObject2, paramArrayOfByte, paramOracleConnection);
       }
       else if ((localObject2 instanceof OpaqueDescriptor))
       {
-        localObject1 = new OPAQUE((OpaqueDescriptor)localObject2, paramArrayOfByte, paramOracleConnection);
+        datum = new OPAQUE((OpaqueDescriptor)localObject2, paramArrayOfByte, paramOracleConnection);
       }
 
       break;
@@ -353,7 +353,7 @@ public class SQLUtil
 
       if ((localObject2 instanceof StructDescriptor))
       {
-        localObject1 = new REF((StructDescriptor)localObject2, paramOracleConnection, paramArrayOfByte);
+        datum = new REF((StructDescriptor)localObject2, paramOracleConnection, paramArrayOfByte);
       }
       else
       {
@@ -364,18 +364,18 @@ public class SQLUtil
 
       break;
     default:
-      localObject2 = DatabaseError.createSqlException(null, 1, "program error: invalid SQL type code");
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      sqlexception = DatabaseError.createSqlException(null, 1, "program error: invalid SQL type code");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    return localObject1;
+    return datum;
   }
 
   public static Datum makeNDatum(OracleConnection paramOracleConnection, byte[] paramArrayOfByte, int paramInt1, String paramString, short paramShort, int paramInt2)
     throws SQLException
   {
-    Object localObject = null;
+    Datum datum = null;
 
     switch (paramInt1)
     {
@@ -383,20 +383,20 @@ public class SQLUtil
       int i = paramInt2 * CharacterSetMetaData.getRatio(paramOracleConnection.getNCharSet(), 1);
 
       if ((paramInt2 != 0) && (i < paramArrayOfByte.length)) {
-        localObject = new CHAR(paramArrayOfByte, 0, paramInt2, CharacterSet.make(paramOracleConnection.getNCharSet()));
+        datum = new CHAR(paramArrayOfByte, 0, paramInt2, CharacterSet.make(paramOracleConnection.getNCharSet()));
       }
       else {
-        localObject = new CHAR(paramArrayOfByte, CharacterSet.make(paramOracleConnection.getNCharSet()));
+        datum = new CHAR(paramArrayOfByte, CharacterSet.make(paramOracleConnection.getNCharSet()));
       }
 
       break;
     case 1:
     case 8:
-      localObject = new CHAR(paramArrayOfByte, CharacterSet.make(paramOracleConnection.getNCharSet()));
+      datum = new CHAR(paramArrayOfByte, CharacterSet.make(paramOracleConnection.getNCharSet()));
 
       break;
     case 112:
-      localObject = paramOracleConnection.createClob(paramArrayOfByte, paramShort);
+      datum = paramOracleConnection.createClob(paramArrayOfByte, paramShort);
 
       break;
     default:
@@ -405,7 +405,7 @@ public class SQLUtil
       throw localSQLException;
     }
 
-    return localObject;
+    return datum;
   }
 
   public static Datum makeDatum(OracleConnection paramOracleConnection, Object paramObject, int paramInt, String paramString)
@@ -417,138 +417,138 @@ public class SQLUtil
   public static Datum makeDatum(OracleConnection paramOracleConnection, Object paramObject, int paramInt, String paramString, boolean paramBoolean)
     throws SQLException
   {
-    Object localObject1 = null;
+    Datum datum = null;
     Object localObject2;
     switch (paramInt)
     {
     case 1:
     case 8:
     case 96:
-      localObject1 = new CHAR(paramObject, CharacterSet.make(paramBoolean ? paramOracleConnection.getNCharSet() : paramOracleConnection.getJdbcCsId()));
+      datum = new CHAR(paramObject, CharacterSet.make(paramBoolean ? paramOracleConnection.getNCharSet() : paramOracleConnection.getJdbcCsId()));
 
       break;
     case 2:
     case 6:
-      localObject1 = new NUMBER(paramObject);
+      datum = new NUMBER(paramObject);
 
       break;
     case 100:
-      localObject1 = new BINARY_FLOAT((Float)paramObject);
+      datum = new BINARY_FLOAT((Float)paramObject);
 
       break;
     case 101:
-      localObject1 = new BINARY_DOUBLE((Double)paramObject);
+      datum = new BINARY_DOUBLE((Double)paramObject);
 
       break;
     case 23:
     case 24:
-      localObject1 = new RAW(paramObject);
+      datum = new RAW(paramObject);
 
       break;
     case 104:
-      localObject1 = new ROWID((byte[])paramObject);
+      datum = new ROWID((byte[])paramObject);
 
       break;
     case 102:
-      localObject2 = DatabaseError.createSqlException(null, 1, "need resolution: do we want to handle ResultSet");
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(null, 1, "need resolution: do we want to handle ResultSet");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     case 12:
-      localObject1 = new DATE(paramObject);
+      datum = new DATE(paramObject);
 
       break;
     case 180:
       if ((paramObject instanceof TIMESTAMP))
       {
-        localObject1 = (Datum)paramObject;
+        datum = (Datum)paramObject;
       }
       else if ((paramObject instanceof Timestamp))
-        localObject1 = new TIMESTAMP((Timestamp)paramObject);
+        datum = new TIMESTAMP((Timestamp)paramObject);
       else if ((paramObject instanceof Date))
-        localObject1 = new TIMESTAMP((Date)paramObject);
+        datum = new TIMESTAMP((Date)paramObject);
       else if ((paramObject instanceof Time))
-        localObject1 = new TIMESTAMP((Time)paramObject);
+        datum = new TIMESTAMP((Time)paramObject);
       else if ((paramObject instanceof DATE))
-        localObject1 = new TIMESTAMP((DATE)paramObject);
+        datum = new TIMESTAMP((DATE)paramObject);
       else if ((paramObject instanceof String))
-        localObject1 = new TIMESTAMP((String)paramObject);
+        datum = new TIMESTAMP((String)paramObject);
       else if ((paramObject instanceof byte[]))
-        localObject1 = new TIMESTAMP((byte[])paramObject); break;
+        datum = new TIMESTAMP((byte[])paramObject); break;
     case 181:
       if ((paramObject instanceof TIMESTAMPTZ))
       {
-        localObject1 = (Datum)paramObject;
+        datum = (Datum)paramObject;
       }
       else if ((paramObject instanceof Timestamp))
-        localObject1 = new TIMESTAMPTZ(paramOracleConnection, (Timestamp)paramObject);
+        datum = new TIMESTAMPTZ(paramOracleConnection, (Timestamp)paramObject);
       else if ((paramObject instanceof Date))
-        localObject1 = new TIMESTAMPTZ(paramOracleConnection, (Date)paramObject);
+        datum = new TIMESTAMPTZ(paramOracleConnection, (Date)paramObject);
       else if ((paramObject instanceof Time))
-        localObject1 = new TIMESTAMPTZ(paramOracleConnection, (Time)paramObject);
+        datum = new TIMESTAMPTZ(paramOracleConnection, (Time)paramObject);
       else if ((paramObject instanceof DATE))
-        localObject1 = new TIMESTAMPTZ(paramOracleConnection, (DATE)paramObject);
+        datum = new TIMESTAMPTZ(paramOracleConnection, (DATE)paramObject);
       else if ((paramObject instanceof String))
-        localObject1 = new TIMESTAMPTZ(paramOracleConnection, (String)paramObject);
+        datum = new TIMESTAMPTZ(paramOracleConnection, (String)paramObject);
       else if ((paramObject instanceof byte[]))
-        localObject1 = new TIMESTAMPTZ((byte[])paramObject); break;
+        datum = new TIMESTAMPTZ((byte[])paramObject); break;
     case 231:
       if ((paramObject instanceof TIMESTAMPLTZ))
       {
-        localObject1 = (Datum)paramObject;
+        datum = (Datum)paramObject;
       }
       else if ((paramObject instanceof Timestamp))
-        localObject1 = new TIMESTAMPLTZ(paramOracleConnection, (Timestamp)paramObject);
+        datum = new TIMESTAMPLTZ(paramOracleConnection, (Timestamp)paramObject);
       else if ((paramObject instanceof Date))
-        localObject1 = new TIMESTAMPLTZ(paramOracleConnection, (Date)paramObject);
+        datum = new TIMESTAMPLTZ(paramOracleConnection, (Date)paramObject);
       else if ((paramObject instanceof Time))
-        localObject1 = new TIMESTAMPLTZ(paramOracleConnection, (Time)paramObject);
+        datum = new TIMESTAMPLTZ(paramOracleConnection, (Time)paramObject);
       else if ((paramObject instanceof DATE))
-        localObject1 = new TIMESTAMPLTZ(paramOracleConnection, (DATE)paramObject);
+        datum = new TIMESTAMPLTZ(paramOracleConnection, (DATE)paramObject);
       else if ((paramObject instanceof String))
-        localObject1 = new TIMESTAMPLTZ(paramOracleConnection, (String)paramObject);
+        datum = new TIMESTAMPLTZ(paramOracleConnection, (String)paramObject);
       else if ((paramObject instanceof byte[]))
-        localObject1 = new TIMESTAMPLTZ((byte[])paramObject); break;
+        datum = new TIMESTAMPLTZ((byte[])paramObject); break;
     case 113:
       if ((paramObject instanceof BLOB))
       {
-        localObject1 = (Datum)paramObject;
+        datum = (Datum)paramObject;
       }
       if ((paramObject instanceof byte[]))
       {
-        localObject1 = new RAW((byte[])paramObject); } break;
+        datum = new RAW((byte[])paramObject); } break;
     case 112:
       if ((paramObject instanceof CLOB))
       {
-        localObject1 = (Datum)paramObject;
+        datum = (Datum)paramObject;
       }
 
       if ((paramObject instanceof String))
       {
         localObject2 = CharacterSet.make(paramBoolean ? paramOracleConnection.getNCharSet() : paramOracleConnection.getJdbcCsId());
-        localObject1 = new CHAR((String)paramObject, (CharacterSet)localObject2);
+        datum = new CHAR((String)paramObject, (CharacterSet)localObject2);
       }break;
     case 114:
       if ((paramObject instanceof BFILE))
       {
-        localObject1 = (Datum)paramObject; } break;
+        datum = (Datum)paramObject; } break;
     case 109:
       if (((paramObject instanceof STRUCT)) || ((paramObject instanceof ARRAY)) || ((paramObject instanceof OPAQUE)))
       {
-        localObject1 = (Datum)paramObject; } break;
+        datum = (Datum)paramObject; } break;
     case 111:
       if ((paramObject instanceof REF))
       {
-        localObject1 = (Datum)paramObject; } break;
+        datum = (Datum)paramObject; } break;
     }
 
-    if (localObject1 == null)
+    if (datum == null)
     {
-      localObject2 = DatabaseError.createSqlException(null, 1, "Unable to construct a Datum from the specified input");
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(null, 1, "Unable to construct a Datum from the specified input");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    return localObject1;
+    return datum;
   }
 
   private static int classNumber(Class paramClass)

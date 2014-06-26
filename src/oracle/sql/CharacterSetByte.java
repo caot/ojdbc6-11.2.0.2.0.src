@@ -146,7 +146,7 @@ class CharacterSetByte extends CharacterSet
 
     for (int i = 0; i < paramArrayOfChar.length; i++)
     {
-      if (paramArrayOfChar[i] > 'ÿ')
+      if (paramArrayOfChar[i] > '\377')
       {
         arrayOfByte[i] = paramByte;
 

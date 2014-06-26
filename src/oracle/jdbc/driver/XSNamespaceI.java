@@ -144,7 +144,7 @@ class XSNamespaceI extends XSNamespace
     int i = (int)paramT4CMAREngine.unmarshalUB4();
     if (i > 0)
     {
-      arrayOfByte = new byte[i];
+      byte[] arrayOfByte = new byte[i];
       paramT4CMAREngine.unmarshalCLR(arrayOfByte, 0, arrayOfInt);
       str = paramT4CMAREngine.conv.CharBytesToString(arrayOfByte, arrayOfInt[0]);
     }
@@ -164,14 +164,14 @@ class XSNamespaceI extends XSNamespace
     for (int m = 0; m < k; m++) {
       arrayOfXSAttribute[m] = XSAttributeI.unmarshal(paramT4CMAREngine);
     }
-    m = (int)paramT4CMAREngine.unmarshalUB4();
-    Object localObject1 = (byte[][])null;
+    int m = (int)paramT4CMAREngine.unmarshalUB4();
+    byte[][] localObject1 = null;
     if (m > 0)
     {
-      localObject2 = new byte[m];
+      byte[] localObject2 = new byte[m];
       paramT4CMAREngine.unmarshalCLR((byte[])localObject2, 0, arrayOfInt);
 
-      int n = m / 16;
+      int n = (int)m / 16;
       localObject1 = new byte[n][];
       for (int i1 = 0; i1 < n; i1++)
       {
@@ -180,12 +180,12 @@ class XSNamespaceI extends XSNamespace
       }
     }
 
-    Object localObject2 = new XSNamespaceI();
-    ((XSNamespaceI)localObject2).setNamespaceName(str);
-    ((XSNamespaceI)localObject2).setTimestamp(arrayOfByte);
-    ((XSNamespaceI)localObject2).setFlag(l);
-    ((XSNamespaceI)localObject2).setAttributes(arrayOfXSAttribute);
-    ((XSNamespaceI)localObject2).setACLIdList((byte[][])localObject1);
-    return localObject2;
+    XSNamespaceI xsnamespacei = new XSNamespaceI();
+    xsnamespacei.setNamespaceName(str);
+    xsnamespacei.setTimestamp(arrayOfByte);
+    xsnamespacei.setFlag(l);
+    xsnamespacei.setAttributes(arrayOfXSAttribute);
+    xsnamespacei.setACLIdList((byte[][])localObject1);
+    return xsnamespacei;
   }
 }

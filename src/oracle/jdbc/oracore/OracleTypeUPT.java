@@ -199,7 +199,7 @@ public class OracleTypeUPT extends OracleTypeADT
       case 1:
         return ((OracleTypeADT)this.realType).unpickle81(paramPickleContext, (STRUCT)null, 3, paramInt, paramMap);
       case 2:
-        localObject = ((OracleTypeADT)this.realType).unpickle81(paramPickleContext, (STRUCT)null, 1, paramInt, paramMap);
+        Object localObject = ((OracleTypeADT)this.realType).unpickle81(paramPickleContext, (STRUCT)null, 1, paramInt, paramMap);
 
         return localObject == null ? localObject : ((STRUCT)localObject).toJdbc(paramMap);
       case 9:
@@ -218,7 +218,7 @@ public class OracleTypeUPT extends OracleTypeADT
       case 9:
         return ((OracleTypeOPAQUE)this.realType).unpickle81(paramPickleContext, (OPAQUE)null, paramInt, paramMap);
       case 2:
-        localObject = ((OracleTypeOPAQUE)this.realType).unpickle81(paramPickleContext, (OPAQUE)null, paramInt, paramMap);
+        Object localObject = ((OracleTypeOPAQUE)this.realType).unpickle81(paramPickleContext, (OPAQUE)null, paramInt, paramMap);
 
         return localObject == null ? localObject : ((OPAQUE)localObject).toJdbc(paramMap);
       }
@@ -228,9 +228,9 @@ public class OracleTypeUPT extends OracleTypeADT
       throw localSQLException;
     }
 
-    Object localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "Unrecognized UPT code");
-    ((SQLException)localObject).fillInStackTrace();
-    throw ((Throwable)localObject);
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "Unrecognized UPT code");
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   protected Datum unpickle81datumAsNull(PickleContext paramPickleContext, byte paramByte1, byte paramByte2)
@@ -335,7 +335,7 @@ public class OracleTypeUPT extends OracleTypeADT
 
     if (this.realType != null)
       this.realType.printXML(paramPrintWriter, paramInt + 1, paramBoolean);
-    for (i = 0; i < paramInt; i++) paramPrintWriter.print("  ");
+    for (int i = 0; i < paramInt; i++) paramPrintWriter.print("  ");
     paramPrintWriter.println("</OracleTypeUPT>");
   }
 

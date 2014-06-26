@@ -50,12 +50,12 @@ public class BFILE extends DatumWithConnection
   {
     if ((paramLong < 1L) || (paramInt < 0))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, null);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, null);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject = null;
+    byte[] localObject = null;
 
     if (paramInt == 0)
     {

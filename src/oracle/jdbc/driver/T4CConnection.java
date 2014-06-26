@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Properties;
 import java.util.concurrent.Executor;
-import oracle.jdbc.NotificationRegistration.RegistrationState;
+import oracle.jdbc.NotificationRegistration;
 import oracle.jdbc.OracleConnection.CommitOption;
 import oracle.jdbc.OracleConnection.DatabaseShutdownMode;
 import oracle.jdbc.OracleConnection.DatabaseStartupMode;
@@ -155,9 +155,9 @@ class T4CConnection extends PhysicalConnection
       Object localObject1;
       if (this.isLoggedOn)
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 428);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 428);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if (this.database == null)
@@ -232,16 +232,16 @@ class T4CConnection extends PhysicalConnection
         localObject1 = new T4C7Oversion(this);
         ((T4C7Oversion)localObject1).doOVERSION();
 
-        localObject2 = ((T4C7Oversion)localObject1).getVersion();
+        byte[] localObject2 = ((T4C7Oversion)localObject1).getVersion();
         try
         {
           this.databaseProductVersion = new String((byte[])localObject2, "UTF8");
         }
         catch (UnsupportedEncodingException localUnsupportedEncodingException)
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localUnsupportedEncodingException);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localUnsupportedEncodingException);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
 
         this.versionNumber = ((T4C7Oversion)localObject1).getVersionNumber();
@@ -255,19 +255,19 @@ class T4CConnection extends PhysicalConnection
     }
     catch (NetException localNetException)
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localNetException);
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localNetException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     catch (IOException localIOException)
     {
       handleIOException(localIOException);
 
-      Object localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
-    catch (SQLException localSQLException1)
+    catch (SQLException sqlexception1)
     {
       try
       {
@@ -279,7 +279,7 @@ class T4CConnection extends PhysicalConnection
 
       this.isLoggedOn = false;
 
-      throw localSQLException1;
+      throw sqlexception1;
     }
   }
 
@@ -320,9 +320,9 @@ class T4CConnection extends PhysicalConnection
 
       if (this.lifecycle != 8)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
     }
@@ -386,9 +386,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -405,9 +405,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -437,9 +437,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     String str = null;
@@ -451,9 +451,9 @@ class T4CConnection extends PhysicalConnection
     }
     catch (UnsupportedEncodingException localUnsupportedEncodingException)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localUnsupportedEncodingException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localUnsupportedEncodingException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return str;
@@ -473,9 +473,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return localT4C7Oversion.getVersionNumber();
@@ -503,9 +503,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     localT4CStatement.sqlStringChanged = false;
@@ -534,17 +534,17 @@ class T4CConnection extends PhysicalConnection
     }
     catch (NetException localNetException)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localNetException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localNetException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     catch (IOException localIOException)
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -553,9 +553,9 @@ class T4CConnection extends PhysicalConnection
   {
     if (paramString == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 433);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 433);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = new Properties();
@@ -749,9 +749,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -780,9 +780,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -796,7 +796,7 @@ class T4CConnection extends PhysicalConnection
       this.oscid.doOSCID(this.endToEndHasChanged, this.endToEndValues, this.endToEndECIDSequenceNumber);
 
       for (int i = 0; i < 4; i++) {
-        if (this.endToEndHasChanged[i] != 0)
+        if (this.endToEndHasChanged[i])
           this.endToEndHasChanged[i] = false;
       }
     }
@@ -866,9 +866,9 @@ class T4CConnection extends PhysicalConnection
     }
     catch (IOException localIOException)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -886,9 +886,9 @@ class T4CConnection extends PhysicalConnection
     }
     catch (IOException localIOException)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -1011,14 +1011,14 @@ class T4CConnection extends PhysicalConnection
     throws SQLException
   {
     byte b = 0;
-    SQLException localSQLException;
+    SQLException sqlexception;
     if (paramInstanceProperty == OracleConnection.InstanceProperty.ASM_VOLUME_SUPPORTED)
     {
       if ((this.serverRuntimeCapabilities == null) || (this.serverRuntimeCapabilities.length < 6))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 256);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 256);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       b = this.serverRuntimeCapabilities[5];
@@ -1027,9 +1027,9 @@ class T4CConnection extends PhysicalConnection
     {
       if ((this.serverRuntimeCapabilities == null) || (this.serverRuntimeCapabilities.length < 4))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 256);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 256);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       b = this.serverRuntimeCapabilities[3];
@@ -1073,9 +1073,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return l;
@@ -1088,9 +1088,9 @@ class T4CConnection extends PhysicalConnection
 
     if (paramLong < 1L)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     long l = LobPlsqlUtil.hasPattern(paramBFILE, paramArrayOfByte, paramLong);
@@ -1107,9 +1107,9 @@ class T4CConnection extends PhysicalConnection
 
     if (paramLong < 1L)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     long l = LobPlsqlUtil.isSubLob(paramBFILE1, paramBFILE2, paramLong);
@@ -1124,12 +1124,12 @@ class T4CConnection extends PhysicalConnection
   {
     assertLoggedOn("getBytes");
     assertNotNull(paramBFILE.shareBytes(), "getBytes");
-    SQLException localSQLException1;
+    SQLException sqlexception1;
     if (paramLong < 1L)
     {
-      localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "getBytes()");
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "getBytes()");
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     if ((paramInt <= 0) || (paramArrayOfByte == null)) {
@@ -1137,9 +1137,9 @@ class T4CConnection extends PhysicalConnection
     }
     if (this.pipeState != -1)
     {
-      localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 453, "getBytes()");
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 453, "getBytes()");
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     needLine();
@@ -1156,9 +1156,9 @@ class T4CConnection extends PhysicalConnection
       {
         handleIOException(localIOException);
 
-        SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-        localSQLException2.fillInStackTrace();
-        throw localSQLException2;
+        SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+        sqlexception2.fillInStackTrace();
+        throw sqlexception2;
       }
 
     }
@@ -1203,9 +1203,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -1226,9 +1226,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return bool;
@@ -1251,9 +1251,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return bool;
@@ -1274,9 +1274,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -1295,9 +1295,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -1316,9 +1316,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -1339,9 +1339,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return bool;
@@ -1395,9 +1395,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return l;
@@ -1411,9 +1411,9 @@ class T4CConnection extends PhysicalConnection
 
     if (paramLong < 1L)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     long l = LobPlsqlUtil.hasPattern(paramBLOB, paramArrayOfByte, paramLong);
@@ -1432,9 +1432,9 @@ class T4CConnection extends PhysicalConnection
 
     if (paramLong < 1L)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     long l = LobPlsqlUtil.isSubLob(paramBLOB1, paramBLOB2, paramLong);
@@ -1449,19 +1449,19 @@ class T4CConnection extends PhysicalConnection
   {
     assertLoggedOn("getBytes");
     assertNotNull(paramBLOB.shareBytes(), "getBytes");
-    SQLException localSQLException1;
+    SQLException sqlexception1;
     if (paramLong < 1L)
     {
-      localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "getBytes()");
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "getBytes()");
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     if (this.pipeState != -1)
     {
-      localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 453, "getBytes()");
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 453, "getBytes()");
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     if ((paramInt <= 0) || (paramArrayOfByte == null)) {
@@ -1502,9 +1502,9 @@ class T4CConnection extends PhysicalConnection
       {
         handleIOException(localIOException);
 
-        SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-        localSQLException2.fillInStackTrace();
-        throw localSQLException2;
+        SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+        sqlexception2.fillInStackTrace();
+        throw sqlexception2;
       }
 
     }
@@ -1520,9 +1520,9 @@ class T4CConnection extends PhysicalConnection
 
     if (paramLong < 1L)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "putBytes()");
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "putBytes()");
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     if ((paramArrayOfByte == null) || (paramInt2 <= 0)) {
@@ -1544,9 +1544,9 @@ class T4CConnection extends PhysicalConnection
       {
         handleIOException(localIOException);
 
-        SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-        localSQLException2.fillInStackTrace();
-        throw localSQLException2;
+        SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+        sqlexception2.fillInStackTrace();
+        throw sqlexception2;
       }
 
     }
@@ -1571,9 +1571,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return (int)l;
@@ -1587,9 +1587,9 @@ class T4CConnection extends PhysicalConnection
 
     if (paramLong < 0L)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "trim()");
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "trim()");
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     needLine();
@@ -1603,9 +1603,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException2.fillInStackTrace();
-      throw localSQLException2;
+      SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception2.fillInStackTrace();
+      throw sqlexception2;
     }
   }
 
@@ -1625,9 +1625,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return localBLOB;
@@ -1648,9 +1648,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -1683,9 +1683,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -1704,9 +1704,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -1727,9 +1727,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return bool;
@@ -1759,9 +1759,9 @@ class T4CConnection extends PhysicalConnection
     {
       if ((paramBoolean & this.lobStreamPosStandardCompliant))
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return new OracleBlobOutputStream(paramBLOB, paramInt);
@@ -1807,9 +1807,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return l;
@@ -1820,9 +1820,9 @@ class T4CConnection extends PhysicalConnection
   {
     if (paramString == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     assertLoggedOn("position");
@@ -1830,12 +1830,12 @@ class T4CConnection extends PhysicalConnection
 
     if (paramLong < 1L)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject = new char[paramString.length()];
+    char[] localObject = new char[paramString.length()];
 
     paramString.getChars(0, localObject.length, (char[])localObject, 0);
 
@@ -1849,12 +1849,12 @@ class T4CConnection extends PhysicalConnection
   public long position(CLOB paramCLOB1, CLOB paramCLOB2, long paramLong)
     throws SQLException
   {
-    SQLException localSQLException;
+    SQLException sqlexception;
     if (paramCLOB2 == null)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     assertLoggedOn("position");
@@ -1863,9 +1863,9 @@ class T4CConnection extends PhysicalConnection
 
     if (paramLong < 1L)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     long l = LobPlsqlUtil.isSubLob(paramCLOB1, paramCLOB2, paramLong);
@@ -1880,19 +1880,19 @@ class T4CConnection extends PhysicalConnection
   {
     assertLoggedOn("getChars");
     assertNotNull(paramCLOB.shareBytes(), "getChars");
-    SQLException localSQLException1;
+    SQLException sqlexception1;
     if (paramLong < 1L)
     {
-      localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "getChars()");
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "getChars()");
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     if (this.pipeState != -1)
     {
-      localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 453, "getChars()");
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 453, "getChars()");
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     if ((paramInt <= 0) || (paramArrayOfChar == null)) {
@@ -1935,9 +1935,9 @@ class T4CConnection extends PhysicalConnection
       {
         handleIOException(localIOException);
 
-        SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-        localSQLException2.fillInStackTrace();
-        throw localSQLException2;
+        SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+        sqlexception2.fillInStackTrace();
+        throw sqlexception2;
       }
 
     }
@@ -1953,9 +1953,9 @@ class T4CConnection extends PhysicalConnection
 
     if (paramLong < 1L)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "putChars()");
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "putChars()");
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     if ((paramArrayOfChar == null) || (paramInt2 <= 0)) {
@@ -1979,9 +1979,9 @@ class T4CConnection extends PhysicalConnection
       {
         handleIOException(localIOException);
 
-        SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-        localSQLException2.fillInStackTrace();
-        throw localSQLException2;
+        SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+        sqlexception2.fillInStackTrace();
+        throw sqlexception2;
       }
 
     }
@@ -2006,9 +2006,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return (int)l;
@@ -2022,9 +2022,9 @@ class T4CConnection extends PhysicalConnection
 
     if (paramLong < 0L)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "trim()");
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "trim()");
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     needLine();
@@ -2038,9 +2038,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException2.fillInStackTrace();
-      throw localSQLException2;
+      SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception2.fillInStackTrace();
+      throw sqlexception2;
     }
   }
 
@@ -2060,9 +2060,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return localCLOB;
@@ -2083,9 +2083,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -2116,9 +2116,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -2137,9 +2137,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -2160,9 +2160,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return bool;
@@ -2186,9 +2186,9 @@ class T4CConnection extends PhysicalConnection
     {
       if ((paramBoolean & this.lobStreamPosStandardCompliant))
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return new OracleClobOutputStream(paramCLOB, paramInt);
@@ -2221,9 +2221,9 @@ class T4CConnection extends PhysicalConnection
     {
       if ((paramBoolean & this.lobStreamPosStandardCompliant))
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return new OracleClobWriter(paramCLOB, paramInt);
@@ -2237,9 +2237,9 @@ class T4CConnection extends PhysicalConnection
   {
     if (!this.isLoggedOn)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 430);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 430);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -2277,17 +2277,17 @@ class T4CConnection extends PhysicalConnection
     }
     catch (NetException localNetException)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localNetException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localNetException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     catch (IOException localIOException)
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -2311,9 +2311,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     int i = this.describe.numuds;
@@ -2386,9 +2386,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -2410,9 +2410,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return bool;
@@ -2433,7 +2433,7 @@ class T4CConnection extends PhysicalConnection
       {
         return -1;
       }
-      catch (SQLException localSQLException)
+      catch (SQLException sqlexception)
       {
         return -1;
       }
@@ -2516,18 +2516,18 @@ class T4CConnection extends PhysicalConnection
       {
         handleIOException(localIOException);
 
-        SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-        localSQLException2.fillInStackTrace();
-        throw localSQLException2;
+        SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+        sqlexception2.fillInStackTrace();
+        throw sqlexception2;
       }
 
     }
-    catch (SQLException localSQLException1)
+    catch (SQLException sqlexception1)
     {
       if (bool2) {
         PhysicalConnection.ntfManager.cleanListenersT4C(paramInt);
       }
-      throw localSQLException1;
+      throw sqlexception1;
     }
     NTFAQRegistration[] arrayOfNTFAQRegistration = new NTFAQRegistration[i];
 
@@ -2535,7 +2535,7 @@ class T4CConnection extends PhysicalConnection
       arrayOfNTFAQRegistration[m] = new NTFAQRegistration(arrayOfInt1[m], true, this.instanceName, this.userName, paramString, paramInt, paramArrayOfProperties[m], paramArrayOfString[m], this.versionNumber);
     }
 
-    for (m = 0; m < arrayOfNTFAQRegistration.length; m++)
+    for (int m = 0; m < arrayOfNTFAQRegistration.length; m++)
       PhysicalConnection.ntfManager.addRegistration(arrayOfNTFAQRegistration[m]);
     return arrayOfNTFAQRegistration;
   }
@@ -2552,19 +2552,19 @@ class T4CConnection extends PhysicalConnection
       if (paramArrayOfProperties[i].get("NTF_GROUPING_START_TIME") != null)
         localTIMESTAMPTZ = (TIMESTAMPTZ)paramArrayOfProperties[i].get("NTF_GROUPING_START_TIME");
       String str4 = paramArrayOfProperties[i].getProperty("NTF_GROUPING_REPEAT_TIME", "NTF_GROUPING_REPEAT_FOREVER");
-      SQLException localSQLException;
+      SQLException sqlexception;
       if ((str1.compareTo("NTF_GROUPING_CLASS_TIME") != 0) && (str1.compareTo("NTF_GROUPING_CLASS_NONE") != 0))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if ((str1.compareTo("NTF_GROUPING_CLASS_NONE") != 0) && (getTTCVersion() < 5))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if (str1.compareTo("NTF_GROUPING_CLASS_TIME") == 0)
@@ -2585,9 +2585,9 @@ class T4CConnection extends PhysicalConnection
           }
           else
           {
-            localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-            localSQLException.fillInStackTrace();
-            throw localSQLException;
+            sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+            sqlexception.fillInStackTrace();
+            throw sqlexception;
           }
 
         }
@@ -2647,9 +2647,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -2766,18 +2766,18 @@ class T4CConnection extends PhysicalConnection
       {
         handleIOException(localIOException);
 
-        SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-        localSQLException2.fillInStackTrace();
-        throw localSQLException2;
+        SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+        sqlexception2.fillInStackTrace();
+        throw sqlexception2;
       }
 
     }
-    catch (SQLException localSQLException1)
+    catch (SQLException sqlexception1)
     {
       if (bool2) {
         PhysicalConnection.ntfManager.cleanListenersT4C(paramInt1);
       }
-      throw localSQLException1;
+      throw sqlexception1;
     }
     NTFDCNRegistration localNTFDCNRegistration = new NTFDCNRegistration(i5, true, this.instanceName, l, this.userName, paramString, paramInt1, paramProperties, this.versionNumber);
 
@@ -2810,9 +2810,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -2851,54 +2851,54 @@ class T4CConnection extends PhysicalConnection
     super.validateConnectionProperties();
 
     String str = ".*[\\00\\(\\)].*";
-    SQLException localSQLException;
+    SQLException sqlexception;
     if ((this.thinVsessionOsuser != null) && ((this.thinVsessionOsuser.matches(str)) || (this.thinVsessionOsuser.length() > 30)))
     {
-      localSQLException = DatabaseError.createSqlException(null, 190, new StringBuilder().append("Property is 'v$session.osuser' and value is '").append(this.thinVsessionOsuser).append("'").toString());
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(null, 190, new StringBuilder().append("Property is 'v$session.osuser' and value is '").append(this.thinVsessionOsuser).append("'").toString());
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if ((this.thinVsessionTerminal != null) && ((this.thinVsessionTerminal.matches(str)) || (this.thinVsessionTerminal.length() > 30)))
     {
-      localSQLException = DatabaseError.createSqlException(null, 190, new StringBuilder().append("Property is 'v$session.terminal' and value is '").append(this.thinVsessionTerminal).append("'").toString());
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(null, 190, new StringBuilder().append("Property is 'v$session.terminal' and value is '").append(this.thinVsessionTerminal).append("'").toString());
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if ((this.thinVsessionMachine != null) && ((this.thinVsessionMachine.matches(str)) || (this.thinVsessionMachine.length() > 64)))
     {
-      localSQLException = DatabaseError.createSqlException(null, 190, new StringBuilder().append("Property is 'v$session.machine' and value is '").append(this.thinVsessionMachine).append("'").toString());
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(null, 190, new StringBuilder().append("Property is 'v$session.machine' and value is '").append(this.thinVsessionMachine).append("'").toString());
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if ((this.thinVsessionProgram != null) && ((this.thinVsessionProgram.matches(str)) || (this.thinVsessionProgram.length() > 48)))
     {
-      localSQLException = DatabaseError.createSqlException(null, 190, new StringBuilder().append("Property is 'v$session.program' and value is '").append(this.thinVsessionProgram).append("'").toString());
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(null, 190, new StringBuilder().append("Property is 'v$session.program' and value is '").append(this.thinVsessionProgram).append("'").toString());
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if ((this.thinVsessionProcess != null) && ((this.thinVsessionProcess.matches(str)) || (this.thinVsessionProcess.length() > 24)))
     {
-      localSQLException = DatabaseError.createSqlException(null, 190, new StringBuilder().append("Property is 'v$session.process' and value is '").append(this.thinVsessionProcess).append("'").toString());
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(null, 190, new StringBuilder().append("Property is 'v$session.process' and value is '").append(this.thinVsessionProcess).append("'").toString());
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if ((this.thinVsessionIname != null) && (this.thinVsessionIname.matches(str)))
     {
-      localSQLException = DatabaseError.createSqlException(null, 190, new StringBuilder().append("Property is 'v$session.iname' and value is '").append(this.thinVsessionIname).append("'").toString());
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(null, 190, new StringBuilder().append("Property is 'v$session.iname' and value is '").append(this.thinVsessionIname).append("'").toString());
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if ((this.thinVsessionEname != null) && (this.thinVsessionEname.matches(str)))
     {
-      localSQLException = DatabaseError.createSqlException(null, 190, new StringBuilder().append("Property is 'v$session.ename' and value is '").append(this.thinVsessionEname).append("'").toString());
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(null, 190, new StringBuilder().append("Property is 'v$session.ename' and value is '").append(this.thinVsessionEname).append("'").toString());
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -2907,12 +2907,12 @@ class T4CConnection extends PhysicalConnection
   {
     if ((paramArrayOfKeywordValueLong1.length != 1) || (paramArrayOfInt.length != 1))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject = null;
+    byte[] localObject = null;
     try
     {
       sendPiggyBackedMessages();
@@ -2925,9 +2925,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return localObject;
@@ -2949,9 +2949,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if ((paramArrayOfXSNamespace1 != null) && (paramArrayOfXSNamespace1.length > 0))
@@ -2975,9 +2975,9 @@ class T4CConnection extends PhysicalConnection
   {
     if ((paramArrayOfKeywordValueLong1.length != 1) || (paramArrayOfInt.length != 1))
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
     try
     {
@@ -2990,9 +2990,9 @@ class T4CConnection extends PhysicalConnection
     {
       handleIOException(localIOException);
 
-      SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException2.fillInStackTrace();
-      throw localSQLException2;
+      SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception2.fillInStackTrace();
+      throw sqlexception2;
     }
   }
 
@@ -3006,8 +3006,8 @@ class T4CConnection extends PhysicalConnection
       System.arraycopy(this.lusFunctionId2, 0, arrayOfInt1, 0, i);
       byte[][] arrayOfByte = new byte[i * 2][];
       System.arraycopy(this.lusSessionId2, 0, arrayOfByte, 0, i);
-      KeywordValueLong[][] arrayOfKeywordValueLong; = new KeywordValueLong[i * 2][];
-      System.arraycopy(this.lusInKeyVal2, 0, arrayOfKeywordValueLong;, 0, i);
+      KeywordValueLong[][] arrayOfKeywordValueLong = new KeywordValueLong[i * 2][];
+      System.arraycopy(this.lusInKeyVal2, 0, arrayOfKeywordValueLong, 0, i);
       int[] arrayOfInt2 = new int[i * 2];
       System.arraycopy(this.lusInFlags2, 0, arrayOfInt2, 0, i);
       this.lusFunctionId2 = arrayOfInt1;
@@ -3027,12 +3027,12 @@ class T4CConnection extends PhysicalConnection
   {
     if (this.lifecycle != 1)
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject1 = new NTFEventListener(paramXSEventListener);
+    NTFEventListener localObject1 = new NTFEventListener(paramXSEventListener);
     ((NTFEventListener)localObject1).setExecutor(paramExecutor);
     synchronized (this.xsListeners)
     {
@@ -3040,9 +3040,9 @@ class T4CConnection extends PhysicalConnection
       for (int j = 0; j < i; j++) {
         if (this.xsListeners[j].getXSEventListener() == paramXSEventListener)
         {
-          SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 248);
-          localSQLException.fillInStackTrace();
-          throw localSQLException;
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 248);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
       }
 
@@ -3073,12 +3073,12 @@ class T4CConnection extends PhysicalConnection
         (this.xsListeners[i].getXSEventListener() != paramXSEventListener); i++);
       if (i == j)
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 249);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 249);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
-      Object localObject1 = new NTFEventListener[j - 1];
+      NTFEventListener[] localObject1 = new NTFEventListener[j - 1];
       int k = 0;
       for (i = 0; i < j; i++) {
         if (this.xsListeners[i].getXSEventListener() != paramXSEventListener) {

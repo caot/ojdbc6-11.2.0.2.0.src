@@ -374,6 +374,6 @@ abstract class DateTimeCommonAccessor extends Accessor
   String toText(int paramInt1, int paramInt2, int paramInt3, int paramInt4, int paramInt5, int paramInt6, int paramInt7, boolean paramBoolean, String paramString)
     throws SQLException
   {
-    return TIMESTAMPTZ.toString(paramInt1, paramInt2, paramInt3, paramInt4, paramInt5, paramInt6, paramInt7, paramString);
+    return oracle.sql.TIMESTAMPTZ.toString(paramInt1, paramInt2, paramInt3, paramInt4, paramInt5, paramInt6, paramInt7, paramString);
   }
 }

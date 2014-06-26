@@ -57,7 +57,7 @@ class T4CXAResource extends OracleXAResource
         try
         {
           T4CTTIOtxse localT4CTTIOtxse = this.physicalConn.otxse;
-          localObject1 = null;
+          byte[] localObject1 = null;
           byte[] arrayOfByte1 = paramXid.getGlobalTransactionId();
           byte[] arrayOfByte2 = paramXid.getBranchQualifier();
 
@@ -68,7 +68,7 @@ class T4CXAResource extends OracleXAResource
           {
             k = Math.min(arrayOfByte1.length, 64);
             m = Math.min(arrayOfByte2.length, 64);
-            localObject1 = new byte[''];
+            localObject1 = new byte[128];
 
             System.arraycopy(arrayOfByte1, 0, localObject1, 0, k);
             System.arraycopy(arrayOfByte2, 0, localObject1, k, m);
@@ -108,9 +108,9 @@ class T4CXAResource extends OracleXAResource
         }
         catch (IOException localIOException)
         {
-          Object localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-          ((SQLException)localObject1).fillInStackTrace();
-          throw ((Throwable)localObject1);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
       }
@@ -139,7 +139,7 @@ class T4CXAResource extends OracleXAResource
         try
         {
           T4CTTIOtxse localT4CTTIOtxse = this.physicalConn.otxse;
-          localObject1 = null;
+          byte[] localObject1 = null;
           byte[] arrayOfByte1 = paramXid.getGlobalTransactionId();
           byte[] arrayOfByte2 = paramXid.getBranchQualifier();
 
@@ -150,7 +150,7 @@ class T4CXAResource extends OracleXAResource
           {
             j = Math.min(arrayOfByte1.length, 64);
             k = Math.min(arrayOfByte2.length, 64);
-            localObject1 = new byte[''];
+            localObject1 = new byte[128];
 
             System.arraycopy(arrayOfByte1, 0, localObject1, 0, j);
             System.arraycopy(arrayOfByte2, 0, localObject1, j, k);
@@ -190,9 +190,9 @@ class T4CXAResource extends OracleXAResource
         }
         catch (IOException localIOException)
         {
-          Object localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-          ((SQLException)localObject1).fillInStackTrace();
-          throw ((Throwable)localObject1);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
       }
@@ -444,7 +444,7 @@ class T4CXAResource extends OracleXAResource
     try
     {
       T4CTTIOtxen localT4CTTIOtxen = this.physicalConn.otxen;
-      localObject = null;
+      byte[] localObject = null;
       byte[] arrayOfByte1 = paramXid.getGlobalTransactionId();
       byte[] arrayOfByte2 = paramXid.getBranchQualifier();
 
@@ -455,7 +455,7 @@ class T4CXAResource extends OracleXAResource
       {
         j = Math.min(arrayOfByte1.length, 64);
         k = Math.min(arrayOfByte2.length, 64);
-        localObject = new byte[''];
+        localObject = new byte[128];
 
         System.arraycopy(arrayOfByte1, 0, localObject, 0, j);
         System.arraycopy(arrayOfByte2, 0, localObject, j, k);
@@ -473,9 +473,9 @@ class T4CXAResource extends OracleXAResource
     {
       this.physicalConn.handleIOException(localIOException);
 
-      Object localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return i;
@@ -523,6 +523,7 @@ class T4CXAResource extends OracleXAResource
       throw new XAException(-6);
     }
 
+    int k;
     int m = -1;
 
     switch (j)
@@ -593,7 +594,7 @@ class T4CXAResource extends OracleXAResource
     case 1:
     }
     m = -3;
-    int k = 8;
+    k = 8;
 
     T4CTTIk2rpc localT4CTTIk2rpc = this.physicalConn.k2rpc;
     try
@@ -602,7 +603,7 @@ class T4CXAResource extends OracleXAResource
     }
     catch (IOException localIOException)
     {
-      localXAException = new XAException(-7);
+      XAException localXAException = new XAException(-7);
       localXAException.initCause(localIOException);
       throw localXAException;
     }

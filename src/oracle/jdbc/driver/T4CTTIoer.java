@@ -90,8 +90,9 @@ class T4CTTIoer extends T4CTTIMsg
     int i = this.meg.unmarshalUB2();
     for (int j = 0; j < i; j++)
       this.meg.unmarshalUB2();
-    j = (int)this.meg.unmarshalUB4();
-    for (int k = 0; k < j; k++)
+    int j = (int)this.meg.unmarshalUB4();
+    int k;
+    for (k = 0; k < j; k++)
       this.meg.unmarshalUB4();
     k = this.meg.unmarshalUB2();
 

@@ -129,7 +129,9 @@ public class CharacterConverter1Byte extends CharacterConverterJDBC
 
     int m = paramInt2;
 
-    for (int k = paramInt1; (k < i) && (m < paramArrayOfChar.length); k++)
+    int k;
+    
+    for (k = paramInt1; (k < i) && (m < paramArrayOfChar.length); k++)
     {
       j = this.m_ucsChar[(paramArrayOfByte[k] & 0xFF)];
 
@@ -255,7 +257,7 @@ public class CharacterConverter1Byte extends CharacterConverterJDBC
         }
 
       }
-      else if ((arrayOfChar[k] < '') && (this.strictASCII))
+      else if ((arrayOfChar[k] < '\200') && (this.strictASCII))
       {
         arrayOfByte1[(j++)] = ((byte)arrayOfChar[k]);
       }
@@ -317,7 +319,7 @@ public class CharacterConverter1Byte extends CharacterConverterJDBC
         }
 
       }
-      else if ((arrayOfChar[k] < '') && (this.strictASCII))
+      else if ((arrayOfChar[k] < '\200') && (this.strictASCII))
       {
         arrayOfByte1[(j++)] = ((byte)arrayOfChar[k]);
       }
@@ -350,21 +352,22 @@ public class CharacterConverter1Byte extends CharacterConverterJDBC
     Hashtable localHashtable2 = new Hashtable();
 
     int i1 = this.m_ucsChar.length;
-    int i2 = 0;
-    int i3 = 0;
+    char i2 = 0;
+    char i3 = 0;
 
     for (int i4 = 0; i4 < 256; i4++)
     {
       this.m_oraCharLevel1[i4] = 65535;
     }
     int n;
+    int i4;
     for (i4 = 0; i4 < i1; i4++)
     {
       n = this.m_ucsChar[i4];
 
       if (n != -1)
       {
-        localObject1 = new int[2];
+        int[] localObject1 = new int[2];
 
         localObject1[0] = n;
         localObject1[1] = i4;

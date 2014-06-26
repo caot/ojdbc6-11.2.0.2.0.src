@@ -186,9 +186,9 @@ public class OracleCachedRowSet extends OracleRowSet
         }
         catch (NamingException localNamingException)
         {
-          localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 300, localNamingException.getMessage());
-          ((SQLException)localObject2).fillInStackTrace();
-          throw ((Throwable)localObject2);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 300, localNamingException.getMessage());
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
       }
       else
@@ -205,18 +205,18 @@ public class OracleCachedRowSet extends OracleRowSet
 
           if ((((String)localObject1).equals("")) || (str1.equals("")) || (str2.equals("")))
           {
-            localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 301);
-            ((SQLException)localObject2).fillInStackTrace();
-            throw ((Throwable)localObject2);
+            SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 301);
+            sqlexception.fillInStackTrace();
+            throw sqlexception;
           }
 
           this.connection = DriverManager.getConnection((String)localObject1, str1, str2);
         }
         else
         {
-          localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 301);
-          ((SQLException)localObject1).fillInStackTrace();
-          throw ((Throwable)localObject1);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 301);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
       }
     }
@@ -313,7 +313,8 @@ public class OracleCachedRowSet extends OracleRowSet
     }
 
     paramString = paramString.toUpperCase();
-    for (int i = 0; 
+    int i;
+    for (i = 0; 
       i < this.metaData.length; i++)
     {
       if (paramString.equals(this.metaData[i]))
@@ -423,13 +424,13 @@ public class OracleCachedRowSet extends OracleRowSet
       return ((OracleSerialBlob)localObject1).getBinaryStream();
     if ((localObject1 instanceof Reader))
     {
-      localObject2 = null;
+      BufferedReader localObject2 = null;
       PipedOutputStream localPipedOutputStream = null;
       try
       {
         localObject2 = new BufferedReader((Reader)localObject1);
         int i = 0;
-        localObject3 = new PipedInputStream();
+        PipedInputStream localObject3 = new PipedInputStream();
         localPipedOutputStream = new PipedOutputStream((PipedInputStream)localObject3);
         while ((i = ((Reader)localObject2).read()) != -1)
           localPipedOutputStream.write(i);
@@ -438,9 +439,9 @@ public class OracleCachedRowSet extends OracleRowSet
       }
       catch (IOException localIOException1)
       {
-        Object localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 311, localIOException1.getMessage());
-        ((SQLException)localObject3).fillInStackTrace();
-        throw ((Throwable)localObject3);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 311, localIOException1.getMessage());
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       finally {
         SQLException localSQLException2;
@@ -470,9 +471,9 @@ public class OracleCachedRowSet extends OracleRowSet
 
     }
 
-    Object localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 312);
-    ((SQLException)localObject2).fillInStackTrace();
-    throw ((Throwable)localObject2);
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 312);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   private final Calendar getSessionCalendar(Connection paramConnection)
@@ -792,7 +793,7 @@ public class OracleCachedRowSet extends OracleRowSet
       populateInit(paramResultSet);
     }
 
-    i = (this.fetchDirection == 1000) || (this.fetchDirection == 1002) ? 1 : 0;
+    int i = (this.fetchDirection == 1000) || (this.fetchDirection == 1002) ? 1 : 0;
 
     this.rowCount = 0;
     OracleRow localOracleRow = null;
@@ -1059,7 +1060,7 @@ public class OracleCachedRowSet extends OracleRowSet
     localOracleCachedRowSet.rowsetMetaData = new OracleRowSetMetaData(this.rowsetMetaData);
 
     i = this.param.size();
-    for (j = 0; j < i; j++) {
+    for (int j = 0; j < i; j++) {
       localOracleCachedRowSet.param.add(this.param.elementAt(j));
     }
     localOracleCachedRowSet.metaData = new String[this.metaData.length];
@@ -1149,12 +1150,12 @@ public class OracleCachedRowSet extends OracleRowSet
   {
     if ((paramInt < 1) || (paramInt > this.colCount))
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3, new StringBuilder().append("").append(paramInt).toString());
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3, new StringBuilder().append("").append(paramInt).toString());
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject1 = new Vector(this.rowCount);
+    Collection localObject1 = new Vector(this.rowCount);
     for (int i = 0; i < this.rowCount; i++)
     {
       OracleRow localOracleRow = (OracleRow)this.rows.elementAt(i);
@@ -1715,7 +1716,7 @@ public class OracleCachedRowSet extends OracleRowSet
     }
     if ((localObject1 instanceof BigDecimal))
     {
-      localObject2 = (BigDecimal)localObject1;
+      BigDecimal localObject2 = (BigDecimal)localObject1;
       if ((((BigDecimal)localObject2).compareTo(new BigDecimal(127)) == 1) || (((BigDecimal)localObject2).compareTo(new BigDecimal(-128)) == -1))
       {
         SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 26);
@@ -1734,18 +1735,18 @@ public class OracleCachedRowSet extends OracleRowSet
     }
     if ((localObject1 instanceof OracleSerialBlob))
     {
-      localObject2 = (OracleSerialBlob)localObject1;
+      OracleSerialBlob localObject2 = (OracleSerialBlob)localObject1;
       return localObject2.getBytes(1L, 1)[0];
     }
     if ((localObject1 instanceof OracleSerialClob))
     {
-      localObject2 = (OracleSerialClob)localObject1;
+      OracleSerialClob localObject2 = (OracleSerialClob)localObject1;
       return localObject2.getSubString(1L, 1).getBytes()[0];
     }
 
-    Object localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 59);
-    ((SQLException)localObject2).fillInStackTrace();
-    throw ((Throwable)localObject2);
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 59);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public short getShort(int paramInt)
@@ -1815,13 +1816,13 @@ public class OracleCachedRowSet extends OracleRowSet
     }
     if ((localObject1 instanceof Time))
     {
-      localObject2 = (Time)localObject1;
+      Time localObject2 = (Time)localObject1;
       return new java.sql.Date(((Time)localObject2).getTime());
     }
 
     if ((localObject1 instanceof java.util.Date))
     {
-      localObject2 = (java.util.Date)localObject1;
+      java.util.Date localObject2 = (java.util.Date)localObject1;
       return new java.sql.Date(((java.util.Date)localObject2).getYear(), ((java.util.Date)localObject2).getMonth(), ((java.util.Date)localObject2).getDate());
     }
 
@@ -1833,14 +1834,14 @@ public class OracleCachedRowSet extends OracleRowSet
     }
     if ((localObject1 instanceof TIMESTAMPLTZ))
     {
-      localObject2 = getConnectionInternal();
+      Connection localObject2 = getConnectionInternal();
 
       return ((TIMESTAMPLTZ)localObject1).dateValue((Connection)localObject2, getSessionCalendar((Connection)localObject2));
     }
 
-    Object localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
-    ((SQLException)localObject2).fillInStackTrace();
-    throw ((Throwable)localObject2);
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public java.sql.Date getDate(int paramInt, Calendar paramCalendar)
@@ -1859,7 +1860,7 @@ public class OracleCachedRowSet extends OracleRowSet
     }
     if ((localObject1 instanceof java.util.Date))
     {
-      localObject2 = (java.util.Date)localObject1;
+      java.util.Date localObject2 = (java.util.Date)localObject1;
       return new Time(((java.util.Date)localObject2).getHours(), ((java.util.Date)localObject2).getMinutes(), ((java.util.Date)localObject2).getSeconds());
     }
 
@@ -1871,14 +1872,14 @@ public class OracleCachedRowSet extends OracleRowSet
     }
     if ((localObject1 instanceof TIMESTAMPLTZ))
     {
-      localObject2 = getConnectionInternal();
+      Connection localObject2 = getConnectionInternal();
 
       return ((TIMESTAMPLTZ)localObject1).timeValue((Connection)localObject2, getSessionCalendar((Connection)localObject2));
     }
 
-    Object localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
-    ((SQLException)localObject2).fillInStackTrace();
-    throw ((Throwable)localObject2);
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public Time getTime(int paramInt, Calendar paramCalendar)
@@ -1906,14 +1907,14 @@ public class OracleCachedRowSet extends OracleRowSet
     }
     if ((localObject1 instanceof TIMESTAMPLTZ))
     {
-      localObject2 = getConnectionInternal();
+      Connection localObject2 = getConnectionInternal();
 
       return ((TIMESTAMPLTZ)localObject1).timestampValue((Connection)localObject2, getSessionCalendar((Connection)localObject2));
     }
 
-    Object localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
-    ((SQLException)localObject2).fillInStackTrace();
-    throw ((Throwable)localObject2);
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public Timestamp getTimestamp(int paramInt, Calendar paramCalendar)
@@ -1944,18 +1945,18 @@ public class OracleCachedRowSet extends OracleRowSet
     }
     if ((localObject1 instanceof OracleSerialBlob))
     {
-      localObject2 = (OracleSerialBlob)localObject1;
+      OracleSerialBlob localObject2 = (OracleSerialBlob)localObject1;
       return ((OracleSerialBlob)localObject2).getBytes(1L, (int)((OracleSerialBlob)localObject2).length());
     }
     if ((localObject1 instanceof OracleSerialClob))
     {
-      localObject2 = (OracleSerialClob)localObject1;
+      OracleSerialClob localObject2 = (OracleSerialClob)localObject1;
       return ((OracleSerialClob)localObject2).getSubString(1L, (int)((OracleSerialClob)localObject2).length()).getBytes();
     }
 
-    Object localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 59);
-    ((SQLException)localObject2).fillInStackTrace();
-    throw ((Throwable)localObject2);
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 59);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public Ref getRef(int paramInt)
@@ -2060,7 +2061,7 @@ public class OracleCachedRowSet extends OracleRowSet
       try
       {
         localObject2 = (Reader)localObject1;
-        localObject3 = new char[1024];
+        char[] localObject3 = new char[1024];
         int i = 0;
         StringBuffer localStringBuffer = new StringBuffer(1024);
         while ((i = ((Reader)localObject2).read((char[])localObject3)) > 0)
@@ -2069,9 +2070,9 @@ public class OracleCachedRowSet extends OracleRowSet
       }
       catch (IOException localIOException)
       {
-        Object localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 321, localIOException.getMessage());
-        ((SQLException)localObject3).fillInStackTrace();
-        throw ((Throwable)localObject3);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 321, localIOException.getMessage());
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
     }
@@ -2141,9 +2142,10 @@ public class OracleCachedRowSet extends OracleRowSet
     }
     catch (IOException localIOException)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 322);
-      ((SQLException)localObject).fillInStackTrace();
-    }throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 322);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
+    }
   }
 
   public synchronized Object getObject(String paramString)
@@ -2397,9 +2399,9 @@ public class OracleCachedRowSet extends OracleRowSet
       }
       catch (IOException localIOException)
       {
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
     }

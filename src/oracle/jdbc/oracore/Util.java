@@ -61,7 +61,7 @@ public class Util
 
       if (i != paramInt)
       {
-        localObject = new byte[i];
+        byte[] localObject = new byte[i];
 
         System.arraycopy(arrayOfByte, 0, localObject, 0, i);
 
@@ -71,9 +71,9 @@ public class Util
     }
     catch (IOException localIOException)
     {
-      Object localObject = DatabaseError.createSqlException(null, localIOException);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(null, localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return arrayOfByte;

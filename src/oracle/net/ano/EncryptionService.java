@@ -28,7 +28,8 @@ public class EncryptionService extends Service
     this.e = paramSessionAtts.profile.getEncryptionLevelNum();
     String[] arrayOfString = a(arrayOfString = paramSessionAtts.profile.getEncryptionServices(), j);
     this.f = new int[arrayOfString.length];
-    for (int i = 0; i < this.f.length; i++)
+    int i;
+    for (i = 0; i < this.f.length; i++)
       this.f[i] = a(j, arrayOfString[i]);
     this.f = a(this.f, this.e);
     this.g = new byte[this.f.length];

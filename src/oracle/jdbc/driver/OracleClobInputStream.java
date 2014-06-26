@@ -84,9 +84,9 @@ class OracleClobInputStream extends OracleBufferedStream
         }
         catch (SQLException localSQLException)
         {
-          ??? = DatabaseError.createIOException(localSQLException);
-          ((IOException)???).fillInStackTrace();
-          throw ((Throwable)???);
+          IOException ioexception = DatabaseError.createIOException(localSQLException);
+          ioexception.fillInStackTrace();
+          throw ioexception;
         }
 
       }
@@ -227,9 +227,9 @@ class OracleClobInputStream extends OracleBufferedStream
       }
       catch (SQLException localSQLException2)
       {
-        ??? = DatabaseError.createIOException(localSQLException2);
-        ((IOException)???).fillInStackTrace();
-        throw ((Throwable)???);
+        IOException ioexception = DatabaseError.createIOException(localSQLException2);
+        ioexception.fillInStackTrace();
+        throw ioexception;
       }
     }
   }

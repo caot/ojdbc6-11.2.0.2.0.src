@@ -70,16 +70,16 @@ final class T4CTTIoscid extends T4CTTIfun
   {
     int i = 64;
 
-    if (this.endToEndHasChanged[0] != 0) {
+    if (this.endToEndHasChanged[0]) {
       i |= 16;
     }
-    if (this.endToEndHasChanged[1] != 0) {
+    if (this.endToEndHasChanged[1]) {
       i |= 1;
     }
-    if (this.endToEndHasChanged[2] != 0) {
+    if (this.endToEndHasChanged[2]) {
       i |= 32;
     }
-    if (this.endToEndHasChanged[3] != 0) {
+    if (this.endToEndHasChanged[3]) {
       i |= 8;
     }
 
@@ -90,7 +90,7 @@ final class T4CTTIoscid extends T4CTTIfun
     int j = 0; int k = 0;
     int m = 0; int n = 0;
 
-    if (this.endToEndHasChanged[1] != 0)
+    if (this.endToEndHasChanged[1])
     {
       this.meg.marshalPTR();
 
@@ -106,7 +106,7 @@ final class T4CTTIoscid extends T4CTTIfun
       this.meg.marshalUB4(0L);
     }
 
-    if (this.endToEndHasChanged[3] != 0)
+    if (this.endToEndHasChanged[3])
     {
       this.meg.marshalPTR();
 
@@ -122,7 +122,7 @@ final class T4CTTIoscid extends T4CTTIfun
       this.meg.marshalUB4(0L);
     }
 
-    if (this.endToEndHasChanged[0] != 0)
+    if (this.endToEndHasChanged[0])
     {
       this.meg.marshalPTR();
       if (this.cidact != null)
@@ -137,7 +137,7 @@ final class T4CTTIoscid extends T4CTTIfun
       this.meg.marshalUB4(0L);
     }
 
-    if (this.endToEndHasChanged[2] != 0)
+    if (this.endToEndHasChanged[2])
     {
       this.meg.marshalPTR();
 

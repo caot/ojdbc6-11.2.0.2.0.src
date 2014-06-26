@@ -15,11 +15,11 @@ final class m
     for (int i = 0; i < 256; i++)
       this.a[i] = ((byte)i);
     this.b = (this.c = 0);
-    i = 0;
+    int i = 0;
     int j = 0;
     for (int k = 0; i < 256; k++)
     {
-      int m = this.a[i];
+      byte m = this.a[i];
       if (k == paramInt)
         k = 0;
       j = j + m + paramArrayOfByte[k] & 0xFF;

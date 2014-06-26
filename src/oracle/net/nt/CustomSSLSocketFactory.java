@@ -196,17 +196,17 @@ public class CustomSSLSocketFactory
     }
     try
     {
-      ??? = null;
+      KeyManager[] keymanager = null;
       TrustManager[] arrayOfTrustManager = null;
 
       if (localObject1 != null) {
-        ??? = getKeyManagerArray((String)localObject1, (String)localObject2, str1, str3);
+        keymanager = getKeyManagerArray((String)localObject1, (String)localObject2, str1, str3);
       }
       if (localObject3 != null) {
         arrayOfTrustManager = getTrustManagerArray((String)localObject3, (String)localObject4, str2, str4);
       }
       localObject6 = SSLContext.getInstance("SSL");
-      ((SSLContext)localObject6).init((KeyManager[])???, arrayOfTrustManager, null);
+      ((SSLContext)localObject6).init(keymanager, arrayOfTrustManager, null);
 
       return ((SSLContext)localObject6).getSocketFactory();
     }

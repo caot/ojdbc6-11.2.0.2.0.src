@@ -128,9 +128,9 @@ class OracleClobReader extends Reader
         }
         catch (SQLException localSQLException)
         {
-          ??? = DatabaseError.createIOException(localSQLException);
-          ((IOException)???).fillInStackTrace();
-          throw ((Throwable)???);
+          IOException ioexception = DatabaseError.createIOException(localSQLException);
+          ioexception.fillInStackTrace();
+          throw ioexception;
         }
 
       }
@@ -182,9 +182,9 @@ class OracleClobReader extends Reader
     }
     catch (SQLException localSQLException)
     {
-      ??? = DatabaseError.createIOException(localSQLException);
-      ((IOException)???).fillInStackTrace();
-      throw ((Throwable)???);
+      IOException ioexception = DatabaseError.createIOException(localSQLException);
+      ioexception.fillInStackTrace();
+      throw ioexception;
     }
   }
 

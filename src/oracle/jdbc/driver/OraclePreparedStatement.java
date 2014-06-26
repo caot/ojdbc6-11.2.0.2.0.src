@@ -29,7 +29,9 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
+
 import oracle.jdbc.internal.ObjectData;
+import oracle.jdbc.oracore.OracleType;
 import oracle.jdbc.oracore.OracleTypeADT;
 import oracle.jdbc.oracore.OracleTypeNUMBER;
 import oracle.sql.ARRAY;
@@ -543,7 +545,7 @@ abstract class OraclePreparedStatement extends OracleStatement
     if (m > this.totalBindIndicatorLength)
     {
       short[] arrayOfShort = this.bindIndicators;
-      i1 = this.bindIndicatorOffset;
+      int i1 = this.bindIndicatorOffset;
 
       this.bindIndicatorOffset = 0;
       this.bindIndicators = new short[m];
@@ -618,8 +620,8 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     for (int j = 0; j < this.numberOfBindPositions; j++)
     {
-      this.currentRowFormOfUse[j] = i;
-      this.currentBatchFormOfUse[j] = i;
+      this.currentRowFormOfUse[j] = (short)i;
+      this.currentBatchFormOfUse[j] = (short)i;
     }
 
     this.lastBinders = new Binder[this.numberOfBindPositions];
@@ -662,7 +664,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       System.arraycopy(localObject, 0, this.parameterInt, 0, this.numberOfBindRowsAllocated);
 
-      for (i = this.numberOfBindRowsAllocated; 
+      for (int i = this.numberOfBindRowsAllocated; 
         i < paramInt; i++) {
         this.parameterInt[i] = new int[this.numberOfBindPositions];
       }
@@ -675,7 +677,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       System.arraycopy(localObject, 0, this.parameterLong, 0, this.numberOfBindRowsAllocated);
 
-      for (i = this.numberOfBindRowsAllocated; 
+      for (int i = this.numberOfBindRowsAllocated; 
         i < paramInt; i++) {
         this.parameterLong[i] = new long[this.numberOfBindPositions];
       }
@@ -688,7 +690,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       System.arraycopy(localObject, 0, this.parameterFloat, 0, this.numberOfBindRowsAllocated);
 
-      for (i = this.numberOfBindRowsAllocated; 
+      for (int i = this.numberOfBindRowsAllocated; 
         i < paramInt; i++) {
         this.parameterFloat[i] = new float[this.numberOfBindPositions];
       }
@@ -701,7 +703,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       System.arraycopy(localObject, 0, this.parameterDouble, 0, this.numberOfBindRowsAllocated);
 
-      for (i = this.numberOfBindRowsAllocated; 
+      for (int i = this.numberOfBindRowsAllocated; 
         i < paramInt; i++) {
         this.parameterDouble[i] = new double[this.numberOfBindPositions];
       }
@@ -714,7 +716,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       System.arraycopy(localObject, 0, this.parameterBigDecimal, 0, this.numberOfBindRowsAllocated);
 
-      for (i = this.numberOfBindRowsAllocated; 
+      for (int i = this.numberOfBindRowsAllocated; 
         i < paramInt; i++) {
         this.parameterBigDecimal[i] = new BigDecimal[this.numberOfBindPositions];
       }
@@ -727,7 +729,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       System.arraycopy(localObject, 0, this.parameterString, 0, this.numberOfBindRowsAllocated);
 
-      for (i = this.numberOfBindRowsAllocated; 
+      for (int i = this.numberOfBindRowsAllocated; 
         i < paramInt; i++) {
         this.parameterString[i] = new String[this.numberOfBindPositions];
       }
@@ -740,7 +742,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       System.arraycopy(localObject, 0, this.parameterDate, 0, this.numberOfBindRowsAllocated);
 
-      for (i = this.numberOfBindRowsAllocated; 
+      for (int i = this.numberOfBindRowsAllocated; 
         i < paramInt; i++) {
         this.parameterDate[i] = new Date[this.numberOfBindPositions];
       }
@@ -753,7 +755,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       System.arraycopy(localObject, 0, this.parameterTime, 0, this.numberOfBindRowsAllocated);
 
-      for (i = this.numberOfBindRowsAllocated; 
+      for (int i = this.numberOfBindRowsAllocated; 
         i < paramInt; i++) {
         this.parameterTime[i] = new Time[this.numberOfBindPositions];
       }
@@ -766,7 +768,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       System.arraycopy(localObject, 0, this.parameterTimestamp, 0, this.numberOfBindRowsAllocated);
 
-      for (i = this.numberOfBindRowsAllocated; 
+      for (int i = this.numberOfBindRowsAllocated; 
         i < paramInt; i++) {
         this.parameterTimestamp[i] = new Timestamp[this.numberOfBindPositions];
       }
@@ -779,7 +781,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       System.arraycopy(localObject, 0, this.parameterDatum, 0, this.numberOfBindRowsAllocated);
 
-      for (i = this.numberOfBindRowsAllocated; 
+      for (int i = this.numberOfBindRowsAllocated; 
         i < paramInt; i++) {
         this.parameterDatum[i] = new byte[this.numberOfBindPositions][];
       }
@@ -792,7 +794,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       System.arraycopy(localObject, 0, this.parameterOtype, 0, this.numberOfBindRowsAllocated);
 
-      for (i = this.numberOfBindRowsAllocated; 
+      for (int i = this.numberOfBindRowsAllocated; 
         i < paramInt; i++) {
         this.parameterOtype[i] = new OracleTypeADT[this.numberOfBindPositions];
       }
@@ -805,7 +807,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       System.arraycopy(localObject, 0, this.parameterStream, 0, this.numberOfBindRowsAllocated);
 
-      for (i = this.numberOfBindRowsAllocated; 
+      for (int i = this.numberOfBindRowsAllocated; 
         i < paramInt; i++) {
         this.parameterStream[i] = new InputStream[this.numberOfBindPositions];
       }
@@ -818,7 +820,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       System.arraycopy(localObject, 0, this.userStream, 0, this.numberOfBindRowsAllocated);
 
-      for (i = this.numberOfBindRowsAllocated; 
+      for (int i = this.numberOfBindRowsAllocated; 
         i < paramInt; i++) {
         this.userStream[i] = new Object[this.numberOfBindPositions];
       }
@@ -831,7 +833,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       System.arraycopy(localObject, 0, this.parameterPlsqlIbt, 0, this.numberOfBindRowsAllocated);
 
-      for (i = this.numberOfBindRowsAllocated; 
+      for (int i = this.numberOfBindRowsAllocated; 
         i < paramInt; i++) {
         this.parameterPlsqlIbt[i] = new PlsqlIbtBindInfo[this.numberOfBindPositions];
       }
@@ -856,15 +858,14 @@ abstract class OraclePreparedStatement extends OracleStatement
     int n = this.currentRank == this.firstRowInBatch ? 1 : 0;
 
     Binder[] arrayOfBinder = this.currentRank == 0 ? this.lastBinders : this.lastBinders[0] == null ? null : this.binders[(this.currentRank - 1)];
-    Object localObject2;
-    Object localObject3;
+    OracleType[] localObject2;
     if (this.currentRowBindAccessors == null)
     {
       int i1 = (this.isAutoGeneratedKey) && (this.clearParameters) ? 1 : 0;
 
       if (arrayOfBinder == null)
       {
-        for (i = 0; i < this.numberOfBindPositions; i++)
+        for (int i = 0; i < this.numberOfBindPositions; i++)
           if (this.currentRowBinders[i] == null)
           {
             if (i1 != 0)
@@ -873,9 +874,9 @@ abstract class OraclePreparedStatement extends OracleStatement
               i1 = 0;
             }
             else {
-              localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 41, Integer.valueOf(i + 1));
-              ((SQLException)localObject2).fillInStackTrace();
-              throw ((Throwable)localObject2);
+              SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 41, Integer.valueOf(i + 1));
+              sqlexception.fillInStackTrace();
+              throw sqlexception;
             }
           }
       }
@@ -883,22 +884,22 @@ abstract class OraclePreparedStatement extends OracleStatement
       {
         localObject2 = this.parameterOtype == null ? null : this.currentRank == 0 ? this.lastBoundTypeOtypes : this.parameterOtype[(this.currentRank - 1)];
 
-        for (i = 0; i < this.numberOfBindPositions; i++)
+        for (int i = 0; i < this.numberOfBindPositions; i++)
         {
           if ((this.currentRowBinders[i] == null) && (i1 != 0))
           {
             registerReturnParamsForAutoKey();
             i1 = 0;
           }
-          localObject3 = this.currentRowBinders[i];
+          Binder localObject3 = this.currentRowBinders[i];
 
           if (localObject3 == null)
           {
             if (this.clearParameters)
             {
-              SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 41, Integer.valueOf(i + 1));
-              localSQLException2.fillInStackTrace();
-              throw localSQLException2;
+              SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 41, Integer.valueOf(i + 1));
+              sqlexception2.fillInStackTrace();
+              throw sqlexception2;
             }
 
             this.currentRowBinders[i] = arrayOfBinder[i].copyingBinder();
@@ -936,17 +937,17 @@ abstract class OraclePreparedStatement extends OracleStatement
       }
       else
       {
-        for (i = 0; i < this.numberOfBindPositions; i++)
+        for (int i = 0; i < this.numberOfBindPositions; i++)
         {
-          localObject2 = this.currentRowBinders[i];
+          Binder binder = this.currentRowBinders[i];
 
-          if (localObject2 == null)
+          if (binder == null)
           {
             if (this.clearParameters)
             {
-              localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 41, Integer.valueOf(i + 1));
-              ((SQLException)localObject3).fillInStackTrace();
-              throw ((Throwable)localObject3);
+              SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 41, Integer.valueOf(i + 1));
+              sqlexception.fillInStackTrace();
+              throw sqlexception;
             }
 
             this.currentRowBinders[i] = arrayOfBinder[i].copyingBinder();
@@ -969,28 +970,28 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     else
     {
-      Object localObject1;
+      Binder binder;
       if (arrayOfBinder == null)
       {
-        for (i = 0; i < this.numberOfBindPositions; i++)
+        for (int i = 0; i < this.numberOfBindPositions; i++)
         {
-          localObject1 = this.currentRowBinders[i];
-          localObject2 = this.currentRowBindAccessors[i];
+          binder = this.currentRowBinders[i];
+          Accessor accessor = this.currentRowBindAccessors[i];
 
-          if (localObject1 == null)
+          if (binder == null)
           {
-            if (localObject2 == null)
+            if (accessor == null)
             {
-              localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 41, Integer.valueOf(i + 1));
-              ((SQLException)localObject3).fillInStackTrace();
-              throw ((Throwable)localObject3);
+              SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 41, Integer.valueOf(i + 1));
+              sqlexception.fillInStackTrace();
+              throw sqlexception;
             }
 
             this.currentRowBinders[i] = this.theOutBinder;
           }
-          else if ((localObject2 != null) && (((Accessor)localObject2).defineType != ((Binder)localObject1).type))
+          else if (accessor != null && accessor.defineType != binder.type)
           {
-            if ((!this.connection.permitTimestampDateMismatch) || (((Binder)localObject1).type != 180) || (((Accessor)localObject2).defineType != 12))
+            if ((!this.connection.permitTimestampDateMismatch) || binder.type != 180 || accessor.defineType != 12)
             {
               m = 1;
             }
@@ -999,37 +1000,37 @@ abstract class OraclePreparedStatement extends OracleStatement
       }
       if (this.checkBindTypes)
       {
-        localObject1 = this.parameterOtype == null ? null : this.currentRank == 0 ? this.lastBoundTypeOtypes : this.parameterOtype[(this.currentRank - 1)];
+        OracleTypeADT[] localObject1 = this.parameterOtype == null ? null : this.currentRank == 0 ? this.lastBoundTypeOtypes : this.parameterOtype[(this.currentRank - 1)];
 
-        for (i = 0; i < this.numberOfBindPositions; i++)
+        for (int i = 0; i < this.numberOfBindPositions; i++)
         {
-          localObject2 = this.currentRowBinders[i];
-          localObject3 = this.currentRowBindAccessors[i];
+          binder = this.currentRowBinders[i];
+          Accessor accessor = this.currentRowBindAccessors[i];
 
-          if (localObject2 == null)
+          if (binder == null)
           {
             if ((this.clearParameters) && (arrayOfBinder[i] != this.theOutBinder))
             {
-              SQLException localSQLException3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 41, Integer.valueOf(i + 1));
-              localSQLException3.fillInStackTrace();
-              throw localSQLException3;
+              SQLException sqlexception3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 41, Integer.valueOf(i + 1));
+              sqlexception3.fillInStackTrace();
+              throw sqlexception3;
             }
 
-            localObject2 = arrayOfBinder[i];
-            this.currentRowBinders[i] = localObject2;
+            binder = arrayOfBinder[i];
+            this.currentRowBinders[i] = binder;
             this.currentRowCharLens[i] = -1;
 
-            if (localObject2 != this.theOutBinder)
+            if (binder != this.theOutBinder)
             {
               k = 1;
             }
           }
           else {
-            int i7 = ((Binder)localObject2).type;
+            int i7 = binder.type;
 
             if ((i7 == arrayOfBinder[i].type) && (((i7 != 109) && (i7 != 111)) || (this.parameterOtype[this.currentRank][i].isInHierarchyOf(localObject1[i])))) { if (i7 == 9)
               {
-                if ((((Binder)localObject2).bytelen == 0 ? 1 : 0) == (arrayOfBinder[i].bytelen == 0 ? 1 : 0));
+                if ((binder.bytelen == 0 ? 1 : 0) == (arrayOfBinder[i].bytelen == 0 ? 1 : 0));
               }
 
             }
@@ -1044,18 +1045,18 @@ abstract class OraclePreparedStatement extends OracleStatement
           }
           Accessor localAccessor = this.currentBatchBindAccessors[i];
 
-          if (localObject3 == null)
+          if (accessor == null)
           {
-            localObject3 = localAccessor;
-            this.currentRowBindAccessors[i] = localObject3;
+            accessor = localAccessor;
+            this.currentRowBindAccessors[i] = accessor;
           }
-          else if ((localAccessor != null) && (((Accessor)localObject3).defineType != localAccessor.defineType))
+          else if (localAccessor != null && accessor.defineType != localAccessor.defineType)
           {
             j = 1;
           }
-          if ((localObject3 != null) && (localObject2 != this.theOutBinder) && (((Accessor)localObject3).defineType != ((Binder)localObject2).type))
+          if (accessor != null && binder != this.theOutBinder && accessor.defineType != binder.type)
           {
-            if ((!this.connection.permitTimestampDateMismatch) || (((Binder)localObject2).type != 180) || (((Accessor)localObject3).defineType != 12))
+            if (!this.connection.permitTimestampDateMismatch || binder.type != 180 || accessor.defineType != 12)
             {
               m = 1;
             }
@@ -1067,17 +1068,17 @@ abstract class OraclePreparedStatement extends OracleStatement
       }
       else
       {
-        for (i = 0; i < this.numberOfBindPositions; i++)
+        for (int i = 0; i < this.numberOfBindPositions; i++)
         {
-          localObject1 = this.currentRowBinders[i];
+          Binder localObject1 = this.currentRowBinders[i];
 
           if (localObject1 == null)
           {
             if ((this.clearParameters) && (arrayOfBinder[i] != this.theOutBinder))
             {
-              localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 41, Integer.valueOf(i + 1));
-              ((SQLException)localObject2).fillInStackTrace();
-              throw ((Throwable)localObject2);
+              SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 41, Integer.valueOf(i + 1));
+              sqlexception.fillInStackTrace();
+              throw sqlexception;
             }
 
             localObject1 = arrayOfBinder[i];
@@ -1117,7 +1118,7 @@ abstract class OraclePreparedStatement extends OracleStatement
           this.prematureBatchCount = sendBatch();
           this.validRows = i2;
 
-          for (i = 0; i < this.numberOfBindPositions; i++) {
+          for (int i = 0; i < this.numberOfBindPositions; i++) {
             this.currentRowBinders[i].lastBoundValueCleanup(this, i);
           }
 
@@ -1145,9 +1146,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if (m != 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     for (int i = 0; i < this.numberOfBindPositions; i++)
@@ -1177,7 +1178,7 @@ abstract class OraclePreparedStatement extends OracleStatement
       if (arrayOfAccessor == null)
         arrayOfAccessor = new Accessor[this.numberOfBindPositions];
       else {
-        for (i = 0; i < this.numberOfBindPositions; i++)
+        for (int i = 0; i < this.numberOfBindPositions; i++)
           arrayOfAccessor[i] = null;
       }
       this.currentRowBindAccessors = arrayOfAccessor;
@@ -1227,32 +1228,31 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     Binder[] arrayOfBinder = this.binders[paramInt];
     PlsqlIbtBindInfo[] arrayOfPlsqlIbtBindInfo = this.parameterPlsqlIbt == null ? null : this.parameterPlsqlIbt[paramInt];
-    Accessor localAccessor3;
-    for (Accessor localAccessor1 = 0; localAccessor1 < this.numberOfBindPositions; localAccessor1++)
+    for (int j1 = 0; j1 < this.numberOfBindPositions; j1++)
     {
-      Binder localBinder1 = arrayOfBinder[localAccessor1];
-      localAccessor3 = this.currentBatchBindAccessors == null ? null : this.currentBatchBindAccessors[localAccessor1];
+      Binder localBinder1 = arrayOfBinder[j1];
+      Accessor accessor = this.currentBatchBindAccessors == null ? null : this.currentBatchBindAccessors[j1];
 
-      PlsqlIndexTableAccessor localPlsqlIndexTableAccessor1 = (localAccessor3 == null) || (localAccessor3.defineType != 998) ? null : (PlsqlIndexTableAccessor)localAccessor3;
+      PlsqlIndexTableAccessor plsqlindextableaccessor = (accessor == null) || (accessor.defineType != 998) ? null : (PlsqlIndexTableAccessor)accessor;
 
       if (localBinder1.type == 998)
       {
-        PlsqlIbtBindInfo localPlsqlIbtBindInfo1 = arrayOfPlsqlIbtBindInfo[localAccessor1];
+        PlsqlIbtBindInfo localPlsqlIbtBindInfo1 = arrayOfPlsqlIbtBindInfo[j1];
 
-        if (localPlsqlIndexTableAccessor1 != null)
+        if (plsqlindextableaccessor != null)
         {
-          if (localPlsqlIbtBindInfo1.element_internal_type != localPlsqlIndexTableAccessor1.elementInternalType)
+          if (localPlsqlIbtBindInfo1.element_internal_type != plsqlindextableaccessor.elementInternalType)
           {
-            SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12);
-            localSQLException.fillInStackTrace();
-            throw localSQLException;
+            SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12);
+            sqlexception.fillInStackTrace();
+            throw sqlexception;
           }
 
-          if (localPlsqlIbtBindInfo1.maxLen < localPlsqlIndexTableAccessor1.maxNumberOfElements) {
-            localPlsqlIbtBindInfo1.maxLen = localPlsqlIndexTableAccessor1.maxNumberOfElements;
+          if (localPlsqlIbtBindInfo1.maxLen < plsqlindextableaccessor.maxNumberOfElements) {
+            localPlsqlIbtBindInfo1.maxLen = plsqlindextableaccessor.maxNumberOfElements;
           }
-          if (localPlsqlIbtBindInfo1.elemMaxLen < localPlsqlIndexTableAccessor1.elementMaxLen) {
-            localPlsqlIbtBindInfo1.elemMaxLen = localPlsqlIndexTableAccessor1.elementMaxLen;
+          if (localPlsqlIbtBindInfo1.elemMaxLen < plsqlindextableaccessor.elementMaxLen) {
+            localPlsqlIbtBindInfo1.elemMaxLen = plsqlindextableaccessor.elementMaxLen;
           }
           if (localPlsqlIbtBindInfo1.ibtByteLength > 0) {
             localPlsqlIbtBindInfo1.ibtByteLength = (localPlsqlIbtBindInfo1.elemMaxLen * localPlsqlIbtBindInfo1.maxLen);
@@ -1267,12 +1267,12 @@ abstract class OraclePreparedStatement extends OracleStatement
         m += localPlsqlIbtBindInfo1.ibtCharLength;
         j += localPlsqlIbtBindInfo1.maxLen;
       }
-      else if (localPlsqlIndexTableAccessor1 != null)
+      else if (plsqlindextableaccessor != null)
       {
         i++;
-        k += localPlsqlIndexTableAccessor1.ibtByteLength;
-        m += localPlsqlIndexTableAccessor1.ibtCharLength;
-        j += localPlsqlIndexTableAccessor1.maxNumberOfElements;
+        k += plsqlindextableaccessor.ibtByteLength;
+        m += plsqlindextableaccessor.ibtCharLength;
+        j += plsqlindextableaccessor.maxNumberOfElements;
       }
     }
 
@@ -1293,8 +1293,9 @@ abstract class OraclePreparedStatement extends OracleStatement
       this.ibtBindChars = new char[m];
     this.ibtBindCharOffset = 0;
 
-    localAccessor1 = this.ibtBindByteOffset;
-    Accessor localAccessor2 = this.ibtBindCharOffset;
+    int localAccessor1 = this.ibtBindByteOffset;
+    int localAccessor2 = this.ibtBindCharOffset;
+    int localAccessor3;
 
     int n = this.ibtBindIndicatorOffset;
     int i1 = n + 6 + i * 8;
@@ -1459,7 +1460,7 @@ abstract class OraclePreparedStatement extends OracleStatement
         if (this.outBindAccessors == null) {
           this.outBindAccessors = new Accessor[this.numberOfBindPositions];
         }
-        for (i = 0; i < this.numberOfBindPositions; i++)
+        for (int i = 0; i < this.numberOfBindPositions; i++)
         {
           Accessor localAccessor1 = this.currentBatchBindAccessors[i];
 
@@ -1467,7 +1468,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
           if (localAccessor1 != null)
           {
-            m = localAccessor1.charLength;
+            int m = localAccessor1.charLength;
 
             if ((m == 0) || (this.currentBatchCharLens[i] < m))
             {
@@ -1490,11 +1491,13 @@ abstract class OraclePreparedStatement extends OracleStatement
 
         Binder[] arrayOfBinder = this.binders[paramInt1];
 
-        for (i = 0; i < this.numberOfBindPositions; i++)
+        for (int i = 0; i < this.numberOfBindPositions; i++)
         {
           Binder localBinder = arrayOfBinder[i];
 
-          i6 = this.currentBatchCharLens[i];
+          short i4;
+          int i5;
+          int i6 = this.currentBatchCharLens[i];
 
           if (localBinder == this.theOutBinder)
           {
@@ -1522,9 +1525,9 @@ abstract class OraclePreparedStatement extends OracleStatement
       } else {
         if (this.preparedCharBinds)
         {
-          for (i = 0; i < this.numberOfBindPositions; i++)
+          for (int i = 0; i < this.numberOfBindPositions; i++)
           {
-            i2 = this.currentBatchCharLens[i];
+            int i2 = this.currentBatchCharLens[i];
 
             k += i2;
             this.bindIndicators[(i1 + 2)] = ((short)i2);
@@ -1534,14 +1537,14 @@ abstract class OraclePreparedStatement extends OracleStatement
 
         }
 
-        for (i = 0; i < this.numberOfBindPositions; i++)
+        for (int i = 0; i < this.numberOfBindPositions; i++)
         {
-          i2 = i1 + 2;
-          i3 = this.currentBatchCharLens[i];
-          i4 = this.bindIndicators[i2];
-          i5 = (this.bindIndicators[(i1 + 5)] << 16) + (this.bindIndicators[(i1 + 6)] & 0xFFFF);
+          int i2 = i1 + 2;
+          int i3 = this.currentBatchCharLens[i];
+          int i4 = this.bindIndicators[i2];
+          int i5 = (this.bindIndicators[(i1 + 5)] << 16) + (this.bindIndicators[(i1 + 6)] & 0xFFFF);
 
-          i6 = this.bindIndicators[i5] == -1 ? 1 : 0;
+          int i6 = this.bindIndicators[i5] == -1 ? 1 : 0;
 
           if ((i6 != 0) && (i3 > 1))
           {
@@ -1570,7 +1573,7 @@ abstract class OraclePreparedStatement extends OracleStatement
       }
       if (this.preparedAllBinds)
       {
-        i2 = this.bindByteSubRange + m * j;
+        int i2 = this.bindByteSubRange + m * j;
 
         if ((this.lastBoundNeeded) || (i2 > this.totalBindByteLength))
         {
@@ -1589,7 +1592,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       if (this.preparedCharBinds)
       {
-        i2 = this.bindCharSubRange + k * this.bindBufferCapacity;
+        int i2 = this.bindCharSubRange + k * this.bindBufferCapacity;
 
         if ((this.lastBoundNeeded) || (i2 > this.totalBindCharLength))
         {
@@ -1614,13 +1617,13 @@ abstract class OraclePreparedStatement extends OracleStatement
       {
         if (this.currentBatchBindAccessors == null)
         {
-          for (i = 0; i < this.numberOfBindPositions; i++)
+          for (int i = 0; i < this.numberOfBindPositions; i++)
           {
-            i6 = this.bindIndicators[(i1 + 1)];
+            int i6 = this.bindIndicators[(i1 + 1)];
 
-            i7 = this.currentBatchCharLens[i];
+            int i7 = this.currentBatchCharLens[i];
 
-            i8 = i7 == 0 ? i2 : i3;
+            int i8 = i7 == 0 ? i2 : i3;
 
             this.bindIndicators[(i1 + 3)] = ((short)(i8 >> 16));
 
@@ -1633,42 +1636,42 @@ abstract class OraclePreparedStatement extends OracleStatement
 
         }
 
-        for (i = 0; i < this.numberOfBindPositions; i++)
+        for (int i = 0; i < this.numberOfBindPositions; i++)
         {
-          i6 = this.bindIndicators[(i1 + 1)];
+          int i6 = this.bindIndicators[(i1 + 1)];
 
-          i7 = this.currentBatchCharLens[i];
+          int i7 = this.currentBatchCharLens[i];
 
-          i8 = i7 == 0 ? i2 : i3;
+          int i8 = i7 == 0 ? i2 : i3;
 
           this.bindIndicators[(i1 + 3)] = ((short)(i8 >> 16));
 
           this.bindIndicators[(i1 + 4)] = ((short)(i8 & 0xFFFF));
 
-          localObject = this.currentBatchBindAccessors[i];
+          Accessor accessor = this.currentBatchBindAccessors[i];
 
-          if (localObject != null)
+          if (accessor != null)
           {
             if (i7 > 0)
             {
-              ((Accessor)localObject).columnIndex = i3;
-              ((Accessor)localObject).charLength = i7;
+              accessor.columnIndex = i3;
+              accessor.charLength = i7;
             }
             else
             {
-              ((Accessor)localObject).columnIndex = i2;
-              ((Accessor)localObject).byteLength = i6;
+              accessor.columnIndex = i2;
+              accessor.byteLength = i6;
             }
 
-            ((Accessor)localObject).lengthIndex = i5;
-            ((Accessor)localObject).indicatorIndex = i4;
-            ((Accessor)localObject).rowSpaceByte = this.bindBytes;
-            ((Accessor)localObject).rowSpaceChar = this.bindChars;
-            ((Accessor)localObject).rowSpaceIndicator = this.bindIndicators;
+            accessor.lengthIndex = i5;
+            accessor.indicatorIndex = i4;
+            accessor.rowSpaceByte = this.bindBytes;
+            accessor.rowSpaceChar = this.bindChars;
+            accessor.rowSpaceIndicator = this.bindIndicators;
 
-            if ((((Accessor)localObject).defineType == 109) || (((Accessor)localObject).defineType == 111))
+            if ((accessor.defineType == 109) || (accessor.defineType == 111))
             {
-              ((Accessor)localObject).setOffsets(this.bindBufferCapacity);
+              accessor.setOffsets(this.bindBufferCapacity);
             }
 
           }
@@ -1690,7 +1693,7 @@ abstract class OraclePreparedStatement extends OracleStatement
       int i6 = this.bindBufferCapacity - this.numberOfBoundRows;
       int i7 = this.numberOfBoundRows - 1;
       int i8 = i7 + paramInt1;
-      Object localObject = this.binders[i8];
+      Binder[] localObject = this.binders[i8];
 
       if (this.parameterOtype != null)
       {
@@ -1704,9 +1707,9 @@ abstract class OraclePreparedStatement extends OracleStatement
       }
       if ((this.numReturnParams > 0) && ((this.returnParamAccessors == null) || (this.returnParamAccessors.length < this.numReturnParams)))
       {
-        SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 173);
-        localSQLException2.fillInStackTrace();
-        throw localSQLException2;
+        SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 173);
+        sqlexception2.fillInStackTrace();
+        throw sqlexception2;
       }
 
       if (this.returnParamAccessors != null) processDmlReturningBind();
@@ -1769,9 +1772,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     catch (NullPointerException localNullPointerException)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 89);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 89);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
   }
 
@@ -2004,9 +2007,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((this.currentRank > 0) && (this.m_batchStyle == 2))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 81, "batch must be either executed or cleared");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 81, "batch must be either executed or cleared");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     int i = this.userRsetType == 1 ? 1 : 0;
@@ -2097,10 +2100,10 @@ abstract class OraclePreparedStatement extends OracleStatement
       this.binders[paramInt] = this.binders[0];
       this.binders[0] = this.currentRowBinders;
     }
-    Object localObject;
+    
     if (this.parameterInt != null)
     {
-      localObject = this.parameterInt[0];
+      int[] localObject = this.parameterInt[0];
 
       this.parameterInt[0] = this.parameterInt[paramInt];
       this.parameterInt[paramInt] = localObject;
@@ -2108,7 +2111,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if (this.parameterLong != null)
     {
-      localObject = this.parameterLong[0];
+      long[] localObject = this.parameterLong[0];
 
       this.parameterLong[0] = this.parameterLong[paramInt];
       this.parameterLong[paramInt] = localObject;
@@ -2116,7 +2119,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if (this.parameterFloat != null)
     {
-      localObject = this.parameterFloat[0];
+      float[] localObject = this.parameterFloat[0];
 
       this.parameterFloat[0] = this.parameterFloat[paramInt];
       this.parameterFloat[paramInt] = localObject;
@@ -2124,7 +2127,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if (this.parameterDouble != null)
     {
-      localObject = this.parameterDouble[0];
+      double[] localObject = this.parameterDouble[0];
 
       this.parameterDouble[0] = this.parameterDouble[paramInt];
       this.parameterDouble[paramInt] = localObject;
@@ -2132,7 +2135,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if (this.parameterBigDecimal != null)
     {
-      localObject = this.parameterBigDecimal[0];
+      BigDecimal[] localObject = this.parameterBigDecimal[0];
 
       this.parameterBigDecimal[0] = this.parameterBigDecimal[paramInt];
       this.parameterBigDecimal[paramInt] = localObject;
@@ -2140,7 +2143,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if (this.parameterString != null)
     {
-      localObject = this.parameterString[0];
+      String[] localObject = this.parameterString[0];
 
       this.parameterString[0] = this.parameterString[paramInt];
       this.parameterString[paramInt] = localObject;
@@ -2148,7 +2151,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if (this.parameterDate != null)
     {
-      localObject = this.parameterDate[0];
+      Date[] localObject = this.parameterDate[0];
 
       this.parameterDate[0] = this.parameterDate[paramInt];
       this.parameterDate[paramInt] = localObject;
@@ -2156,7 +2159,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if (this.parameterTime != null)
     {
-      localObject = this.parameterTime[0];
+      Time[] localObject = this.parameterTime[0];
 
       this.parameterTime[0] = this.parameterTime[paramInt];
       this.parameterTime[paramInt] = localObject;
@@ -2164,7 +2167,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if (this.parameterTimestamp != null)
     {
-      localObject = this.parameterTimestamp[0];
+      Timestamp[] localObject = this.parameterTimestamp[0];
 
       this.parameterTimestamp[0] = this.parameterTimestamp[paramInt];
       this.parameterTimestamp[paramInt] = localObject;
@@ -2172,7 +2175,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if (this.parameterDatum != null)
     {
-      localObject = this.parameterDatum[0];
+      byte[][] localObject = this.parameterDatum[0];
 
       this.parameterDatum[0] = this.parameterDatum[paramInt];
       this.parameterDatum[paramInt] = localObject;
@@ -2180,7 +2183,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if (this.parameterOtype != null)
     {
-      localObject = this.parameterOtype[0];
+      OracleTypeADT[] localObject = this.parameterOtype[0];
 
       this.parameterOtype[0] = this.parameterOtype[paramInt];
       this.parameterOtype[paramInt] = localObject;
@@ -2188,7 +2191,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if (this.parameterStream != null)
     {
-      localObject = this.parameterStream[0];
+      InputStream[] localObject = this.parameterStream[0];
 
       this.parameterStream[0] = this.parameterStream[paramInt];
       this.parameterStream[paramInt] = localObject;
@@ -2196,7 +2199,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if (this.userStream != null)
     {
-      localObject = this.userStream[0];
+      Object[] localObject = this.userStream[0];
 
       this.userStream[0] = this.userStream[paramInt];
       this.userStream[paramInt] = localObject;
@@ -2223,14 +2226,14 @@ abstract class OraclePreparedStatement extends OracleStatement
         ensureOpen();
 
         if (this.currentRank <= 0) {
-          i = this.connection.accumulateBatchResult ? 0 : this.validRows;
+          int i = this.connection.accumulateBatchResult ? 0 : this.validRows;
 
           this.currentRank = 0; return i;
         }
         int i = this.batch;
         try
         {
-          j = this.currentRank;
+          int j = this.currentRank;
 
           if (this.batch != this.currentRank) {
             this.batch = this.currentRank;
@@ -2284,9 +2287,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     {
       if (paramInt <= 0)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 42);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 42);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if (paramInt == this.batch) {
@@ -2295,7 +2298,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       if (this.currentRank > 0)
       {
-        i = this.validRows;
+        int i = this.validRows;
 
         this.prematureBatchCount = sendBatch();
         this.validRows = i;
@@ -2320,19 +2323,19 @@ abstract class OraclePreparedStatement extends OracleStatement
   {
     synchronized (this.connection)
     {
-      SQLException localSQLException;
+      SQLException sqlexception;
       if (paramInt3 < 0)
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 53);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 53);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if (paramInt1 < 1)
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       switch (paramInt2)
@@ -2418,13 +2421,13 @@ abstract class OraclePreparedStatement extends OracleStatement
 
         break;
       case 0:
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       default:
-        localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
     }
   }
@@ -2474,9 +2477,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt1 > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if ((paramInt2 == 2002) || (paramInt2 == 2008) || (paramInt2 == 2003) || (paramInt2 == 2007) || (paramInt2 == 2006))
@@ -2540,7 +2543,7 @@ abstract class OraclePreparedStatement extends OracleStatement
     this.currentRowBinders[paramInt1] = localBinder;
 
     if (this.parameterDatum == null) {
-      this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+      this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
     }
 
     this.parameterDatum[this.currentRank][paramInt1] = null;
@@ -2552,7 +2555,7 @@ abstract class OraclePreparedStatement extends OracleStatement
       this.parameterOtype = new OracleTypeADT[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
     }
 
-    this.parameterOtype[this.currentRank][paramInt1] = localObject1;
+    this.parameterOtype[this.currentRank][paramInt1] = (OracleTypeADT)localObject1;
   }
 
   public void setNullAtName(String paramString1, int paramInt, String paramString2)
@@ -2573,9 +2576,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString1);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString1);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -2595,14 +2598,14 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt1 > this.numberOfBindPositions))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject = null;
+    Binder localObject = null;
     int j = getInternalType(paramInt2);
-    SQLException localSQLException;
+    SQLException sqlexception;
     switch (j)
     {
     case 6:
@@ -2676,15 +2679,15 @@ abstract class OraclePreparedStatement extends OracleStatement
       break;
     case 109:
     case 111:
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, new StringBuilder().append("sqlType=").append(paramInt2).toString());
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, new StringBuilder().append("sqlType=").append(paramInt2).toString());
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     case 102:
     case 998:
     default:
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23, new StringBuilder().append("sqlType=").append(paramInt2).toString());
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23, new StringBuilder().append("sqlType=").append(paramInt2).toString());
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.currentRowBinders[i] = localObject;
@@ -2713,9 +2716,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -2735,9 +2738,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.currentRowCharLens[i] = 0;
@@ -2767,9 +2770,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.currentRowCharLens[i] = 0;
@@ -2799,9 +2802,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.currentRowCharLens[i] = 0;
@@ -2831,9 +2834,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt1 > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.currentRowCharLens[i] = 0;
@@ -2863,9 +2866,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.currentRowCharLens[i] = 0;
@@ -2895,9 +2898,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.theFloatBinder == null)
@@ -2945,9 +2948,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.currentRowCharLens[i] = 0;
@@ -2977,9 +2980,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramBINARY_FLOAT == null)
@@ -2992,7 +2995,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       if (this.parameterDatum == null)
       {
-        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
       }
 
       this.parameterDatum[this.currentRank][i] = paramBINARY_FLOAT.getBytes();
@@ -3017,9 +3020,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.currentRowBinders[i] = this.theBinaryDoubleBinder;
@@ -3049,9 +3052,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramBINARY_DOUBLE == null)
@@ -3064,7 +3067,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       if (this.parameterDatum == null)
       {
-        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
       }
 
       this.parameterDatum[this.currentRank][i] = paramBINARY_DOUBLE.getBytes();
@@ -3089,9 +3092,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.theDoubleBinder == null)
@@ -3128,9 +3131,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramBigDecimal == null) {
@@ -3161,9 +3164,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     int i = paramInt - 1;
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     int j = paramString != null ? paramString.length() : 0;
@@ -3350,9 +3353,9 @@ abstract class OraclePreparedStatement extends OracleStatement
       }
       catch (IOException localIOException1)
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException1);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException1);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       CLOB localCLOB = CLOB.createTemporary(this.connection, true, 10, this.currentRowFormOfUse[(paramInt - 1)]);
@@ -3388,9 +3391,9 @@ abstract class OraclePreparedStatement extends OracleStatement
       }
       catch (IOException localIOException2)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       addToTempLobsToFree(localCLOB);
@@ -3419,9 +3422,9 @@ abstract class OraclePreparedStatement extends OracleStatement
       }
       catch (IOException localIOException1)
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException1);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException1);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       CLOB localCLOB = CLOB.createTemporary(this.connection, true, 10, this.currentRowFormOfUse[(paramInt - 1)]);
@@ -3458,9 +3461,9 @@ abstract class OraclePreparedStatement extends OracleStatement
       }
       catch (IOException localIOException2)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       addToTempLobsToFree(localCLOB);
@@ -3487,9 +3490,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString1);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString1);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -3509,9 +3512,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     int j = 0;
@@ -3522,9 +3525,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if (j > 32766)
     {
-      SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 157);
-      localSQLException2.fillInStackTrace();
-      throw localSQLException2;
+      SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 157);
+      sqlexception2.fillInStackTrace();
+      throw sqlexception2;
     }
 
     if (paramString == null)
@@ -3558,9 +3561,9 @@ abstract class OraclePreparedStatement extends OracleStatement
   void setCursorInternal(int paramInt, ResultSet paramResultSet)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void setROWID(int paramInt, ROWID paramROWID)
@@ -3592,9 +3595,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramROWID == null)
@@ -3607,7 +3610,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       if (this.parameterDatum == null)
       {
-        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
       }
 
       this.parameterDatum[this.currentRank][i] = paramROWID.getBytes();
@@ -3638,19 +3641,19 @@ abstract class OraclePreparedStatement extends OracleStatement
     throws SQLException
   {
     int i = paramInt - 1;
-    SQLException localSQLException;
+    SQLException sqlexception;
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramARRAY == null)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     synchronized (this.connection) {
@@ -3667,16 +3670,16 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if (localArrayDescriptor == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 61);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 61);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.currentRowBinders[paramInt] = this.theNamedTypeBinder;
 
     if (this.parameterDatum == null)
     {
-      this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+      this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
     }
 
     this.parameterDatum[this.currentRank][paramInt] = paramARRAY.toBytes();
@@ -3690,7 +3693,7 @@ abstract class OraclePreparedStatement extends OracleStatement
       this.parameterOtype = new OracleTypeADT[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
     }
 
-    this.parameterOtype[this.currentRank][paramInt] = localObject;
+    this.parameterOtype[this.currentRank][paramInt] = (OracleTypeADT)localObject;
   }
 
   public void setOPAQUE(int paramInt, OPAQUE paramOPAQUE)
@@ -3703,19 +3706,19 @@ abstract class OraclePreparedStatement extends OracleStatement
     throws SQLException
   {
     int i = paramInt - 1;
-    SQLException localSQLException;
+    SQLException sqlexception;
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramOPAQUE == null)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     synchronized (this.connection) {
@@ -3732,16 +3735,16 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if (localOpaqueDescriptor == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 61);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 61);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.currentRowBinders[paramInt] = this.theNamedTypeBinder;
 
     if (this.parameterDatum == null)
     {
-      this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+      this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
     }
 
     this.parameterDatum[this.currentRank][paramInt] = paramOPAQUE.toBytes();
@@ -3755,7 +3758,7 @@ abstract class OraclePreparedStatement extends OracleStatement
       this.parameterOtype = new OracleTypeADT[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
     }
 
-    this.parameterOtype[this.currentRank][paramInt] = localObject;
+    this.parameterOtype[this.currentRank][paramInt] = (OracleTypeADT)localObject;
   }
 
   void setSQLXMLInternal(int paramInt, SQLXML paramSQLXML)
@@ -3774,19 +3777,19 @@ abstract class OraclePreparedStatement extends OracleStatement
     throws SQLException
   {
     int i = paramInt - 1;
-    SQLException localSQLException;
+    SQLException sqlexception;
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramStructDescriptor == null)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     synchronized (this.connection) {
@@ -3802,7 +3805,7 @@ abstract class OraclePreparedStatement extends OracleStatement
     this.currentRowBinders[paramInt] = this.theNamedTypeBinder;
 
     if (this.parameterDatum == null) {
-      this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+      this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
     }
 
     OracleTypeADT localOracleTypeADT = paramStructDescriptor.getOracleTypeADT();
@@ -3834,9 +3837,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -3855,19 +3858,19 @@ abstract class OraclePreparedStatement extends OracleStatement
     throws SQLException
   {
     int i = paramInt - 1;
-    SQLException localSQLException;
+    SQLException sqlexception;
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramSTRUCT == null)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     synchronized (this.connection) {
@@ -3884,16 +3887,16 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if (localStructDescriptor == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 61);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 61);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.currentRowBinders[paramInt] = this.theNamedTypeBinder;
 
     if (this.parameterDatum == null)
     {
-      this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+      this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
     }
 
     this.parameterDatum[this.currentRank][paramInt] = paramSTRUCT.toBytes();
@@ -3907,7 +3910,7 @@ abstract class OraclePreparedStatement extends OracleStatement
       this.parameterOtype = new OracleTypeADT[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
     }
 
-    this.parameterOtype[this.currentRank][paramInt] = localObject;
+    this.parameterOtype[this.currentRank][paramInt] = (OracleTypeADT)localObject;
   }
 
   public void setRAW(int paramInt, RAW paramRAW)
@@ -3925,9 +3928,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       if ((j < 0) || (paramInt > this.numberOfBindPositions))
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       this.currentRowCharLens[j] = 0;
@@ -3957,9 +3960,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if ((paramCHAR == null) || (paramCHAR.getLength() == 0L))
@@ -3974,7 +3977,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       if (this.parameterDatum == null)
       {
-        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
       }
 
       CharacterSet localCharacterSet = this.currentRowFormOfUse[i] == 2 ? this.connection.setCHARNCharSetObj : this.connection.setCHARCharSetObj;
@@ -4016,9 +4019,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.currentRowCharLens[i] = 0;
@@ -4033,7 +4036,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       if (this.parameterDatum == null)
       {
-        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
       }
 
       this.parameterDatum[this.currentRank][i] = paramDATE.getBytes();
@@ -4056,9 +4059,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.currentRowCharLens[i] = 0;
@@ -4073,7 +4076,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       if (this.parameterDatum == null)
       {
-        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
       }
 
       this.parameterDatum[this.currentRank][i] = paramNUMBER.getBytes();
@@ -4096,9 +4099,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.currentRowCharLens[i] = 0;
@@ -4110,7 +4113,7 @@ abstract class OraclePreparedStatement extends OracleStatement
       this.currentRowBinders[i] = this.theBlobBinder;
 
       if (this.parameterDatum == null) {
-        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
       }
 
       this.parameterDatum[this.currentRank][i] = paramBLOB.getBytes();
@@ -4148,9 +4151,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.currentRowCharLens[i] = 0;
@@ -4162,7 +4165,7 @@ abstract class OraclePreparedStatement extends OracleStatement
       this.currentRowBinders[i] = this.theClobBinder;
 
       if (this.parameterDatum == null) {
-        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
       }
 
       this.parameterDatum[this.currentRank][i] = paramCLOB.getBytes();
@@ -4200,9 +4203,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.currentRowCharLens[i] = 0;
@@ -4214,7 +4217,7 @@ abstract class OraclePreparedStatement extends OracleStatement
       this.currentRowBinders[i] = this.theBfileBinder;
 
       if (this.parameterDatum == null) {
-        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
       }
 
       this.parameterDatum[this.currentRank][i] = paramBFILE.getBytes();
@@ -4249,9 +4252,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     int j = paramArrayOfByte != null ? paramArrayOfByte.length : 0;
     if (j == 0)
@@ -4303,7 +4306,7 @@ abstract class OraclePreparedStatement extends OracleStatement
       this.currentRowBinders[i] = localBinder;
 
       if (this.parameterDatum == null) {
-        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
       }
 
       this.parameterDatum[this.currentRank][i] = paramArrayOfByte;
@@ -4406,9 +4409,9 @@ abstract class OraclePreparedStatement extends OracleStatement
       }
       catch (IOException localIOException1)
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException1);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException1);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       BLOB localBLOB = BLOB.createTemporary(this.connection, true, 10);
@@ -4444,9 +4447,9 @@ abstract class OraclePreparedStatement extends OracleStatement
       }
       catch (IOException localIOException2)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       addToTempLobsToFree(localBLOB);
@@ -4473,9 +4476,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -4491,9 +4494,9 @@ abstract class OraclePreparedStatement extends OracleStatement
   void setInternalBytesInternal(int paramInt1, byte[] paramArrayOfByte, int paramInt2)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void setDate(int paramInt, Date paramDate)
@@ -4527,9 +4530,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramTime == null) {
@@ -4564,10 +4567,10 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
 
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramTimestamp == null) {
@@ -4602,9 +4605,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramINTERVALYM == null)
@@ -4617,7 +4620,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       if (this.parameterDatum == null)
       {
-        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
       }
 
       this.parameterDatum[this.currentRank][i] = paramINTERVALYM.getBytes();
@@ -4642,9 +4645,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramINTERVALDS == null)
@@ -4657,7 +4660,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       if (this.parameterDatum == null)
       {
-        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
       }
 
       this.parameterDatum[this.currentRank][i] = paramINTERVALDS.getBytes();
@@ -4682,9 +4685,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramTIMESTAMP == null)
@@ -4697,7 +4700,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       if (this.parameterDatum == null)
       {
-        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
       }
 
       this.parameterDatum[this.currentRank][i] = paramTIMESTAMP.getBytes();
@@ -4722,9 +4725,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramTIMESTAMPTZ == null)
@@ -4737,7 +4740,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       if (this.parameterDatum == null)
       {
-        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
       }
 
       this.parameterDatum[this.currentRank][i] = paramTIMESTAMPTZ.getBytes();
@@ -4760,18 +4763,18 @@ abstract class OraclePreparedStatement extends OracleStatement
   {
     if (this.connection.getSessionTimeZone() == null)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 105);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 105);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     int i = paramInt - 1;
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException2.fillInStackTrace();
-      throw localSQLException2;
+      SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception2.fillInStackTrace();
+      throw sqlexception2;
     }
 
     if (paramTIMESTAMPLTZ == null)
@@ -4784,7 +4787,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       if (this.parameterDatum == null)
       {
-        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+        this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
       }
 
       this.parameterDatum[this.currentRank][i] = paramTIMESTAMPLTZ.getBytes();
@@ -4842,12 +4845,12 @@ abstract class OraclePreparedStatement extends OracleStatement
     throws SQLException
   {
     int i = paramInt - 1;
-    SQLException localSQLException;
+    SQLException sqlexception;
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     set_execute_batch(1);
@@ -4856,9 +4859,9 @@ abstract class OraclePreparedStatement extends OracleStatement
       basicBindNullString(paramInt); } else {
       if ((this.userRsetType != 1) && ((paramLong > this.maxVcsCharsSql) || (!paramBoolean)))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 169);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 169);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       if (!paramBoolean)
         setAsciiStreamContentsForClobCritical(paramInt, paramInputStream, paramLong, paramBoolean);
@@ -4920,9 +4923,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     {
       if (this.userRsetType != 1)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 169);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 169);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       int i = paramInt1 - 1;
       this.currentRowBinders[i] = this.theLongStreamBinder;
@@ -4955,9 +4958,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     catch (IOException localIOException)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (i == 0) {
@@ -4997,9 +5000,9 @@ abstract class OraclePreparedStatement extends OracleStatement
         {
           if (localObject == paramObject)
           {
-            SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 270, Integer.valueOf(paramInt + 1));
-            localSQLException.fillInStackTrace();
-            throw localSQLException;
+            SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 270, Integer.valueOf(paramInt + 1));
+            sqlexception.fillInStackTrace();
+            throw sqlexception;
           }
         }
       }
@@ -5018,12 +5021,12 @@ abstract class OraclePreparedStatement extends OracleStatement
     synchronized (this.connection)
     {
       int i = paramInt - 1;
-      SQLException localSQLException;
+      SQLException sqlexception;
       if ((i < 0) || (paramInt > this.numberOfBindPositions))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       set_execute_batch(1);
@@ -5034,9 +5037,9 @@ abstract class OraclePreparedStatement extends OracleStatement
         setRAWInternal(paramInt, null); } else {
         if ((this.userRsetType != 1) && ((paramLong > this.maxRawBytesSql) || (!paramBoolean)))
         {
-          localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 169);
-          localSQLException.fillInStackTrace();
-          throw localSQLException;
+          sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 169);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
         if (!paramBoolean) {
           setBinaryStreamContentsForBlobCritical(paramInt, paramInputStream, paramLong, paramBoolean);
@@ -5087,9 +5090,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     catch (IOException localIOException)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (i != paramInt2)
@@ -5120,9 +5123,9 @@ abstract class OraclePreparedStatement extends OracleStatement
       Object localObject1;
       if ((i < 0) || (paramInt1 > this.numberOfBindPositions))
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       set_execute_batch(1);
@@ -5131,9 +5134,9 @@ abstract class OraclePreparedStatement extends OracleStatement
         setStringInternal(paramInt1, null); } else {
         if ((this.userRsetType != 1) && (paramInt2 > this.maxVcsCharsSql))
         {
-          localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 169);
-          ((SQLException)localObject1).fillInStackTrace();
-          throw ((Throwable)localObject1);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 169);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
         if ((this.sqlKind == 32) || (this.sqlKind == 64) || (paramInt2 <= this.maxVcsCharsSql))
         {
@@ -5152,9 +5155,9 @@ abstract class OraclePreparedStatement extends OracleStatement
           }
           catch (IOException localIOException)
           {
-            SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-            localSQLException.fillInStackTrace();
-            throw localSQLException;
+            SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+            sqlexception.fillInStackTrace();
+            throw sqlexception;
           }
 
           char[] arrayOfChar = new char[j >> 1];
@@ -5255,7 +5258,7 @@ abstract class OraclePreparedStatement extends OracleStatement
   void setObjectCritical(int paramInt1, Object paramObject, int paramInt2, int paramInt3)
     throws SQLException
   {
-    SQLException localSQLException;
+    SQLException sqlexception;
     switch (paramInt2)
     {
     case 1:
@@ -5284,10 +5287,10 @@ abstract class OraclePreparedStatement extends OracleStatement
         setStringInternal(paramInt1, new StringBuilder().append("").append(((Timestamp)paramObject).toString()).toString());
       }
       else {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
 
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       break;
@@ -5315,10 +5318,10 @@ abstract class OraclePreparedStatement extends OracleStatement
         setStringInternal(paramInt1, new StringBuilder().append("").append(((Timestamp)paramObject).toString()).toString());
       }
       else {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
 
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       break;
@@ -5355,10 +5358,10 @@ abstract class OraclePreparedStatement extends OracleStatement
       }
       else
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
 
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       break;
@@ -5385,10 +5388,10 @@ abstract class OraclePreparedStatement extends OracleStatement
         setByteInternal(paramInt1, ((Byte)paramObject).byteValue());
       }
       else {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
 
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       break;
@@ -5407,10 +5410,10 @@ abstract class OraclePreparedStatement extends OracleStatement
       }
       else
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
 
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       break;
@@ -5425,10 +5428,10 @@ abstract class OraclePreparedStatement extends OracleStatement
         setIntInternal(paramInt1, ((Number)paramObject).byteValue() != 0 ? 1 : 0);
       }
       else {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
 
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       break;
@@ -5442,10 +5445,10 @@ abstract class OraclePreparedStatement extends OracleStatement
       }
       else
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
 
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       break;
@@ -5459,10 +5462,10 @@ abstract class OraclePreparedStatement extends OracleStatement
       }
       else
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
 
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       break;
@@ -5475,10 +5478,10 @@ abstract class OraclePreparedStatement extends OracleStatement
         setIntInternal(paramInt1, ((Boolean)paramObject).booleanValue() ? 1 : 0);
       }
       else {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
 
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       break;
@@ -5491,10 +5494,10 @@ abstract class OraclePreparedStatement extends OracleStatement
         setLongInternal(paramInt1, ((Boolean)paramObject).booleanValue() ? 1L : 0L);
       }
       else {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
 
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       break;
@@ -5507,10 +5510,10 @@ abstract class OraclePreparedStatement extends OracleStatement
         setFloatInternal(paramInt1, ((Boolean)paramObject).booleanValue() ? 1.0F : 0.0F);
       }
       else {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
 
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       break;
@@ -5526,10 +5529,10 @@ abstract class OraclePreparedStatement extends OracleStatement
       }
       else
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
 
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       break;
@@ -5559,10 +5562,10 @@ abstract class OraclePreparedStatement extends OracleStatement
         setDateInternal(paramInt1, Date.valueOf((String)paramObject));
       }
       else {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
 
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       break;
@@ -5578,10 +5581,10 @@ abstract class OraclePreparedStatement extends OracleStatement
         setTimeInternal(paramInt1, Time.valueOf((String)paramObject));
       }
       else {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
 
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       break;
@@ -5598,10 +5601,10 @@ abstract class OraclePreparedStatement extends OracleStatement
         setTimestampInternal(paramInt1, Timestamp.valueOf((String)paramObject));
       }
       else {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 132);
 
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       break;
@@ -5673,9 +5676,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       break;
     default:
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -5697,9 +5700,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -5749,19 +5752,19 @@ abstract class OraclePreparedStatement extends OracleStatement
     throws SQLException
   {
     int i = paramInt - 1;
-    SQLException localSQLException;
+    SQLException sqlexception;
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramREF == null)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     setREFCritical(i, paramREF);
@@ -5776,16 +5779,16 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if (localStructDescriptor == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 52);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 52);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.currentRowBinders[paramInt] = this.theRefTypeBinder;
 
     if (this.parameterDatum == null)
     {
-      this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
+      this.parameterDatum = new byte[this.numberOfBindRowsAllocated][this.numberOfBindPositions][];
     }
 
     this.parameterDatum[this.currentRank][paramInt] = paramREF.getBytes();
@@ -5799,7 +5802,7 @@ abstract class OraclePreparedStatement extends OracleStatement
       this.parameterOtype = new OracleTypeADT[this.numberOfBindRowsAllocated][this.numberOfBindPositions];
     }
 
-    this.parameterOtype[this.currentRank][paramInt] = localObject;
+    this.parameterOtype[this.currentRank][paramInt] = (OracleTypeADT)localObject;
   }
 
   public void setObject(int paramInt, Object paramObject)
@@ -5852,32 +5855,32 @@ abstract class OraclePreparedStatement extends OracleStatement
     throws SQLException
   {
     int i = paramInt1 - 1;
-    SQLException localSQLException;
+    SQLException sqlexception;
     if ((i < 0) || (paramInt1 > this.numberOfBindPositions))
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramObject == null)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 271);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 271);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     int j = getInternalType(paramInt4);
 
-    Object localObject1 = null;
-    Object localObject2;
+    String[] localObject1 = null;
+    String[] localObject2;
     switch (j)
     {
     case 1:
     case 96:
       localObject2 = null;
       int k = 0;
-      Object localObject3;
+      CHAR[] localObject3;
       if ((paramObject instanceof CHAR[]))
       {
         localObject3 = (CHAR[])paramObject;
@@ -5887,7 +5890,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
         for (int n = 0; n < k; n++)
         {
-          Object localObject5 = localObject3[n];
+          CHAR localObject5 = localObject3[n];
           if (localObject5 != null)
             localObject2[n] = localObject5.getString();
         }
@@ -5898,15 +5901,15 @@ abstract class OraclePreparedStatement extends OracleStatement
         k = localObject2.length;
       }
       else {
-        localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 97);
-        ((SQLException)localObject3).fillInStackTrace();
-        throw ((Throwable)localObject3);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 97);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if ((paramInt5 == 0) && (localObject2 != null)) {
         for (int m = 0; m < k; m++)
         {
-          Object localObject4 = localObject2[m];
+          String localObject4 = localObject2[m];
           if ((localObject4 != null) && (paramInt5 < localObject4.length()))
             paramInt5 = localObject4.length();
         }
@@ -5916,9 +5919,9 @@ abstract class OraclePreparedStatement extends OracleStatement
       break;
     case 2:
     case 6:
-      localObject1 = OracleTypeNUMBER.toNUMBERArray(paramObject, this.connection, 1L, paramInt3);
+      Datum[] datum = OracleTypeNUMBER.toNUMBERArray(paramObject, this.connection, 1L, paramInt3);
 
-      if ((paramInt5 == 0) && (localObject1 != null))
+      if ((paramInt5 == 0) && (datum != null))
       {
         paramInt5 = 22;
       }
@@ -5927,16 +5930,16 @@ abstract class OraclePreparedStatement extends OracleStatement
 
       break;
     default:
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 97);
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 97);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (localObject1.length == 0)
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 272);
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 272);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.currentRowBinders[i] = this.thePlsqlIbtBinder;
@@ -5970,9 +5973,9 @@ abstract class OraclePreparedStatement extends OracleStatement
       }
       if (i == 0)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
     }
   }
@@ -6153,12 +6156,12 @@ abstract class OraclePreparedStatement extends OracleStatement
     throws SQLException
   {
     int i = paramInt - 1;
-    SQLException localSQLException;
+    SQLException sqlexception;
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     set_execute_batch(1);
@@ -6167,9 +6170,9 @@ abstract class OraclePreparedStatement extends OracleStatement
       basicBindNullString(paramInt); } else {
       if ((this.userRsetType != 1) && ((paramLong > this.maxVcsCharsSql) || (!paramBoolean)))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 169);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 169);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       if (!paramBoolean)
       {
@@ -6271,9 +6274,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     catch (IOException localIOException)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (i != paramInt2)
@@ -6314,9 +6317,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     catch (IOException localIOException)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (i != paramInt2)
@@ -6376,9 +6379,9 @@ abstract class OraclePreparedStatement extends OracleStatement
   {
     if (this.m_batchStyle == 2)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "operation cannot be mixed with JDBC-2.0-style batching");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "operation cannot be mixed with JDBC-2.0-style batching");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.m_batchStyle == 0);
@@ -6395,9 +6398,9 @@ abstract class OraclePreparedStatement extends OracleStatement
   {
     if (this.m_batchStyle == 1)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "operation cannot be mixed with Oracle-style batching");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90, "operation cannot be mixed with Oracle-style batching");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.m_batchStyle = 2;
@@ -6408,9 +6411,9 @@ abstract class OraclePreparedStatement extends OracleStatement
   {
     if (doesJdbcBatchExist())
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 81, "batch must be either executed or cleared");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 81, "batch must be either executed or cleared");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -6445,9 +6448,9 @@ abstract class OraclePreparedStatement extends OracleStatement
   {
     synchronized (this.connection)
     {
-      SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -6561,20 +6564,20 @@ abstract class OraclePreparedStatement extends OracleStatement
             boolean bool = this.needToParse;
             do
             {
-              localObject1 = this.pushedBatches;
+              PushedBatch pushedbatch = this.pushedBatches;
 
-              this.currentBatchCharLens = ((PushedBatch)localObject1).currentBatchCharLens;
-              this.lastBoundCharLens = ((PushedBatch)localObject1).lastBoundCharLens;
-              this.lastBoundNeeded = ((PushedBatch)localObject1).lastBoundNeeded;
-              this.currentBatchBindAccessors = ((PushedBatch)localObject1).currentBatchBindAccessors;
-              this.needToParse = ((PushedBatch)localObject1).need_to_parse;
-              this.currentBatchNeedToPrepareBinds = ((PushedBatch)localObject1).current_batch_need_to_prepare_binds;
+              this.currentBatchCharLens = pushedbatch.currentBatchCharLens;
+              this.lastBoundCharLens = pushedbatch.lastBoundCharLens;
+              this.lastBoundNeeded = pushedbatch.lastBoundNeeded;
+              this.currentBatchBindAccessors = pushedbatch.currentBatchBindAccessors;
+              this.needToParse = pushedbatch.need_to_parse;
+              this.currentBatchNeedToPrepareBinds = pushedbatch.current_batch_need_to_prepare_binds;
 
-              this.firstRowInBatch = ((PushedBatch)localObject1).first_row_in_batch;
+              this.firstRowInBatch = pushedbatch.first_row_in_batch;
 
-              setupBindBuffers(((PushedBatch)localObject1).first_row_in_batch, ((PushedBatch)localObject1).number_of_rows_to_be_bound);
+              setupBindBuffers(pushedbatch.first_row_in_batch, pushedbatch.number_of_rows_to_be_bound);
 
-              this.currentRank = ((PushedBatch)localObject1).number_of_rows_to_be_bound;
+              this.currentRank = pushedbatch.number_of_rows_to_be_bound;
 
               executeForRowsWithTimeout(false);
 
@@ -6584,7 +6587,7 @@ abstract class OraclePreparedStatement extends OracleStatement
                 arrayOfInt[(i++)] = this.validRows;
               }
 
-              this.pushedBatches = ((PushedBatch)localObject1).next;
+              this.pushedBatches = pushedbatch.next;
             }
 
             while (this.pushedBatches != null);
@@ -6597,7 +6600,7 @@ abstract class OraclePreparedStatement extends OracleStatement
 
           slideDownCurrentRow(k);
         }
-        catch (SQLException localSQLException)
+        catch (SQLException sqlexception)
         {
           int m = this.currentRank;
           clearBatch();
@@ -6611,18 +6614,18 @@ abstract class OraclePreparedStatement extends OracleStatement
               for (i = 0; i < this.numberOfExecutedElementsInBatch; ) {
                 arrayOfInt[i] = -2;
 
-                i++; continue;
+                i++;
 
-                for (i = 0; i < arrayOfInt.length; i++)
-                  arrayOfInt[i] = -3; 
+                for (j = 0; j < arrayOfInt.length; j++)
+                  arrayOfInt[j] = -3; 
               }
             }
           }
           resetCurrentRowBinders();
 
-          Object localObject1 = DatabaseError.createBatchUpdateException(localSQLException, (this.sqlKind == 32) || (this.sqlKind == 64) ? i : arrayOfInt.length, arrayOfInt);
-          ((BatchUpdateException)localObject1).fillInStackTrace();
-          throw ((Throwable)localObject1);
+          sqlexception = DatabaseError.createBatchUpdateException(sqlexception, (this.sqlKind == 32) || (this.sqlKind == 64) ? i : arrayOfInt.length, arrayOfInt);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
         finally
         {
@@ -6754,7 +6757,7 @@ abstract class OraclePreparedStatement extends OracleStatement
         }
         else
         {
-          Object localObject;
+          byte[] localObject;
           if ((s == 109) || (s == 111))
           {
             localOraclePreparedStatement.currentRowBinders[i4] = (s == 109 ? this.theNamedTypeBinder : this.theRefTypeBinder);
@@ -6781,9 +6784,9 @@ abstract class OraclePreparedStatement extends OracleStatement
           }
           else
           {
-            localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 89, new StringBuilder().append("copyBinds doesn't understand type ").append(s).toString());
-            ((SQLException)localObject).fillInStackTrace();
-            throw ((Throwable)localObject);
+            SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 89, new StringBuilder().append("copyBinds doesn't understand type ").append(s).toString());
+            sqlexception.fillInStackTrace();
+            throw sqlexception;
           }
         }
         j += this.bindBufferCapacity * i2;
@@ -6925,20 +6928,20 @@ abstract class OraclePreparedStatement extends OracleStatement
   public oracle.jdbc.OracleParameterMetaData OracleGetParameterMetaData()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void registerReturnParameter(int paramInt1, int paramInt2)
     throws SQLException
   {
-    SQLException localSQLException1;
+    SQLException sqlexception1;
     if (this.numberOfBindPositions <= 0)
     {
-      localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     if (this.numReturnParams <= 0)
@@ -6946,18 +6949,18 @@ abstract class OraclePreparedStatement extends OracleStatement
       this.numReturnParams = this.sqlObject.getReturnParameterCount();
       if (this.numReturnParams <= 0)
       {
-        localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90);
-        localSQLException1.fillInStackTrace();
-        throw localSQLException1;
+        sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90);
+        sqlexception1.fillInStackTrace();
+        throw sqlexception1;
       }
     }
 
     int i = paramInt1 - 1;
     if ((i < this.numberOfBindPositions - this.numReturnParams) || (paramInt1 > this.numberOfBindPositions))
     {
-      SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException2.fillInStackTrace();
-      throw localSQLException2;
+      SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception2.fillInStackTrace();
+      throw sqlexception2;
     }
 
     int j = getInternalTypeForDmlReturning(paramInt2);
@@ -6976,32 +6979,32 @@ abstract class OraclePreparedStatement extends OracleStatement
   {
     if (this.numberOfBindPositions <= 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     int i = paramInt1 - 1;
-    SQLException localSQLException2;
+    SQLException sqlexception2;
     if ((i < 0) || (paramInt1 > this.numberOfBindPositions))
     {
-      localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException2.fillInStackTrace();
-      throw localSQLException2;
+      sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception2.fillInStackTrace();
+      throw sqlexception2;
     }
 
     if ((paramInt2 != 1) && (paramInt2 != 12) && (paramInt2 != -1) && (paramInt2 != -2) && (paramInt2 != -3) && (paramInt2 != -4) && (paramInt2 != 12))
     {
-      localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException2.fillInStackTrace();
-      throw localSQLException2;
+      sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception2.fillInStackTrace();
+      throw sqlexception2;
     }
 
     if (paramInt3 <= 0)
     {
-      localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException2.fillInStackTrace();
-      throw localSQLException2;
+      sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception2.fillInStackTrace();
+      throw sqlexception2;
     }
 
     int j = getInternalTypeForDmlReturning(paramInt2);
@@ -7020,25 +7023,25 @@ abstract class OraclePreparedStatement extends OracleStatement
   {
     if (this.numberOfBindPositions <= 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     int i = paramInt1 - 1;
     if ((i < 0) || (paramInt1 > this.numberOfBindPositions))
     {
-      SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException2.fillInStackTrace();
-      throw localSQLException2;
+      SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception2.fillInStackTrace();
+      throw sqlexception2;
     }
 
     int j = getInternalTypeForDmlReturning(paramInt2);
     if ((j != 111) && (j != 109))
     {
-      SQLException localSQLException3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException3.fillInStackTrace();
-      throw localSQLException3;
+      SQLException sqlexception3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception3.fillInStackTrace();
+      throw sqlexception3;
     }
 
     registerReturnParameterInternal(i, j, paramInt2, -1, (short)0, paramString);
@@ -7049,19 +7052,19 @@ abstract class OraclePreparedStatement extends OracleStatement
   public ResultSet getReturnResultSet()
     throws SQLException
   {
-    SQLException localSQLException;
+    SQLException sqlexception;
     if (this.closed)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if ((this.returnParamAccessors == null) || (this.numReturnParams == 0))
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 144);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 144);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if ((this.returnResultSet == null) || (this.numReturnParams == 0) || (!this.isOpen))
@@ -7162,9 +7165,9 @@ abstract class OraclePreparedStatement extends OracleStatement
       i = 1;
       break;
     default:
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return i;
@@ -7186,7 +7189,7 @@ abstract class OraclePreparedStatement extends OracleStatement
       int m = j + k;
       this.currentRowBinders[m] = this.theReturnParamBinder;
 
-      short s = this.connection.defaultnchar ? 2 : 1;
+      short s = (short)(this.connection.defaultnchar ? 2 : 1);
 
       if ((arrayOfShort != null) && (arrayOfInt2 != null))
       {
@@ -7267,9 +7270,9 @@ abstract class OraclePreparedStatement extends OracleStatement
   {
     if (paramLong < 0L)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "length for setBlob() cannot be negative");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "length for setBlob() cannot be negative");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     setBlobInternal(paramInt, paramInputStream, paramLong);
   }
@@ -7291,9 +7294,9 @@ abstract class OraclePreparedStatement extends OracleStatement
   {
     if (paramLong < 0L)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "length for setClob() cannot be negative");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "length for setClob() cannot be negative");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     setClobInternal(paramInt, paramReader, paramLong);
   }
@@ -7383,9 +7386,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramInputStream == null)
@@ -7425,9 +7428,9 @@ abstract class OraclePreparedStatement extends OracleStatement
 
     if ((i < 0) || (paramInt > this.numberOfBindPositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramReader == null)
@@ -7502,9 +7505,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7526,9 +7529,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7550,9 +7553,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7574,9 +7577,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7598,9 +7601,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7622,9 +7625,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7646,9 +7649,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7670,9 +7673,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7694,9 +7697,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7718,9 +7721,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7742,9 +7745,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7766,9 +7769,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7790,9 +7793,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7814,9 +7817,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7838,9 +7841,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString1);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString1);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7862,9 +7865,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7886,9 +7889,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7910,9 +7913,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7934,9 +7937,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7958,9 +7961,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -7982,9 +7985,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8006,9 +8009,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString1);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString1);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8030,9 +8033,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8054,9 +8057,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8078,9 +8081,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8102,9 +8105,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8126,9 +8129,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8150,9 +8153,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8174,9 +8177,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8198,9 +8201,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8222,9 +8225,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8246,9 +8249,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8270,9 +8273,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8294,9 +8297,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8318,9 +8321,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8342,9 +8345,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8366,9 +8369,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8390,9 +8393,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8414,9 +8417,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8438,9 +8441,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8462,9 +8465,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString1);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString1);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8486,9 +8489,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8510,9 +8513,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8534,9 +8537,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8558,9 +8561,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8582,9 +8585,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8606,9 +8609,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8630,9 +8633,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8654,9 +8657,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8678,9 +8681,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8702,9 +8705,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8726,9 +8729,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8750,9 +8753,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8774,9 +8777,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8798,9 +8801,9 @@ abstract class OraclePreparedStatement extends OracleStatement
     }
     if (i == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -8824,18 +8827,18 @@ abstract class OraclePreparedStatement extends OracleStatement
         }
         else
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
       }
     }
 
     if (j != 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
   }
 
@@ -8859,18 +8862,18 @@ abstract class OraclePreparedStatement extends OracleStatement
         }
         else
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
       }
     }
 
     if (j != 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
   }
 
@@ -8894,18 +8897,18 @@ abstract class OraclePreparedStatement extends OracleStatement
         }
         else
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
       }
     }
 
     if (j != 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
   }
 
@@ -8929,18 +8932,18 @@ abstract class OraclePreparedStatement extends OracleStatement
         }
         else
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
       }
     }
 
     if (j != 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
   }
 
@@ -8964,18 +8967,18 @@ abstract class OraclePreparedStatement extends OracleStatement
         }
         else
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
       }
     }
 
     if (j != 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
   }
 
@@ -8999,18 +9002,18 @@ abstract class OraclePreparedStatement extends OracleStatement
         }
         else
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
       }
     }
 
     if (j != 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
   }
 
@@ -9034,18 +9037,18 @@ abstract class OraclePreparedStatement extends OracleStatement
         }
         else
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
       }
     }
 
     if (j != 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
   }
 
@@ -9069,18 +9072,18 @@ abstract class OraclePreparedStatement extends OracleStatement
         }
         else
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
       }
     }
 
     if (j != 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
   }
 
@@ -9104,18 +9107,18 @@ abstract class OraclePreparedStatement extends OracleStatement
         }
         else
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
       }
     }
 
     if (j != 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
   }
 
@@ -9139,18 +9142,18 @@ abstract class OraclePreparedStatement extends OracleStatement
         }
         else
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
       }
     }
 
     if (j != 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
   }
 
@@ -9174,18 +9177,18 @@ abstract class OraclePreparedStatement extends OracleStatement
         }
         else
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
       }
     }
 
     if (j != 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
   }
 
@@ -9209,18 +9212,18 @@ abstract class OraclePreparedStatement extends OracleStatement
         }
         else
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
       }
     }
 
     if (j != 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
   }
 
@@ -9244,18 +9247,18 @@ abstract class OraclePreparedStatement extends OracleStatement
         }
         else
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
       }
     }
 
     if (j != 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
   }
 
@@ -9279,18 +9282,18 @@ abstract class OraclePreparedStatement extends OracleStatement
         }
         else
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
       }
     }
 
     if (j != 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
   }
 
@@ -9314,18 +9317,18 @@ abstract class OraclePreparedStatement extends OracleStatement
         }
         else
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
       }
     }
 
     if (j != 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
   }
 
@@ -9349,18 +9352,18 @@ abstract class OraclePreparedStatement extends OracleStatement
         }
         else
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
       }
     }
 
     if (j != 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
   }
 
@@ -9384,18 +9387,18 @@ abstract class OraclePreparedStatement extends OracleStatement
         }
         else
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
       }
     }
 
     if (j != 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
   }
 
@@ -9419,18 +9422,18 @@ abstract class OraclePreparedStatement extends OracleStatement
         }
         else
         {
-          SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
-          localSQLException2.fillInStackTrace();
-          throw localSQLException2;
+          SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 135);
+          sqlexception2.fillInStackTrace();
+          throw sqlexception2;
         }
       }
     }
 
     if (j != 0)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 147, paramString);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
   }
 

@@ -58,7 +58,7 @@ public class NetInputStream extends InputStream
     {
       try
       {
-        if (j += this.sAtts.ntInputStream.read(paramArrayOfByte, j + paramInt, i - j) <= 0)
+        if ((j += this.sAtts.ntInputStream.read(paramArrayOfByte, j + paramInt, i - j)) <= 0)
         {
           throw new NetException(0);
         }

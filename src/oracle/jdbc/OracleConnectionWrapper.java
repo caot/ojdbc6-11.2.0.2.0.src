@@ -983,10 +983,10 @@ public class OracleConnectionWrapper
   protected <T> T proxyFor(Object paramObject, Class<T> paramClass)
     throws SQLException
   {
-    Object localObject2;
+    Class localObject2;
     try
     {
-      Object localObject1 = this.proxies.get(paramClass);
+      T localObject1 = (T)this.proxies.get(paramClass);
       if (localObject1 == null) {
         localObject2 = (Class)proxyClasses.get(paramClass);
         if (localObject2 == null) {
@@ -994,7 +994,7 @@ public class OracleConnectionWrapper
 
           proxyClasses.put(paramClass, localObject2);
         }
-        localObject1 = ((Class)localObject2).getConstructor(new Class[] { InvocationHandler.class }).newInstance(new Object[] { new CloseInvocationHandler(this) });
+        localObject1 = (T)localObject2.getConstructor(new Class[] { InvocationHandler.class }).newInstance(new Object[] { new CloseInvocationHandler(this) });
 
         this.proxies.put(paramClass, localObject1);
       }
@@ -1002,16 +1002,17 @@ public class OracleConnectionWrapper
     }
     catch (Exception localException)
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "Cannot construct proxy");
-      ((SQLException)localObject2).fillInStackTrace();
-    }throw ((Throwable)localObject2);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "Cannot construct proxy");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
+    }
   }
 
   public <T> T unwrap(Class<T> paramClass)
     throws SQLException
   {
     if (paramClass.isInterface()) {
-      if (paramClass.isInstance(this)) return this;
+      if (paramClass.isInstance(this)) return (T)this;
       return proxyFor(this.connection.unwrap(paramClass), paramClass);
     }
 
@@ -1168,10 +1169,9 @@ public class OracleConnectionWrapper
   {
     private OracleConnectionWrapper wrapper;
 
-    protected CloseInvocationHandler(OracleConnectionWrapper arg2)
+    protected CloseInvocationHandler(OracleConnectionWrapper wrapper)
     {
-      Object localObject;
-      this.wrapper = localObject;
+      this.wrapper = wrapper;
     }
 
     public Object invoke(Object paramObject, Method paramMethod, Object[] paramArrayOfObject)

@@ -97,105 +97,105 @@ class T2CCallableStatement extends OracleCallableStatement
         localOracleTypeADT.tdoCState = ((arrayOfShort[(i + 7)] & 0xFFFF) << 48 | (arrayOfShort[(i + 8)] & 0xFFFF) << 32 | (arrayOfShort[(i + 9)] & 0xFFFF) << 16 | arrayOfShort[(i + 10)] & 0xFFFF);
       }
 
-      Object localObject = this.accessors[k];
+      Accessor accessor = this.accessors[k];
 
-      if ((localObject != null) && (!((Accessor)localObject).useForDescribeIfPossible(m, n, bool, i4, i2, i3, i5, i6, s, str2)))
+      if ((accessor != null) && (!((Accessor)accessor).useForDescribeIfPossible(m, n, bool, i4, i2, i3, i5, i6, s, str2)))
       {
-        localObject = null;
+        accessor = null;
       }
-      if (localObject == null)
+      if (accessor == null)
       {
         switch (m)
         {
         case 1:
-          localObject = new VarcharAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
+          accessor = new VarcharAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
 
           if (i1 > 0)
-            ((Accessor)localObject).setDisplaySize(i1); break;
+            ((Accessor)accessor).setDisplaySize(i1); break;
         case 96:
-          localObject = new CharAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
+          accessor = new CharAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
 
           if (i1 > 0)
-            ((Accessor)localObject).setDisplaySize(i1); break;
+            ((Accessor)accessor).setDisplaySize(i1); break;
         case 2:
-          localObject = new NumberAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
+          accessor = new NumberAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
 
           break;
         case 23:
-          localObject = new RawAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
+          accessor = new RawAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
 
           break;
         case 100:
-          localObject = new BinaryFloatAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
+          accessor = new BinaryFloatAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
 
           break;
         case 101:
-          localObject = new BinaryDoubleAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
+          accessor = new BinaryDoubleAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
 
           break;
         case 8:
-          localObject = new LongAccessor(this, k + 1, n, bool, i4, i2, i3, i5, i6, s);
+          accessor = new LongAccessor(this, k + 1, n, bool, i4, i2, i3, i5, i6, s);
 
           this.rowPrefetch = 1;
 
           break;
         case 24:
-          localObject = new LongRawAccessor(this, k + 1, n, bool, i4, i2, i3, i5, i6, s);
+          accessor = new LongRawAccessor(this, k + 1, n, bool, i4, i2, i3, i5, i6, s);
 
           this.rowPrefetch = 1;
 
           break;
         case 104:
-          localObject = new RowidAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
+          accessor = new RowidAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
 
           break;
         case 102:
         case 116:
-          localObject = new T2CResultSetAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
+          accessor = new T2CResultSetAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
 
           break;
         case 12:
-          localObject = new DateAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
+          accessor = new DateAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
 
           break;
         case 180:
-          localObject = new TimestampAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
+          accessor = new TimestampAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
 
           break;
         case 181:
-          localObject = new TimestamptzAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
+          accessor = new TimestamptzAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
 
           break;
         case 231:
-          localObject = new TimestampltzAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
+          accessor = new TimestampltzAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
 
           break;
         case 182:
-          localObject = new IntervalymAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
+          accessor = new IntervalymAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
 
           break;
         case 183:
-          localObject = new IntervaldsAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
+          accessor = new IntervaldsAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
 
           break;
         case 112:
-          localObject = new ClobAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
+          accessor = new ClobAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
 
           break;
         case 113:
-          localObject = new BlobAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
+          accessor = new BlobAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
 
           break;
         case 114:
-          localObject = new BfileAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
+          accessor = new BfileAccessor(this, n, bool, i4, i2, i3, i5, i6, s);
 
           break;
         case 109:
-          localObject = new NamedTypeAccessor(this, n, bool, i4, i2, i3, i5, i6, s, str2, localOracleTypeADT);
+          accessor = new NamedTypeAccessor(this, n, bool, i4, i2, i3, i5, i6, s, str2, localOracleTypeADT);
 
           break;
         case 111:
-          localObject = new RefTypeAccessor(this, n, bool, i4, i2, i3, i5, i6, s, str2, localOracleTypeADT);
+          accessor = new RefTypeAccessor(this, n, bool, i4, i2, i3, i5, i6, s, str2, localOracleTypeADT);
 
           break;
         default:
@@ -205,14 +205,14 @@ class T2CCallableStatement extends OracleCallableStatement
           throw localSQLException;
         }
 
-        this.accessors[k] = localObject;
+        this.accessors[k] = accessor;
       }
       else if (localOracleTypeADT != null)
       {
-        ((Accessor)localObject).initMetadata();
+        ((Accessor)accessor).initMetadata();
       }
 
-      ((Accessor)localObject).columnName = str1;
+      ((Accessor)accessor).columnName = str1;
 
       k++;
     }
@@ -315,7 +315,7 @@ class T2CCallableStatement extends OracleCallableStatement
     if (localT2CConnection.endToEndValues != null)
     {
       String str;
-      if (localT2CConnection.endToEndHasChanged[0] != 0)
+      if (localT2CConnection.endToEndHasChanged[0])
       {
         str = localT2CConnection.endToEndValues[0];
 
@@ -326,7 +326,7 @@ class T2CCallableStatement extends OracleCallableStatement
         localT2CConnection.endToEndHasChanged[0] = false;
       }
 
-      if (localT2CConnection.endToEndHasChanged[1] != 0)
+      if (localT2CConnection.endToEndHasChanged[1])
       {
         str = localT2CConnection.endToEndValues[1];
 
@@ -337,7 +337,7 @@ class T2CCallableStatement extends OracleCallableStatement
         localT2CConnection.endToEndHasChanged[1] = false;
       }
 
-      if (localT2CConnection.endToEndHasChanged[2] != 0)
+      if (localT2CConnection.endToEndHasChanged[2])
       {
         str = localT2CConnection.endToEndValues[2];
 
@@ -348,7 +348,7 @@ class T2CCallableStatement extends OracleCallableStatement
         localT2CConnection.endToEndHasChanged[2] = false;
       }
 
-      if (localT2CConnection.endToEndHasChanged[3] != 0)
+      if (localT2CConnection.endToEndHasChanged[3])
       {
         str = localT2CConnection.endToEndValues[3];
 

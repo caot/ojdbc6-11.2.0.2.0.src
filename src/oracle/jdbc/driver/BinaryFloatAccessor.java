@@ -259,7 +259,7 @@ class BinaryFloatAccessor extends Accessor
   long getLong(int paramInt)
     throws SQLException
   {
-    return ()getFloat(paramInt);
+    return (long)getFloat(paramInt);
   }
 
   double getDouble(int paramInt)

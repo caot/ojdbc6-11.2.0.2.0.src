@@ -248,9 +248,9 @@ public class STRUCT extends DatumWithConnection
         }
         else
         {
-          localObject = DatabaseError.createSqlException(null, 59, paramObject);
-          ((SQLException)localObject).fillInStackTrace();
-          throw ((Throwable)localObject);
+          SQLException sqlexception = DatabaseError.createSqlException(null, 59, paramObject);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
       }
     }
@@ -308,21 +308,21 @@ public class STRUCT extends DatumWithConnection
         }
         else if ((localObject2 instanceof ORADataFactory))
         {
-          localObject3 = (ORADataFactory)localObject2;
+          ORADataFactory localObject3 = (ORADataFactory)localObject2;
 
-          localObject1 = ((ORADataFactory)localObject3).create(this, 2002);
+          localObject1 = localObject3.create(this, 2002);
         }
         else if ((localObject2 instanceof CustomDatumFactory))
         {
-          localObject3 = (CustomDatumFactory)localObject2;
+          CustomDatumFactory localObject3 = (CustomDatumFactory)localObject2;
 
-          localObject1 = ((CustomDatumFactory)localObject3).create(this, 2002);
+          localObject1 = localObject3.create(this, 2002);
         }
         else
         {
-          localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 49, this.descriptor.getName());
-          ((SQLException)localObject3).fillInStackTrace();
-          throw ((Throwable)localObject3);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 49, this.descriptor.getName());
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
       }
@@ -330,17 +330,17 @@ public class STRUCT extends DatumWithConnection
     }
     catch (InstantiationException localInstantiationException)
     {
-      localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 49, "InstantiationException: " + localInstantiationException.getMessage());
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 49, "InstantiationException: " + localInstantiationException.getMessage());
 
-      ((SQLException)localObject3).fillInStackTrace();
-      throw ((Throwable)localObject3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     catch (IllegalAccessException localIllegalAccessException)
     {
-      Object localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 49, "IllegalAccessException: " + localIllegalAccessException.getMessage());
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 49, "IllegalAccessException: " + localIllegalAccessException.getMessage());
 
-      ((SQLException)localObject3).fillInStackTrace();
-      throw ((Throwable)localObject3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return localObject1;
@@ -516,6 +516,7 @@ public class STRUCT extends DatumWithConnection
     for (int j = 0; j < paramInt; j++) paramPrintWriter.print(' ');
     paramPrintWriter.println("name = " + localStructDescriptor.getName());
 
+    int j;
     for (j = 0; j < paramInt; j++) paramPrintWriter.print(' ');
     int i;
     paramPrintWriter.println("length = " + (i = localStructDescriptor.getLength()));

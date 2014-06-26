@@ -27,7 +27,7 @@ public final class a
     System.arraycopy(paramArrayOfByte2, 0, arrayOfByte2, 0, paramArrayOfByte2.length);
     for (int i2 = paramArrayOfByte2.length; i2 < arrayOfByte2.length; i2++)
       arrayOfByte2[i2] = ((byte)i1);
-    for (i2 = 0; i2 < arrayOfByte2.length / 8; i2++)
+    for (int i2 = 0; i2 < arrayOfByte2.length / 8; i2++)
     {
       for (int i3 = 0; i3 < 8; i3++)
         arrayOfByte1[i3] = arrayOfByte2[(i2 * 8 + i3)];
@@ -128,7 +128,7 @@ public final class a
     byte[] arrayOfByte1 = new byte[56];
     byte[] arrayOfByte2 = new byte[56];
     int[] arrayOfInt = new int[32];
-    int i3;
+    int i3 = 0;
     int i4;
     for (int i2 = 0; i2 < 56; i2++)
     {
@@ -140,7 +140,7 @@ public final class a
     int tmp114_113 = 0;
     arrayOfInt[i5] = tmp114_113;
     arrayOfInt[i4] = tmp114_113;
-    i2 = 0;
+    int i2 = 0;
     arrayOfByte2[i2] = arrayOfByte1[(i3 - 28)];
     i2 = 28;
     arrayOfByte2[i2] = arrayOfByte1[(i3 - 28)];

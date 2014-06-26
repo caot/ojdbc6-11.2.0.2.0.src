@@ -82,7 +82,7 @@ class T4CTTIdcb extends T4CTTIMsg
     {
       if ((paramArrayOfAccessor == null) || (paramArrayOfAccessor.length != this.numuds + this.colOffset))
       {
-        localObject = new Accessor[this.numuds + this.colOffset];
+        Accessor[] localObject = new Accessor[this.numuds + this.colOffset];
         if ((paramArrayOfAccessor != null) && (paramArrayOfAccessor.length == this.colOffset))
         {
           System.arraycopy(paramArrayOfAccessor, 0, localObject, 0, this.colOffset);
@@ -321,7 +321,7 @@ class T4CTTIdcb extends T4CTTIMsg
       if ((m == -1) && (this.connection.versionNumber >= 9000))
       {
         j = 0;
-        paramArrayOfAccessor[paramInt] = new T4CLongAccessor(this.statement, paramInt + 1, 2147483647, paramT4C8TTIuds.udsnull, paramT4C8TTIuds.udsoac.oacflg, paramT4C8TTIuds.udsoac.oacpre, paramT4C8TTIuds.udsoac.oacscl, paramT4C8TTIuds.udsoac.oacfl2, paramT4C8TTIuds.udsoac.oacmal, i2, m, n, this.meg);
+        paramArrayOfAccessor[paramInt] = new T4CLongAccessor(this.statement, paramInt + 1, 2147483647, paramT4C8TTIuds.udsnull, paramT4C8TTIuds.udsoac.oacflg, paramT4C8TTIuds.udsoac.oacpre, paramT4C8TTIuds.udsoac.oacscl, paramT4C8TTIuds.udsoac.oacfl2, paramT4C8TTIuds.udsoac.oacmal, (short)i2, m, n, this.meg);
 
         paramArrayOfAccessor[paramInt].describeType = 112;
       }
@@ -332,7 +332,7 @@ class T4CTTIdcb extends T4CTTIMsg
         {
           k = n;
         }
-        paramArrayOfAccessor[paramInt] = new T4CVarcharAccessor(this.statement, k, paramT4C8TTIuds.udsnull, paramT4C8TTIuds.udsoac.oacflg, paramT4C8TTIuds.udsoac.oacpre, paramT4C8TTIuds.udsoac.oacscl, paramT4C8TTIuds.udsoac.oacfl2, paramT4C8TTIuds.udsoac.oacmal, i2, 4000, m, n, this.meg);
+        paramArrayOfAccessor[paramInt] = new T4CVarcharAccessor(this.statement, k, paramT4C8TTIuds.udsnull, paramT4C8TTIuds.udsoac.oacflg, paramT4C8TTIuds.udsoac.oacpre, paramT4C8TTIuds.udsoac.oacscl, paramT4C8TTIuds.udsoac.oacfl2, paramT4C8TTIuds.udsoac.oacmal, (short)i2, 4000, m, n, this.meg);
 
         paramArrayOfAccessor[paramInt].describeType = 112;
       }

@@ -24,7 +24,7 @@ public class O5LoginClientHelper
       for (i = 0; i < 16; i++)
         arrayOfByte2[i] = ((byte)(paramArrayOfByte1[(i + paramInt2)] ^ paramArrayOfByte2[(i + paramInt3)]));
       localMessageDigest.reset();
-      tmpTernaryOp = localMessageDigest.digest(arrayOfByte2);
+      byte[] tmpTernaryOp = localMessageDigest.digest(arrayOfByte2);
       break;
     case 6949:
       arrayOfByte2 = new byte[24];
@@ -53,15 +53,16 @@ public class O5LoginClientHelper
     for (int i = 0; i < arrayOfByte1.length; i++)
       arrayOfByte1[0] = 0;
     byte[] arrayOfByte2 = new byte[0];
-    Object localObject = new SecretKeySpec(paramArrayOfByte, "AES");
+    SecretKeySpec localObject = new SecretKeySpec(paramArrayOfByte, "AES");
     IvParameterSpec localIvParameterSpec = new IvParameterSpec(arrayOfByte1);
     Cipher localCipher;
     (localCipher = Cipher.getInstance(paramString1)).init(2, (Key)localObject, localIvParameterSpec);
     byte[] arrayOfByte3 = toBinArray(paramString2);
     if ((paramArrayOfByte.length == 24) && (paramString1.endsWith("PKCS5Padding")))
     {
-      (localObject = new b(1, 2, 2)).a(paramArrayOfByte);
-      arrayOfByte2 = paramArrayOfByte.length == 16 ? localCipher.doFinal(arrayOfByte3) : ((b)localObject).b(toBinArray(paramString2));
+      b bobj;
+      (bobj = new b(1, 2, 2)).a(paramArrayOfByte);
+      arrayOfByte2 = paramArrayOfByte.length == 16 ? localCipher.doFinal(arrayOfByte3) : bobj.b(toBinArray(paramString2));
     }
     return arrayOfByte2;
   }
@@ -75,14 +76,15 @@ public class O5LoginClientHelper
     for (int i = 0; i < arrayOfByte1.length; i++)
       arrayOfByte1[0] = 0;
     byte[] arrayOfByte2 = new byte[0];
-    Object localObject = new SecretKeySpec(paramArrayOfByte1, "AES");
+    SecretKeySpec localObject = new SecretKeySpec(paramArrayOfByte1, "AES");
     IvParameterSpec localIvParameterSpec = new IvParameterSpec(arrayOfByte1);
     Cipher localCipher;
     (localCipher = Cipher.getInstance(paramString)).init(1, (Key)localObject, localIvParameterSpec);
     if ((paramArrayOfByte1.length == 24) && (paramString.endsWith("PKCS5Padding")))
     {
-      (localObject = new b(1, 2, 2)).a(paramArrayOfByte1);
-      arrayOfByte2 = paramArrayOfByte1.length == 16 ? localCipher.doFinal(paramArrayOfByte2) : ((b)localObject).c(paramArrayOfByte2);
+      b bobj;
+      ( bobj = new b(1, 2, 2)).a(paramArrayOfByte1);
+      arrayOfByte2 = paramArrayOfByte1.length == 16 ? localCipher.doFinal(paramArrayOfByte2) : bobj.c(paramArrayOfByte2);
     }
     return arrayOfByte2;
   }
@@ -145,7 +147,8 @@ public class O5LoginClientHelper
         str1 = "AES/CBC/NoPadding";
         str2 = "AES/CBC/NoPadding";
         str3 = "AES/CBC/PKCS5Padding";
-        localObject2 = (localObject1 = new O3LoginProtocolHelper()).getVerifier(paramString1, paramString2, Boolean.valueOf(paramBoolean));
+        O3LoginProtocolHelper localObject1;
+        byte[] localObject2 = (localObject1 = new O3LoginProtocolHelper()).getVerifier(paramString1, paramString2, Boolean.valueOf(paramBoolean));
         arrayOfByte1 = new byte[16];
         System.arraycopy(localObject2, 0, arrayOfByte1, 0, 8);
         for (m = 8; m < 16; m++)
@@ -159,9 +162,10 @@ public class O5LoginClientHelper
         str1 = "AES/CBC/PKCS5Padding";
         str2 = "AES/CBC/PKCS5Padding";
         str3 = "AES/CBC/PKCS5Padding";
+        MessageDigest localObject1;
         (localObject1 = MessageDigest.getInstance("SHA1")).update(paramString2.getBytes("UTF-8"));
-        ((MessageDigest)localObject1).update(toBinArray(new String(paramArrayOfByte1)));
-        localObject2 = ((MessageDigest)localObject1).digest();
+        localObject1.update(toBinArray(new String(paramArrayOfByte1)));
+        byte[] localObject2 = localObject1.digest();
         arrayOfByte1 = new byte[24];
         for (m = 0; m < arrayOfByte1.length; m++)
           arrayOfByte1[m] = 0;
@@ -171,10 +175,10 @@ public class O5LoginClientHelper
       {
         return false;
       }
-      Object localObject1 = decryptAES(str1, arrayOfByte1, new String(paramArrayOfByte3));
-      Object localObject2 = SecureRandom.getInstance("SHA1PRNG");
+      byte[] localObject1 = decryptAES(str1, arrayOfByte1, new String(paramArrayOfByte3));
+      SecureRandom localObject2 = SecureRandom.getInstance("SHA1PRNG");
       byte[] arrayOfByte2 = new byte[j];
-      ((SecureRandom)localObject2).nextBytes(arrayOfByte2);
+      localObject2.nextBytes(arrayOfByte2);
       byte[] arrayOfByte3 = encryptAES(str2, arrayOfByte1, arrayOfByte2);
       if ((paramArrayOfByte4 == null) || (paramArrayOfByte4.length != k))
         return false;
@@ -183,7 +187,7 @@ public class O5LoginClientHelper
       if ((arrayOfByte4 = concatKeys(paramInt, (byte[])localObject1, localObject1.length - i, arrayOfByte2, arrayOfByte2.length - i)).length != i)
         return false;
       byte[] arrayOfByte5 = new byte[16];
-      ((SecureRandom)localObject2).nextBytes(arrayOfByte5);
+      localObject2.nextBytes(arrayOfByte5);
       byte[] arrayOfByte6 = paramArrayOfByte2;
       byte[] arrayOfByte7 = new byte[16 + arrayOfByte6.length];
       System.arraycopy(arrayOfByte5, 0, arrayOfByte7, 0, 16);

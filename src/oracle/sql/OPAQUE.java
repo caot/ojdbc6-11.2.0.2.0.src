@@ -157,19 +157,19 @@ public class OPAQUE extends DatumWithConnection
       }
       else {
         ORAData localORAData = null;
-        localObject2 = paramClass.newInstance();
-        Object localObject3;
+        ORADataFactory localObject2 = (ORADataFactory)paramClass.newInstance();
+        ORADataFactory localObject3;
         if ((localObject2 instanceof ORADataFactory))
         {
-          localObject3 = (ORADataFactory)localObject2;
+          localObject3 = localObject2;
 
-          localORAData = ((ORADataFactory)localObject3).create(this, 2007);
+          localORAData = localObject3.create(this, 2007);
         }
         else
         {
-          localObject3 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 49, this.descriptor.getName());
-          ((SQLException)localObject3).fillInStackTrace();
-          throw ((Throwable)localObject3);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 49, this.descriptor.getName());
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
         localObject1 = localORAData;
@@ -178,17 +178,17 @@ public class OPAQUE extends DatumWithConnection
     }
     catch (InstantiationException localInstantiationException)
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 49, "InstantiationException: " + localInstantiationException.getMessage());
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 49, "InstantiationException: " + localInstantiationException.getMessage());
 
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     catch (IllegalAccessException localIllegalAccessException)
     {
-      Object localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 49, "IllegalAccessException: " + localIllegalAccessException.getMessage());
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 49, "IllegalAccessException: " + localIllegalAccessException.getMessage());
 
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return localObject1;

@@ -1455,9 +1455,9 @@ class UpdatableResultSet extends BaseResultSet
             }
             else
             {
-              localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getDATE");
-              ((SQLException)localObject1).fillInStackTrace();
-              throw ((Throwable)localObject1);
+              SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, "getDATE");
+              sqlexception.fillInStackTrace();
+              throw sqlexception;
             }
           }
         }
@@ -2036,12 +2036,12 @@ class UpdatableResultSet extends BaseResultSet
       ensureOpen();
       if (paramCustomDatumFactory == null)
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
-      Object localObject1 = null;
+      CustomDatum localObject1 = null;
 
       setIsNull(3);
 
@@ -2072,12 +2072,12 @@ class UpdatableResultSet extends BaseResultSet
       ensureOpen();
       if (paramORADataFactory == null)
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
-      Object localObject1 = null;
+      ORAData localObject1 = null;
 
       setIsNull(3);
 
@@ -3021,7 +3021,7 @@ class UpdatableResultSet extends BaseResultSet
         try
         {
           char[] arrayOfChar = new char[1024];
-          localObject = new StringBuilder(1024);
+          StringBuilder localObject = new StringBuilder(1024);
 
           while (j > 0)
           {
@@ -3049,9 +3049,9 @@ class UpdatableResultSet extends BaseResultSet
         }
         catch (IOException localIOException)
         {
-          Object localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-          ((SQLException)localObject).fillInStackTrace();
-          throw ((Throwable)localObject);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
       }
@@ -3396,7 +3396,7 @@ class UpdatableResultSet extends BaseResultSet
     }
 
     this.rowBuffer[paramInt] = paramObject;
-    this.m_nullIndicator[paramInt] = (paramObject == null ? 1 : false);
+    this.m_nullIndicator[paramInt] = paramObject == null;
   }
 
   private Datum getRowBufferDatumAt(int paramInt)
@@ -3404,12 +3404,12 @@ class UpdatableResultSet extends BaseResultSet
   {
     if ((paramInt < 1) || (paramInt > getColumnCount() - 1))
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "getRowBufferDatumAt");
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "getRowBufferDatumAt");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject1 = null;
+    Datum localObject1 = null;
 
     if (this.rowBuffer != null)
     {
@@ -3458,7 +3458,7 @@ class UpdatableResultSet extends BaseResultSet
     if (this.rowBuffer == null) {
       return false;
     }
-    return (this.rowBuffer[paramInt] != null) || (this.m_nullIndicator[paramInt] != 0);
+    return this.rowBuffer[paramInt] != null || this.m_nullIndicator[paramInt];
   }
 
   private void prepareInsertRowStatement()
@@ -3555,7 +3555,7 @@ class UpdatableResultSet extends BaseResultSet
     {
       for (int j = 1; j < getColumnCount(); j++)
       {
-        if ((this.rowBuffer[j] != null) || ((this.rowBuffer[j] == null) && (this.m_nullIndicator[j] != 0)))
+        if (this.rowBuffer[j] != null || (this.rowBuffer[j] == null && this.m_nullIndicator[j]))
         {
           this.indexColsChanged[(i++)] = j;
         }

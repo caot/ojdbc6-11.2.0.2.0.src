@@ -124,16 +124,16 @@ class XSAttributeI extends XSAttribute
     int k = (int)paramT4CMAREngine.unmarshalUB4();
     if (k > 0)
     {
-      localObject = new byte[k];
+      byte[] localObject = new byte[k];
       paramT4CMAREngine.unmarshalCLR((byte[])localObject, 0, arrayOfInt);
       str3 = paramT4CMAREngine.conv.CharBytesToString((byte[])localObject, arrayOfInt[0]);
     }
     long l = paramT4CMAREngine.unmarshalUB4();
-    Object localObject = new XSAttributeI();
-    ((XSAttributeI)localObject).setAttributeName(str1);
-    ((XSAttributeI)localObject).setAttributeValue(str2);
-    ((XSAttributeI)localObject).setAttributeDefaultValue(str3);
-    ((XSAttributeI)localObject).setFlag(l);
-    return localObject;
+    XSAttributeI xsattributei = new XSAttributeI();
+    xsattributei.setAttributeName(str1);
+    xsattributei.setAttributeValue(str2);
+    xsattributei.setAttributeDefaultValue(str3);
+    xsattributei.setFlag(l);
+    return xsattributei;
   }
 }

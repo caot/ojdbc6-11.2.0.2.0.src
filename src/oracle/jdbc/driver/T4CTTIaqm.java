@@ -193,14 +193,13 @@ class T4CTTIaqm
       this.mar.unmarshalCLR(this.aqmeqtBuffer, 0, this.retInt, 7);
       this.aqmeqt = new TIMESTAMP(this.aqmeqtBuffer);
     }
-    Object localObject;
     if (this.connection.getTTCVersion() >= 3)
     {
-      m = this.mar.unmarshalSWORD();
+      int m = this.mar.unmarshalSWORD();
       if (m > 0)
       {
         this.aqmetiBytes = new byte[m];
-        localObject = new int[1];
+        int[] localObject = new int[1];
         this.mar.unmarshalCLR(this.aqmetiBytes, 0, (int[])localObject, this.aqmetiBytes.length);
       }
       else {
@@ -211,7 +210,7 @@ class T4CTTIaqm
     this.mar.unmarshalUB1();
     if (m > 0)
     {
-      localObject = new byte[m][];
+      byte[][] localObject = new byte[m][];
       int[] arrayOfInt3 = new int[m];
       byte[][] arrayOfByte = new byte[m][];
       int[] arrayOfInt4 = new int[m];

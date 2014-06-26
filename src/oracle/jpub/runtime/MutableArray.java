@@ -458,47 +458,46 @@ public class MutableArray
 
     if (i < 0)
       return null;
-    Object localObject;
     int k;
     switch (this.sqlType)
     {
     case 6:
     case 8:
     case 101:
-      localObject = new double[i];
+      double[] d = new double[i];
 
       for (k = 0; k < i; k++) {
-        localObject[k] = ((Double)getObjectElement(j++)).doubleValue();
+        d[k] = ((Double)getObjectElement(j++)).doubleValue();
       }
-      return localObject;
+      return d;
     case 100:
-      localObject = new float[i];
+      float[] f = new float[i];
 
       for (k = 0; k < i; k++) {
-        localObject[k] = ((Float)getObjectElement(j++)).floatValue();
+        f[k] = ((Float)getObjectElement(j++)).floatValue();
       }
-      return localObject;
+      return f;
     case 4:
-      localObject = new int[i];
+      int[] localObject = new int[i];
 
       for (k = 0; k < i; k++) {
         localObject[k] = ((Integer)getObjectElement(j++)).intValue();
       }
       return localObject;
     case 5:
-      localObject = new short[i];
+      short s[] = new short[i];
 
       for (k = 0; k < i; k++) {
-        localObject[k] = ((short)((Integer)getObjectElement(j++)).intValue());
+        s[k] = ((short)((Integer)getObjectElement(j++)).intValue());
       }
-      return localObject;
+      return s;
     case 7:
-      localObject = new float[i];
+      f = new float[i];
 
       for (k = 0; k < i; k++) {
-        localObject[k] = ((Float)getObjectElement(j++)).floatValue();
+        f[k] = ((Float)getObjectElement(j++)).floatValue();
       }
-      return localObject;
+      return f;
     }
 
     return getObjectArray(paramLong, paramInt);

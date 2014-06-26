@@ -89,12 +89,12 @@ class LongAccessor extends CharCommonAccessor
     throws SQLException
   {
     byte[] arrayOfByte1 = null;
-    Object localObject;
+    SQLException localObject;
     if (this.rowSpaceIndicator == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1)
@@ -104,18 +104,18 @@ class LongAccessor extends CharCommonAccessor
         if (this.stream.closed)
         {
           localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 27);
-          ((SQLException)localObject).fillInStackTrace();
-          throw ((Throwable)localObject);
+          localObject.fillInStackTrace();
+          throw localObject;
         }
 
-        localObject = new ByteArrayOutputStream(1024);
+        ByteArrayOutputStream bytearrayoutputstream = new ByteArrayOutputStream(1024);
         byte[] arrayOfByte2 = new byte[1024];
         try
         {
           int i;
           while ((i = this.stream.read(arrayOfByte2)) != -1)
           {
-            ((ByteArrayOutputStream)localObject).write(arrayOfByte2, 0, i);
+            bytearrayoutputstream.write(arrayOfByte2, 0, i);
           }
 
         }
@@ -126,7 +126,7 @@ class LongAccessor extends CharCommonAccessor
           throw localSQLException;
         }
 
-        arrayOfByte1 = ((ByteArrayOutputStream)localObject).toByteArray();
+        arrayOfByte1 = bytearrayoutputstream.toByteArray();
       }
     }
 
@@ -163,12 +163,12 @@ class LongAccessor extends CharCommonAccessor
     throws SQLException
   {
     InputStream localInputStream = null;
-    Object localObject;
+    SQLException localObject;
     if (this.rowSpaceIndicator == null)
     {
       localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if ((this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1) && (this.stream != null))
@@ -176,13 +176,13 @@ class LongAccessor extends CharCommonAccessor
       if (this.stream.closed)
       {
         localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 27);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        localObject.fillInStackTrace();
+        throw localObject;
       }
 
-      localObject = this.statement.connection;
+      PhysicalConnection physicalconnection = this.statement.connection;
 
-      localInputStream = ((PhysicalConnection)localObject).conversion.ConvertStream(this.stream, 0);
+      localInputStream = physicalconnection.conversion.ConvertStream(this.stream, 0);
     }
 
     return localInputStream;
@@ -192,12 +192,12 @@ class LongAccessor extends CharCommonAccessor
     throws SQLException
   {
     InputStream localInputStream = null;
-    Object localObject;
+    SQLException localObject;
     if (this.rowSpaceIndicator == null)
     {
       localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if ((this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1) && (this.stream != null))
@@ -205,13 +205,13 @@ class LongAccessor extends CharCommonAccessor
       if (this.stream.closed)
       {
         localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 27);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        localObject.fillInStackTrace();
+        throw localObject;
       }
 
-      localObject = this.statement.connection;
+      PhysicalConnection physicalconnection = this.statement.connection;
 
-      localInputStream = ((PhysicalConnection)localObject).conversion.ConvertStream(this.stream, 1);
+      localInputStream = physicalconnection.conversion.ConvertStream(this.stream, 1);
     }
 
     return localInputStream;
@@ -221,12 +221,12 @@ class LongAccessor extends CharCommonAccessor
     throws SQLException
   {
     Reader localReader = null;
-    Object localObject;
+    SQLException localObject;
     if (this.rowSpaceIndicator == null)
     {
       localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if ((this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1) && (this.stream != null))
@@ -234,13 +234,13 @@ class LongAccessor extends CharCommonAccessor
       if (this.stream.closed)
       {
         localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 27);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        localObject.fillInStackTrace();
+        throw localObject;
       }
 
-      localObject = this.statement.connection;
+      PhysicalConnection physicalconnection = this.statement.connection;
 
-      localReader = ((PhysicalConnection)localObject).conversion.ConvertCharacterStream(this.stream, 9, this.formOfUse);
+      localReader = physicalconnection.conversion.ConvertCharacterStream(this.stream, 9, this.formOfUse);
     }
 
     return localReader;
@@ -250,12 +250,12 @@ class LongAccessor extends CharCommonAccessor
     throws SQLException
   {
     InputStream localInputStream = null;
-    Object localObject;
+    SQLException localObject;
     if (this.rowSpaceIndicator == null)
     {
       localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if ((this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1) && (this.stream != null))
@@ -263,13 +263,13 @@ class LongAccessor extends CharCommonAccessor
       if (this.stream.closed)
       {
         localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 27);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        localObject.fillInStackTrace();
+        throw localObject;
       }
 
-      localObject = this.statement.connection;
+      PhysicalConnection physicalconnection = this.statement.connection;
 
-      localInputStream = ((PhysicalConnection)localObject).conversion.ConvertStream(this.stream, 6);
+      localInputStream = physicalconnection.conversion.ConvertStream(this.stream, 6);
     }
 
     return localInputStream;

@@ -136,7 +136,7 @@ class LdxLibThin
       if ((i = paramInt / 12) > 9999) {
         throw new SQLException(CoreException.getMessage((byte)8));
       }
-      if (paramInt %= 12 == 0)
+      if (paramInt % 12 == 0)
       {
         i--;
         paramInt = 12;
@@ -171,7 +171,7 @@ class LdxLibThin
       paramInt2 += ((paramArrayOfByte[4] - 1) * 60 + (paramArrayOfByte[5] - 1)) * 60 + (paramArrayOfByte[6] - 1);
       paramInt1 += paramInt2 / 86400;
 
-      if (paramInt2 %= 86400 < 0)
+      if ((paramInt2 %= 86400) < 0)
       {
         paramInt2 += 86400;
         paramInt1--;
@@ -294,6 +294,7 @@ class LdxLibThin
         localStringBuffer1.append(new String(paramArrayOfByte2, m, i2));
 
         m += i2;
+        continue;
       }
       else
       {
@@ -450,11 +451,12 @@ class LdxLibThin
         case 15:
           throw new SQLException(CoreException.getMessage((byte)1));
         case 42:
-          break;
+          continue;
+//          break;
         case 39:
         default:
           throw new SQLException(CoreException.getMessage((byte)7));
-
+        }
           if ((j & 0xFFFFFF80) == 0)
           {
             if ((j & 0x20) == 0)
@@ -522,7 +524,7 @@ class LdxLibThin
             }
 
             i6 -= localStringBuffer3.length();
-            for (i7 = 0; i7 < i6; i7++) {
+            for (int i7 = 0; i7 < i6; i7++) {
               localStringBuffer3.append(" ");
             }
           }
@@ -555,7 +557,7 @@ class LdxLibThin
           break;
         }
       }
-    }
+
     return localStringBuffer1.toString();
   }
 
@@ -725,7 +727,7 @@ class LdxLibThin
     char c1 = '\000';
     char c2 = localDecimalFormat.getDecimalFormatSymbols().getZeroDigit();
 
-    for (j = 1; l /= 10L != 0L; j++);
+    for (j = 1; (l /= 10L) != 0L; j++);
     if (paramLong < 0L) {
       j++;
     }
@@ -771,8 +773,8 @@ class LdxLibThin
 
     int m = 0;
     byte[] arrayOfByte1 = new byte[512];
-    int n = 16;
-    int i1 = 0;
+    byte n = 16;
+    byte i1 = 0;
     int i2 = 0;
     char[] arrayOfChar = new char[256];
     int i3 = 0;
@@ -969,7 +971,7 @@ class LdxLibThin
         }
 
         if (m == 39)
-          n = (n & 0x10) == 1 ? 0 : 16;
+          n = (byte)((n & 0x10) == 1 ? 0 : 16);
       }
       while (m == 39);
     }
@@ -1147,7 +1149,7 @@ class LdxLibThin
       case 20:
       default:
         i1 = i - 45;
-        str = new String(arrayOfByte, k, i1);
+        String str = new String(arrayOfByte, k, i1);
 
         if (j == 1)
         {
@@ -1234,7 +1236,7 @@ class LdxLibThin
 
     }
 
-    for (i = 0; i < this.ldxpmxa.length; i++)
+    for (int i = 0; i < this.ldxpmxa.length; i++)
     {
       j = 0;
 

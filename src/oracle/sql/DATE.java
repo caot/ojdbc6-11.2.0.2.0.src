@@ -142,7 +142,7 @@ public class DATE extends Datum
       paramArrayOfByte[i] &= 255;
     }
 
-    i = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
+    int i = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
     int j = i - 1900;
 
     if (i <= 0) {
@@ -169,7 +169,7 @@ public class DATE extends Datum
       paramArrayOfByte[i] &= 255;
     }
 
-    i = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
+    int i = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
     int j = i - 1900;
 
     if (i <= 0) {
@@ -186,7 +186,7 @@ public class DATE extends Datum
       paramArrayOfByte[i] &= 255;
     }
 
-    i = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
+    int i = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
 
     if (paramCalendar == null) {
       paramCalendar = Calendar.getInstance();
@@ -239,7 +239,7 @@ public class DATE extends Datum
       paramArrayOfByte[i] &= 255;
     }
 
-    i = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
+    int i = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
 
     if (paramCalendar == null) {
       paramCalendar = Calendar.getInstance();
@@ -269,7 +269,7 @@ public class DATE extends Datum
       else
         arrayOfInt[i] = paramArrayOfByte[i];
     }
-    i = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
+    int i = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
     int j = arrayOfInt[2];
     int k = arrayOfInt[3];
     int m = arrayOfInt[4] - 1;

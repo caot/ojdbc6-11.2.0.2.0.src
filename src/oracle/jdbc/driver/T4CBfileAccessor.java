@@ -77,7 +77,7 @@ class T4CBfileAccessor extends BfileAccessor
 
     if (this.rowSpaceIndicator == null)
     {
-      i = (int)this.mare.unmarshalUB4();
+      int i = (int)this.mare.unmarshalUB4();
 
       if (i == 0)
       {
@@ -211,7 +211,7 @@ class T4CBfileAccessor extends BfileAccessor
 
   byte[][] checkAndAllocateLobPrefetchMemory(byte[][] paramArrayOfByte, int paramInt1, int paramInt2, int paramInt3)
   {
-    Object localObject = paramArrayOfByte;
+    byte[][] localObject = paramArrayOfByte;
     if (localObject == null)
     {
       localObject = new byte[Math.max(paramInt1, paramInt2 + 1)][];
@@ -236,7 +236,7 @@ class T4CBfileAccessor extends BfileAccessor
 
   char[][] checkAndAllocateLobPrefetchMemory(char[][] paramArrayOfChar, int paramInt1, int paramInt2, int paramInt3)
   {
-    Object localObject = paramArrayOfChar;
+    char[][] localObject = paramArrayOfChar;
     if (localObject == null)
     {
       localObject = new char[Math.max(paramInt1, paramInt2 + 1)][];
@@ -261,7 +261,7 @@ class T4CBfileAccessor extends BfileAccessor
 
   long[] checkAndAllocateLobPrefetchMemory(long[] paramArrayOfLong, int paramInt1, int paramInt2)
   {
-    Object localObject = paramArrayOfLong;
+    long[] localObject = paramArrayOfLong;
     if (localObject == null) {
       localObject = new long[Math.max(paramInt1, paramInt2 + 1)];
     } else if (localObject.length < paramInt2 + 1)
@@ -275,7 +275,7 @@ class T4CBfileAccessor extends BfileAccessor
 
   int[] checkAndAllocateLobPrefetchMemory(int[] paramArrayOfInt, int paramInt1, int paramInt2)
   {
-    Object localObject = paramArrayOfInt;
+    int[] localObject = paramArrayOfInt;
     if (localObject == null) {
       localObject = new int[Math.max(paramInt1, paramInt2 + 1)];
     } else if (localObject.length < paramInt2 + 1)
@@ -289,7 +289,7 @@ class T4CBfileAccessor extends BfileAccessor
 
   short[] checkAndAllocateLobPrefetchMemory(short[] paramArrayOfShort, int paramInt1, int paramInt2)
   {
-    Object localObject = paramArrayOfShort;
+    short[] localObject = paramArrayOfShort;
     if (localObject == null) {
       localObject = new short[Math.max(paramInt1, paramInt2 + 1)];
     } else if (localObject.length < paramInt2 + 1)
@@ -303,7 +303,7 @@ class T4CBfileAccessor extends BfileAccessor
 
   byte[] checkAndAllocateLobPrefetchMemory(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
   {
-    Object localObject = paramArrayOfByte;
+    byte[] localObject = paramArrayOfByte;
     if (localObject == null) {
       localObject = new byte[Math.max(paramInt1, paramInt2 + 1)];
     } else if (localObject.length < paramInt2 + 1)
@@ -317,7 +317,7 @@ class T4CBfileAccessor extends BfileAccessor
 
   boolean[] checkAndAllocateLobPrefetchMemory(boolean[] paramArrayOfBoolean, int paramInt1, int paramInt2)
   {
-    Object localObject = paramArrayOfBoolean;
+    boolean[] localObject = paramArrayOfBoolean;
     if (localObject == null) {
       localObject = new boolean[Math.max(paramInt1, paramInt2 + 1)];
     } else if (localObject.length < paramInt2 + 1)

@@ -420,7 +420,7 @@ class OracleImplicitConnectionCache
   {
     OraclePooledConnection localOraclePooledConnection1 = null;
     OraclePooledConnection localOraclePooledConnection2 = null;
-    Object localObject = null;
+    Vector localObject = null;
 
     int i = paramProperties.size();
     int j = 0;
@@ -581,18 +581,18 @@ class OracleImplicitConnectionCache
     }
   }
 
-  private OraclePooledConnection retrieveFromConnectionList(Vector paramVector)
+  private OraclePooledConnection retrieveFromConnectionList(Vector vector)
     throws SQLException
   {
-    if (paramVector.isEmpty()) {
+    if (vector.isEmpty()) {
       return null;
     }
-    Object localObject1 = null;
+    OraclePooledConnection localObject1 = null;
     if (this.fastConnectionFailoverEnabled)
     {
       int i;
-      Object localObject2;
-      Object localObject3;
+      OracleDatabaseInstance localObject2;
+      int localObject3;
       if ((this.useGoodGroup) && (this.databaseInstancesList != null) && (this.databaseInstancesList.size() > 0))
       {
         label234: synchronized (this.databaseInstancesList) {
@@ -604,7 +604,7 @@ class OracleImplicitConnectionCache
           int j = this.dbInstancePercentTotal;
 
           for (int k = 0; k < i; k++) {
-            Object localObject4 = 0;
+            int localObject4 = 0;
 
             if (j <= 1)
               localObject3 = 0;
@@ -615,20 +615,20 @@ class OracleImplicitConnectionCache
             {
               localObject2 = (OracleDatabaseInstance)this.databaseInstancesList.get(m);
 
-              if ((arrayOfBoolean[m] == 0) && (((OracleDatabaseInstance)localObject2).flag <= 3))
+              if (arrayOfBoolean[m] == false && (localObject2.flag <= 3))
               {
-                localObject4 += ((OracleDatabaseInstance)localObject2).percent;
+                localObject4 += localObject2.percent;
 
                 if (localObject3 <= localObject4)
                 {
                   if (k == 0) localObject2.attemptedConnRequestCount += 1;
 
-                  if ((localObject1 = selectConnectionFromList(paramVector, (OracleDatabaseInstance)localObject2)) != null)
+                  if ((localObject1 = selectConnectionFromList(vector, localObject2)) != null)
                   {
                     break label234;
                   }
 
-                  j -= ((OracleDatabaseInstance)localObject2).percent;
+                  j -= localObject2.percent;
                   arrayOfBoolean[m] = true;
                   break;
                 }
@@ -644,43 +644,43 @@ class OracleImplicitConnectionCache
       }
       else
       {
-        ??? = paramVector.size();
-        i = this.rand.nextInt(???);
-        localObject2 = null;
+        int s = vector.size();
+        i = this.rand.nextInt(s);
+        OraclePooledConnection oraclepooledconnection2 = null;
 
-        for (localObject3 = 0; localObject3 < ???; localObject3++)
+        for (localObject3 = 0; localObject3 < s; localObject3++)
         {
-          localObject2 = (OraclePooledConnection)paramVector.get((i++ + ???) % ???);
+          oraclepooledconnection2 = (OraclePooledConnection)vector.get((i++ + s) % s);
 
-          if (!((OraclePooledConnection)localObject2).connectionMarkedDown)
+          if (!oraclepooledconnection2.connectionMarkedDown)
           {
-            localObject1 = localObject2;
-            paramVector.remove(localObject1);
+            localObject1 = oraclepooledconnection2;
+            vector.remove(localObject1);
             break;
           }
         }
       }
     }
     else {
-      localObject1 = (OraclePooledConnection)paramVector.remove(0);
+      localObject1 = (OraclePooledConnection)vector.remove(0);
     }
     return localObject1;
   }
 
-  private OraclePooledConnection selectConnectionFromList(Vector paramVector, OracleDatabaseInstance paramOracleDatabaseInstance)
+  private OraclePooledConnection selectConnectionFromList(Vector vector, OracleDatabaseInstance paramOracleDatabaseInstance)
   {
-    Object localObject = null;
+    OraclePooledConnection localObject = null;
     OraclePooledConnection localOraclePooledConnection = null;
 
-    int i = paramVector.size();
+    int i = vector.size();
     for (int j = 0; j < i; j++)
     {
-      localOraclePooledConnection = (OraclePooledConnection)paramVector.get(j);
+      localOraclePooledConnection = (OraclePooledConnection)vector.get(j);
 
       if ((!localOraclePooledConnection.connectionMarkedDown) && (localOraclePooledConnection.dataSourceDbUniqNameKey == paramOracleDatabaseInstance.databaseUniqName) && (localOraclePooledConnection.dataSourceInstanceNameKey == paramOracleDatabaseInstance.instanceName))
       {
         localObject = localOraclePooledConnection;
-        paramVector.remove(localObject);
+        vector.remove(localObject);
         break;
       }
 
@@ -753,13 +753,11 @@ class OracleImplicitConnectionCache
         {
           Map.Entry localEntry = (Map.Entry)localIterator.next();
           OracleConnectionCacheEntry localOracleConnectionCacheEntry = (OracleConnectionCacheEntry)localEntry.getValue();
-          Object localObject1;
-          Object localObject2;
           OraclePooledConnection localOraclePooledConnection;
           if ((localOracleConnectionCacheEntry.userConnList != null) && (!localOracleConnectionCacheEntry.userConnList.isEmpty()))
           {
-            localObject1 = localOracleConnectionCacheEntry.userConnList;
-            localObject2 = ((Vector)localObject1).toArray();
+            Vector localObject1 = localOracleConnectionCacheEntry.userConnList;
+            Object[] localObject2 = localObject1.toArray();
 
             for (int j = 0; j < localObject2.length; j++)
             {
@@ -772,12 +770,11 @@ class OracleImplicitConnectionCache
           }
           if ((localOracleConnectionCacheEntry.attrConnMap != null) && (!localOracleConnectionCacheEntry.attrConnMap.isEmpty()))
           {
-            localObject1 = localOracleConnectionCacheEntry.attrConnMap.entrySet().iterator();
+            Iterator localObject1 = localOracleConnectionCacheEntry.attrConnMap.entrySet().iterator();
 
-            while (((Iterator)localObject1).hasNext())
+            while (localObject1.hasNext())
             {
-              localObject2 = (Map.Entry)((Iterator)localObject1).next();
-
+              Map.Entry localObject2 = (Map.Entry)((Iterator)localObject1).next();
               Vector localVector = (Vector)((Map.Entry)localObject2).getValue();
               Object[] arrayOfObject = localVector.toArray();
 
@@ -1077,7 +1074,7 @@ class OracleImplicitConnectionCache
     {
       j = 0;
 
-      for (k = 0; k < i - 1; k++)
+      for (int k = 0; k < i - 1; k++)
       {
         if (((String)arrayOfObject[k]).compareTo((String)arrayOfObject[(k + 1)]) > 0)
         {
@@ -1285,7 +1282,7 @@ class OracleImplicitConnectionCache
           }
         }
 
-        localObject1 = (Properties)paramProperties.get("AttributeWeights");
+        Properties localObject1 = (Properties)paramProperties.get("AttributeWeights");
 
         if (localObject1 != null)
         {
@@ -1300,7 +1297,7 @@ class OracleImplicitConnectionCache
             localEntry = (Map.Entry)localIterator.next();
             localObject2 = localEntry.getKey();
 
-            if (((str = (String)((Properties)localObject1).get(localObject2)) != null) && 
+            if (((str = (String)((Properties)localObject1).get(localObject2)) != null) &&
               ((i = Integer.parseInt(str)) < 0)) {
               ((Properties)localObject1).put(localObject2, "0");
             }
@@ -1408,10 +1405,10 @@ class OracleImplicitConnectionCache
     }
     catch (NumberFormatException localNumberFormatException)
     {
-      Object localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 139, "OracleImplicitConnectionCache:setConnectionCacheProperties() - NumberFormatException Occurred :" + localNumberFormatException.getMessage());
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 139, "OracleImplicitConnectionCache:setConnectionCacheProperties() - NumberFormatException Occurred :" + localNumberFormatException.getMessage());
 
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -1829,7 +1826,7 @@ class OracleImplicitConnectionCache
 
     }
 
-    for (k = 0; k < j; k++)
+    for (int k = 0; k < j; k++)
     {
       try
       {
@@ -2123,7 +2120,7 @@ class OracleImplicitConnectionCache
 
         if (k > 1)
         {
-          for (m = 0; m < k; m++)
+          for (int m = 0; m < k; m++)
           {
             localOracleDatabaseInstance = (OracleDatabaseInstance)this.databaseInstancesList.get(m);
             this.countTotal += localOracleDatabaseInstance.attemptedConnRequestCount;
@@ -2131,7 +2128,7 @@ class OracleImplicitConnectionCache
 
           if (this.countTotal > k * 1000)
           {
-            for (m = 0; m < k; m++)
+            for (int m = 0; m < k; m++)
             {
               localOracleDatabaseInstance = (OracleDatabaseInstance)this.databaseInstancesList.get(m);
 
@@ -2151,7 +2148,7 @@ class OracleImplicitConnectionCache
 
             if (j != 0)
             {
-              for (m = 0; m < k; m++)
+              for (int m = 0; m < k; m++)
               {
                 localOracleDatabaseInstance = (OracleDatabaseInstance)this.databaseInstancesList.get(m);
 

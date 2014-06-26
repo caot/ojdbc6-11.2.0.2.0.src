@@ -70,9 +70,9 @@ class RefTypeAccessor extends TypeAccessor
     Object localObject;
     if (this.rowSpaceIndicator == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1)

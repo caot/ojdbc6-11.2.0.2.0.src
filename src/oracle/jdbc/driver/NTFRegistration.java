@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.EventListener;
 import java.util.Properties;
 import java.util.concurrent.Executor;
+
+import oracle.jdbc.NotificationRegistration;
 import oracle.jdbc.NotificationRegistration.RegistrationState;
 import oracle.jdbc.aq.AQNotificationEvent.EventType;
 import oracle.jdbc.aq.AQNotificationListener;
@@ -22,7 +24,7 @@ abstract class NTFRegistration
   private final int jdbcRegId;
   private final String dbName;
   private final short databaseVersion;
-  private NotificationRegistration.RegistrationState state;
+  private RegistrationState state;
   private NTFEventListener[] listeners = new NTFEventListener[0];
 
   private static final String _Copyright_2007_Oracle_All_Rights_Reserved_ = null;
@@ -39,7 +41,7 @@ abstract class NTFRegistration
     this.username = paramString3;
     this.jdbcGetsNotification = paramBoolean;
     this.dbName = paramString1;
-    this.state = NotificationRegistration.RegistrationState.ACTIVE;
+    this.state = RegistrationState.ACTIVE;
     if (this.options.getProperty("NTF_QOS_PURGE_ON_NTFN", "false").compareToIgnoreCase("true") == 0)
     {
       this.isPurgeOnNTF = true;
@@ -98,12 +100,12 @@ abstract class NTFRegistration
       (this.listeners[i].getListener() != paramEventListener); i++);
     if (i == j)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 249);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 249);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject = new NTFEventListener[j - 1];
+    NTFEventListener[] localObject = new NTFEventListener[j - 1];
     int k = 0;
     for (i = 0; i < j; i++) {
       if (this.listeners[i].getListener() != paramEventListener) {
@@ -178,7 +180,7 @@ abstract class NTFRegistration
 
     }
 
-    if ((paramNTFAQEvent.getEventType() == AQNotificationEvent.EventType.DEREG) || (this.isPurgeOnNTF))
+    if ((paramNTFAQEvent.getEventType() == EventType.DEREG) || (this.isPurgeOnNTF))
     {
       PhysicalConnection.ntfManager.removeRegistration(this);
       PhysicalConnection.ntfManager.freeJdbcRegId(getJdbcRegId());

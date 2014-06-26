@@ -125,7 +125,7 @@ class T2CStatement extends OracleStatement
         localOracleTypeADT.tdoCState = ((arrayOfShort[(i + 7)] & 0xFFFF) << 48 | (arrayOfShort[(i + 8)] & 0xFFFF) << 32 | (arrayOfShort[(i + 9)] & 0xFFFF) << 16 | arrayOfShort[(i + 10)] & 0xFFFF);
       }
 
-      Object localObject = this.accessors[k];
+      Accessor localObject = this.accessors[k];
 
       if ((localObject != null) && (!((Accessor)localObject).useForDescribeIfPossible(m, n, bool, i4, i2, i3, i5, i6, s, str2)))
       {
@@ -343,7 +343,7 @@ class T2CStatement extends OracleStatement
     if (localT2CConnection.endToEndValues != null)
     {
       String str;
-      if (localT2CConnection.endToEndHasChanged[0] != 0)
+      if (localT2CConnection.endToEndHasChanged[0])
       {
         str = localT2CConnection.endToEndValues[0];
 
@@ -354,7 +354,7 @@ class T2CStatement extends OracleStatement
         localT2CConnection.endToEndHasChanged[0] = false;
       }
 
-      if (localT2CConnection.endToEndHasChanged[1] != 0)
+      if (localT2CConnection.endToEndHasChanged[1])
       {
         str = localT2CConnection.endToEndValues[1];
 
@@ -365,7 +365,7 @@ class T2CStatement extends OracleStatement
         localT2CConnection.endToEndHasChanged[1] = false;
       }
 
-      if (localT2CConnection.endToEndHasChanged[2] != 0)
+      if (localT2CConnection.endToEndHasChanged[2])
       {
         str = localT2CConnection.endToEndValues[2];
 
@@ -376,7 +376,7 @@ class T2CStatement extends OracleStatement
         localT2CConnection.endToEndHasChanged[2] = false;
       }
 
-      if (localT2CConnection.endToEndHasChanged[3] != 0)
+      if (localT2CConnection.endToEndHasChanged[3])
       {
         str = localT2CConnection.endToEndValues[3];
 

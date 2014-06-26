@@ -114,9 +114,9 @@ final class OracleSQLXML extends DatumWithConnection
       }
       catch (IOException localIOException1)
       {
-        localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException1);
-        ((SQLException)localObject2).fillInStackTrace();
-        throw ((Throwable)localObject2);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException1);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       finally
       {
@@ -129,9 +129,9 @@ final class OracleSQLXML extends DatumWithConnection
       }
       catch (IOException localIOException2)
       {
-        localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException2);
-        ((SQLException)localObject2).fillInStackTrace();
-        throw ((Throwable)localObject2);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       this.xdb = XMLType.createXML(getInternalConnection(), new ByteArrayInputStream(this.oStream.toByteArray()));
@@ -151,9 +151,9 @@ final class OracleSQLXML extends DatumWithConnection
     }
     if (this.xdb == null)
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 260);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 260);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     return this.xdb;
   }
@@ -225,35 +225,35 @@ final class OracleSQLXML extends DatumWithConnection
   {
     Object localObject1;
     if (!this.isReadable) {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 261);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 261);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     this.isReadable = false;
     if (paramClass == DOMSource.class) {
       localObject1 = this.xdb.getDocument();
-      return new DOMSource((Node)localObject1);
+      return (T)new DOMSource((Node)localObject1);
     }
     if (paramClass == SAXSource.class) {
       localObject1 = new InputSource(getInputStream());
-      return new SAXSource((InputSource)localObject1);
+      return (T)new SAXSource((InputSource)localObject1);
     }
     if (paramClass == StAXSource.class) {
       try {
         localObject1 = XMLInputFactory.newInstance();
-        localObject2 = ((XMLInputFactory)localObject1).createXMLStreamReader(getInputStream());
-        return new StAXSource((XMLStreamReader)localObject2);
+        XMLStreamReader localObject2 = ((XMLInputFactory)localObject1).createXMLStreamReader(getInputStream());
+        return (T)new StAXSource((XMLStreamReader)localObject2);
       }
       catch (XMLStreamException localXMLStreamException)
       {
-        Object localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localXMLStreamException);
-        ((SQLException)localObject2).fillInStackTrace();
-        throw ((Throwable)localObject2);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localXMLStreamException);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
     }
 
     if (paramClass == StreamSource.class) {
-      return new StreamSource(getInputStream());
+      return (T)new StreamSource(getInputStream());
     }
 
     this.isReadable = true;
@@ -312,23 +312,23 @@ final class OracleSQLXML extends DatumWithConnection
   {
     Object localObject;
     if (!this.isWriteable) {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 262);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 262);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     this.isWriteable = false;
     if (paramClass == DOMResult.class) {
       this.domResult = new DOMResult();
-      return this.domResult;
+      return (T)this.domResult;
     }
     if (paramClass == SAXResult.class) {
       this.serializer = new XMLSAXSerializer(getOutputStream());
-      return new SAXResult(this.serializer);
+      return (T)new SAXResult(this.serializer);
     }
     if (paramClass == StAXResult.class) {
       try {
         localObject = XMLOutputFactory.newInstance();
-        return new StAXResult(((XMLOutputFactory)localObject).createXMLStreamWriter(getOutputStream()));
+        return (T)new StAXResult(((XMLOutputFactory)localObject).createXMLStreamWriter(getOutputStream()));
       }
       catch (XMLStreamException localXMLStreamException)
       {
@@ -339,7 +339,7 @@ final class OracleSQLXML extends DatumWithConnection
     }
 
     if (paramClass == StreamResult.class) {
-      return new StreamResult(getOutputStream());
+      return (T)new StreamResult(getOutputStream());
     }
 
     this.isWriteable = true;

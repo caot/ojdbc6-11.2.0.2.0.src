@@ -50,9 +50,9 @@ public class OracleSerialBlob
     }
     catch (IOException localIOException2)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 346, localIOException2.getMessage());
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 346, localIOException2.getMessage());
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
     finally
     {
@@ -62,9 +62,9 @@ public class OracleSerialBlob
       }
       catch (IOException localIOException3)
       {
-        SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 346, localIOException3.getMessage());
-        localSQLException2.fillInStackTrace();
-        throw localSQLException2;
+        SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 346, localIOException3.getMessage());
+        sqlexception2.fillInStackTrace();
+        throw sqlexception2;
       }
     }
   }
@@ -74,9 +74,9 @@ public class OracleSerialBlob
   {
     if (this.isFreed)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return new ByteArrayInputStream(this.buffer);
@@ -87,19 +87,19 @@ public class OracleSerialBlob
   {
     if (this.isFreed)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject = null;
+    byte[] localObject = null;
 
     paramLong -= 1L;
     if ((paramLong < 0L) || (paramInt > this.length) || (paramLong + paramInt > this.length))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     localObject = new byte[paramInt];
@@ -113,9 +113,9 @@ public class OracleSerialBlob
   {
     if (this.isFreed)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return this.length;
@@ -124,19 +124,19 @@ public class OracleSerialBlob
   public long position(byte[] paramArrayOfByte, long paramLong)
     throws SQLException
   {
-    SQLException localSQLException;
+    SQLException sqlexception;
     if (this.isFreed)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramLong < 1L)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "position()");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if ((paramLong > this.length) || (paramLong + paramArrayOfByte.length > this.length)) {
@@ -170,9 +170,9 @@ public class OracleSerialBlob
   {
     if (this.isFreed)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return position(paramBlob.getBytes(1L, (int)paramBlob.length()), paramLong);
@@ -183,14 +183,14 @@ public class OracleSerialBlob
   {
     if (this.isFreed)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public int setBytes(long paramLong, byte[] paramArrayOfByte, int paramInt1, int paramInt2)
@@ -198,14 +198,14 @@ public class OracleSerialBlob
   {
     if (this.isFreed)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public OutputStream setBinaryStream(long paramLong)
@@ -213,14 +213,14 @@ public class OracleSerialBlob
   {
     if (this.isFreed)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void truncate(long paramLong)
@@ -228,14 +228,14 @@ public class OracleSerialBlob
   {
     if (this.isFreed)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void free()
@@ -251,20 +251,20 @@ public class OracleSerialBlob
   public InputStream getBinaryStream(long paramLong1, long paramLong2)
     throws SQLException
   {
-    SQLException localSQLException;
+    SQLException sqlexception;
     if (this.isFreed)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     paramLong1 -= 1L;
     if ((paramLong1 < 0L) || (paramLong1 + 1L > this.length) || (paramLong2 > this.length) || (paramLong1 > 2147483647L) || (this.length > 2147483647L) || (paramLong1 + paramLong2 > this.length))
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return new ByteArrayInputStream(this.buffer, (int)paramLong1, (int)paramLong2);

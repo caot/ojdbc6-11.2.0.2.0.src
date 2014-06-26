@@ -68,18 +68,18 @@ public class OracleTypeREF extends OracleNamedType
     }
     if ((paramInt == 1) || (paramInt == 2))
     {
-      localObject = createStructDescriptor();
+      StructDescriptor localObject = createStructDescriptor();
 
-      return new REF((StructDescriptor)localObject, this.connection, paramArrayOfByte);
+      return new REF(localObject, this.connection, paramArrayOfByte);
     }
     if (paramInt == 3)
     {
       return paramArrayOfByte;
     }
 
-    Object localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 59, paramArrayOfByte);
-    ((SQLException)localObject).fillInStackTrace();
-    throw ((Throwable)localObject);
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 59, paramArrayOfByte);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   StructDescriptor createStructDescriptor()

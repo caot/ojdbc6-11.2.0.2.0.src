@@ -121,9 +121,9 @@ abstract class BaseResultSet extends OracleResultSet
       return;
     if ((paramInt == 1001) || (paramInt == 1002))
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 75, "setFetchDirection(FETCH_REVERSE, FETCH_UNKNOWN)");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 75, "setFetchDirection(FETCH_REVERSE, FETCH_UNKNOWN)");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "setFetchDirection");

@@ -377,17 +377,17 @@ class NumberCommonAccessor extends Accessor
     throws SQLException
   {
     int i = 0;
-    Object localObject;
+    
     if (this.rowSpaceIndicator == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if (this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1)
     {
-      localObject = this.rowSpaceByte;
+      byte[] localObject = this.rowSpaceByte;
       int j = this.columnIndex + this.byteLength * paramInt + 1;
       int k = localObject[(j - 1)];
       int m = localObject[j];
@@ -438,7 +438,7 @@ class NumberCommonAccessor extends Accessor
           {
             n = localObject[(j + 1)] - 1;
 
-            for (i5 = 2 + j; i5 < i4; i5++) {
+            for (int i5 = 2 + j; i5 < i4; i5++) {
               n = n * 100 + (localObject[i5] - 1);
             }
 
@@ -497,7 +497,7 @@ class NumberCommonAccessor extends Accessor
           {
             n = 101 - localObject[(j + 1)];
 
-            for (i6 = 2 + j; i6 < i4; i6++) {
+            for (int i6 = 2 + j; i6 < i4; i6++) {
               n = n * 100 + (101 - localObject[i6]);
             }
 
@@ -520,17 +520,16 @@ class NumberCommonAccessor extends Accessor
     throws SQLException
   {
     boolean bool = false;
-    Object localObject;
     if (this.rowSpaceIndicator == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if (this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1)
     {
-      localObject = this.rowSpaceByte;
+      byte[] localObject = this.rowSpaceByte;
       int i = this.columnIndex + this.byteLength * paramInt + 1;
       int j = localObject[(i - 1)];
 
@@ -544,17 +543,16 @@ class NumberCommonAccessor extends Accessor
     throws SQLException
   {
     short s = 0;
-    Object localObject;
     if (this.rowSpaceIndicator == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if (this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1)
     {
-      localObject = this.rowSpaceByte;
+      byte[] localObject = this.rowSpaceByte;
       int i = this.columnIndex + this.byteLength * paramInt + 1;
       int j = localObject[(i - 1)];
 
@@ -644,17 +642,16 @@ class NumberCommonAccessor extends Accessor
     throws SQLException
   {
     byte b = 0;
-    Object localObject;
     if (this.rowSpaceIndicator == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if (this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1)
     {
-      localObject = this.rowSpaceByte;
+      byte[] localObject = this.rowSpaceByte;
       int i = this.columnIndex + this.byteLength * paramInt + 1;
       int j = localObject[(i - 1)];
 
@@ -780,17 +777,16 @@ class NumberCommonAccessor extends Accessor
     throws SQLException
   {
     long l1 = 0L;
-    Object localObject;
     if (this.rowSpaceIndicator == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if (this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1)
     {
-      localObject = this.rowSpaceByte;
+      byte[] localObject = this.rowSpaceByte;
       int i = this.columnIndex + this.byteLength * paramInt + 1;
       int j = localObject[(i - 1)];
 
@@ -931,17 +927,16 @@ class NumberCommonAccessor extends Accessor
     throws SQLException
   {
     float f = 0.0F;
-    Object localObject;
     if (this.rowSpaceIndicator == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if (this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1)
     {
-      localObject = this.rowSpaceByte;
+      byte[] localObject = this.rowSpaceByte;
       int i = this.columnIndex + this.byteLength * paramInt + 1;
       int j = localObject[(i - 1)];
 
@@ -1071,17 +1066,16 @@ class NumberCommonAccessor extends Accessor
     throws SQLException
   {
     double d1 = 0.0D;
-    Object localObject;
     if (this.rowSpaceIndicator == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if (this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1)
     {
-      localObject = this.rowSpaceByte;
+      byte[] localObject = this.rowSpaceByte;
       int i = this.columnIndex + this.byteLength * paramInt + 1;
       int j = localObject[(i - 1)];
 
@@ -1094,6 +1088,7 @@ class NumberCommonAccessor extends Accessor
       int m;
       int i6;
       int i4;
+      int i36;
       if ((k & 0xFFFFFF80) != 0)
       {
         if ((k == -128) && (j == 1)) {
@@ -1345,7 +1340,7 @@ class NumberCommonAccessor extends Accessor
 
           for (; i2 < i1; i2 += 2)
           {
-            i34 = (localObject[(n + i2 - 1)] - 1) * 100 + (localObject[(n + i2)] - 1) + i9 * 10000;
+            int i34 = (localObject[(n + i2 - 1)] - 1) * 100 + (localObject[(n + i2)] - 1) + i9 * 10000;
 
             switch (i18)
             {
@@ -1516,7 +1511,7 @@ class NumberCommonAccessor extends Accessor
 
         for (; i2 < i1; i2 += 2)
         {
-          i34 = (101 - localObject[(n + i2 - 1)]) * 100 + (101 - localObject[(n + i2)]) + i9 * 10000;
+          int i34 = (101 - localObject[(n + i2 - 1)]) * 100 + (101 - localObject[(n + i2)]) + i9 * 10000;
 
           switch (i18)
           {
@@ -1706,7 +1701,8 @@ class NumberCommonAccessor extends Accessor
           for (i3 = i19 - i22 + 1 > 0 ? i19 - i22 + 1 : 0; i3 < i36; 
             i3++)
           {
-            i37 = i34 + i19 - i3;
+            int i37 = i34 + i19 - i3;
+            int i38;
 
             switch (i3)
             {
@@ -1767,7 +1763,8 @@ class NumberCommonAccessor extends Accessor
           for (i3 = i19 - i22 + 1 > 0 ? i19 - i22 + 1 : 0; i3 < i36; 
             i3++)
           {
-            i37 = i34 + i19 - i3;
+            int i37 = i34 + i19 - i3;
+            int i38;
 
             switch (i3)
             {
@@ -1900,7 +1897,7 @@ class NumberCommonAccessor extends Accessor
           i35 = i24;
         }
 
-        for (int i36 = i35 >> 1; i36 != 0; i36 >>= 1) {
+        for (i36 = i35 >> 1; i36 != 0; i36 >>= 1) {
           i30++;
         }
 
@@ -2043,23 +2040,23 @@ class NumberCommonAccessor extends Accessor
     throws SQLException
   {
     double d1 = 0.0D;
-    Object localObject;
     if (this.rowSpaceIndicator == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if (this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1)
     {
-      localObject = this.rowSpaceByte;
+      byte[] localObject = this.rowSpaceByte;
       int i = this.columnIndex + this.byteLength * paramInt + 1;
       int j = localObject[(i - 1)];
 
       int k = localObject[i];
 
       double d2 = 0.0D;
+      int i2, i3, m, n;
 
       int i1 = i + 1;
 
@@ -2105,17 +2102,17 @@ class NumberCommonAccessor extends Accessor
       if ((k == 0) && (j == 1)) {
         return (-1.0D / 0.0D);
       }
-      int m = (byte)(((k ^ 0xFFFFFFFF) & 0xFFFFFF7F) - 65);
+      m = (byte)(((k ^ 0xFFFFFFFF) & 0xFFFFFF7F) - 65);
 
-      int i3 = j - 1;
+      i3 = j - 1;
 
       if ((i3 != 20) || (localObject[(i + i3)] == 102)) {
         i3--;
       }
 
-      int n = (int)(127.0D - m);
+      n = (int)(127.0D - m);
 
-      int i2 = i3 % 4;
+      i2 = i3 % 4;
 
       switch (i2)
       {
@@ -2149,31 +2146,29 @@ class NumberCommonAccessor extends Accessor
     throws SQLException
   {
     BigDecimal localBigDecimal = null;
-    Object localObject;
     if (this.rowSpaceIndicator == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if (this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1)
     {
-      localObject = this.rowSpaceByte;
+      byte[] localObject = this.rowSpaceByte;
       int i = this.columnIndex + this.byteLength * paramInt + 1;
       int j = localObject[(i - 1)];
 
       for (int k = 0; k < 27; k++) {
         this.digs[k] = 0;
       }
-      k = 0;
+      int k = 0;
       int m = 1;
 
       int i1 = 26;
       int i2 = 0;
 
       int i5 = localObject[i];
-
       int i10 = 0;
 
       if ((i5 & 0xFFFFFF80) != 0)
@@ -2185,12 +2180,12 @@ class NumberCommonAccessor extends Accessor
         {
           throwOverflow();
         }
-        i6 = 1;
-        i7 = (byte)((i5 & 0xFFFFFF7F) - 65);
+        int i6 = 1;
+        int i7 = (byte)((i5 & 0xFFFFFF7F) - 65);
 
-        i4 = j - 1;
-        n = i4 - 1;
-        i8 = i7 - i4 + 1 << 1;
+        int i4 = j - 1;
+        int n = i4 - 1;
+        int i8 = i7 - i4 + 1 << 1;
 
         if (i8 > 0)
         {
@@ -2280,6 +2275,7 @@ class NumberCommonAccessor extends Accessor
 
             if (m <= i4)
             {
+              int i11;
               for (i11 = 0; 
                 m <= i4; i11++) {
                 m = (byte)(m + 1); i2 = i2 * 100 + (localObject[(i + m)] - 1);
@@ -2309,6 +2305,7 @@ class NumberCommonAccessor extends Accessor
 
           if (m <= i4)
           {
+            int i11;
             for (i11 = 0; 
               m <= i4; i11++) {
               m = (byte)(m + 1); i2 = i2 * 100 + (101 - localObject[(i + m)]);
@@ -2340,7 +2337,7 @@ class NumberCommonAccessor extends Accessor
 
       this.digs[26] = k;
 
-      int i12 = (byte)(this.digs[i1] >> 8 & 0xFF);
+      byte i12 = (byte)(this.digs[i1] >> 8 & 0xFF);
       int i3;
       byte[] arrayOfByte;
       int i13;
@@ -2417,17 +2414,16 @@ class NumberCommonAccessor extends Accessor
     throws SQLException
   {
     String str1 = null;
-    Object localObject;
     if (this.rowSpaceIndicator == null)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      localObject.fillInStackTrace();
+      throw localObject;
     }
 
     if (this.rowSpaceIndicator[(this.indicatorIndex + paramInt)] != -1)
     {
-      localObject = this.rowSpaceByte;
+      byte[] localObject = this.rowSpaceByte;
       int i = this.columnIndex + this.byteLength * paramInt + 1;
       int j = localObject[(i - 1)];
 
@@ -2437,7 +2433,7 @@ class NumberCommonAccessor extends Accessor
 
       NUMBER localNUMBER = new NUMBER(arrayOfByte);
 
-      String str2 = NUMBER.toString(arrayOfByte);
+      String str2 = oracle.sql.NUMBER.toString(arrayOfByte);
       int k = str2.length();
 
       if ((str2.startsWith("0.")) || (str2.startsWith("-0."))) {

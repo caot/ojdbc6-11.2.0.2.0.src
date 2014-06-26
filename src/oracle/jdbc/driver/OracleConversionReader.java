@@ -137,9 +137,9 @@ class OracleConversionReader extends Reader
               }
               break;
             default:
-              localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23);
-              ((SQLException)localObject).fillInStackTrace();
-              throw ((Throwable)localObject);
+              SQLException localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 23);
+              localObject.fillInStackTrace();
+              throw localObject;
             }
 
             if (this.count > 0)
@@ -154,9 +154,9 @@ class OracleConversionReader extends Reader
         }
         catch (SQLException localSQLException1)
         {
-          Object localObject = DatabaseError.createIOException(localSQLException1);
-          ((IOException)localObject).fillInStackTrace();
-          throw ((Throwable)localObject);
+          IOException localObject = DatabaseError.createIOException(localSQLException1);
+          localObject.fillInStackTrace();
+          throw localObject;
         }
 
       }

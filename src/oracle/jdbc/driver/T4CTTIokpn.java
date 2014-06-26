@@ -251,7 +251,7 @@ final class T4CTTIokpn extends T4CTTIfun
     this.regid = arrayOfInt[0];
     if (this.connection.getTTCVersion() >= 5)
     {
-      k = (int)this.meg.unmarshalUB4();
+      int k = (int)this.meg.unmarshalUB4();
       long l = this.meg.unmarshalSB8();
       this.regid = l;
     }

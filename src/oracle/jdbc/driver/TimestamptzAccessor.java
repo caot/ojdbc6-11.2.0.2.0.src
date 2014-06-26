@@ -98,7 +98,7 @@ class TimestamptzAccessor extends DateTimeCommonAccessor
     else
     {
       int k = oracleTZ1(i) - OFFSET_HOUR;
-      m = oracleTZ2(i) - OFFSET_MINUTE;
+      int m = oracleTZ2(i) - OFFSET_MINUTE;
 
       str = new StringBuilder().append("GMT").append(k < 0 ? "-" : "+").append(Math.abs(k)).append(":").append(m < 10 ? "0" : "").append(m).toString();
     }
@@ -119,7 +119,7 @@ class TimestamptzAccessor extends DateTimeCommonAccessor
     {
       TIMEZONETAB localTIMEZONETAB2 = this.statement.connection.getTIMEZONETAB();
 
-      i1 = localTIMEZONETAB2.getOffset(localCalendar, j);
+      int i1 = localTIMEZONETAB2.getOffset(localCalendar, j);
 
       localCalendar.add(14, i1);
     }
@@ -195,13 +195,13 @@ class TimestamptzAccessor extends DateTimeCommonAccessor
   DATE getDATE(int paramInt) throws SQLException
   {
     TIMESTAMPTZ localTIMESTAMPTZ = this.tstzConverter.getTIMESTAMPTZ(paramInt);
-    return TIMESTAMPTZ.toDATE(this.statement.connection, localTIMESTAMPTZ.getBytes());
+    return oracle.sql.TIMESTAMPTZ.toDATE(this.statement.connection, localTIMESTAMPTZ.getBytes());
   }
 
   TIMESTAMP getTIMESTAMP(int paramInt) throws SQLException
   {
     TIMESTAMPTZ localTIMESTAMPTZ = this.tstzConverter.getTIMESTAMPTZ(paramInt);
-    return TIMESTAMPTZ.toTIMESTAMP(this.statement.connection, localTIMESTAMPTZ.getBytes());
+    return oracle.sql.TIMESTAMPTZ.toTIMESTAMP(this.statement.connection, localTIMESTAMPTZ.getBytes());
   }
 
   TIMESTAMPTZ getTIMESTAMPTZ(int paramInt) throws SQLException

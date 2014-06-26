@@ -89,7 +89,8 @@ final class o
     int k = this.c[2];
     int m = this.c[3];
     int n = this.c[4];
-    for (int i1 = 0; i1 < 20; i1++)
+    int i1;
+    for (i1 = 0; i1 < 20; i1++)
       a(this.c, this.a, this.c[0], this.c[1], this.c[2], this.c[3], this.c[4], i1);
     for (i1 = 20; i1 < 40; i1++)
       b(this.c, this.a, this.c[0], this.c[1], this.c[2], this.c[3], this.c[4], i1);

@@ -146,7 +146,8 @@ abstract class T4CTTIfun extends T4CTTIMsg
   {
     this.receiveState = 1;
 
-    Object localObject1 = null;
+    SQLException localObject1 = null;
+    loop:
     while (true)
     {
       try
@@ -190,7 +191,8 @@ abstract class T4CTTIfun extends T4CTTIMsg
           if (readRXD())
           {
             this.receiveState = 3;
-            return;
+//            return;
+            break loop;
           }
 
           this.receiveState = 1;
@@ -240,7 +242,7 @@ abstract class T4CTTIfun extends T4CTTIMsg
               else
               {
                 short s;
-                SQLException localSQLException4;
+                SQLException sqlexception;
                 if (j == 6)
                 {
                   int i1 = 0; if (i1 < k)
@@ -267,7 +269,7 @@ abstract class T4CTTIfun extends T4CTTIMsg
         case 9:
           if (this.connection.getTTCVersion() >= 3)
           {
-            s = (short)this.meg.unmarshalUB2();
+            short s = (short)this.meg.unmarshalUB2();
             this.connection.endToEndECIDSequenceNumber = s;
           }
 
@@ -294,9 +296,9 @@ abstract class T4CTTIfun extends T4CTTIMsg
         case 20:
         case 22:
         default:
-          localSQLException4 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 401);
-          localSQLException4.fillInStackTrace();
-          throw localSQLException4;
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 401);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
       }
       catch (BreakNetException localBreakNetException)

@@ -106,7 +106,7 @@ public class TIMESTAMP extends Datum
       paramArrayOfByte[j] &= 255;
     }
 
-    j = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
+    int j = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
 
     Calendar localCalendar = Calendar.getInstance();
 
@@ -147,7 +147,7 @@ public class TIMESTAMP extends Datum
       paramArrayOfByte[j] &= 255;
     }
 
-    j = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
+    int j = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
 
     Calendar localCalendar = Calendar.getInstance();
 
@@ -187,7 +187,7 @@ public class TIMESTAMP extends Datum
       paramArrayOfByte[j] &= 255;
     }
 
-    j = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
+    int j = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
 
     if (paramCalendar == null) {
       paramCalendar = Calendar.getInstance();
@@ -249,7 +249,7 @@ public class TIMESTAMP extends Datum
       else
         arrayOfInt[i] = paramArrayOfByte[i];
     }
-    i = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
+    int i = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
     int j = arrayOfInt[2];
     int k = arrayOfInt[3];
     int m = arrayOfInt[4] - 1;
@@ -452,7 +452,7 @@ public class TIMESTAMP extends Datum
       arrayOfByte[j] &= 255;
     }
 
-    j = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
+    int j = (arrayOfInt[0] - 100) * 100 + (arrayOfInt[1] - 100);
 
     Calendar localCalendar1 = Calendar.getInstance(paramTimeZone1);
 

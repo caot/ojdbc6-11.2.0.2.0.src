@@ -55,7 +55,7 @@ class T4CTTIrxd extends T4CTTIMsg
       this.bvcColSent.clear(j);
     }
 
-    j = this.nbOfColumns / 8 + (this.nbOfColumns % 8 != 0 ? 1 : 0);
+    int j = this.nbOfColumns / 8 + (this.nbOfColumns % 8 != 0 ? 1 : 0);
 
     for (int k = 0; k < j; k++)
     {
@@ -93,7 +93,7 @@ class T4CTTIrxd extends T4CTTIMsg
       this.bvcFound = false;
     }
     else {
-      for (i = 0; i < paramArrayOfByte.length; i++) {
+      for (int i = 0; i < paramArrayOfByte.length; i++) {
         int j = paramArrayOfByte[i];
         for (int k = 0; k < 8; k++) {
           if ((j & 1 << k) != 0)
@@ -116,7 +116,7 @@ class T4CTTIrxd extends T4CTTIMsg
 
       int i10 = 0;
       int i11 = paramArrayOfInt3[0];
-      Object localObject1 = paramArrayOfInt[0];
+      int[] localObject1 = paramArrayOfInt[0];
 
       int i12 = 0;
       int i14;
@@ -288,18 +288,18 @@ class T4CTTIrxd extends T4CTTIMsg
                   {
                     this.meg.marshalUB4(m);
                   }
-                  Object localObject2;
+
                   if ((i7 == 109) || (i7 == 111))
                   {
                     if (paramArrayOfByte == null)
                     {
-                      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), -1, "INTERNAL ERROR: oracle.jdbc.driver.T4CTTIrxd.marshal: parameterDatum is null");
+                      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), -1, "INTERNAL ERROR: oracle.jdbc.driver.T4CTTIrxd.marshal: parameterDatum is null");
 
-                      ((SQLException)localObject2).fillInStackTrace();
-                      throw ((Throwable)localObject2);
+                      sqlexception.fillInStackTrace();
+                      throw sqlexception;
                     }
 
-                    localObject2 = paramArrayOfByte[i13];
+                    byte[] localObject2 = paramArrayOfByte[i13];
 
                     m = localObject2 == null ? 0 : localObject2.length;
 
@@ -321,7 +321,7 @@ class T4CTTIrxd extends T4CTTIMsg
                   {
                     i2 += 2;
 
-                    localObject2 = T4CRowidAccessor.stringToRowid(paramArrayOfByte1, i2, 18);
+                    long[] localObject2 = T4CRowidAccessor.stringToRowid(paramArrayOfByte1, i2, 18);
 
                     i18 = 14;
                     long l1 = localObject2[0];
@@ -336,10 +336,10 @@ class T4CTTIrxd extends T4CTTIMsg
                     }
                     else
                     {
-                      this.meg.marshalUB1(i18);
+                      this.meg.marshalUB1((short)i18);
                       this.meg.marshalUB4(l1);
                       this.meg.marshalUB2(i23);
-                      this.meg.marshalUB1(i24);
+                      this.meg.marshalUB1((short)i24);
                       this.meg.marshalUB4(l2);
                       this.meg.marshalUB2(i25);
                     }
@@ -427,7 +427,7 @@ class T4CTTIrxd extends T4CTTIMsg
 
       if (i11 > 0)
       {
-        for (i13 = 0; i13 < i11; i13++)
+        for (int i13 = 0; i13 < i11; i13++)
         {
           i14 = localObject1[i13];
 
@@ -585,7 +585,7 @@ class T4CTTIrxd extends T4CTTIMsg
     {
       if (paramArrayOfAccessor[i] != null)
       {
-        int j;
+        byte j;
         int k;
         if (paramArrayOfAccessor[i].physicalColumnIndex < 0)
         {

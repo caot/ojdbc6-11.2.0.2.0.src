@@ -67,7 +67,8 @@ public class SupervisorService extends Service
   {
     for (int i = 0; i < this.l.length; i++)
     {
-      for (int i1 = 0; i1 < this.k.length; i1++)
+      int i1;
+      for (i1 = 0; i1 < this.k.length; i1++)
         if (this.l[i] == this.k[i1])
         {
           this.m += 1;

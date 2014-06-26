@@ -57,12 +57,12 @@ public class OracleCachedRowSetWriter
 
     if (i == -1)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 343, str2.length() != 0 ? str2 : "Please use RowSet.setCommand (String) to set the SQL query string.");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 343, str2.length() != 0 ? str2 : "Please use RowSet.setCommand (String) to set the SQL query string.");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject = str2.substring(i + 6).trim();
+    String localObject = str2.substring(i + 6).trim();
 
     StringTokenizer localStringTokenizer = new StringTokenizer((String)localObject);
     if (localStringTokenizer.hasMoreTokens()) {
@@ -95,7 +95,7 @@ public class OracleCachedRowSetWriter
     this.insertClause.append(") VALUES (");
     this.updateClause.append(" WHERE ");
 
-    for (i = 0; i < this.columnCount; i++)
+    for (int i = 0; i < this.columnCount; i++)
     {
       if (i != 0) this.insertClause.append(", ");
       this.insertClause.append(":" + i);
@@ -167,7 +167,7 @@ public class OracleCachedRowSetWriter
         this.updateStmt.setObject(i, localObject);
       }
     }
-    for (i = 1; i <= this.columnCount; i++)
+    for (int i = 1; i <= this.columnCount; i++)
     {
       if (paramOracleRow.isOriginalNull(i)) {
         return updateRowWithNull(paramRowSet, paramOracleRow);
@@ -194,7 +194,7 @@ public class OracleCachedRowSetWriter
 
     localStringBuffer.append(" WHERE ");
 
-    for (i = 1; i <= this.columnCount; i++)
+    for (int i = 1; i <= this.columnCount; i++)
     {
       if (i != 1)
         localStringBuffer.append(" AND ");
@@ -242,7 +242,7 @@ public class OracleCachedRowSetWriter
         }
       }
 
-      j = 1; for (int k = 1; j <= this.columnCount; j++)
+      int j = 1; for (int k = 1; j <= this.columnCount; j++)
       {
         if (!paramOracleRow.isOriginalNull(j))
         {

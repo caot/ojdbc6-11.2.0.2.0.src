@@ -153,7 +153,7 @@ public class DBConversion
 
       break;
     default:
-      s = paramShort2 >= 8030 ? 871 : 870;
+      s = (short)(paramShort2 >= 8030 ? 871 : 870);
     }
 
     return s;
@@ -510,10 +510,11 @@ public class DBConversion
         arrayOfByte[(j++)] = 0;
         arrayOfByte[(j++)] = paramArrayOfByte[i];
 
-        i++; continue;
+        i++;
 
         if (this.asciiCharSet == null) {
           this.asciiCharSet = CharacterSet.make(1);
+          continue;
         }
         try
         {
@@ -580,7 +581,8 @@ public class DBConversion
 
     int k = paramInt3 + paramInt1;
 
-    int i = paramInt1; for (int j = paramInt2; i < k; i++)
+    int j;
+    int i = paramInt1; for (j = paramInt2; i < k; i++)
     {
       paramArrayOfByte[(j++)] = ((byte)(paramArrayOfChar[i] >> '\b' & 0xFF));
       paramArrayOfByte[(j++)] = ((byte)(paramArrayOfChar[i] & 0xFF));
@@ -670,7 +672,10 @@ public class DBConversion
 
   public static final int RAWBytesToHexChars(byte[] paramArrayOfByte, int paramInt, char[] paramArrayOfChar)
   {
-    int i = 0; for (int j = 0; i < paramInt; i++)
+    int i = 0;
+    int j;
+    
+    for (j = 0; i < paramInt; i++)
     {
       paramArrayOfChar[(j++)] = ((char)RepConversion.nibbleToHex((byte)(paramArrayOfByte[i] >> 4 & 0xF)));
 
@@ -891,9 +896,9 @@ public class DBConversion
 
   class UnicodeStream extends OracleBufferedStream
   {
-    UnicodeStream(char[] paramInt1, int paramInt2, int arg4)
+    UnicodeStream(char[] paramInt1, int paramInt2, int i)
     {
-      super();
+      super(paramInt2);
       this.currentBufferSize = this.initialBufferSize;
       this.resizableBuffer = new byte[this.currentBufferSize];
 
@@ -921,9 +926,9 @@ public class DBConversion
 
   class AsciiStream extends OracleBufferedStream
   {
-    AsciiStream(char[] paramInt1, int paramInt2, int arg4)
+    AsciiStream(char[] paramInt1, int paramInt2, int i)
     {
-      super();
+      super(paramInt2);
       this.currentBufferSize = this.initialBufferSize;
       this.resizableBuffer = new byte[this.currentBufferSize];
 

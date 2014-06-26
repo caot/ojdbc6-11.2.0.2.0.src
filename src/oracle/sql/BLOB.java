@@ -88,15 +88,15 @@ public class BLOB extends DatumWithConnection
     throws SQLException
   {
     if (this.isFree) {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 192);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     if ((paramInt < 0) || (paramLong < 1L))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "getBytes()");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "getBytes()");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (canReadBasicLobDataInLocator())
@@ -104,7 +104,7 @@ public class BLOB extends DatumWithConnection
       return dilGetBytes(paramLong, paramInt);
     }
 
-    Object localObject = null;
+    byte[] localObject = null;
 
     if (paramInt == 0) {
       return new byte[0];
@@ -374,10 +374,10 @@ public class BLOB extends DatumWithConnection
     }
     if ((paramConnection == null) || ((i != 10) && (i != 12)))
     {
-      localObject = DatabaseError.createSqlException(null, 68, "'conn' should not be null and 'duration' should either be equal to DURATION_SESSION or to DURATION_CALL");
+      SQLException sqlexception = DatabaseError.createSqlException(null, 68, "'conn' should not be null and 'duration' should either be equal to DURATION_SESSION or to DURATION_CALL");
 
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = ((oracle.jdbc.OracleConnection)paramConnection).physicalConnectionWithin();
@@ -665,13 +665,14 @@ public class BLOB extends DatumWithConnection
     int k = (i & 0x8) == 8 ? 1 : 0;
     int m = (j & 0xFFFFFF80) == -128 ? 1 : 0;
     int n = 0;
+    int i1;
     if ((k != 0) && (m == 0))
     {
       i1 = arrayOfByte[88] & 0xFF;
       n = (i1 & 0x8) == 8 ? 1 : 0;
     }
-    int i1 = (k != 0) && (m == 0) && (n != 0) ? 1 : 0;
-    return i1;
+    
+    return (k != 0) && (m == 0) && (n != 0);
   }
 
   int dilLength()
@@ -708,9 +709,9 @@ public class BLOB extends DatumWithConnection
   {
     if (paramLong - 1L > dilLength())
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "");
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = dilGetBytes(paramLong, dilLength());
@@ -755,9 +756,9 @@ public class BLOB extends DatumWithConnection
     int i = dilLength();
     if ((paramLong1 < 1L) || (paramLong2 < 0L) || (paramLong1 > i) || (paramLong1 - 1L + paramLong2 > i))
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     Object localObject = dilGetBytes(paramLong1, i - (int)(paramLong1 - 1L));
     return new ByteArrayInputStream((byte[])localObject, 0, (int)paramLong2);

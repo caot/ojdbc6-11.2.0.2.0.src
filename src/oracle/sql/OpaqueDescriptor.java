@@ -65,10 +65,10 @@ public class OpaqueDescriptor extends TypeDescriptor
   {
     if ((paramString == null) || (paramString.length() == 0))
     {
-      localObject = DatabaseError.createSqlException(null, 60, "Invalid argument,'name' shouldn't be null nor an empty string and 'conn' should not be null");
+      SQLException sqlexception = DatabaseError.createSqlException(null, 60, "Invalid argument,'name' shouldn't be null nor an empty string and 'conn' should not be null");
 
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject = new SQLName(paramString, (oracle.jdbc.OracleConnection)paramConnection);
@@ -266,7 +266,7 @@ public class OpaqueDescriptor extends TypeDescriptor
   public Class getClass(Map paramMap)
     throws SQLException
   {
-    Object localObject = null;
+    Class localObject = null;
 
     String str1 = getName();
 

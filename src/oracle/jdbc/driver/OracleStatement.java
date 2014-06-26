@@ -229,9 +229,9 @@ abstract class OracleStatement
   void continueReadRow(int paramInt)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "continueReadRow is only implemented by the T4C statements.");
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "continueReadRow is only implemented by the T4C statements.");
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   abstract void doClose()
@@ -243,9 +243,9 @@ abstract class OracleStatement
   public int cursorIfRefCursor()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "cursorIfRefCursor not implemented");
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 1, "cursorIfRefCursor not implemented");
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   OracleStatement(PhysicalConnection paramPhysicalConnection, int paramInt1, int paramInt2)
@@ -328,9 +328,9 @@ abstract class OracleStatement
 
     if (this.accessors == null)
     {
-      SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-      localSQLException1.fillInStackTrace();
-      throw localSQLException1;
+      SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+      sqlexception1.fillInStackTrace();
+      throw sqlexception1;
     }
 
     int i = 0;
@@ -343,9 +343,9 @@ abstract class OracleStatement
 
       if (localAccessor == null)
       {
-        SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-        localSQLException2.fillInStackTrace();
-        throw localSQLException2;
+        SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+        sqlexception2.fillInStackTrace();
+        throw sqlexception2;
       }
       switch (localAccessor.internalType)
       {
@@ -362,7 +362,7 @@ abstract class OracleStatement
     if ((this.streamList != null) && (!this.connection.useFetchSizeWithLongColumn)) {
       this.rowPrefetch = 1;
     }
-    m = this.rowPrefetch;
+    int m = this.rowPrefetch;
 
     this.definesBatchSize = m;
 
@@ -474,9 +474,9 @@ abstract class OracleStatement
       bool = true; } else {
       if (k != 0)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 21);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       this.columnsDefinedByUser = false;
@@ -545,10 +545,10 @@ abstract class OracleStatement
         executeForRows(bool);
       }
     }
-    catch (SQLException localSQLException)
+    catch (SQLException sqlexception)
     {
       this.needToParse = true;
-      throw localSQLException;
+      throw sqlexception;
     }
     finally
     {
@@ -570,14 +570,14 @@ abstract class OracleStatement
       this.connection.registerHeartbeat();
 
       this.rowsProcessed = 0;
-      SQLException localSQLException1;
+      SQLException sqlexception1;
       if (this.sqlKind == 1)
       {
         if ((this.connection.j2ee13Compliant) && (this.executionType == 2))
         {
-          localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 129);
-          localSQLException1.fillInStackTrace();
-          throw localSQLException1;
+          sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 129);
+          sqlexception1.fillInStackTrace();
+          throw sqlexception1;
         }
 
         this.connection.needLine();
@@ -613,9 +613,9 @@ abstract class OracleStatement
       {
         if ((this.connection.j2ee13Compliant) && ((this.sqlKind & 0x60) == 0) && (this.executionType == 1))
         {
-          localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 128);
-          localSQLException1.fillInStackTrace();
-          throw localSQLException1;
+          sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 128);
+          sqlexception1.fillInStackTrace();
+          throw sqlexception1;
         }
 
         this.currentRank += 1;
@@ -640,7 +640,7 @@ abstract class OracleStatement
 
             executeForRows(false);
           }
-          catch (SQLException localSQLException2)
+          catch (SQLException sqlexception2)
           {
             this.needToParse = true;
             if (this.batch > 1)
@@ -661,14 +661,14 @@ abstract class OracleStatement
                   arrayOfInt[i] = -3;
                 }
               }
-              BatchUpdateException localBatchUpdateException = DatabaseError.createBatchUpdateException(localSQLException2, arrayOfInt.length, arrayOfInt);
+              BatchUpdateException localBatchUpdateException = DatabaseError.createBatchUpdateException(sqlexception2, arrayOfInt.length, arrayOfInt);
               localBatchUpdateException.fillInStackTrace();
               throw localBatchUpdateException;
             }
 
             resetCurrentRowBinders();
 
-            throw localSQLException2;
+            throw sqlexception2;
           }
           finally
           {
@@ -686,10 +686,10 @@ abstract class OracleStatement
       }
 
     }
-    catch (SQLException localSQLException3)
+    catch (SQLException sqlexception3)
     {
       resetOnExceptionDuringExecute();
-      throw localSQLException3;
+      throw sqlexception3;
     }
 
     this.connection.registerHeartbeat();
@@ -721,7 +721,7 @@ abstract class OracleStatement
   {
     synchronized (this.connection)
     {
-      Object localObject1 = null;
+      ResultSet localObject1 = null;
       try
       {
         this.executionType = 1;
@@ -772,9 +772,9 @@ abstract class OracleStatement
   public void closeWithKey(String paramString)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void close()
@@ -1118,19 +1118,19 @@ abstract class OracleStatement
   {
     if (this.connection.disableDefinecolumntype)
       return;
-    SQLException localSQLException;
+    SQLException sqlexception;
     if (paramInt1 < 1)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramInt2 == 0)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     int i = paramInt1 - 1;
@@ -1148,9 +1148,9 @@ abstract class OracleStatement
     {
       if (paramInt3 < 0)
       {
-        localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 53);
-        ((SQLException)localObject1).fillInStackTrace();
-        throw ((Throwable)localObject1);
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 53);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if (((j == -1) && (paramInt3 > 0)) || ((j > 0) && (paramInt3 < j)))
@@ -1160,9 +1160,9 @@ abstract class OracleStatement
     }
     if ((this.currentResultSet != null) && (!this.currentResultSet.closed))
     {
-      localObject1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 28);
-      ((SQLException)localObject1).fillInStackTrace();
-      throw ((Throwable)localObject1);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 28);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (!this.columnsDefinedByUser)
@@ -1203,9 +1203,9 @@ abstract class OracleStatement
 
     if (((k == 109) || (k == 111)) && ((paramString == null) || (paramString.equals(""))))
     {
-      localObject2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 60, "Invalid arguments");
-      ((SQLException)localObject2).fillInStackTrace();
-      throw ((Throwable)localObject2);
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 60, "Invalid arguments");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     Object localObject2 = this.accessors[i];
@@ -1247,24 +1247,24 @@ abstract class OracleStatement
   Accessor allocateAccessor(int paramInt1, int paramInt2, int paramInt3, int paramInt4, short paramShort, String paramString, boolean paramBoolean)
     throws SQLException
   {
-    Object localObject;
+    Accessor localObject;
     switch (paramInt1)
     {
     case 96:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return new CharAccessor(this, paramInt4, paramShort, paramInt2, paramBoolean);
     case 8:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if (!paramBoolean) {
@@ -1274,36 +1274,36 @@ abstract class OracleStatement
     case 1:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return new VarcharAccessor(this, paramInt4, paramShort, paramInt2, paramBoolean);
     case 2:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return new NumberAccessor(this, paramInt4, paramShort, paramInt2, paramBoolean);
     case 6:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return new VarnumAccessor(this, paramInt4, paramShort, paramInt2, paramBoolean);
     case 24:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if (!paramBoolean) {
@@ -1313,9 +1313,9 @@ abstract class OracleStatement
     case 23:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       if (paramBoolean) {
@@ -1325,54 +1325,54 @@ abstract class OracleStatement
     case 100:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return new BinaryFloatAccessor(this, paramInt4, paramShort, paramInt2, paramBoolean);
     case 101:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return new BinaryDoubleAccessor(this, paramInt4, paramShort, paramInt2, paramBoolean);
     case 104:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return new RowidAccessor(this, paramInt4, paramShort, paramInt2, paramBoolean);
     case 102:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return new ResultSetAccessor(this, paramInt4, paramShort, paramInt2, paramBoolean);
     case 12:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return new DateAccessor(this, paramInt4, paramShort, paramInt2, paramBoolean);
     case 113:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       localObject = new BlobAccessor(this, -1, paramShort, paramInt2, paramBoolean);
@@ -1382,9 +1382,9 @@ abstract class OracleStatement
     case 112:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       localObject = new ClobAccessor(this, -1, paramShort, paramInt2, paramBoolean);
@@ -1394,9 +1394,9 @@ abstract class OracleStatement
     case 114:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       localObject = new BfileAccessor(this, -1, paramShort, paramInt2, paramBoolean);
@@ -1406,14 +1406,14 @@ abstract class OracleStatement
       if (paramString == null) {
         if (paramBoolean)
         {
-          localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-          localSQLException.fillInStackTrace();
-          throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 60, "Unable to resolve type \"null\"");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 60, "Unable to resolve type \"null\"");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       localObject = new NamedTypeAccessor(this, paramString, paramShort, paramInt2, paramBoolean);
@@ -1425,14 +1425,14 @@ abstract class OracleStatement
       if (paramString == null) {
         if (paramBoolean)
         {
-          localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-          localSQLException.fillInStackTrace();
-          throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 60, "Unable to resolve type \"null\"");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 60, "Unable to resolve type \"null\"");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       localObject = new RefTypeAccessor(this, paramString, paramShort, paramInt2, paramBoolean);
@@ -1443,57 +1443,57 @@ abstract class OracleStatement
     case 180:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return new TimestampAccessor(this, paramInt4, paramShort, paramInt2, paramBoolean);
     case 181:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return new TimestamptzAccessor(this, paramInt4, paramShort, paramInt2, paramBoolean);
     case 231:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return new TimestampltzAccessor(this, paramInt4, paramShort, paramInt2, paramBoolean);
     case 182:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return new IntervalymAccessor(this, paramInt4, paramShort, paramInt2, paramBoolean);
     case 183:
       if ((paramBoolean) && (paramString != null))
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 12, "sqlType=" + paramInt2);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       return new IntervaldsAccessor(this, paramInt4, paramShort, paramInt2, paramBoolean);
     case 995:
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 89);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 89);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public void defineColumnType(int paramInt1, int paramInt2)
@@ -1552,23 +1552,23 @@ abstract class OracleStatement
   void setPrefetchInternal(int paramInt, boolean paramBoolean1, boolean paramBoolean2)
     throws SQLException
   {
-    SQLException localSQLException;
+    SQLException sqlexception;
     if (paramBoolean1)
     {
       if (paramInt <= 0)
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 20);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 20);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
     }
     else
     {
       if (paramInt < 0)
       {
-        localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "setFetchSize");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "setFetchSize");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       if (paramInt == 0) {
         paramInt = this.connection.getDefaultRowPrefetch();
@@ -1611,9 +1611,9 @@ abstract class OracleStatement
     {
       if (paramInt < -1)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 267);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 267);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       this.defaultLobPrefetchSize = paramInt;
     }
@@ -1741,9 +1741,9 @@ abstract class OracleStatement
     {
       if (paramInt < 0)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       this.maxFieldSize = paramInt;
@@ -1763,9 +1763,9 @@ abstract class OracleStatement
     {
       if (paramInt < 0)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       this.maxRows = paramInt;
@@ -1797,9 +1797,9 @@ abstract class OracleStatement
     {
       if (paramInt < 0)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       this.queryTimeout = paramInt;
@@ -1869,9 +1869,9 @@ abstract class OracleStatement
   public void setCursorName(String paramString)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public ResultSet getResultSet()
@@ -1964,9 +1964,9 @@ abstract class OracleStatement
         }
         catch (IOException localIOException)
         {
-          localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-          ((SQLException)localObject).fillInStackTrace();
-          throw ((Throwable)localObject);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
         this.nextStream = this.nextStream.nextStream;
@@ -2059,9 +2059,9 @@ abstract class OracleStatement
   {
     if (this.lastIndex == 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 24);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 24);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.sqlKind == 1) {
@@ -2089,9 +2089,9 @@ abstract class OracleStatement
         return i + 1;
       }
     }
-    ??? = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 6);
-    ((SQLException)???).fillInStackTrace();
-    throw ((Throwable)???);
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 6);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   int getJDBCType(int paramInt)
@@ -2282,9 +2282,9 @@ abstract class OracleStatement
       i = 995;
       break;
     default:
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, Integer.toString(paramInt));
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 4, Integer.toString(paramInt));
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return i;
@@ -2316,9 +2316,9 @@ abstract class OracleStatement
         }
         catch (IOException localIOException)
         {
-          SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-          localSQLException.fillInStackTrace();
-          throw localSQLException;
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
         this.nextStream = this.nextStream.nextStream;
@@ -2337,9 +2337,9 @@ abstract class OracleStatement
       }
       catch (IOException localIOException)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
       this.nextStream = this.nextStream.nextStream;
@@ -2349,18 +2349,18 @@ abstract class OracleStatement
   final void ensureOpen()
     throws SQLException
   {
-    SQLException localSQLException;
+    SQLException sqlexception;
     if (this.connection.lifecycle != 1)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 8);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
     if (this.closed)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -2384,9 +2384,9 @@ abstract class OracleStatement
       }
       else
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "setFetchDirection");
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68, "setFetchDirection");
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
     }
   }
@@ -2439,9 +2439,9 @@ abstract class OracleStatement
       {
         if (paramOracleResultSetCache == null)
         {
-          SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-          localSQLException1.fillInStackTrace();
-          throw localSQLException1;
+          SQLException sqlexception1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+          sqlexception1.fillInStackTrace();
+          throw sqlexception1;
         }
 
         if (this.rsetCache != null) {
@@ -2451,9 +2451,9 @@ abstract class OracleStatement
       }
       catch (IOException localIOException)
       {
-        SQLException localSQLException2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
-        localSQLException2.fillInStackTrace();
-        throw localSQLException2;
+        SQLException sqlexception2 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), localIOException);
+        sqlexception2.fillInStackTrace();
+        throw sqlexception2;
       }
     }
   }
@@ -2510,9 +2510,9 @@ abstract class OracleStatement
   {
     if (getBatchSize() > 0)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 81, "batch must be either executed or cleared");
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 81, "batch must be either executed or cleared");
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -2609,11 +2609,11 @@ abstract class OracleStatement
             }
             n = this.validRows;
           }
-          catch (SQLException localSQLException2)
+          catch (SQLException sqlexception2)
           {
             this.needToParse = true;
             resetCurrentRowBinders();
-            throw localSQLException2;
+            throw sqlexception2;
           }
           finally
           {
@@ -2631,7 +2631,7 @@ abstract class OracleStatement
 
           if (arrayOfInt[i] < 0)
           {
-            localBatchUpdateException2 = DatabaseError.createBatchUpdateException(81, "command return value " + arrayOfInt[i], i, arrayOfInt);
+            BatchUpdateException localBatchUpdateException2 = DatabaseError.createBatchUpdateException(81, "command return value " + arrayOfInt[i], i, arrayOfInt);
 
             localBatchUpdateException2.fillInStackTrace();
             throw localBatchUpdateException2;
@@ -2639,14 +2639,14 @@ abstract class OracleStatement
         }
 
       }
-      catch (SQLException localSQLException1)
+      catch (SQLException sqlexception1)
       {
-        if ((localSQLException1 instanceof BatchUpdateException))
+        if ((sqlexception1 instanceof BatchUpdateException))
         {
-          throw localSQLException1;
+          throw sqlexception1;
         }
 
-        BatchUpdateException localBatchUpdateException2 = DatabaseError.createBatchUpdateException(81, localSQLException1.getMessage(), i, arrayOfInt);
+        BatchUpdateException localBatchUpdateException2 = DatabaseError.createBatchUpdateException(81, sqlexception1.getMessage(), i, arrayOfInt);
         localBatchUpdateException2.fillInStackTrace();
         throw localBatchUpdateException2;
       }
@@ -2733,9 +2733,9 @@ abstract class OracleStatement
             this.accessors = new Accessor[this.numberOfDefinePositions + 1];
           }
           if (arrayOfAccessor != null) {
-            for (i = this.numberOfDefinePositions; i > 0; i--)
+            for (int i = this.numberOfDefinePositions; i > 0; i--)
             {
-              localAccessor = arrayOfAccessor[(i - 1)];
+              Accessor localAccessor = arrayOfAccessor[(i - 1)];
 
               this.accessors[i] = localAccessor;
 
@@ -2756,7 +2756,7 @@ abstract class OracleStatement
         this.currentResultSet = new OracleResultSetImpl(this.connection, this);
         this.realRsetType = this.userRsetType;
       }
-      catch (SQLException localSQLException)
+      catch (SQLException sqlexception)
       {
         int i;
         Accessor localAccessor;
@@ -2793,7 +2793,7 @@ abstract class OracleStatement
         doExecuteWithTimeout();
 
         this.currentResultSet = new OracleResultSetImpl(this.connection, this);
-        this.sqlWarning = DatabaseError.addSqlWarning(this.sqlWarning, 91, localSQLException.getMessage());
+        this.sqlWarning = DatabaseError.addSqlWarning(this.sqlWarning, 91, sqlexception.getMessage());
       }
 
     }
@@ -2804,7 +2804,7 @@ abstract class OracleStatement
   void allocateRowidAccessor()
     throws SQLException
   {
-    this.accessors[0] = new RowidAccessor(this, 128, 1, -8, false);
+    this.accessors[0] = new RowidAccessor(this, 128, (short)1, -8, false);
   }
 
   OracleResultSet doScrollStmtExecuteQuery()
@@ -2855,9 +2855,9 @@ abstract class OracleStatement
       }
       if (this.numReturnParams != i)
       {
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 173);
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 173);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
 
     }
@@ -2897,9 +2897,9 @@ abstract class OracleStatement
   void fetchDmlReturnParams()
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   void setupReturnParamAccessors()
@@ -3000,9 +3000,9 @@ abstract class OracleStatement
     int i = paramInt - 1;
     if ((i < 0) || (i >= this.numberOfDefinePositions))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 3);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     boolean bool = this.accessors[i].formOfUse == 2;
@@ -3036,34 +3036,34 @@ abstract class OracleStatement
   public boolean getMoreResults(int paramInt)
     throws SQLException
   {
-    SQLException localSQLException = DatabaseError.createUnsupportedFeatureSqlException();
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createUnsupportedFeatureSqlException();
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public ResultSet getGeneratedKeys()
     throws SQLException
   {
-    SQLException localSQLException;
+    SQLException sqlexception;
     if (this.closed)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (!this.isAutoGeneratedKey)
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 90);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if ((this.returnParamAccessors == null) || (this.numReturnParams == 0))
     {
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 144);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 144);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (this.returnResultSet == null)
@@ -3088,9 +3088,9 @@ abstract class OracleStatement
     {
       this.autoKeyInfo = null;
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     synchronized (this.connection) {
@@ -3111,9 +3111,9 @@ abstract class OracleStatement
   {
     if ((paramArrayOfInt == null) || (paramArrayOfInt.length == 0))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.autoKeyInfo = new AutoKeyInfo(paramString, paramArrayOfInt);
@@ -3144,9 +3144,9 @@ abstract class OracleStatement
   {
     if ((paramArrayOfString == null) || (paramArrayOfString.length == 0))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.autoKeyInfo = new AutoKeyInfo(paramString, paramArrayOfString);
@@ -3186,9 +3186,9 @@ abstract class OracleStatement
     {
       this.autoKeyInfo = null;
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     synchronized (this.connection) {
@@ -3209,9 +3209,9 @@ abstract class OracleStatement
   {
     if ((paramArrayOfInt == null) || (paramArrayOfInt.length == 0))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.autoKeyInfo = new AutoKeyInfo(paramString, paramArrayOfInt);
@@ -3242,9 +3242,9 @@ abstract class OracleStatement
   {
     if ((paramArrayOfString == null) || (paramArrayOfString.length == 0))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 68);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.autoKeyInfo = new AutoKeyInfo(paramString, paramArrayOfString);
@@ -3328,7 +3328,7 @@ abstract class OracleStatement
     {
       this.bindIndicators[(k + 0)] = 994;
 
-      short s = this.connection.defaultnchar ? 2 : 1;
+      short s = (short)(this.connection.defaultnchar ? 2 : 1);
 
       if ((arrayOfShort != null) && (arrayOfInt != null))
       {
@@ -3373,9 +3373,9 @@ abstract class OracleStatement
   {
     if (paramInt == 109)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 5);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 5);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
   }
 
@@ -3463,7 +3463,7 @@ abstract class OracleStatement
         {
           ((CLOB)localIterator.next()).freeTemporary();
         }
-        catch (SQLException localSQLException)
+        catch (SQLException sqlexception)
         {
         }
       }
@@ -3482,7 +3482,7 @@ abstract class OracleStatement
         {
           ((BLOB)localIterator.next()).freeTemporary();
         }
-        catch (SQLException localSQLException)
+        catch (SQLException sqlexception)
         {
         }
       }
@@ -3503,7 +3503,7 @@ abstract class OracleStatement
       try {
         this.defaultTimeZone = this.connection.getDefaultTimeZone();
       }
-      catch (SQLException localSQLException)
+      catch (SQLException sqlexception)
       {
       }
       if (this.defaultTimeZone == null) {
@@ -3562,9 +3562,9 @@ abstract class OracleStatement
   {
     if (this.closed)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return this.cacheState != 3;
@@ -3575,9 +3575,9 @@ abstract class OracleStatement
   {
     if (this.closed)
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 9);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     if (paramBoolean) {
@@ -3592,19 +3592,19 @@ abstract class OracleStatement
   {
     if (paramClass.isInterface()) return paramClass.isInstance(this);
 
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 177);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 177);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   public <T> T unwrap(Class<T> paramClass)
     throws SQLException
   {
-    if ((paramClass.isInterface()) && (paramClass.isInstance(this))) return this;
+    if ((paramClass.isInterface()) && (paramClass.isInstance(this))) return (T)this;
 
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 177);
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 177);
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   protected OracleConnection getConnectionDuringExceptionHandling()

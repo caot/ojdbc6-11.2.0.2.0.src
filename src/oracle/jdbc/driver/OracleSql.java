@@ -105,9 +105,9 @@ public class OracleSql
   {
     if ((paramString == null) || (paramString.length() == 0))
     {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 104);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 104);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.originalSql = paramString;
@@ -174,12 +174,12 @@ public class OracleSql
       {
         if (this.bindParameterCount != getParameterCount())
         {
-          localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 197);
-          ((SQLException)localObject).fillInStackTrace();
-          throw ((Throwable)localObject);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 197);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
-        Object localObject = this.originalSql.toCharArray();
+        char[] localObject = this.originalSql.toCharArray();
         StringBuffer localStringBuffer = new StringBuffer();
 
         int k = 0;
@@ -552,9 +552,9 @@ public class OracleSql
       return new StringBuilder().append("\\").append(str).toString();
     }
 
-    SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 89, new StringBuilder().append("Unexpected case in OracleSql.hexUnicode: ").append(paramInt).toString());
-    localSQLException.fillInStackTrace();
-    throw localSQLException;
+    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 89, new StringBuilder().append("Unexpected case in OracleSql.hexUnicode: ").append(paramInt).toString());
+    sqlexception.fillInStackTrace();
+    throw sqlexception;
   }
 
   String convertNcharLiterals(String paramString)
@@ -577,7 +577,7 @@ public class OracleSql
       {
         char c1 = paramString.charAt(n);
         if (c1 == '\\') str = new StringBuilder().append(str).append("\\\\").toString();
-        else if (c1 < '') str = new StringBuilder().append(str).append(c1).toString(); else
+        else if (c1 < '\200') str = new StringBuilder().append(str).append(c1).toString(); else
           str = new StringBuilder().append(str).append(hexUnicode(c1)).toString();
       }
     }
@@ -685,9 +685,9 @@ public class OracleSql
         }
         if (j >= this.currentParameter.length)
         {
-          localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 134, new String(this.currentParameter));
-          ((SQLException)localObject).fillInStackTrace();
-          throw ((Throwable)localObject);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 134, new String(this.currentParameter));
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
 
         this.currentParameter[(j++)] = c2;
@@ -759,13 +759,13 @@ public class OracleSql
   {
     if (this.selectEndIndex == -1)
     {
-      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 88);
-      ((SQLException)localObject).fillInStackTrace();
-      throw ((Throwable)localObject);
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 88);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
-    Object localObject = new StringBuilder().append("select rowid as \"__Oracle_JDBC_interal_ROWID__\",").append(paramString.substring(this.selectEndIndex)).toString();
-    return localObject;
+    String string = new StringBuilder().append("select rowid as \"__Oracle_JDBC_interal_ROWID__\",").append(paramString.substring(this.selectEndIndex)).toString();
+    return string;
   }
 
   String parse(String paramString)
@@ -795,9 +795,9 @@ public class OracleSql
     {
       Integer localInteger = Integer.valueOf(this.i);
 
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 33, localInteger);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 33, localInteger);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     return this.oracle_sql.substring(0, this.oracle_sql.length());
@@ -825,18 +825,18 @@ public class OracleSql
 
       }
 
-      switch (1.$SwitchMap$oracle$jdbc$driver$OracleSqlReadOnly$ODBCAction[ODBC_ACTION[j][c3].ordinal()])
+      switch (ODBC_ACTION[j][c3])
       {
-      case 1:
+      case NONE: //1:
         break;
-      case 2:
+      case COPY: //2:
         this.oracle_sql.append(c2);
         break;
-      case 3:
+      case QUESTION: // 3:
         this.oracle_sql.append(nextArgument());
         this.oracle_sql.append(' ');
         break;
-      case 4:
+      case SAVE_DELIMITER:  // 4:
         if (c2 == '[') c1 = ']';
         else if (c2 == '{') c1 = '}';
         else if (c2 == '<') c1 = '>';
@@ -844,48 +844,48 @@ public class OracleSql
           c1 = c2;
         this.oracle_sql.append(c2);
         break;
-      case 5:
+      case LOOK_FOR_DELIMITER:  // 5:
         if (c2 == c1)
         {
           j += 1;
         }
         this.oracle_sql.append(c2);
         break;
-      case 6:
+      case FUNCTION:  // 6:
         handleFunction();
         break;
-      case 7:
+      case CALL:  // 7:
         handleCall();
         break;
-      case 8:
+      case TIME:  // 8:
         handleTime();
         break;
-      case 9:
+      case TIMESTAMP:  // 9:
         handleTimestamp();
         break;
-      case 10:
+      case DATE:  // 10:
         handleDate();
         break;
-      case 11:
+      case ESCAPE:  // 11:
         handleEscape();
         break;
-      case 12:
+      case SCALAR_FUNCTION:  // 12:
         handleScalarFunction();
         break;
-      case 13:
+      case OUTER_JOIN:  // 13:
         handleOuterJoin();
         break;
-      case 14:
-        SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, Integer.valueOf(this.i));
-        localSQLException.fillInStackTrace();
-        throw localSQLException;
-      case 15:
+      case UNKNOWN_ESCAPE:  // 14:
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, Integer.valueOf(this.i));
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
+      case END_ODBC_ESCAPE:  // 15:
         if (paramParseMode == ParseMode.SCALAR)
         {
           return;
         }
 
-      case 16:
+      case COMMA:  // 16:
         if ((paramParseMode == ParseMode.LOCATE_1) && (k > 1)) {
           this.oracle_sql.append(c2);
         } else {
@@ -899,7 +899,7 @@ public class OracleSql
           }
         }
         break;
-      case 17:
+      case OPEN_PAREN:  // 17:
         if (paramParseMode == ParseMode.LOCATE_1) {
           if (k > 0) this.oracle_sql.append(c2);
           k++;
@@ -913,7 +913,7 @@ public class OracleSql
           this.oracle_sql.append(c2);
         }
         break;
-      case 18:
+      case CLOSE_PAREN:  //18:
         if (paramParseMode == ParseMode.LOCATE_1) {
           k--;
           this.oracle_sql.append(c2);
@@ -951,14 +951,14 @@ public class OracleSql
     appendChar(this.oracle_sql, '?');
     skipSpace();
     String str;
-    SQLException localSQLException;
+    SQLException sqlexception;
     if (this.c != '=')
     {
       str = new StringBuilder().append(this.i).append(". Expecting \"=\" got \"").append(this.c).append("\"").toString();
 
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 33, str);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 33, str);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.i += 1;
@@ -969,9 +969,9 @@ public class OracleSql
     {
       str = new StringBuilder().append(this.i).append(". Expecting \"call\"").toString();
 
-      localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 33, str);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 33, str);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.i += 4;
@@ -1074,15 +1074,15 @@ public class OracleSql
       Object localObject;
       if (str == "COT")
       {
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       if (str == "DEGREES")
       {
-        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-        ((SQLException)localObject).fillInStackTrace();
-        throw ((Throwable)localObject);
+        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+        sqlexception.fillInStackTrace();
+        throw sqlexception;
       }
       if (str == "EXP") {
         usingFunctionName(str);
@@ -1100,15 +1100,15 @@ public class OracleSql
         usingFunctionName(str); } else {
         if (str == "RADIANS")
         {
-          localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-          ((SQLException)localObject).fillInStackTrace();
-          throw ((Throwable)localObject);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
         if (str == "RAND")
         {
-          localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-          ((SQLException)localObject).fillInStackTrace();
-          throw ((Throwable)localObject);
+          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+          sqlexception.fillInStackTrace();
+          throw sqlexception;
         }
         if (str == "ROUND") {
           usingFunctionName(str);
@@ -1137,23 +1137,23 @@ public class OracleSql
           usingFunctionName(str); } else {
           if (str == "DIFFERENCE")
           {
-            localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-            ((SQLException)localObject).fillInStackTrace();
-            throw ((Throwable)localObject);
+            SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+            sqlexception.fillInStackTrace();
+            throw sqlexception;
           }
           if (str == "INSERT")
           {
-            localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-            ((SQLException)localObject).fillInStackTrace();
-            throw ((Throwable)localObject);
+            SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+            sqlexception.fillInStackTrace();
+            throw sqlexception;
           }
           if (str == "LCASE") {
             usingFunctionName("LOWER"); } else {
             if (str == "LEFT")
             {
-              localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-              ((SQLException)localObject).fillInStackTrace();
-              throw ((Throwable)localObject);
+              SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+              sqlexception.fillInStackTrace();
+              throw sqlexception;
             }
             if (str == "LENGTH") {
               usingFunctionName(str);
@@ -1178,24 +1178,24 @@ public class OracleSql
               usingFunctionName("LENGTHB"); } else {
               if (str == "POSITION")
               {
-                localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-                ((SQLException)localObject).fillInStackTrace();
-                throw ((Throwable)localObject);
+                SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+                sqlexception.fillInStackTrace();
+                throw sqlexception;
               }
 
               if (str == "REPEAT")
               {
-                localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-                ((SQLException)localObject).fillInStackTrace();
-                throw ((Throwable)localObject);
+                SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+                sqlexception.fillInStackTrace();
+                throw sqlexception;
               }
               if (str == "REPLACE") {
                 usingFunctionName(str); } else {
                 if (str == "RIGHT")
                 {
-                  localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-                  ((SQLException)localObject).fillInStackTrace();
-                  throw ((Throwable)localObject);
+                  SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+                  sqlexception.fillInStackTrace();
+                  throw sqlexception;
                 }
                 if (str == "RTRIM") {
                   usingFunctionName(str);
@@ -1203,9 +1203,9 @@ public class OracleSql
                   usingFunctionName(str); } else {
                   if (str == "SPACE")
                   {
-                    localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-                    ((SQLException)localObject).fillInStackTrace();
-                    throw ((Throwable)localObject);
+                    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+                    sqlexception.fillInStackTrace();
+                    throw sqlexception;
                   }
                   if (str == "SUBSTRING") {
                     usingFunctionName("SUBSTR");
@@ -1216,9 +1216,9 @@ public class OracleSql
                     replacingFunctionPrefix("(CURRENT_DATE"); } else {
                     if (str == "CURRENT_TIME")
                     {
-                      localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-                      ((SQLException)localObject).fillInStackTrace();
-                      throw ((Throwable)localObject);
+                      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+                      sqlexception.fillInStackTrace();
+                      throw sqlexception;
                     }
                     if (str == "CURRENT_TIMESTAMP") {
                       replacingFunctionPrefix("(CURRENT_TIMESTAMP");
@@ -1229,23 +1229,23 @@ public class OracleSql
                       replacingFunctionPrefix("(CURRENT_TIMESTAMP"); } else {
                       if (str == "DAYNAME")
                       {
-                        localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-                        ((SQLException)localObject).fillInStackTrace();
-                        throw ((Throwable)localObject);
+                        SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+                        sqlexception.fillInStackTrace();
+                        throw sqlexception;
                       }
                       if (str == "DAYOFMONTH") {
                         replacingFunctionPrefix("EXTRACT ( DAY FROM "); } else {
                         if (str == "DAYOFWEEK")
                         {
-                          localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-                          ((SQLException)localObject).fillInStackTrace();
-                          throw ((Throwable)localObject);
+                          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+                          sqlexception.fillInStackTrace();
+                          throw sqlexception;
                         }
                         if (str == "DAYOFYEAR")
                         {
-                          localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-                          ((SQLException)localObject).fillInStackTrace();
-                          throw ((Throwable)localObject);
+                          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+                          sqlexception.fillInStackTrace();
+                          throw sqlexception;
                         }
 
                         if (str == "EXTRACT") {
@@ -1259,37 +1259,37 @@ public class OracleSql
                           replacingFunctionPrefix("EXTRACT ( MONTH FROM "); } else {
                           if (str == "MONTHNAME")
                           {
-                            localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-                            ((SQLException)localObject).fillInStackTrace();
-                            throw ((Throwable)localObject);
+                            SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+                            sqlexception.fillInStackTrace();
+                            throw sqlexception;
                           }
                           if (str == "NOW") {
                             replacingFunctionPrefix("(CURRENT_TIMESTAMP"); } else {
                             if (str == "QUARTER")
                             {
-                              localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-                              ((SQLException)localObject).fillInStackTrace();
-                              throw ((Throwable)localObject);
+                              SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+                              sqlexception.fillInStackTrace();
+                              throw sqlexception;
                             }
                             if (str == "SECOND") {
                               replacingFunctionPrefix("EXTRACT ( SECOND FROM "); } else {
                               if (str == "TIMESTAMPADD")
                               {
-                                localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-                                ((SQLException)localObject).fillInStackTrace();
-                                throw ((Throwable)localObject);
+                                SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+                                sqlexception.fillInStackTrace();
+                                throw sqlexception;
                               }
                               if (str == "TIMESTAMPDIFF")
                               {
-                                localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-                                ((SQLException)localObject).fillInStackTrace();
-                                throw ((Throwable)localObject);
+                                SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+                                sqlexception.fillInStackTrace();
+                                throw sqlexception;
                               }
                               if (str == "WEEK")
                               {
-                                localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-                                ((SQLException)localObject).fillInStackTrace();
-                                throw ((Throwable)localObject);
+                                SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+                                sqlexception.fillInStackTrace();
+                                throw sqlexception;
                               }
                               if (str == "YEAR") {
                                 replacingFunctionPrefix("EXTRACT ( YEAR FROM ");
@@ -1297,9 +1297,9 @@ public class OracleSql
                               else {
                                 if (str == "DATABASE")
                                 {
-                                  localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-                                  ((SQLException)localObject).fillInStackTrace();
-                                  throw ((Throwable)localObject);
+                                  SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+                                  sqlexception.fillInStackTrace();
+                                  throw sqlexception;
                                 }
                                 if (str == "IFNULL") {
                                   usingFunctionName("NVL");
@@ -1309,14 +1309,14 @@ public class OracleSql
                                 else {
                                   if (str == "CONVERT")
                                   {
-                                    localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-                                    ((SQLException)localObject).fillInStackTrace();
-                                    throw ((Throwable)localObject);
+                                    SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+                                    sqlexception.fillInStackTrace();
+                                    throw sqlexception;
                                   }
 
-                                  localObject = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
-                                  ((SQLException)localObject).fillInStackTrace();
-                                  throw ((Throwable)localObject); }  }  }  }  }  }  }  }  }  } 
+                                  SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 34, str);
+                                  sqlexception.fillInStackTrace();
+                                  throw sqlexception; }  }  }  }  }  }  }  }  }  } 
             }
           }
         }
@@ -1338,9 +1338,9 @@ public class OracleSql
       this.i += 1;
     }
     else {
-      SQLException localSQLException = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 33);
-      localSQLException.fillInStackTrace();
-      throw localSQLException;
+      SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 33);
+      sqlexception.fillInStackTrace();
+      throw sqlexception;
     }
 
     this.oracle_sql.append(paramString);
@@ -1382,17 +1382,27 @@ public class OracleSql
 
   String generateParameterName()
   {
-    if ((this.parameterCount == 0) || (this.parameterList == null))
+    String s;
+    if(parameterCount == 0 || parameterList == null)
+        return (new StringBuilder()).append("rowid").append(paramSuffix++).toString();
+    label1:
+    do
     {
-      return new StringBuilder().append("rowid").append(this.paramSuffix++).toString();
-    }
-
-    String str = new StringBuilder().append("rowid").append(this.paramSuffix++).toString();
-    for (int j = 0; ; j++) { if (j >= this.parameterList.length)
-        break label109;
-      if (str.equals(this.parameterList[j]))
-        break; }
-    label109: return str;
+        s = (new StringBuilder()).append("rowid").append(paramSuffix++).toString();
+        int j = 0;
+label0:
+        do
+        {
+            {
+                if(j >= parameterList.length)
+                    break label1;
+                if(s.equals(parameterList[j]))
+                    break label0;
+                j++;
+            }
+        } while(true);
+    } while(true);
+    return s;
   }
 
   static boolean isValidPlsqlWarning(String paramString)

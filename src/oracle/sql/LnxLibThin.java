@@ -174,7 +174,7 @@ class LnxLibThin
       arrayOfByte1 = new byte[k];
       System.arraycopy(paramArrayOfByte2, 0, arrayOfByte1, 0, k);
       bool3 = bool2;
-      i26 = k;
+      int i26 = k;
 
       return _setLength(arrayOfByte1, i26);
     }
@@ -184,7 +184,7 @@ class LnxLibThin
       arrayOfByte1 = new byte[i];
       System.arraycopy(paramArrayOfByte1, 0, arrayOfByte1, 0, i);
       bool3 = bool1;
-      i26 = i;
+      int i26 = i;
 
       return _setLength(arrayOfByte1, i26);
     }
@@ -947,7 +947,7 @@ class LnxLibThin
 
         if (i22 >= 10000)
         {
-          i14 = i13;
+          int i14 = i13;
           while (arrayOfInt3[i14] == 9999)
           {
             arrayOfInt3[i14] = 0;
@@ -959,7 +959,7 @@ class LnxLibThin
 
         if (i22 < 0)
         {
-          i14 = i13;
+          int i14 = i13;
           while (arrayOfInt3[i14] == 0)
           {
             arrayOfInt3[i14] = 9999;
@@ -1233,6 +1233,7 @@ class LnxLibThin
       return _setLength(arrayOfByte, 2);
     }
 
+    byte j;
     int i = j = (byte)k;
 
     if (m != 0)
@@ -1252,7 +1253,7 @@ class LnxLibThin
       arrayOfByte[i] = (bool ? LnxqRound_P[paramArrayOfByte[j]] : LnxqRound_N[paramArrayOfByte[j]]);
     }
 
-    int j = (byte)(j - 1);
+    j = (byte)(j - 1);
     int i4;
     if (arrayOfByte[i] == i1 + i2)
     {
@@ -1439,7 +1440,7 @@ class LnxLibThin
     {
       if (d == 10.0D)
       {
-        arrayOfByte1 = lnxln(paramArrayOfByte1);
+        byte[] arrayOfByte1 = lnxln(paramArrayOfByte1);
         byte[] arrayOfByte3 = NUMBER.ln10().shareBytes();
         return lnxdiv(arrayOfByte1, arrayOfByte3);
       }
@@ -1467,9 +1468,9 @@ class LnxLibThin
   public byte[] lnxmul(byte[] paramArrayOfByte1, byte[] paramArrayOfByte2)
     throws SQLException
   {
-    Object localObject1 = paramArrayOfByte1;
+    byte[] localObject1 = paramArrayOfByte1;
     int i = localObject1.length;
-    Object localObject2 = paramArrayOfByte2;
+    byte[] localObject2 = paramArrayOfByte2;
     int j = localObject2.length;
     byte[] arrayOfByte1 = new byte[22];
 
@@ -1539,7 +1540,7 @@ class LnxLibThin
 
     if (i > j)
     {
-      Object localObject3 = localObject1;
+      byte[] localObject3 = localObject1;
       localObject1 = localObject2;
       localObject2 = localObject3;
 
@@ -1934,7 +1935,7 @@ class LnxLibThin
         arrayOfByte2 = lnxmul(arrayOfByte2, arrayOfByte1);
       }
 
-      if (paramInt >>= 1 > 0)
+      if ((paramInt >>= 1) > 0)
       {
         arrayOfByte1 = lnxmul(arrayOfByte1, arrayOfByte1);
       }
@@ -2144,7 +2145,7 @@ class LnxLibThin
           j = LnxqNegate[arrayOfByte1[1]];
         }
 
-        paramArrayOfBoolean[0] = (2 * (i + 1) - (j < 11 ? 1 : 0) > paramInt1 ? 1 : false);
+        paramArrayOfBoolean[0] = 2 * (i + 1) - (j < 11 ? 1 : 0) > paramInt1;
 
         return arrayOfByte1;
       }
@@ -2154,7 +2155,7 @@ class LnxLibThin
       byte[] arrayOfByte2 = new byte[n];
       System.arraycopy(paramArrayOfByte, 0, arrayOfByte2, 0, n);
 
-      paramArrayOfBoolean[0] = (2 * (i + 1) - (j < 11 ? 1 : 0) > paramInt1 ? 1 : false);
+      paramArrayOfBoolean[0] = 2 * (i + 1) - (j < 11 ? 1 : 0) > paramInt1;
 
       return arrayOfByte2;
     }
@@ -2175,10 +2176,11 @@ class LnxLibThin
 
     int i3 = 0;
 
+    int i4;
     if (i == 1) i4 = 0; else i4 = 1;
     if ((((arrayOfByte1[0] & 0xFF) == 128) && (i == 1)) || ((i == 2) && ((arrayOfByte1[0] & 0xFF) == 255) && (arrayOfByte1[i4] == 101)) || ((i == 1) && (arrayOfByte1[0] == 0)))
     {
-      arrayOfByte2 = new byte[i];
+      byte[] arrayOfByte2 = new byte[i];
       for (i4 = 0; i4 < i; i4++) arrayOfByte2[i4] = arrayOfByte1[i4];
       return arrayOfByte2;
     }
@@ -2290,6 +2292,7 @@ class LnxLibThin
 
     }
 
+    byte[] arrayOfByte2;
     if (n > 255)
     {
       if (k != 0)
@@ -2310,8 +2313,8 @@ class LnxLibThin
     }
 
     arrayOfByte3[0] = (k != 0 ? (byte)(255 - n) : (byte)n);
-    byte[] arrayOfByte2 = new byte[i1];
-    for (int i4 = 0; i4 < i1; i4++)
+    arrayOfByte2 = new byte[i1];
+    for (i4 = 0; i4 < i1; i4++)
     {
       arrayOfByte2[i4] = arrayOfByte3[i4];
     }
@@ -2358,6 +2361,7 @@ class LnxLibThin
     int i4 = 1;
     int i5 = i4 + 20 + 3;
 
+    int k;
     if ((i8 + 128 & 0x1) != 0)
     {
       k = ((arrayOfInt1[i4] * 100 + arrayOfInt1[(i4 + 1)]) * 100 + arrayOfInt1[(i4 + 2)]) * 100 + arrayOfInt1[(i4 + 3)];
@@ -2378,7 +2382,7 @@ class LnxLibThin
     arrayOfInt2[3] = (j % 100);
 
     k -= arrayOfInt2[1] * j;
-    int k = k * 100 + arrayOfInt1[(i4 + 1)];
+    k = k * 100 + arrayOfInt1[(i4 + 1)];
     k -= arrayOfInt2[2] * j;
     k = k * 100 + arrayOfInt1[(i4 + 2)];
     k -= arrayOfInt2[3] * j;
@@ -2400,7 +2404,7 @@ class LnxLibThin
 
       arrayOfInt2[i1] = m;
 
-      i2 = n + (i5 - i4) < i1 ? n + (i5 - i4) : i1;
+      int i2 = n + (i5 - i4) < i1 ? n + (i5 - i4) : i1;
       int i6;
       if (m != 0)
       {
@@ -2502,7 +2506,7 @@ class LnxLibThin
 
     arrayOfByte[0] = ((byte)(i8 - 63));
 
-    for (i9 = i1; i9 <= i2; i9++) {
+    for (int i9 = i1; i9 <= i2; i9++) {
       arrayOfByte[(i9 - (i1 - 1))] = ((byte)(arrayOfInt2[i9] + 1));
     }
 
@@ -2601,6 +2605,7 @@ class LnxLibThin
       return NUMBER._makeZero();
     }
 
+    byte j;
     int i = j = (byte)k;
 
     if (m != 0)
@@ -2620,7 +2625,7 @@ class LnxLibThin
       arrayOfByte[i] = paramArrayOfByte[j];
     }
 
-    int j = (byte)(j - 1);
+    j = (byte)(j - 1);
     int i2;
     if (arrayOfByte[i] == n)
     {
@@ -2847,7 +2852,7 @@ class LnxLibThin
     int i14 = (i4 & 0x1) == 1 ? 40 : 39;
 
     int i12 = i19 + i20;
-
+    int i13;
     if ((paramBoolean1) || (paramBoolean2))
     {
       if (!paramBoolean1)
@@ -2867,7 +2872,7 @@ class LnxLibThin
       i13 = i12;
     }
 
-    int i13 = Math.min(i13, i14);
+    i13 = Math.min(i13, i14);
 
     if ((i13 < 0) || ((i13 == 0) && (arrayOfChar[i3] < '5')))
     {
@@ -3116,7 +3121,7 @@ class LnxLibThin
       throw new SQLException(CoreException.getMessage((byte)14));
     }
 
-    char[] arrayOfChar2 = new char['ÿ'];
+    char[] arrayOfChar2 = new char[255];
     int i3 = 0;
 
     if (localLnxLibThinFormat.LNXNFFSH)
@@ -3435,7 +3440,7 @@ class LnxLibThin
     int i12 = 0;
     int i13 = 0;
 
-    Object localObject = null;
+    byte[] localObject = null;
     boolean[] arrayOfBoolean = new boolean[1];
     int i14 = 0;
     int i15 = 1;
@@ -3543,7 +3548,7 @@ class LnxLibThin
     {
       arrayOfByte = lnxsca(paramArrayOfByte, i, j, arrayOfBoolean);
 
-      if (arrayOfBoolean[0] != 0)
+      if (arrayOfBoolean[0])
       {
         throw new SQLException(CoreException.getMessage((byte)4));
       }
@@ -3721,7 +3726,7 @@ class LnxLibThin
 
       if ((localLnxLibThinFormat.LNXNFFIL) || (i19 != 32))
       {
-        arrayOfChar1[i5] = i19;
+        arrayOfChar1[i5] = (char)i19;
         i5++;
       }
     }
@@ -3999,7 +4004,7 @@ class LnxLibThin
     }
 
     char[] arrayOfChar1 = this.lnx_chars;
-    int i5 = 46;
+    char i5 = 46;
 
     if (paramInt == 0)
     {
@@ -4373,275 +4378,86 @@ class LnxLibThin
         }
       }
     }
-    return new String(arrayOfChar2); } 
-  public byte[] lnxren(double paramDouble) throws SQLException { // Byte code:
-    //   0: bipush 20
-    //   2: newarray byte
-    //   4: astore_3
-    //   5: iconst_0
-    //   6: istore 4
-    //   8: dload_1
-    //   9: dconst_0
-    //   10: dcmpg
-    //   11: ifge +7 -> 18
-    //   14: iconst_0
-    //   15: goto +4 -> 19
-    //   18: iconst_1
-    //   19: istore 6
-    //   21: dload_1
-    //   22: invokestatic 146	java/lang/Math:abs	(D)D
-    //   25: dstore_1
-    //   26: dload_1
-    //   27: dconst_1
-    //   28: dcmpg
-    //   29: ifge +75 -> 104
-    //   32: iconst_0
-    //   33: istore 10
-    //   35: iload 10
-    //   37: bipush 8
-    //   39: if_icmpge +47 -> 86
-    //   42: getstatic 147	oracle/sql/LnxLibThin:powerTable	[[D
-    //   45: iload 10
-    //   47: aaload
-    //   48: iconst_2
-    //   49: daload
-    //   50: dload_1
-    //   51: dcmpl
-    //   52: iflt +28 -> 80
-    //   55: iload 4
-    //   57: getstatic 147	oracle/sql/LnxLibThin:powerTable	[[D
-    //   60: iload 10
-    //   62: aaload
-    //   63: iconst_0
-    //   64: daload
-    //   65: d2i
-    //   66: isub
-    //   67: istore 4
-    //   69: dload_1
-    //   70: getstatic 147	oracle/sql/LnxLibThin:powerTable	[[D
-    //   73: iload 10
-    //   75: aaload
-    //   76: iconst_1
-    //   77: daload
-    //   78: dmul
-    //   79: dstore_1
-    //   80: iinc 10 1
-    //   83: goto -48 -> 35
-    //   86: dload_1
-    //   87: dconst_1
-    //   88: dcmpg
-    //   89: ifge +69 -> 158
-    //   92: iinc 4 255
-    //   95: dload_1
-    //   96: ldc2_w 74
-    //   99: dmul
-    //   100: dstore_1
-    //   101: goto +57 -> 158
-    //   104: iconst_0
-    //   105: istore 10
-    //   107: iload 10
-    //   109: bipush 8
-    //   111: if_icmpge +47 -> 158
-    //   114: getstatic 147	oracle/sql/LnxLibThin:powerTable	[[D
-    //   117: iload 10
-    //   119: aaload
-    //   120: iconst_1
-    //   121: daload
-    //   122: dload_1
-    //   123: dcmpg
-    //   124: ifgt +28 -> 152
-    //   127: iload 4
-    //   129: getstatic 147	oracle/sql/LnxLibThin:powerTable	[[D
-    //   132: iload 10
-    //   134: aaload
-    //   135: iconst_0
-    //   136: daload
-    //   137: d2i
-    //   138: iadd
-    //   139: istore 4
-    //   141: dload_1
-    //   142: getstatic 147	oracle/sql/LnxLibThin:powerTable	[[D
-    //   145: iload 10
-    //   147: aaload
-    //   148: iconst_2
-    //   149: daload
-    //   150: dmul
-    //   151: dstore_1
-    //   152: iinc 10 1
-    //   155: goto -48 -> 107
-    //   158: iload 4
-    //   160: bipush 62
-    //   162: if_icmple +15 -> 177
-    //   165: new 20	java/sql/SQLException
-    //   168: dup
-    //   169: iconst_3
-    //   170: invokestatic 21	oracle/core/lmx/CoreException:getMessage	(B)Ljava/lang/String;
-    //   173: invokespecial 22	java/sql/SQLException:<init>	(Ljava/lang/String;)V
-    //   176: athrow
-    //   177: iload 4
-    //   179: bipush 191
-    //   181: if_icmpge +15 -> 196
-    //   184: new 20	java/sql/SQLException
-    //   187: dup
-    //   188: iconst_2
-    //   189: invokestatic 21	oracle/core/lmx/CoreException:getMessage	(B)Ljava/lang/String;
-    //   192: invokespecial 22	java/sql/SQLException:<init>	(Ljava/lang/String;)V
-    //   195: athrow
-    //   196: dload_1
-    //   197: ldc2_w 58
-    //   200: dcmpl
-    //   201: iflt +7 -> 208
-    //   204: iconst_0
-    //   205: goto +4 -> 209
-    //   208: iconst_1
-    //   209: istore 5
-    //   211: bipush 8
-    //   213: istore 7
-    //   215: iconst_0
-    //   216: istore 9
-    //   218: dload_1
-    //   219: d2i
-    //   220: i2b
-    //   221: istore 8
-    //   223: iload 9
-    //   225: iload 7
-    //   227: if_icmpge +30 -> 257
-    //   230: aload_3
-    //   231: iload 9
-    //   233: iload 8
-    //   235: bastore
-    //   236: dload_1
-    //   237: iload 8
-    //   239: i2d
-    //   240: dsub
-    //   241: ldc2_w 74
-    //   244: dmul
-    //   245: dstore_1
-    //   246: dload_1
-    //   247: d2i
-    //   248: i2b
-    //   249: istore 8
-    //   251: iinc 9 1
-    //   254: goto -31 -> 223
-    //   257: bipush 7
-    //   259: istore 9
-    //   261: iload 5
-    //   263: ifeq +22 -> 285
-    //   266: iload 8
-    //   268: bipush 50
-    //   270: if_icmplt +76 -> 346
-    //   273: aload_3
-    //   274: iload 9
-    //   276: dup2
-    //   277: baload
-    //   278: iconst_1
-    //   279: iadd
-    //   280: i2b
-    //   281: bastore
-    //   282: goto +64 -> 346
-    //   285: iload 4
-    //   287: bipush 62
-    //   289: if_icmpne +40 -> 329
-    //   292: aload_3
-    //   293: iload 9
-    //   295: baload
-    //   296: iconst_5
-    //   297: iadd
-    //   298: bipush 10
-    //   300: idiv
-    //   301: bipush 10
-    //   303: imul
-    //   304: bipush 100
-    //   306: if_icmpne +23 -> 329
-    //   309: aload_3
-    //   310: iload 9
-    //   312: aload_3
-    //   313: iload 9
-    //   315: baload
-    //   316: iconst_5
-    //   317: isub
-    //   318: bipush 10
-    //   320: idiv
-    //   321: bipush 10
-    //   323: imul
-    //   324: i2b
-    //   325: bastore
-    //   326: goto +20 -> 346
-    //   329: aload_3
-    //   330: iload 9
-    //   332: aload_3
-    //   333: iload 9
-    //   335: baload
-    //   336: iconst_5
-    //   337: iadd
-    //   338: bipush 10
-    //   340: idiv
-    //   341: bipush 10
-    //   343: imul
-    //   344: i2b
-    //   345: bastore
-    //   346: aload_3
-    //   347: iload 9
-    //   349: baload
-    //   350: bipush 100
-    //   352: if_icmpne +39 -> 391
-    //   355: iload 9
-    //   357: ifne +14 -> 371
-    //   360: iinc 4 1
-    //   363: aload_3
-    //   364: iload 9
-    //   366: iconst_1
-    //   367: bastore
-    //   368: goto +23 -> 391
-    //   371: aload_3
-    //   372: iload 9
-    //   374: iconst_0
-    //   375: bastore
-    //   376: iinc 9 255
-    //   379: aload_3
-    //   380: iload 9
-    //   382: dup2
-    //   383: baload
-    //   384: iconst_1
-    //   385: iadd
-    //   386: i2b
-    //   387: bastore
-    //   388: goto -42 -> 346
-    //   391: bipush 7
-    //   393: istore 9
-    //   395: iload 9
-    //   397: ifeq +23 -> 420
-    //   400: aload_3
-    //   401: iload 9
-    //   403: baload
-    //   404: ifne +16 -> 420
-    //   407: iload 7
-    //   409: iconst_1
-    //   410: isub
-    //   411: i2b
-    //   412: istore 7
-    //   414: iinc 9 255
-    //   417: goto -22 -> 395
-    //   420: iload 7
-    //   422: iconst_1
-    //   423: iadd
-    //   424: newarray byte
-    //   426: astore 11
-    //   428: aload 11
-    //   430: iconst_0
-    //   431: iload 4
-    //   433: i2b
-    //   434: bastore
-    //   435: aload_3
-    //   436: iconst_0
-    //   437: aload 11
-    //   439: iconst_1
-    //   440: iload 7
-    //   442: invokestatic 4	java/lang/System:arraycopy	(Ljava/lang/Object;ILjava/lang/Object;II)V
-    //   445: aload 11
-    //   447: iload 6
-    //   449: invokestatic 148	oracle/sql/NUMBER:_toLnxFmt	([BZ)[B
-    //   452: areturn } 
+    return new String(arrayOfChar2); }
+  
+  public byte[] lnxren(double d) throws SQLException { 
+
+    byte abyte0[] = new byte[20];
+    int i = 0;
+    boolean flag1 = d >= 0.0D;
+    d = Math.abs(d);
+    if(d < 1.0D)
+    {
+        for(int l = 0; l < 8; l++)
+            if(powerTable[l][2] >= d)
+            {
+                i -= (int)powerTable[l][0];
+                d *= powerTable[l][1];
+            }
+
+        if(d < 1.0D)
+        {
+            i--;
+            d *= 100D;
+        }
+    } else
+    {
+        for(int i1 = 0; i1 < 8; i1++)
+            if(powerTable[i1][1] <= d)
+            {
+                i += (int)powerTable[i1][0];
+                d *= powerTable[i1][2];
+            }
+
+    }
+    if(i > 62)
+        throw new SQLException(CoreException.getMessage((byte)3));
+    if(i < -65)
+        throw new SQLException(CoreException.getMessage((byte)2));
+    boolean flag = d < 10D;
+    byte byte0 = 8;
+    int j = 0;
+    byte byte1 = (byte)(int)d;
+    for(; j < byte0; j++)
+    {
+        abyte0[j] = byte1;
+        d = (d - (double)byte1) * 100D;
+        byte1 = (byte)(int)d;
+    }
+
+    j = 7;
+    if(flag)
+    {
+        if(byte1 >= 50)
+            abyte0[j]++;
+    } else
+    if(i == 62 && ((abyte0[j] + 5) / 10) * 10 == 100)
+        abyte0[j] = (byte)(((abyte0[j] - 5) / 10) * 10);
+    else
+        abyte0[j] = (byte)(((abyte0[j] + 5) / 10) * 10);
+    do
+    {
+        if(abyte0[j] != 100)
+            break;
+        if(j == 0)
+        {
+            i++;
+            abyte0[j] = 1;
+            break;
+        }
+        abyte0[j] = 0;
+        j--;
+        abyte0[j]++;
+    } while(true);
+    for(int k = 7; k != 0 && abyte0[k] == 0; k--)
+        byte0--;
+
+    byte abyte1[] = new byte[byte0 + 1];
+    abyte1[0] = (byte)i;
+    System.arraycopy(abyte0, 0, abyte1, 1, byte0);
+    return NUMBER._toLnxFmt(abyte1, flag1);
+
+  } 
   public byte[] lnxmin(long paramLong) { byte[] arrayOfByte1 = new byte[20];
 
     byte[] arrayOfByte2 = new byte[20];
@@ -4654,13 +4470,15 @@ class LnxLibThin
 
     boolean bool = paramLong >= 0L;
 
-    for (int i = 0; paramLong != 0L; i++)
+    int i;
+    for (i = 0; paramLong != 0L; i++)
     {
       arrayOfByte1[i] = ((byte)(int)Math.abs(paramLong % 100L));
       paramLong /= 100L;
     }
 
-    i--; int j = (byte)i;
+    i--; 
+    byte j = (byte)i;
 
     for (int m = j; k <= j; m--) {
       arrayOfByte2[k] = arrayOfByte1[m];
@@ -4847,7 +4665,7 @@ class LnxLibThin
       l = l * 100L + arrayOfByte[(m + 1)];
     }
 
-    for (m = i - j; m >= 0; m--) {
+    for (int m = i - j; m >= 0; m--) {
       l *= 100L;
     }
     return NUMBER._isPositive(paramArrayOfByte) ? l : -l;
@@ -4907,7 +4725,7 @@ class LnxLibThin
       l = LNXQH2N_DIGIT(paramArrayOfChar[(i + 1)], 4, l);
       l = LNXQH2N_DIGIT(paramArrayOfChar[(i + 2)], 0, l);
 
-      for (n = m; n >= k; n--)
+      for (int n = m; n >= k; n--)
       {
         l += (arrayOfLong[n] << 12);
         arrayOfLong[n] = (l % 1000000L);
@@ -4933,6 +4751,7 @@ class LnxLibThin
 
     arrayOfByte3[i5] = ((byte)(i4 + 192));
     byte[] arrayOfByte2;
+    int i2;
     int i3;
     if (i4 > 20)
     {
@@ -5001,7 +4820,7 @@ class LnxLibThin
 
     }
 
-    int i2 = i5 + (i3 - 1);
+    i2 = i5 + (i3 - 1);
 
     while (arrayOfByte2[i2] == 1)
     {
@@ -5017,6 +4836,7 @@ class LnxLibThin
 
   private long LNXQH2N_DIGIT(char paramChar, int paramInt, long paramLong)
   {
+    long l;
     if ((paramChar >= 'a') && (paramChar <= 'f'))
     {
       l = paramLong + (paramChar - 'a' + 10 << paramInt);
@@ -5029,7 +4849,7 @@ class LnxLibThin
       return l;
     }
 
-    long l = paramLong + (paramChar - '0' << paramInt);
+    l = paramLong + (paramChar - '0' << paramInt);
     return l;
   }
 
@@ -5244,7 +5064,7 @@ class LnxLibThin
   private byte[] lnxqtri(byte[] paramArrayOfByte, int paramInt)
     throws SQLException
   {
-    Object localObject = null;
+    byte[] localObject = null;
     byte[] arrayOfByte1 = null;
     byte[] arrayOfByte2 = null;
 

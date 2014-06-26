@@ -80,12 +80,12 @@ public class OracleLog
     {
       final String str1 = paramString1;
       final String str2 = paramString2;
-      String[] arrayOfString = { paramString2 };
+      final String[] arrayOfString = { paramString2 };
       AccessController.doPrivileged(new PrivilegedAction()
       {
         public Object run()
         {
-          this.val$retStr[0] = System.getProperty(str1, str2);
+          arrayOfString[0] = System.getProperty(str1, str2);
           return null;
         }
       });
@@ -374,7 +374,7 @@ public class OracleLog
     static final OracleLevel TRACE_32 = new OracleLevel("TRACE_32", Level.FINEST.intValue());
 
     OracleLevel(String paramString, int paramInt) {
-      super(paramInt);
+      super(paramString, paramInt);
     }
   }
 }

@@ -144,7 +144,7 @@ class T4C8TTILobd extends T4CTTIMsg
 
       while (k != 4)
       {
-        int j;
+        int j = 0;
         switch (k)
         {
         case 0:

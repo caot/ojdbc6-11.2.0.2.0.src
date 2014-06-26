@@ -159,6 +159,7 @@ class T4CVarcharAccessor extends VarcharAccessor
     {
       this.escapeSequenceArr[0] = this.mare.unmarshalUB1();
 
+      int m;
       if (this.mare.escapeSequenceNull(this.escapeSequenceArr[0]))
       {
         this.meta[0] = 0;
@@ -181,7 +182,7 @@ class T4CVarcharAccessor extends VarcharAccessor
         {
           if ((arrayOfByte3 == arrayOfByte1) && (n + 255 > arrayOfByte1.length))
           {
-            arrayOfByte3 = new byte['ÿ'];
+            arrayOfByte3 = new byte[255];
           }
           if (arrayOfByte3 == arrayOfByte1)
             i1 = n;
@@ -828,7 +829,7 @@ class T4CVarcharAccessor extends VarcharAccessor
     int m = 0;
     int n = 0;
 
-    String str1 = 0;
+    int str1 = 0;
     int i1 = 0;
 
     int i2 = 0;
@@ -980,7 +981,6 @@ class T4CVarcharAccessor extends VarcharAccessor
 
         i1 = str1 + i11;
         Object localObject;
-        String str4;
         int i15;
         switch (j)
         {
@@ -1020,11 +1020,12 @@ class T4CVarcharAccessor extends VarcharAccessor
         case 4:
           int i13 = str1;
           i1 = str1;
-          for (int i14 = str1; (i14 < paramString1.length()) && 
+          int i14;
+          for (i14 = str1; (i14 < paramString1.length()) && 
             (paramString1.charAt(i14) != arrayOfChar[i10]); i14++);
           i1 = i14;
 
-          str4 = null;
+          String str4 = null;
           if (i1 != str1) {
             str4 = paramString1.substring(str1, i1);
 
@@ -1036,9 +1037,9 @@ class T4CVarcharAccessor extends VarcharAccessor
               (!str4.equalsIgnoreCase(arrayOfString1[i3])); i3++);
             if (i3 >= 12)
             {
-              localObject = DatabaseError.createSqlException(null, 59);
-              ((SQLException)localObject).fillInStackTrace();
-              throw ((Throwable)localObject);
+              SQLException sqlexception = DatabaseError.createSqlException(null, 59);
+              sqlexception.fillInStackTrace();
+              throw sqlexception;
             }
 
           }
@@ -1069,11 +1070,11 @@ class T4CVarcharAccessor extends VarcharAccessor
           i7 = Integer.parseInt(paramString1.substring(str1, i1));
           break;
         case 11:
-          str4 = str1;
+          int i20 = str1;
           i1 = str1;
-          for (str4 = str1; (str4 < paramString1.length()) && 
-            ((i15 = paramString1.charAt(str4)) >= '0') && (i15 <= 57); str4++);
-          i1 += str4 - str1;
+          for (i20 = str1; (i20 < paramString1.length()) && 
+            ((i15 = paramString1.charAt(i20)) >= '0') && (i15 <= 57); i20++);
+          i1 += i20 - str1;
 
           if (i1 != str1)
             i8 = Integer.parseInt(paramString1.substring(str1, i1)); break;
