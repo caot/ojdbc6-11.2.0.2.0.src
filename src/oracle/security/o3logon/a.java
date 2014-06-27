@@ -123,35 +123,80 @@ public final class a
     this.b = a(paramArrayOfByte, (short)1);
   }
 
-  private int[] a(byte[] paramArrayOfByte, short paramShort)
+  private int[] a(byte[] abyte0, short word0)
   {
-    byte[] arrayOfByte1 = new byte[56];
-    byte[] arrayOfByte2 = new byte[56];
-    int[] arrayOfInt = new int[32];
-    int i3 = 0;
-    int i4;
-    for (int i2 = 0; i2 < 56; i2++)
+    byte[] abyte1 = new byte[56];
+    byte[] abyte2 = new byte[56];
+    int[] ai = new int[32];
+
+    for (int j1 = 0; j1 < 56; j1++)
     {
-      i4 = (i3 = e[i2]) & 0x7;
-      arrayOfByte1[i2] = ((byte)((paramArrayOfByte[(i3 >> 3)] & c[i4]) != 0 ? 1 : 0));
+      byte byte0;
+      int j2 = (byte0 = e[j1]) & 0x7;
+      abyte1[j1] = ((byte)((abyte0[(byte0 >> 3)] & c[j2]) != 0 ? 1 : 0));
     }
+
     int i1 = 0;
-    int i5 = (i4 = (paramShort == 1 ? 15 - i1 : i1) << 1) + 1;
-    int tmp114_113 = 0;
-    arrayOfInt[i5] = tmp114_113;
-    arrayOfInt[i4] = tmp114_113;
-    int i2 = 0;
-    arrayOfByte2[i2] = arrayOfByte1[(i3 - 28)];
-    i2 = 28;
-    arrayOfByte2[i2] = arrayOfByte1[(i3 - 28)];
-    i2 = 0;
-    if (arrayOfByte2[g[i2]] != 0)
-      arrayOfInt[i4] |= d[i2];
-    if (arrayOfByte2[g[(i2 + 24)]] != 0)
-      arrayOfInt[i5] |= d[i2];
-    i2++;
+_L12:
+  while (true) {
+    int k1;
+    int k2;
+    int l2;
+
+    if(i1 >= 16)
+      break _L12; /* Loop/switch isn't completed */
+
+    l2 = (k2 = (word0 == 1 ? 15 - i1 : i1) << 1) + 1;
+    ai[k2] = ai[l2] = 0;
+    k1 = 0;
+    int i2;
+_L5:
+  while (true) {
+    if(k1 >= 28)
+      break _L5; /* Loop/switch isn't completed */
+
+    if((i2 = k1 + f[i1]) >= 28) //goto _L2; else goto _L1
+_L2:
+      abyte2[k1] = abyte1[i2 - 28];
+    else
+_L1:
+      abyte2[k1] = abyte1[i2];
+    k1++;
+    //if(true) goto _L5; else goto _L4
+    continue _L5;
+  }
+_L4:
+    k1 = 28;
+L10:
+  while (true) {
+    if(k1 >= 56)
+        break L10; /* Loop/switch isn't completed */
+    if((i2 = k1 + f[i1]) >= 56) //goto _L7; else goto _L6
+_L7:
+      abyte2[k1] = abyte1[i2 - 28];
+    else
+_L6:
+      abyte2[k1] = abyte1[i2];
+
+_L8:
+    k1++;
+    //if(true) goto _L10; else goto _L9
+  }
+
+L9:
+    for(int l1 = 0; l1 < 24; l1++)
+    {
+      if(abyte2[g[l1]] != 0)
+          ai[k2] |= d[l1];
+      if(abyte2[g[l1 + 24]] != 0)
+          ai[l2] |= d[l1];
+    }
+
     i1++;
-    return a(arrayOfInt);
+//    if(true) goto _L12; else goto _L11
+  }
+_L11:
+    return a(ai);
   }
 
   private static int[] a(int[] paramArrayOfInt)

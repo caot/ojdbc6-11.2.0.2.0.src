@@ -74,21 +74,37 @@ public final class b
     return paramInt + j * 2;
   }
 
-  private static int a(int[] paramArrayOfInt, char paramChar)
+  private static int a(int[] ai, char paramChar)
   {
     int m = paramChar;
     int i = 0;
-    int j = (paramArrayOfInt == b ? c : d) - 1;
+    int j = (ai != b ? d : c);
+_L5:
+    while (true) {
+    j = j - 1;
+_L4:
+    //if(i > j) goto _L2; else goto _L1
+    if(i > j) break;
+//_L1:
     int k;
+label0:
     while (true)
     {
       k = (i + j) / 2;
-      if (m == paramArrayOfInt[(k * 2)])
-        return paramArrayOfInt[(k * 2 + 1)];
-      if (m <= paramArrayOfInt[(k * 2)])
-        break;
+      if (m == ai[(k * 2)])
+        return ai[(k * 2 + 1)];
+      if (m <= ai[(k * 2)])
+        break label0;
       i = k + 1;
     }
+
+    //if(true) goto _L4; else goto _L3
+_L3:
+
+    j = k;
+//    goto _L5
+    }
+_L2:
     return 63;
   }
 

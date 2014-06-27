@@ -24,7 +24,7 @@ public class O5LoginClientHelper
       for (i = 0; i < 16; i++)
         arrayOfByte2[i] = ((byte)(paramArrayOfByte1[(i + paramInt2)] ^ paramArrayOfByte2[(i + paramInt3)]));
       localMessageDigest.reset();
-      byte[] tmpTernaryOp = localMessageDigest.digest(arrayOfByte2);
+      arrayOfByte1 = localMessageDigest.digest(arrayOfByte2);
       break;
     case 6949:
       arrayOfByte2 = new byte[24];
@@ -33,65 +33,84 @@ public class O5LoginClientHelper
       arrayOfByte1 = new byte[24];
       localMessageDigest.reset();
       localMessageDigest.update(arrayOfByte2, 0, 16);
-      byte[] arrayOfByte3;
-      System.arraycopy(arrayOfByte3 = localMessageDigest.digest(), 0, arrayOfByte1, 0, 16);
+      byte[] arrayOfByte3 = localMessageDigest.digest();
+      System.arraycopy(arrayOfByte3, 0, arrayOfByte1, 0, 16);
       localMessageDigest.reset();
       localMessageDigest.update(arrayOfByte2, 16, 8);
-      System.arraycopy(arrayOfByte3 = localMessageDigest.digest(), 0, arrayOfByte1, 16, 8);
+      System.arraycopy(arrayOfByte3, 0, arrayOfByte1, 16, 8);
+      break;
+    default:
+      arrayOfByte1 = new byte[0];
       break;
     }
-    arrayOfByte1 = new byte[0];
+
     return arrayOfByte1;
   }
 
+
   public static byte[] decryptAES(String paramString1, byte[] paramArrayOfByte, String paramString2)
-    throws Exception
+      throws Exception
   {
     if (paramArrayOfByte == null)
       return new byte[0];
     byte[] arrayOfByte1 = new byte[16];
     for (int i = 0; i < arrayOfByte1.length; i++)
       arrayOfByte1[0] = 0;
+
     byte[] arrayOfByte2 = new byte[0];
+    if(paramArrayOfByte.length == 16)
+    {
     SecretKeySpec localObject = new SecretKeySpec(paramArrayOfByte, "AES");
     IvParameterSpec localIvParameterSpec = new IvParameterSpec(arrayOfByte1);
     Cipher localCipher;
     (localCipher = Cipher.getInstance(paramString1)).init(2, (Key)localObject, localIvParameterSpec);
     byte[] arrayOfByte3 = toBinArray(paramString2);
+    arrayOfByte2 = localCipher.doFinal(arrayOfByte3);
+    } else
     if ((paramArrayOfByte.length == 24) && (paramString1.endsWith("PKCS5Padding")))
     {
       b bobj;
       (bobj = new b(1, 2, 2)).a(paramArrayOfByte);
-      arrayOfByte2 = paramArrayOfByte.length == 16 ? localCipher.doFinal(arrayOfByte3) : bobj.b(toBinArray(paramString2));
+      arrayOfByte2 = bobj.b(toBinArray(paramString2));
     }
     return arrayOfByte2;
   }
 
-  public static byte[] encryptAES(String paramString, byte[] paramArrayOfByte1, byte[] paramArrayOfByte2)
+  public static byte[] encryptAES(String paramString, byte[] abyte0, byte[] abyte1)
     throws Exception
   {
-    if (paramArrayOfByte1 == null)
+    if (abyte0 == null)
       return new byte[0];
-    byte[] arrayOfByte1 = new byte[16];
-    for (int i = 0; i < arrayOfByte1.length; i++)
-      arrayOfByte1[0] = 0;
-    byte[] arrayOfByte2 = new byte[0];
-    SecretKeySpec localObject = new SecretKeySpec(paramArrayOfByte1, "AES");
-    IvParameterSpec localIvParameterSpec = new IvParameterSpec(arrayOfByte1);
-    Cipher localCipher;
-    (localCipher = Cipher.getInstance(paramString)).init(1, (Key)localObject, localIvParameterSpec);
-    if ((paramArrayOfByte1.length == 24) && (paramString.endsWith("PKCS5Padding")))
+    byte[] abyte2 = new byte[16];
+    for (int i = 0; i < abyte2.length; i++)
+      abyte2[0] = 0;
+
+    byte[] abyte3 = new byte[0];
+    if(abyte0.length == 16)
+    {
+    SecretKeySpec secretkeyspec  = new SecretKeySpec(abyte0, "AES");
+    IvParameterSpec ivparameterspec = new IvParameterSpec(abyte2);
+    Cipher cipher;
+    (cipher = Cipher.getInstance(paramString)).init(1, secretkeyspec, ivparameterspec);
+    abyte3 = cipher.doFinal(abyte1);
+    } else
+    if ((abyte0.length == 24) && (paramString.endsWith("PKCS5Padding")))
     {
       b bobj;
-      ( bobj = new b(1, 2, 2)).a(paramArrayOfByte1);
-      arrayOfByte2 = paramArrayOfByte1.length == 16 ? localCipher.doFinal(paramArrayOfByte2) : bobj.c(paramArrayOfByte2);
+      ( bobj = new b(1, 2, 2)).a(abyte0);
+      abyte3 = bobj.c(abyte1);
     }
-    return arrayOfByte2;
+    return abyte3;
   }
 
-  public static byte nibbleToHex(byte paramByte)
+  public static byte nibbleToHex(byte byte0)
   {
-    return (byte)(paramByte - 10 + ((paramByte = (byte)(paramByte & 0xF)) < 10 ? 48 : 65));
+    byte0 &= 0xf;
+    if(byte0 >= 10) {
+      return (byte)(byte0 - 10 + 65);
+    } else {
+      return (byte)(byte0 + 48);
+    }
   }
 
   public static void bArray2Nibbles(byte[] paramArrayOfByte1, byte[] paramArrayOfByte2)
@@ -184,7 +203,7 @@ public class O5LoginClientHelper
         return false;
       bArray2Nibbles(arrayOfByte3, paramArrayOfByte4);
       byte[] arrayOfByte4;
-      if ((arrayOfByte4 = concatKeys(paramInt, (byte[])localObject1, localObject1.length - i, arrayOfByte2, arrayOfByte2.length - i)).length != i)
+      if ((arrayOfByte4 = concatKeys(paramInt, localObject1, localObject1.length - i, arrayOfByte2, arrayOfByte2.length - i)).length != i)
         return false;
       byte[] arrayOfByte5 = new byte[16];
       localObject2.nextBytes(arrayOfByte5);
