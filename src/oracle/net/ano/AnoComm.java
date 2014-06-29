@@ -56,7 +56,7 @@ public class AnoComm
     a(10 + paramArrayOfInt.length * 2, 1);
     b(-559038737L);
     c(3);
-    b(paramArrayOfInt.length);
+    b((long)paramArrayOfInt.length);
     for (int i = 0; i < paramArrayOfInt.length; i++)
       c(paramArrayOfInt[i] & 0xFFFF);
   }
@@ -129,7 +129,8 @@ public class AnoComm
     throws NetException, IOException
   {
     e(2);
-    return (short)m();
+    short i;
+    return i = m();
   }
 
   protected final int f()
@@ -259,6 +260,7 @@ public class AnoComm
     {
     case 0:
     case 1:
+      return;
     case 2:
       if (paramInt1 > 1)
         throw new NetException(312);
@@ -309,6 +311,7 @@ public class AnoComm
     {
     case 0:
     case 1:
+      return;
     case 2:
       if (paramInt1 > 1)
         throw new NetException(312);
@@ -337,8 +340,8 @@ public class AnoComm
     byte b1 = 0;
     for (int i = paramArrayOfByte.length - 1; i >= 0; i--)
     {
-      b1 = (byte)(b1 + 1);
       paramArrayOfByte[b1] = ((byte)(paramInt >>> 8 * i & 0xFF));
+      b1 = (byte)(b1 + 1);
     }
     return b1;
   }
