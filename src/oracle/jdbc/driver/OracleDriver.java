@@ -155,6 +155,7 @@ public class OracleDriver
           try
           {
             localMBeanServer.registerMBean(new OracleDiagnosabilityMBean(), localObjectName);
+            break;
           }
           catch (InstanceAlreadyExistsException localInstanceAlreadyExistsException)
           {
