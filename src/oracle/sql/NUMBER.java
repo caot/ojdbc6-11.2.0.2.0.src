@@ -1867,6 +1867,7 @@ public class NUMBER extends Datum
 
     }
 
+    else {
     if (j - 1 < 20)
       arrayOfByte = new byte[j + 1];
     else {
@@ -1879,6 +1880,7 @@ public class NUMBER extends Datum
     }
     if (i <= 20) {
       arrayOfByte[i] = 102;
+    }
     }
 
     return arrayOfByte;

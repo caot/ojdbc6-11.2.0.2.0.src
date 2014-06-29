@@ -95,6 +95,7 @@ public class CryptoDataPacket extends DataPacket
     if (this.c < 2)
       try
       {
+_L1:
         c();
       }
       catch (IOException localIOException2)
@@ -103,59 +104,87 @@ public class CryptoDataPacket extends DataPacket
       }
     try
     {
+_L2:
       a();
     }
     catch (IOException localIOException3)
     {
       throw (localIOException1 = localIOException3);
     }
+_L3:
     super.send(paramInt);
   }
 
   protected final void a()
     throws IOException
   {
-    byte[] arrayOfByte1 = new byte[this.availableBytesToSend];
-    System.arraycopy(this.buffer, this.dataOff, arrayOfByte1, 0, arrayOfByte1.length);
-    byte[] arrayOfByte2 = null;
-    this.dataLen = this.availableBytesToSend;
-    if ((this.b != null) && ((arrayOfByte2 = this.b.a(arrayOfByte1, arrayOfByte1.length)) != null))
-      this.dataLen += arrayOfByte2.length;
-    byte[] arrayOfByte3 = new byte[this.dataLen];
-    System.arraycopy(arrayOfByte1, 0, arrayOfByte3, 0, arrayOfByte1.length);
-    if (arrayOfByte2 != null)
-      System.arraycopy(arrayOfByte2, 0, arrayOfByte3, arrayOfByte1.length, arrayOfByte2.length);
-    byte[] arrayOfByte4;
-    if ((arrayOfByte4 = this.a.b(arrayOfByte3)) == null)
+    byte[] abyte0 = new byte[availableBytesToSend];
+    System.arraycopy(buffer, dataOff, abyte0, 0, abyte0.length);
+    byte[] abyte1 = null;
+    this.dataLen = availableBytesToSend;
+    if (b != null && (abyte1 = this.b.a(abyte0, abyte0.length)) != null)
+      dataLen += abyte1.length;
+    byte[] abyte2 = new byte[dataLen];
+    System.arraycopy(abyte0, 0, abyte2, 0, abyte0.length);
+    if (abyte1 != null)
+      System.arraycopy(abyte1, 0, abyte2, abyte0.length, abyte1.length);
+
+    //if(a == null) goto _L2; else goto _L1
+    if(a != null) {
+//_L1:
+    byte[] abyte3;
+    if ((abyte3 = this.a.b(abyte2)) == null)
       throw new IOException("Fail to encrypt buffer");
-    this.dataLen = arrayOfByte4.length;
-    if (this.b != null)
-      System.arraycopy(this.a != null ? arrayOfByte4 : arrayOfByte3, 0, this.buffer, this.dataOff, this.dataLen);
-    this.buffer[(this.dataOff + this.dataLen)] = ((byte)(this.c >= 2 ? 1 : 0));
-    this.dataLen += 1;
-    this.pktOffset = (10 + this.dataLen);
-    this.length = (10 + this.dataLen);
+    this.dataLen = abyte3.length;
+    //abyte3;
+    System.arraycopy(abyte3, 0, this.buffer, this.dataOff, this.dataLen);
+    } else {
+L2:
+      //if(b == null) goto _L5; else goto _L4
+
+    if (b != null) {
+_L4:
+      // abyte2;
+_L3:
+      System.arraycopy(abyte2, 0, this.buffer, this.dataOff, this.dataLen);
+    }
+    }
+_L5:
+    buffer[dataOff + dataLen] = (byte)(c >= 2 ? 1 : 0);
+    dataLen += 1;
+    pktOffset = 10 + this.dataLen;
+    length = 10 + this.dataLen;
   }
 
   protected final void b()
     throws IOException
   {
-    byte[] arrayOfByte1 = new byte[this.dataLen - 1];
-    this.dataLen -= 1;
-    System.arraycopy(this.buffer, this.dataOff, arrayOfByte1, 0, this.dataLen);
-    byte[] arrayOfByte2;
-    if ((arrayOfByte2 = this.a != null ? this.a.a(arrayOfByte1) : arrayOfByte1) == null)
+    byte[] abyte1;
+    byte[] abyte0 = new byte[dataLen - 1];
+    dataLen -= 1;
+    System.arraycopy(buffer, dataOff, abyte0, 0, this.dataLen);
+    if ((abyte1 = a != null ? this.a.a(abyte0) : abyte0) == null)
       throw new IOException("Bad buffer - Fail to decrypt buffer");
-    this.dataLen = arrayOfByte2.length;
-    byte[] arrayOfByte3 = new byte[this.b.b()];
-    this.dataLen -= this.b.b();
-    System.arraycopy(arrayOfByte2, this.dataLen, arrayOfByte3, 0, this.b.b());
-    byte[] arrayOfByte4 = new byte[this.dataLen];
-    System.arraycopy(arrayOfByte2, 0, arrayOfByte4, 0, this.dataLen);
-    if (this.b.b(arrayOfByte4, arrayOfByte3) == true)
+    dataLen = abyte1.length;
+
+    //if(b == null) goto _L2; else goto _L1
+    if(b != null) {
+//_L1:
+    byte[] abyte2 = new byte[this.b.b()];
+    dataLen -= b.b();
+    System.arraycopy(abyte1, dataLen, abyte2, 0, b.b());
+    byte[] abyte3 = new byte[this.dataLen];
+    System.arraycopy(abyte1, 0, abyte3, 0, this.dataLen);
+    if (b.b(abyte3, abyte2))
       throw new IOException("Checksum fail");
-    System.arraycopy(this.b != null ? arrayOfByte4 : arrayOfByte2, 0, this.buffer, this.dataOff, this.dataLen);
-    this.length = (this.dataOff + this.dataLen);
+//    abyte3;
+//    goto _L3
+    System.arraycopy(abyte3, 0, this.buffer, this.dataOff, this.dataLen);
+    } else {
+_L2:
+    System.arraycopy(abyte1, 0, this.buffer, this.dataOff, this.dataLen);
+    }
+    length = dataOff + dataLen;
     this.pktOffset = 10;
   }
 

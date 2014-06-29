@@ -120,9 +120,30 @@ public class DataIntegrityService extends Service
     return arrayOfByte;
   }
 
-  public static byte nibbleToHex(byte paramByte)
+  public static byte nibbleToHexX(byte paramByte)
   {
     return (byte)(paramByte - 10 + ((paramByte = (byte)(paramByte & 0xF)) < 10 ? 48 : 65));
+  }
+
+  public static byte nibbleToHex(byte byte0)
+  {
+      //if((byte0 &= 0xf) >= 10) goto _L2; else goto _L1
+    if ((byte0 &= 0xf) <10) {
+_L1:
+//      byte0;
+//      48;
+//        goto _L3
+      return  (byte)(byte0 +  48);
+    } else {
+_L2:
+//      byte0 - 10;
+//      65;
+      return (byte)(byte0 - 10 + 65);
+    }
+//_L3:
+//      JVM INSTR iadd ;
+//      (byte);
+//      return;
   }
 
   public static String bArray2String(byte[] paramArrayOfByte)

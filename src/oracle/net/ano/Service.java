@@ -154,20 +154,28 @@ public abstract class Service
     return arrayOfString;
   }
 
-  static byte a(String[] paramArrayOfString, String paramString)
-    throws NetException
-  {
-    byte b1 = 0;
-    if (paramString.equals(paramArrayOfString[b1]))
-      return b1;
-    throw new NetException(309);
+  static byte a(String[] as, String s) throws NetException {
+    byte byte0 = 0;
+_L3:
+    while (true) {
+      if (byte0 >= as.length) {
+        break;
+      }
+_L1:
+      if (s.equals(as[byte0])) {
+        return byte0;
+      }
+      byte0++;
+    }
+_L2:
+    throw new NetException((int) 309);
   }
 
-  public static String getLevelString(int paramInt)
+  public static String getLevelString(int j)
     throws NetException
   {
     String str;
-    switch (paramInt)
+    switch (j)
     {
     case 0:
       str = "ACCEPTED";
@@ -187,11 +195,11 @@ public abstract class Service
     return str;
   }
 
-  public static String getServiceName(int paramInt)
+  public static String getServiceName(int j)
     throws NetException
   {
     String str;
-    switch (paramInt)
+    switch (j)
     {
     case 1:
       str = "AUTHENTICATION";

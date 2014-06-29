@@ -163,43 +163,44 @@ public class AuthenticationService extends Service
   final void h()
     throws NetException, IOException
   {
-    if (this.m)
+    if(!m)
+      return;
+
+    this.d.ano.a();
+    Service.a(this.c);
+    if (this.i == 1)
     {
-      this.d.ano.a();
-      Service.a(this.c);
-      if (this.i == 1)
-      {
-        this.c.n();
-        this.c.n();
-        return;
-      }
-      if (this.i == 2)
-      {
-        String str1 = this.c.k();
-        String str2 = this.c.k();
-        this.o = (str1 + "/" + str2);
-        AccessControlContext localAccessControlContext;
-        if ((localAccessControlContext = AccessController.getContext()) != null)
-          this.n = Subject.getSubject(localAccessControlContext);
-        if (this.n == null)
-          this.n = i();
-        try
-        {
-          Subject.doAs(this.n, this);
-          return;
-        }
-        catch (PrivilegedActionException localPrivilegedActionException2)
-        {
-          PrivilegedActionException localPrivilegedActionException1;
-          Exception localException = (localPrivilegedActionException1 = localPrivilegedActionException2).getException();
-          NetException localNetException = null;
-          if ((localException instanceof NetException))
-            localNetException = (NetException)localException;
-          else
-            (localNetException = new NetException(323, localPrivilegedActionException1.getMessage())).initCause(localPrivilegedActionException1);
-          throw localNetException;
-        }
-      }
+      this.c.n();
+      this.c.n();
+      return;
+    }
+
+    if(i != 2)
+      return;
+
+    String str1 = this.c.k();
+    String str2 = this.c.k();
+    this.o = (str1 + "/" + str2);
+    AccessControlContext localAccessControlContext;
+    if ((localAccessControlContext = AccessController.getContext()) != null)
+      this.n = Subject.getSubject(localAccessControlContext);
+    if (this.n == null)
+      this.n = i();
+    try
+    {
+      Subject.doAs(this.n, this);
+      return;
+    }
+    catch (PrivilegedActionException localPrivilegedActionException2)
+    {
+      PrivilegedActionException localPrivilegedActionException1;
+      Exception localException = (localPrivilegedActionException1 = localPrivilegedActionException2).getException();
+      NetException localNetException = null;
+      if ((localException instanceof NetException))
+        localNetException = (NetException)localException;
+      else
+        (localNetException = new NetException(323, localPrivilegedActionException1.getMessage())).initCause(localPrivilegedActionException1);
+      throw localNetException;
     }
   }
 
@@ -339,7 +340,7 @@ public class AuthenticationService extends Service
         KerberosTicket localObject2;
         KerberosPrincipal localObject3;
         String localObject4;
-        
+
         localObject4 = (localObject3 = (localObject2 = (KerberosTicket)arrayOfObject[i1]).getServer()).getName();
         localObject5 = ((KerberosTicket)localObject2).getSessionKey().getEncoded();
         int i2 = ((KerberosTicket)localObject2).getSessionKeyType();
@@ -355,7 +356,7 @@ public class AuthenticationService extends Service
       byte[] localObject4 = localAPReq.authenticator.reset((byte[])localObject3, true);
       Checksum localChecksum;
       byte[] arrayOfByte2;
-      
+
       Authenticator authenticator;
       if ((arrayOfByte2 = (localChecksum = (authenticator = new Authenticator((byte[])localObject4)).getChecksum()).getBytes()).length >= 26)
       {

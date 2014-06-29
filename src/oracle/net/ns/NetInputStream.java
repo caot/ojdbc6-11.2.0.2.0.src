@@ -32,7 +32,7 @@ public class NetInputStream extends InputStream
     return read(paramArrayOfByte, 0, paramArrayOfByte.length);
   }
 
-  public boolean readZeroCopyIO(byte[] paramArrayOfByte, int paramInt, int[] paramArrayOfInt)
+  public boolean readZeroCopyIO(byte[] abyte0, int i, int[] ai)
     throws IOException, NetException, BreakNetException
   {
     boolean bool = false;
@@ -42,24 +42,27 @@ public class NetInputStream extends InputStream
     }
 
     this.ddPkt.receive();
-    int i = this.ddPkt.totalDataLength;
+    int j = this.ddPkt.totalDataLength;
     if ((this.ddPkt.descriptorFLaG & 0x1) != 0) {
       bool = true;
     }
 
-    if (paramArrayOfByte.length < paramInt + i)
+    if (abyte0.length < i + j)
     {
       throw new IOException("Assertion Failed");
     }
 
-    int j = this.ddPkt.packet.readLocal(paramArrayOfByte, paramInt, i);
-
-    while (j < i)
+    int k = this.ddPkt.packet.readLocal(abyte0, i, j);
+_L2:
+    while (k < j)
     {
       try
       {
-        if ((j += this.sAtts.ntInputStream.read(paramArrayOfByte, j + paramInt, i - j)) <= 0)
-        {
+//        if((k += sAtts.ntInputStream.read(abyte0, k + i, j - k)) > 0) goto _L2; else goto _L1
+        if ((k += this.sAtts.ntInputStream.read(abyte0, k + i, j - k)) > 0) {
+          continue _L2;
+        } else {
+_L1:
           throw new NetException(0);
         }
       }
@@ -67,32 +70,33 @@ public class NetInputStream extends InputStream
         throw new NetException(504);
       }
     }
-    paramArrayOfInt[0] = j;
+    ai[0] = k;
     return bool;
   }
 
-  public int read(byte[] paramArrayOfByte, int paramInt1, int paramInt2)
+  public int read(byte[] abyte0, int i, int j)
     throws IOException, NetException, BreakNetException
   {
-    int i = 0;
+    int k = 0;
     try
     {
       do
       {
-        if ((this.daPkt == null) || (this.daPkt.availableBytesToRead <= 0) || (this.daPkt.type == 7)) {
+        if (this.daPkt == null || this.daPkt.availableBytesToRead <= 0 || this.daPkt.type == 7) {
           getNextPacket();
         }
-        i += this.daPkt.getDataFromBuffer(paramArrayOfByte, paramInt1 + i, paramInt2 - i);
+        k += this.daPkt.getDataFromBuffer(abyte0, i + k, j - k);
       }
-      while (i < paramInt2);
+      while (k < j);
     }
     catch (NetException localNetException) {
       if (localNetException.getErrorNumber() == 0) {
         return -1;
       }
-      throw localNetException;
+      else
+        throw localNetException;
     }
-    return i;
+    return k;
   }
 
   public int available()
