@@ -842,6 +842,7 @@ class T4CMAREngine
 
     byte[] arrayOfByte1 = new byte[paramInt];
 
+_L2:
     while (i < paramInt)
     {
       try
@@ -865,9 +866,11 @@ class T4CMAREngine
       {
       }
 
+//      if(abyte0[j++] != 0) goto _L2; else goto _L1
       if (arrayOfByte1[(i++)] == 0)
         break;
     }
+//_L1:
     byte[] arrayOfByte2;
     if (arrayOfByte1.length == --i)
     {

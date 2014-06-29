@@ -147,16 +147,17 @@ abstract class T4CTTIfun extends T4CTTIMsg
     this.receiveState = 1;
 
     SQLException localObject1 = null;
-    loop:
+_L16:
     while (true)
     {
       try
       {
-        int i = this.meg.unmarshalSB1();
+        byte i = this.meg.unmarshalSB1();
 
         switch (i)
         {
         case 8:
+_L5:
           if (this.rpaProcessed)
           {
             SQLException localSQLException1 = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 401);
@@ -175,43 +176,53 @@ abstract class T4CTTIfun extends T4CTTIMsg
           this.rpaProcessed = true;
           break;
         case 21:
+_L12:
           readBVC();
           break;
         case 11:
+_L7:
           readIOV();
           this.iovProcessed = true;
           break;
         case 6:
+_L3:
           readRXH();
           this.rxhProcessed = true;
           break;
         case 7:
+_L4:
           this.receiveState = 2;
 
           if (readRXD())
           {
+_L14:
             this.receiveState = 3;
-//            return;
-            break loop;
+            this.connection.sentCancel = false;
+            return;
           }
 
+_L15:
           this.receiveState = 1;
 
           break;
         case 16:
+_L10:
           readDCB();
           break;
         case 14:
+_L8:
           readLOBD();
           break;
         case 23:
-          int j = (byte)this.meg.unmarshalUB1();
+//_L13:
+          byte j = (byte)this.meg.unmarshalUB1();
           int k = this.meg.unmarshalUB2();
-          int m = (byte)this.meg.unmarshalUB1();
+          byte m = (byte)this.meg.unmarshalUB1();
           int n;
           if (j == 1)
           {
-            n = 0; if (n < k)
+            n = 0;
+            while (n < k)
             {
               T4CTTIidc localT4CTTIidc = new T4CTTIidc(this.connection);
               localT4CTTIidc.unmarshal();
@@ -222,7 +233,8 @@ abstract class T4CTTIfun extends T4CTTIMsg
           }
           else if (j == 2)
           {
-            n = 0; if (n < k)
+            n = 0;
+            while (n < k)
             {
               int i2 = this.meg.unmarshalUB1();
 
@@ -230,31 +242,36 @@ abstract class T4CTTIfun extends T4CTTIMsg
             }
 
           }
-          else if (j != 3)
-          {
-            if (j != 4)
-            {
-              if (j == 5)
-              {
-                T4CTTIkvarr localT4CTTIkvarr = new T4CTTIkvarr(this.connection);
-                localT4CTTIkvarr.unmarshal();
-              }
-              else
-              {
-                short s;
-                SQLException sqlexception;
-                if (j == 6)
-                {
-                  int i1 = 0; if (i1 < k)
-                  {
-                    NTFXSEvent localNTFXSEvent = new NTFXSEvent(this.connection);
-                    this.connection.notify(localNTFXSEvent);
+          else if (j == 3 || j == 4)
+            break;
 
-                    i1++; continue; }  }  }  }  } break;
+          if (j == 5)
+          {
+            T4CTTIkvarr localT4CTTIkvarr = new T4CTTIkvarr(this.connection);
+            localT4CTTIkvarr.unmarshal();
+            break;
+          }
+
+          short s;
+          SQLException sqlexception;
+          if (j == 6)
+          {
+            int i1 = 0;
+            while (i1 < k)
+            {
+              NTFXSEvent localNTFXSEvent = new NTFXSEvent(this.connection);
+              this.connection.notify(localNTFXSEvent);
+
+              i1++;
+            }
+          }
+          break;
         case 19:
+_L11:
           this.meg.marshalUB1((short)19);
           break;
         case 15:
+_L9:
           this.oer.init();
           this.oer.unmarshalWarning();
           try
@@ -266,15 +283,19 @@ abstract class T4CTTIfun extends T4CTTIMsg
             this.connection.setWarnings(DatabaseError.addSqlWarning(this.connection.getWarnings(), localSQLWarning));
           }
 
+          break;
         case 9:
+_L6:
           if (this.connection.getTTCVersion() >= 3)
           {
-            short s = (short)this.meg.unmarshalUB2();
+            s = (short)this.meg.unmarshalUB2();
             this.connection.endToEndECIDSequenceNumber = s;
           }
 
-          this.connection.sentCancel = false; break;
+          this.connection.sentCancel = false;
+          return;
         case 4:
+_L2:
           this.oer.init();
           this.oer.unmarshal();
           try
@@ -286,7 +307,8 @@ abstract class T4CTTIfun extends T4CTTIMsg
             localObject1 = localSQLException3;
           }
 
-          this.connection.sentCancel = false; break;
+          connection.sentCancel = false;
+          break _L16;
         case 5:
         case 10:
         case 12:
@@ -296,7 +318,7 @@ abstract class T4CTTIfun extends T4CTTIMsg
         case 20:
         case 22:
         default:
-          SQLException sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 401);
+          sqlexception = DatabaseError.createSqlException(getConnectionDuringExceptionHandling(), 401);
           sqlexception.fillInStackTrace();
           throw sqlexception;
         }
